@@ -1,0 +1,532 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		60FD531B18D8405900C2DB18 /* BuildPomoc */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 60FD531C18D8405900C2DB18 /* Build configuration list for PBXAggregateTarget "BuildPomoc" */;
+			buildPhases = (
+				60FD532118D8409300C2DB18 /* ShellScript */,
+			);
+			dependencies = (
+				60FD532018D8406300C2DB18 /* PBXTargetDependency */,
+			);
+			name = BuildPomoc;
+			productName = BuildPomoc;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		6066FFFF18D8444C00FABA30 /* Pomoc.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
+		60C603E018D83E5B00CF0881 /* Pomoc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; };
+		60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603E818D83E5B00CF0881 /* XCTest.framework */; };
+		60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
+		60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603EB18D83E5B00CF0881 /* UIKit.framework */; };
+		60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603D718D83E5B00CF0881 /* libPomoc.a */; };
+		60C603F518D83E5B00CF0881 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60C603F318D83E5B00CF0881 /* InfoPlist.strings */; };
+		60C603F718D83E5B00CF0881 /* PomocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C603F618D83E5B00CF0881 /* PomocTests.m */; };
+		60C6040318D83ED800CF0881 /* PomocTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C6040118D83ED800CF0881 /* PomocTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60C6040418D83ED800CF0881 /* PomocTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6040218D83ED800CF0881 /* PomocTest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		60C603ED18D83E5B00CF0881 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60C603CF18D83E5B00CF0881 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60C603D618D83E5B00CF0881;
+			remoteInfo = Pomoc;
+		};
+		60FD531F18D8406300C2DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60C603CF18D83E5B00CF0881 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60C603D618D83E5B00CF0881;
+			remoteInfo = Pomoc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		60C603D518D83E5B00CF0881 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				60C603E018D83E5B00CF0881 /* Pomoc.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		60C603D718D83E5B00CF0881 /* libPomoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomoc.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C603DA18D83E5B00CF0881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		60C603DE18D83E5B00CF0881 /* Pomoc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomoc-Prefix.pch"; sourceTree = "<group>"; };
+		60C603DF18D83E5B00CF0881 /* Pomoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pomoc.h; sourceTree = "<group>"; };
+		60C603E718D83E5B00CF0881 /* PomocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C603E818D83E5B00CF0881 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		60C603EB18D83E5B00CF0881 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		60C603F218D83E5B00CF0881 /* PomocTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocTests-Info.plist"; sourceTree = "<group>"; };
+		60C603F418D83E5B00CF0881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60C603F618D83E5B00CF0881 /* PomocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocTests.m; sourceTree = "<group>"; };
+		60C6040118D83ED800CF0881 /* PomocTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocTest.h; sourceTree = "<group>"; };
+		60C6040218D83ED800CF0881 /* PomocTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60C603D418D83E5B00CF0881 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C603E418D83E5B00CF0881 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */,
+				60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */,
+				60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */,
+				60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60C603CE18D83E5B00CF0881 = {
+			isa = PBXGroup;
+			children = (
+				60C603DC18D83E5B00CF0881 /* Pomoc */,
+				60C603F018D83E5B00CF0881 /* PomocTests */,
+				60C603D918D83E5B00CF0881 /* Frameworks */,
+				60C603D818D83E5B00CF0881 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60C603D818D83E5B00CF0881 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60C603D718D83E5B00CF0881 /* libPomoc.a */,
+				60C603E718D83E5B00CF0881 /* PomocTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60C603D918D83E5B00CF0881 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60C603DA18D83E5B00CF0881 /* Foundation.framework */,
+				60C603E818D83E5B00CF0881 /* XCTest.framework */,
+				60C603EB18D83E5B00CF0881 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60C603DC18D83E5B00CF0881 /* Pomoc */ = {
+			isa = PBXGroup;
+			children = (
+				60C6040118D83ED800CF0881 /* PomocTest.h */,
+				60C6040218D83ED800CF0881 /* PomocTest.m */,
+				60C603DF18D83E5B00CF0881 /* Pomoc.h */,
+				60C603DD18D83E5B00CF0881 /* Supporting Files */,
+			);
+			path = Pomoc;
+			sourceTree = "<group>";
+		};
+		60C603DD18D83E5B00CF0881 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C603DE18D83E5B00CF0881 /* Pomoc-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60C603F018D83E5B00CF0881 /* PomocTests */ = {
+			isa = PBXGroup;
+			children = (
+				60C603F618D83E5B00CF0881 /* PomocTests.m */,
+				60C603F118D83E5B00CF0881 /* Supporting Files */,
+			);
+			path = PomocTests;
+			sourceTree = "<group>";
+		};
+		60C603F118D83E5B00CF0881 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C603F218D83E5B00CF0881 /* PomocTests-Info.plist */,
+				60C603F318D83E5B00CF0881 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		60C6040018D83E9000CF0881 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C6040318D83ED800CF0881 /* PomocTest.h in Headers */,
+				6066FFFF18D8444C00FABA30 /* Pomoc.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		60C603D618D83E5B00CF0881 /* Pomoc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C603FA18D83E5B00CF0881 /* Build configuration list for PBXNativeTarget "Pomoc" */;
+			buildPhases = (
+				60C603D318D83E5B00CF0881 /* Sources */,
+				60C603D418D83E5B00CF0881 /* Frameworks */,
+				60C603D518D83E5B00CF0881 /* CopyFiles */,
+				60C6040018D83E9000CF0881 /* Headers */,
+				60FD531A18D83FD900C2DB18 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pomoc;
+			productName = Pomoc;
+			productReference = 60C603D718D83E5B00CF0881 /* libPomoc.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		60C603E618D83E5B00CF0881 /* PomocTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C603FD18D83E5B00CF0881 /* Build configuration list for PBXNativeTarget "PomocTests" */;
+			buildPhases = (
+				60C603E318D83E5B00CF0881 /* Sources */,
+				60C603E418D83E5B00CF0881 /* Frameworks */,
+				60C603E518D83E5B00CF0881 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60C603EE18D83E5B00CF0881 /* PBXTargetDependency */,
+			);
+			name = PomocTests;
+			productName = PomocTests;
+			productReference = 60C603E718D83E5B00CF0881 /* PomocTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60C603CF18D83E5B00CF0881 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = nus.cs3217;
+			};
+			buildConfigurationList = 60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 60C603CE18D83E5B00CF0881;
+			productRefGroup = 60C603D818D83E5B00CF0881 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60C603D618D83E5B00CF0881 /* Pomoc */,
+				60C603E618D83E5B00CF0881 /* PomocTests */,
+				60FD531B18D8405900C2DB18 /* BuildPomoc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60C603E518D83E5B00CF0881 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C603F518D83E5B00CF0881 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60FD531A18D83FD900C2DB18 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		60FD532118D8409300C2DB18 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the project folder\nrm -rf \"${SRCROOT}/Distribution/\"\nmkdir -p \"${SRCROOT}/Distribution\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}\" \"${SRCROOT}/Distribution/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60C603D318D83E5B00CF0881 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C6040418D83ED800CF0881 /* PomocTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C603E318D83E5B00CF0881 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C603F718D83E5B00CF0881 /* PomocTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60C603EE18D83E5B00CF0881 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60C603D618D83E5B00CF0881 /* Pomoc */;
+			targetProxy = 60C603ED18D83E5B00CF0881 /* PBXContainerItemProxy */;
+		};
+		60FD532018D8406300C2DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60C603D618D83E5B00CF0881 /* Pomoc */;
+			targetProxy = 60FD531F18D8406300C2DB18 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		60C603F318D83E5B00CF0881 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60C603F418D83E5B00CF0881 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60C603F818D83E5B00CF0881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		60C603F918D83E5B00CF0881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60C603FB18D83E5B00CF0881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/Pomoc.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		60C603FC18D83E5B00CF0881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/Pomoc.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		60C603FE18D83E5B00CF0881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PomocTests/PomocTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		60C603FF18D83E5B00CF0881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				INFOPLIST_FILE = "PomocTests/PomocTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		60FD531D18D8405900C2DB18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		60FD531E18D8405900C2DB18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C603F818D83E5B00CF0881 /* Debug */,
+				60C603F918D83E5B00CF0881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60C603FA18D83E5B00CF0881 /* Build configuration list for PBXNativeTarget "Pomoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C603FB18D83E5B00CF0881 /* Debug */,
+				60C603FC18D83E5B00CF0881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60C603FD18D83E5B00CF0881 /* Build configuration list for PBXNativeTarget "PomocTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C603FE18D83E5B00CF0881 /* Debug */,
+				60C603FF18D83E5B00CF0881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60FD531C18D8405900C2DB18 /* Build configuration list for PBXAggregateTarget "BuildPomoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60FD531D18D8405900C2DB18 /* Debug */,
+				60FD531E18D8405900C2DB18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60C603CF18D83E5B00CF0881 /* Project object */;
+}

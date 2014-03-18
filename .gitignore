@@ -22,3 +22,6 @@ Pods
 
 # Node.js
 */node_modules/*
+
+# Don't include the framework distribution folder
+Framework/Pomoc/Distribution/*
