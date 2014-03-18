@@ -20,8 +20,9 @@ DerivedData
 # CocoaPods
 Pods
 
-# Node.js
+# Backend stuff
 */node_modules/*
+settings_local.js
 
 # Don't include the framework distribution folder
 Framework/Pomoc/Distribution/*
