@@ -1,0 +1,6 @@
+[submodule "JASidePanels"]
+	path = JASidePanels
+	url = https://github.com/gotosleep/JASidePanels.git
+[submodule "vendors/JASidePanels"]
+	path = vendors/JASidePanels
+	url = https://github.com/gotosleep/JASidePanels.git

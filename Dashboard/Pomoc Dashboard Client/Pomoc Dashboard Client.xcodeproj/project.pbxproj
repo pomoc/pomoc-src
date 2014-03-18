@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AD18D7EF2C00D78156 /* Foundation.framework */; };
+		AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AF18D7EF2C00D78156 /* CoreGraphics.framework */; };
+		AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204B118D7EF2C00D78156 /* UIKit.framework */; };
+		AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5204B618D7EF2C00D78156 /* InfoPlist.strings */; };
+		AA5204BA18D7EF2C00D78156 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204B918D7EF2C00D78156 /* main.m */; };
+		AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204BD18D7EF2C00D78156 /* AppDelegate.m */; };
+		AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5204BF18D7EF2C00D78156 /* Main.storyboard */; };
+		AA5204C618D7EF2C00D78156 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5204C518D7EF2C00D78156 /* Images.xcassets */; };
+		AA5204CD18D7EF2C00D78156 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204CC18D7EF2C00D78156 /* XCTest.framework */; };
+		AA5204CE18D7EF2C00D78156 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AD18D7EF2C00D78156 /* Foundation.framework */; };
+		AA5204CF18D7EF2C00D78156 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204B118D7EF2C00D78156 /* UIKit.framework */; };
+		AA5204D718D7EF2C00D78156 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5204D518D7EF2C00D78156 /* InfoPlist.strings */; };
+		AA5204D918D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204D818D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m */; };
+		AA5204EA18D7F2D900D78156 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204E918D7F2D900D78156 /* JASidePanelController.m */; };
+		AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F118D80B3F00D78156 /* MainViewController.m */; };
+		AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F418D80BFA00D78156 /* SideNavigationController.m */; };
+		AA5204F818D80E9900D78156 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */; };
+		AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FA18D80F2200D78156 /* ChatViewController.m */; };
+		AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FD18D8109A00D78156 /* HomeViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA5204D018D7EF2C00D78156 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA5204A218D7EF2C00D78156 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA5204A918D7EF2C00D78156;
+			remoteInfo = "Pomoc Dashboard Client";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AA5204AA18D7EF2C00D78156 /* Pomoc Dashboard Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomoc Dashboard Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA5204AD18D7EF2C00D78156 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AA5204AF18D7EF2C00D78156 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AA5204B118D7EF2C00D78156 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AA5204B518D7EF2C00D78156 /* Pomoc Dashboard Client-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pomoc Dashboard Client-Info.plist"; sourceTree = "<group>"; };
+		AA5204B718D7EF2C00D78156 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AA5204B918D7EF2C00D78156 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AA5204BB18D7EF2C00D78156 /* Pomoc Dashboard Client-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomoc Dashboard Client-Prefix.pch"; sourceTree = "<group>"; };
+		AA5204BC18D7EF2C00D78156 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AA5204BD18D7EF2C00D78156 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AA5204C018D7EF2C00D78156 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AA5204C518D7EF2C00D78156 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AA5204CB18D7EF2C00D78156 /* Pomoc Dashboard ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pomoc Dashboard ClientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA5204CC18D7EF2C00D78156 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AA5204D418D7EF2C00D78156 /* Pomoc Dashboard ClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pomoc Dashboard ClientTests-Info.plist"; sourceTree = "<group>"; };
+		AA5204D618D7EF2C00D78156 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AA5204D818D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pomoc_Dashboard_ClientTests.m; sourceTree = "<group>"; };
+		AA5204E818D7F2D900D78156 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = vendors/JASidePanels/JASidePanels/Source/JASidePanelController.h; sourceTree = SOURCE_ROOT; };
+		AA5204E918D7F2D900D78156 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = vendors/JASidePanels/JASidePanels/Source/JASidePanelController.m; sourceTree = SOURCE_ROOT; };
+		AA5204F018D80B3F00D78156 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AA5204F118D80B3F00D78156 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AA5204F318D80BFA00D78156 /* SideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideNavigationController.h; sourceTree = "<group>"; };
+		AA5204F418D80BFA00D78156 /* SideNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideNavigationController.m; sourceTree = "<group>"; };
+		AA5204F618D80E9900D78156 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "vendors/JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.h"; sourceTree = SOURCE_ROOT; };
+		AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JASidePanel.m"; path = "vendors/JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.m"; sourceTree = SOURCE_ROOT; };
+		AA5204F918D80F2200D78156 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		AA5204FA18D80F2200D78156 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		AA5204FC18D8109A00D78156 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		AA5204FD18D8109A00D78156 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA5204A718D7EF2C00D78156 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
+				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
+				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA5204C818D7EF2C00D78156 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204CD18D7EF2C00D78156 /* XCTest.framework in Frameworks */,
+				AA5204CF18D7EF2C00D78156 /* UIKit.framework in Frameworks */,
+				AA5204CE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA5204A118D7EF2C00D78156 = {
+			isa = PBXGroup;
+			children = (
+				AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */,
+				AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
+				AA5204AC18D7EF2C00D78156 /* Frameworks */,
+				AA5204AB18D7EF2C00D78156 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA5204AB18D7EF2C00D78156 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204AA18D7EF2C00D78156 /* Pomoc Dashboard Client.app */,
+				AA5204CB18D7EF2C00D78156 /* Pomoc Dashboard ClientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA5204AC18D7EF2C00D78156 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204AD18D7EF2C00D78156 /* Foundation.framework */,
+				AA5204AF18D7EF2C00D78156 /* CoreGraphics.framework */,
+				AA5204B118D7EF2C00D78156 /* UIKit.framework */,
+				AA5204CC18D7EF2C00D78156 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
+				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
+				AA5204F418D80BFA00D78156 /* SideNavigationController.m */,
+				AA5204F018D80B3F00D78156 /* MainViewController.h */,
+				AA5204F118D80B3F00D78156 /* MainViewController.m */,
+				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
+				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
+				AA5204F918D80F2200D78156 /* ChatViewController.h */,
+				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
+				AA5204C518D7EF2C00D78156 /* Images.xcassets */,
+				AA5204EB18D7F74B00D78156 /* vendor */,
+				AA5204B418D7EF2C00D78156 /* Supporting Files */,
+			);
+			path = "Pomoc Dashboard Client";
+			sourceTree = "<group>";
+		};
+		AA5204B418D7EF2C00D78156 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
+				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
+				AA5204B518D7EF2C00D78156 /* Pomoc Dashboard Client-Info.plist */,
+				AA5204B618D7EF2C00D78156 /* InfoPlist.strings */,
+				AA5204B918D7EF2C00D78156 /* main.m */,
+				AA5204BB18D7EF2C00D78156 /* Pomoc Dashboard Client-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204D818D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m */,
+				AA5204D318D7EF2C00D78156 /* Supporting Files */,
+			);
+			path = "Pomoc Dashboard ClientTests";
+			sourceTree = "<group>";
+		};
+		AA5204D318D7EF2C00D78156 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204D418D7EF2C00D78156 /* Pomoc Dashboard ClientTests-Info.plist */,
+				AA5204D518D7EF2C00D78156 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA5204EB18D7F74B00D78156 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204F618D80E9900D78156 /* UIViewController+JASidePanel.h */,
+				AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */,
+				AA5204E818D7F2D900D78156 /* JASidePanelController.h */,
+				AA5204E918D7F2D900D78156 /* JASidePanelController.m */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA5204A918D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA5204DC18D7EF2C00D78156 /* Build configuration list for PBXNativeTarget "Pomoc Dashboard Client" */;
+			buildPhases = (
+				AA5204A618D7EF2C00D78156 /* Sources */,
+				AA5204A718D7EF2C00D78156 /* Frameworks */,
+				AA5204A818D7EF2C00D78156 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pomoc Dashboard Client";
+			productName = "Pomoc Dashboard Client";
+			productReference = AA5204AA18D7EF2C00D78156 /* Pomoc Dashboard Client.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA5204CA18D7EF2C00D78156 /* Pomoc Dashboard ClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA5204DF18D7EF2C00D78156 /* Build configuration list for PBXNativeTarget "Pomoc Dashboard ClientTests" */;
+			buildPhases = (
+				AA5204C718D7EF2C00D78156 /* Sources */,
+				AA5204C818D7EF2C00D78156 /* Frameworks */,
+				AA5204C918D7EF2C00D78156 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA5204D118D7EF2C00D78156 /* PBXTargetDependency */,
+			);
+			name = "Pomoc Dashboard ClientTests";
+			productName = "Pomoc Dashboard ClientTests";
+			productReference = AA5204CB18D7EF2C00D78156 /* Pomoc Dashboard ClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA5204A218D7EF2C00D78156 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = nus.cs3217;
+				TargetAttributes = {
+					AA5204CA18D7EF2C00D78156 = {
+						TestTargetID = AA5204A918D7EF2C00D78156;
+					};
+				};
+			};
+			buildConfigurationList = AA5204A518D7EF2C00D78156 /* Build configuration list for PBXProject "Pomoc Dashboard Client" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA5204A118D7EF2C00D78156;
+			productRefGroup = AA5204AB18D7EF2C00D78156 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA5204A918D7EF2C00D78156 /* Pomoc Dashboard Client */,
+				AA5204CA18D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA5204A818D7EF2C00D78156 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204C618D7EF2C00D78156 /* Images.xcassets in Resources */,
+				AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */,
+				AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA5204C918D7EF2C00D78156 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204D718D7EF2C00D78156 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA5204A618D7EF2C00D78156 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
+				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
+				AA5204EA18D7F2D900D78156 /* JASidePanelController.m in Sources */,
+				AA5204F818D80E9900D78156 /* UIViewController+JASidePanel.m in Sources */,
+				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
+				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
+				AA5204BA18D7EF2C00D78156 /* main.m in Sources */,
+				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA5204C718D7EF2C00D78156 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA5204D918D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA5204D118D7EF2C00D78156 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA5204A918D7EF2C00D78156 /* Pomoc Dashboard Client */;
+			targetProxy = AA5204D018D7EF2C00D78156 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AA5204B618D7EF2C00D78156 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5204B718D7EF2C00D78156 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AA5204BF18D7EF2C00D78156 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5204C018D7EF2C00D78156 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AA5204D518D7EF2C00D78156 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA5204D618D7EF2C00D78156 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA5204DA18D7EF2C00D78156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		AA5204DB18D7EF2C00D78156 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA5204DD18D7EF2C00D78156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
+				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AA5204DE18D7EF2C00D78156 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
+				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		AA5204E018D7EF2C00D78156 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pomoc Dashboard Client.app/Pomoc Dashboard Client";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Pomoc Dashboard ClientTests/Pomoc Dashboard ClientTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AA5204E118D7EF2C00D78156 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pomoc Dashboard Client.app/Pomoc Dashboard Client";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
+				INFOPLIST_FILE = "Pomoc Dashboard ClientTests/Pomoc Dashboard ClientTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA5204A518D7EF2C00D78156 /* Build configuration list for PBXProject "Pomoc Dashboard Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5204DA18D7EF2C00D78156 /* Debug */,
+				AA5204DB18D7EF2C00D78156 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA5204DC18D7EF2C00D78156 /* Build configuration list for PBXNativeTarget "Pomoc Dashboard Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5204DD18D7EF2C00D78156 /* Debug */,
+				AA5204DE18D7EF2C00D78156 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AA5204DF18D7EF2C00D78156 /* Build configuration list for PBXNativeTarget "Pomoc Dashboard ClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5204E018D7EF2C00D78156 /* Debug */,
+				AA5204E118D7EF2C00D78156 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA5204A218D7EF2C00D78156 /* Project object */;
+}
