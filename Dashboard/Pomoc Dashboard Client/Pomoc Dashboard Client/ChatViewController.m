@@ -8,8 +8,8 @@
 
 #import "ChatViewController.h"
 
-NSInteger const HOME = 0;
-NSInteger const CHAT = 1;
+#define MENU_INDEX_HOME 0
+#define MENU_INDEX_CHAT 1
 
 @interface ChatViewController (){
     NSArray *dataArray;
@@ -24,7 +24,7 @@ NSInteger const CHAT = 1;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Messages";
-    dataArray = [[NSArray alloc] initWithObjects:@"Home",@"Chat", nil];
+    dataArray = [[NSArray alloc] initWithObjects:@"Home", @"Chat", nil];
 
 }
 
@@ -64,14 +64,12 @@ NSInteger const CHAT = 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"selected at index %ld",indexPath.row);
     switch (indexPath.row) {
-        case HOME:
+        case MENU_INDEX_HOME:
             NSLog(@"selected home");
             [self updateChatView];
             break;
-        case CHAT:
+        case MENU_INDEX_CHAT:
             NSLog(@"Selected chat");
             [self updateChatView];
             break;

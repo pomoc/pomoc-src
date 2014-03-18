@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
+		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AD18D7EF2C00D78156 /* Foundation.framework */; };
 		AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AF18D7EF2C00D78156 /* CoreGraphics.framework */; };
 		AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204B118D7EF2C00D78156 /* UIKit.framework */; };
@@ -20,10 +22,8 @@
 		AA5204CF18D7EF2C00D78156 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204B118D7EF2C00D78156 /* UIKit.framework */; };
 		AA5204D718D7EF2C00D78156 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA5204D518D7EF2C00D78156 /* InfoPlist.strings */; };
 		AA5204D918D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204D818D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m */; };
-		AA5204EA18D7F2D900D78156 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204E918D7F2D900D78156 /* JASidePanelController.m */; };
 		AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F118D80B3F00D78156 /* MainViewController.m */; };
 		AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F418D80BFA00D78156 /* SideNavigationController.m */; };
-		AA5204F818D80E9900D78156 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */; };
 		AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FA18D80F2200D78156 /* ChatViewController.m */; };
 		AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FD18D8109A00D78156 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
@@ -39,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
+		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		AA5204AA18D7EF2C00D78156 /* Pomoc Dashboard Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomoc Dashboard Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5204AD18D7EF2C00D78156 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA5204AF18D7EF2C00D78156 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,14 +60,10 @@
 		AA5204D418D7EF2C00D78156 /* Pomoc Dashboard ClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pomoc Dashboard ClientTests-Info.plist"; sourceTree = "<group>"; };
 		AA5204D618D7EF2C00D78156 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA5204D818D7EF2C00D78156 /* Pomoc_Dashboard_ClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pomoc_Dashboard_ClientTests.m; sourceTree = "<group>"; };
-		AA5204E818D7F2D900D78156 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = vendors/JASidePanels/JASidePanels/Source/JASidePanelController.h; sourceTree = SOURCE_ROOT; };
-		AA5204E918D7F2D900D78156 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = vendors/JASidePanels/JASidePanels/Source/JASidePanelController.m; sourceTree = SOURCE_ROOT; };
 		AA5204F018D80B3F00D78156 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AA5204F118D80B3F00D78156 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AA5204F318D80BFA00D78156 /* SideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideNavigationController.h; sourceTree = "<group>"; };
 		AA5204F418D80BFA00D78156 /* SideNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideNavigationController.m; sourceTree = "<group>"; };
-		AA5204F618D80E9900D78156 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "vendors/JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.h"; sourceTree = SOURCE_ROOT; };
-		AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JASidePanel.m"; path = "vendors/JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.m"; sourceTree = SOURCE_ROOT; };
 		AA5204F918D80F2200D78156 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		AA5204FA18D80F2200D78156 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		AA5204FC18D8109A00D78156 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -177,10 +177,10 @@
 		AA5204EB18D7F74B00D78156 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
-				AA5204F618D80E9900D78156 /* UIViewController+JASidePanel.h */,
-				AA5204F718D80E9900D78156 /* UIViewController+JASidePanel.m */,
-				AA5204E818D7F2D900D78156 /* JASidePanelController.h */,
-				AA5204E918D7F2D900D78156 /* JASidePanelController.m */,
+				6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */,
+				6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */,
+				6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */,
+				6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */,
 			);
 			name = vendor;
 			sourceTree = "<group>";
@@ -284,9 +284,9 @@
 			files = (
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
-				AA5204EA18D7F2D900D78156 /* JASidePanelController.m in Sources */,
-				AA5204F818D80E9900D78156 /* UIViewController+JASidePanel.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
+				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */,
 				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
 				AA5204BA18D7EF2C00D78156 /* main.m in Sources */,
 				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
@@ -496,6 +496,7 @@
 				AA5204DE18D7EF2C00D78156 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA5204DF18D7EF2C00D78156 /* Build configuration list for PBXNativeTarget "Pomoc Dashboard ClientTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +505,7 @@
 				AA5204E118D7EF2C00D78156 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
