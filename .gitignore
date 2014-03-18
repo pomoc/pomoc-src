@@ -21,7 +21,7 @@ DerivedData
 Pods
 
 # Backend stuff
-*/node_modules/*
+node_modules/
 settings_local.js
 
 # Don't include the framework distribution folder
