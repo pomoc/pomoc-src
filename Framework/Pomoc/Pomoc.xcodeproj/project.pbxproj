@@ -44,12 +44,21 @@
 		60C603E018D83E5B00CF0881 /* Pomoc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; };
 		60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603E818D83E5B00CF0881 /* XCTest.framework */; };
 		60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
-		60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603EB18D83E5B00CF0881 /* UIKit.framework */; };
 		60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603D718D83E5B00CF0881 /* libPomoc.a */; };
 		60C603F518D83E5B00CF0881 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60C603F318D83E5B00CF0881 /* InfoPlist.strings */; };
 		60C603F718D83E5B00CF0881 /* PomocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C603F618D83E5B00CF0881 /* PomocTests.m */; };
 		60C6040318D83ED800CF0881 /* PomocTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C6040118D83ED800CF0881 /* PomocTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60C6040418D83ED800CF0881 /* PomocTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6040218D83ED800CF0881 /* PomocTest.m */; };
+		9F919D4918DBD23C002DE055 /* PM_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F919D4718DBD23C002DE055 /* PM_Core.h */; };
+		9F919D4A18DBD23C002DE055 /* PM_Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F919D4818DBD23C002DE055 /* PM_Core.m */; };
+		9F919D5518DBDFA8002DE055 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5418DBDFA8002DE055 /* CFNetwork.framework */; };
+		9F919D5618DBDFA8002DE055 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5418DBDFA8002DE055 /* CFNetwork.framework */; };
+		9F919D5818DBDFB2002DE055 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5718DBDFB2002DE055 /* Security.framework */; };
+		9F919D5918DBDFB2002DE055 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5718DBDFB2002DE055 /* Security.framework */; };
+		9F919D5B18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		9F919D5C18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		9F919DD118DBF49B002DE055 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919DD018DBF49B002DE055 /* libicucore.dylib */; };
+		9F919DD218DBF49B002DE055 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919DD018DBF49B002DE055 /* libicucore.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,12 +115,18 @@
 		60C603DF18D83E5B00CF0881 /* Pomoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pomoc.h; sourceTree = "<group>"; };
 		60C603E718D83E5B00CF0881 /* PomocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C603E818D83E5B00CF0881 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		60C603EB18D83E5B00CF0881 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		60C603F218D83E5B00CF0881 /* PomocTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocTests-Info.plist"; sourceTree = "<group>"; };
 		60C603F418D83E5B00CF0881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60C603F618D83E5B00CF0881 /* PomocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocTests.m; sourceTree = "<group>"; };
 		60C6040118D83ED800CF0881 /* PomocTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocTest.h; sourceTree = "<group>"; };
 		60C6040218D83ED800CF0881 /* PomocTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocTest.m; sourceTree = "<group>"; };
+		9F919D4718DBD23C002DE055 /* PM_Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PM_Core.h; sourceTree = "<group>"; };
+		9F919D4818DBD23C002DE055 /* PM_Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PM_Core.m; sourceTree = "<group>"; };
+		9F919D5418DBDFA8002DE055 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9F919D5718DBDFB2002DE055 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9F919D5A18DBDFBB002DE055 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9F919DD018DBF49B002DE055 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		9F9DFFE718DBCC6700847311 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F919D5518DBDFA8002DE055 /* CFNetwork.framework in Frameworks */,
+				9F919DD118DBF49B002DE055 /* libicucore.dylib in Frameworks */,
+				9F919D5B18DBDFBB002DE055 /* UIKit.framework in Frameworks */,
+				9F919D5818DBDFB2002DE055 /* Security.framework in Frameworks */,
 				60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,8 +147,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */,
-				60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */,
+				9F919D5C18DBDFBB002DE055 /* UIKit.framework in Frameworks */,
+				9F919D5918DBDFB2002DE055 /* Security.framework in Frameworks */,
+				9F919DD218DBF49B002DE055 /* libicucore.dylib in Frameworks */,
 				60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */,
+				9F919D5618DBDFA8002DE055 /* CFNetwork.framework in Frameworks */,
 				60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,9 +222,12 @@
 		60C603D918D83E5B00CF0881 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F919DD018DBF49B002DE055 /* libicucore.dylib */,
+				9F919D5A18DBDFBB002DE055 /* UIKit.framework */,
+				9F919D5718DBDFB2002DE055 /* Security.framework */,
+				9F919D5418DBDFA8002DE055 /* CFNetwork.framework */,
 				60C603DA18D83E5B00CF0881 /* Foundation.framework */,
 				60C603E818D83E5B00CF0881 /* XCTest.framework */,
-				60C603EB18D83E5B00CF0881 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,6 +238,9 @@
 				60C6040118D83ED800CF0881 /* PomocTest.h */,
 				60C6040218D83ED800CF0881 /* PomocTest.m */,
 				60C603DF18D83E5B00CF0881 /* Pomoc.h */,
+				9F9DFFE718DBCC6700847311 /* constants.h */,
+				9F919D4718DBD23C002DE055 /* PM_Core.h */,
+				9F919D4818DBD23C002DE055 /* PM_Core.m */,
 				60C603DD18D83E5B00CF0881 /* Supporting Files */,
 			);
 			path = Pomoc;
@@ -255,6 +283,7 @@
 				603EE0E918D8968A00E70457 /* SocketIOTransportWebsocket.h in Headers */,
 				603EE0F418D8969600E70457 /* base64.h in Headers */,
 				603EE0F718D8969600E70457 /* SRWebSocket.h in Headers */,
+				9F919D4918DBD23C002DE055 /* PM_Core.h in Headers */,
 				603EE0E618D8968A00E70457 /* SocketIOPacket.h in Headers */,
 				603EE0F518D8969600E70457 /* NSData+SRB64Additions.h in Headers */,
 				603EE0EB18D8968A00E70457 /* SocketIOTransportXHR.h in Headers */,
@@ -311,7 +340,7 @@
 		60C603CF18D83E5B00CF0881 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = nus.cs3217;
 			};
 			buildConfigurationList = 60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */;
@@ -387,6 +416,7 @@
 				603EE0F818D8969600E70457 /* SRWebSocket.m in Sources */,
 				603EE0E518D8968A00E70457 /* SocketIOJSONSerialization.m in Sources */,
 				603EE0EC18D8968A00E70457 /* SocketIOTransportXHR.m in Sources */,
+				9F919D4A18DBD23C002DE055 /* PM_Core.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +459,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -467,7 +496,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -501,6 +529,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Pomoc.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -517,6 +549,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Pomoc.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -530,11 +566,11 @@
 		60C603FE18D83E5B00CF0881 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
@@ -551,11 +587,11 @@
 		60C603FF18D83E5B00CF0881 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";

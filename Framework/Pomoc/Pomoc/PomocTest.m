@@ -7,12 +7,17 @@
 //
 
 #import "PomocTest.h"
+#import "PM_Core.h"
 
 @implementation PomocTest
 
 + (NSString *)testString
 {
-    return @"Hello, world";
+    PM_Core *core = [[PM_Core alloc] init];
+    while (core.socket.readyState != SR_OPEN) {
+        NSLog([NSString stringWithFormat:@"%d", core.socket.readyState]);
+    }
+    return @"Connected";
 }
 
 @end

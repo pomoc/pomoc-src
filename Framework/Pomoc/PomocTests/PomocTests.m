@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "PM_Core.h"
+#import "PomocTest.h"
 
 @interface PomocTests : XCTestCase
 
@@ -26,9 +28,9 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+- (void)testWtf {
+    [PomocTest testString];
+    return;
 }
 
 @end

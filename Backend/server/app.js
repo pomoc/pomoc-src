@@ -17,8 +17,11 @@ var server = app.listen(process.env.PORT || settings.PORT || 3217, function() {
         console.log('listening on port %d', server.address().port);
     }
 });
-var io = socket_io.listen(server, {log: settings.DEBUG});
 
+var io = socket_io.listen(server, {
+  'debug': settings.debug,
+  'destroy upgrade' : false
+});
 
 // Load all HTTP routes
 ['routes/index'].forEach(function(route) {
@@ -27,6 +30,7 @@ var io = socket_io.listen(server, {log: settings.DEBUG});
 
 // Socket IO chat connections
 io.sockets.on("connection", function(client) {
+    console.log("connected",client);
     var channelId; // Chat Id
     db.subClient.on("message", function (channel, message) {
         console.log("channel: %s", channel);
