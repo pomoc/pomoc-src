@@ -8,4 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-#import <Pomoc/PomocTest.h>
+#import <Pomoc/PMCore.h>

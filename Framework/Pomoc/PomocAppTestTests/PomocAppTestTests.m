@@ -1,20 +1,18 @@
 //
-//  PomocTests.m
-//  PomocTests
+//  PomocAppTestTests.m
+//  PomocAppTestTests
 //
-//  Created by soedar on 18/3/14.
+//  Created by soedar on 22/3/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
-#import "PMCore.h"
-#import "PomocTest.h"
 
-@interface PomocTests : XCTestCase
+@interface PomocAppTestTests : XCTestCase
 
 @end
 
-@implementation PomocTests
+@implementation PomocAppTestTests
 
 - (void)setUp
 {
@@ -28,9 +26,9 @@
     [super tearDown];
 }
 
-- (void)testWtf {
-    [PomocTest testString];
-    return;
+- (void)testExample
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
 @end
