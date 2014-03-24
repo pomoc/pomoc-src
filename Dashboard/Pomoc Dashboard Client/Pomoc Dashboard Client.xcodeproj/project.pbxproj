@@ -26,6 +26,15 @@
 		AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F418D80BFA00D78156 /* SideNavigationController.m */; };
 		AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FA18D80F2200D78156 /* ChatViewController.m */; };
 		AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FD18D8109A00D78156 /* HomeViewController.m */; };
+		AA7F6E1D18DE86FC00400CDB /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */; };
+		AA7F6E2118DE89C600400CDB /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2018DE89C600400CDB /* Chat.m */; };
+		AA7F6E2418DE89C600400CDB /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2318DE89C600400CDB /* ChatMessage.m */; };
+		AA7F6E2718DE8A0100400CDB /* FakePomocSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */; };
+		AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */; };
+		AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */; };
+		AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */; };
+		AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */; };
+		AA9DC88618DF35B700B4FDF7 /* PomocChat.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88518DF35B700B4FDF7 /* PomocChat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +77,23 @@
 		AA5204FA18D80F2200D78156 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		AA5204FC18D8109A00D78156 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		AA5204FD18D8109A00D78156 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
+		AA7F6E1F18DE89C600400CDB /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		AA7F6E2018DE89C600400CDB /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		AA7F6E2218DE89C600400CDB /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		AA7F6E2318DE89C600400CDB /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		AA7F6E2518DE8A0100400CDB /* FakePomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePomocSupport.h; sourceTree = "<group>"; };
+		AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePomocSupport.m; sourceTree = "<group>"; };
+		AA7F6E2918DE909300400CDB /* DashBoardSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardSingleton.h; sourceTree = "<group>"; };
+		AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardSingleton.m; sourceTree = "<group>"; };
+		AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoViewController.h; path = ../ContactInfoViewController.h; sourceTree = "<group>"; };
+		AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoViewController.m; path = ../ContactInfoViewController.m; sourceTree = "<group>"; };
+		AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastChatViewController.h; sourceTree = "<group>"; };
+		AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastChatViewController.m; sourceTree = "<group>"; };
+		AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AA9DC88418DF35B700B4FDF7 /* PomocChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocChat.h; sourceTree = "<group>"; };
+		AA9DC88518DF35B700B4FDF7 /* PomocChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocChat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,14 +154,17 @@
 			isa = PBXGroup;
 			children = (
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
+				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
+				AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */,
 				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
 				AA5204F418D80BFA00D78156 /* SideNavigationController.m */,
 				AA5204F018D80B3F00D78156 /* MainViewController.h */,
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
-				AA5204F918D80F2200D78156 /* ChatViewController.h */,
-				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
+				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
+				AA7F6E2818DE8A8000400CDB /* PomocSupport */,
+				AA7F6E1E18DE870200400CDB /* Models */,
 				AA5204C518D7EF2C00D78156 /* Images.xcassets */,
 				AA5204EB18D7F74B00D78156 /* vendor */,
 				AA5204B418D7EF2C00D78156 /* Supporting Files */,
@@ -146,6 +175,8 @@
 		AA5204B418D7EF2C00D78156 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA7F6E2918DE909300400CDB /* DashBoardSingleton.h */,
+				AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */,
 				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
 				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
 				AA5204B518D7EF2C00D78156 /* Pomoc Dashboard Client-Info.plist */,
@@ -183,6 +214,42 @@
 				6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */,
 			);
 			name = vendor;
+			sourceTree = "<group>";
+		};
+		AA7F6E1E18DE870200400CDB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */,
+				AA7F6E2218DE89C600400CDB /* ChatMessage.h */,
+				AA7F6E2318DE89C600400CDB /* ChatMessage.m */,
+				AA7F6E1F18DE89C600400CDB /* Chat.h */,
+				AA7F6E2018DE89C600400CDB /* Chat.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AA7F6E2818DE8A8000400CDB /* PomocSupport */ = {
+			isa = PBXGroup;
+			children = (
+				AA7F6E2518DE8A0100400CDB /* FakePomocSupport.h */,
+				AA9DC88418DF35B700B4FDF7 /* PomocChat.h */,
+				AA9DC88518DF35B700B4FDF7 /* PomocChat.m */,
+				AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */,
+			);
+			name = PomocSupport;
+			sourceTree = "<group>";
+		};
+		AA9DC87D18DF275300B4FDF7 /* ChatMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */,
+				AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */,
+				AA5204F918D80F2200D78156 /* ChatViewController.h */,
+				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
+				AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */,
+				AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */,
+			);
+			name = ChatMVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,12 +349,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
+				AA7F6E1D18DE86FC00400CDB /* Chat.xcdatamodeld in Sources */,
+				AA9DC88618DF35B700B4FDF7 /* PomocChat.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
+				AA7F6E2718DE8A0100400CDB /* FakePomocSupport.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
+				AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */,
 				6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */,
+				AA7F6E2118DE89C600400CDB /* Chat.m in Sources */,
 				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
+				AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */,
+				AA7F6E2418DE89C600400CDB /* ChatMessage.m in Sources */,
 				AA5204BA18D7EF2C00D78156 /* main.m in Sources */,
 				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
 			);
@@ -508,6 +584,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */,
+			);
+			currentVersion = AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */;
+			path = Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AA5204A218D7EF2C00D78156 /* Project object */;
 }

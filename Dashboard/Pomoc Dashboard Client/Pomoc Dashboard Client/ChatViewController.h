@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+//Main
 @property (weak, nonatomic) IBOutlet UIView *chatView;
+
+//Chat nav IBOutlets
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+//Chat message IBOutlets
+@property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;
+@property (weak, nonatomic) IBOutlet UIView *chatInputView;
+
+//Main
+- (IBAction)viewPastChat:(id)sender;
+- (IBAction)viewAction:(id)sender;
+
+//Chat message action
+- (IBAction)sendMessage:(id)sender;
 
 @end

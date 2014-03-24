@@ -7,12 +7,28 @@
 //
 
 #import "ChatViewController.h"
+#import "FakePomocSupport.h"
+#import "DashBoardSingleton.h"
+#import "PomocChat.h"
 
-#define MENU_INDEX_HOME 0
-#define MENU_INDEX_CHAT 1
+#define CHAT_CELL_NAME 1
+#define CHAT_CELL_STARTED 2
+#define CHAT_CELL_AGENT_NO 3
+
+#define CHAT_LIST_TABLEVIEW 1
+#define CHAT_MESSAGE_TABLEVIEW 2
+
+#define CHAT_MESSAGE_CELL_NAME 1
+#define CHAT_MESSAGE_TEXT 2
+#define CHAT_MESSAGE_DATE 3
 
 @interface ChatViewController (){
     NSArray *dataArray;
+    FakePomocSupport *pomocSupport;
+    
+    //chat message original center
+    CGRect chatMessageOriginalFrame;
+    CGPoint chatInputOriginalCenter;
 }
 
 @end
@@ -22,11 +38,62 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.title = @"Messages";
     dataArray = [[NSArray alloc] initWithObjects:@"Home", @"Chat", nil];
-
+    
+    //init POMOC Support to retrieve all the chat
+    NSDate *now = [NSDate date];
+    NSString *appId = [[DashBoardSingleton sharedModel] appId];
+    
+    pomocSupport = [[FakePomocSupport alloc] initWithLastUpdatedDate:now andAppId:appId];
+    pomocSupport.delegate = self;
+    
+    [pomocSupport testCallDelegate];
+    
+    //ensuring that no border for chat message table view
+    _chatMessageTable.separatorColor = [UIColor clearColor];
+    
+    //storing the original position for moving them up when keyboard show
+    //chatMessageOriginalCenter = _chatMessageTable.center;
+    chatMessageOriginalFrame = _chatMessageTable.frame;
+    chatInputOriginalCenter = _chatInputView.center;
 }
+
+
+- (IBAction)viewPastChat:(id)sender
+{
+    NSLog(@"clicked view past chat!");
+}
+
+- (IBAction)viewAction:(id)sender
+{
+    NSLog(@"clicked view action");
+}
+
+- (IBAction)sendMessage:(id)sender {
+    NSLog(@"user sending message!");
+}
+
+- (void) chatListOnLoad:(NSArray *)Chat
+{
+    
+}
+
+- (void) newChat: (PomocChat *)Chat
+{
+    NSLog(@"called new chat");
+}
+
+- (void) testProtocol
+{
+    NSLog(@"called test protocol");
+}
+
+- (void) newChatMessage: (PomocChat *)Chat
+{
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,7 +102,7 @@
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Navigation Table view data source
 //
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{
@@ -46,53 +113,121 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"came inside number of rows");
     // Return the number of rows in the section.
-    return [dataArray count];
+    //return [dataArray count];
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
+        return [self createChatNavTableView:tableView];
     
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        return [self createChatMessageTableView:tableView];
+    }
     
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case MENU_INDEX_HOME:
-            NSLog(@"selected home");
-            [self updateChatView];
-            break;
-        case MENU_INDEX_CHAT:
-            NSLog(@"Selected chat");
-            [self updateChatView];
-            break;
-        default:
-            break;
+    //selecting one of the chat side nav
+    if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UILabel *visitorNameLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
+        NSString *visitorName = [visitorNameLabel text];
+        [self updateChatViewWithVisitorName:visitorName];
+        
     }
-}
-
-- (void) updateChatView
-{
-    UIColor *randomColor = [self randomUIColor];
-    [self.chatView setBackgroundColor:randomColor ];
-    NSLog(@"updating chat view!");
-}
-
-- (UIColor *) randomUIColor
-{
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
-    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
     
-    return color;
+    
+}
+
+
+#pragma mark - CHAT SIDE NAV
+- (UITableViewCell *) createChatNavTableView: (UITableView *) tableView
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    //Setting visitor name
+    UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
+    [visitorLabel setText:@"Visitor XXX"];
+    
+    //setting the started date of chat
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
+    [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
+    
+    //setting number of agents
+    UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
+    [agentLabel setText:@"8"];
+    
+    return cell;
+}
+
+
+#pragma mark - CHAT MESSAGE
+- (UITableViewCell *) createChatMessageTableView: (UITableView *) tableView
+{
+    static NSString *cellIdentifier = @"ChatMessageCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    //Setting visitor name
+    UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_CELL_NAME];
+    [visitorLabel setText:@"Visitor XXX"];
+    
+    //setting the started date of chat
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd 'at' HH:MM"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_DATE];
+    [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
+    
+    //setting number of agents
+    UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_TEXT];
+    [agentLabel setText:@"Hey yoooolooooo yoooolooooo yoooolooooo yoooolooooo yoooolooooo yoooolooooo"];
+    
+    return cell;
+}
+
+- (void) updateChatViewWithVisitorName: (NSString *) visitorName
+{
+    [self.navigationItem setTitle:visitorName];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    /* keyboard is visible, move views */
+    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - 350)];
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - 350;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
+
+    //scrolling to bottom http://stackoverflow.com/questions/5112346/uitableview-scroll-to-bottom-on-reload
+    NSInteger totalCell = [_chatMessageTable numberOfRowsInSection:0] - 1;
+    NSIndexPath* ipath = [NSIndexPath indexPathForRow: totalCell inSection: 0];
+    [_chatMessageTable scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionBottom animated: YES];
+    
+    NSLog(@"keyboard visible");
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSLog(@"keyboard hidden");
+    _chatInputView.center = chatInputOriginalCenter;
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + 350;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
+    
+    /* resign first responder, hide keyboard, move views */
 }
 
 /*
@@ -105,5 +240,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

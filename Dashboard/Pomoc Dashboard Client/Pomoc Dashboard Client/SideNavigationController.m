@@ -106,7 +106,6 @@ NSInteger const CHAT = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"selected at index %ld",indexPath.row);
     switch (indexPath.row) {
         case HOME:
             NSLog(@"selected home");
