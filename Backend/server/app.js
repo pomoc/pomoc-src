@@ -19,35 +19,52 @@ var server = app.listen(process.env.PORT || settings.PORT || 3217, function() {
 });
 var io = socket_io.listen(server, {log: settings.DEBUG});
 
-
 // Load all HTTP routes
-['routes/index'].forEach(function(route) {
+['routes/index', 'routes/api'].forEach(function(route) {
     require('./' + route)(app, db);
 });
 
 // Socket IO chat connections
 io.sockets.on("connection", function(client) {
-    var channelId; // Chat Id
+    var channels = []
     db.subClient.on("message", function (channel, message) {
         console.log("channel: %s", channel);
-        if (channel == channelId) {
+        if (channels.indexOf(channel) > -1) {
             client.send(message);
         }
     });
-    client.on("message", function(msg) {
-        console.log(msg);
-        // Upon connection, subscribe user to relevant channel
-        if (msg.type == "setChannel") {
-            channelId = msg.channel;
-            db.subClient.subscribe(channelId);
+client.on("message", function(msg) {
+    console.log(msg);
+    // Upon connection, subscribe user to relevant channel
+    if (msg.type == "setChannel") {
+        channels = msg.channel;
+        db.subClient.subscribe(channels);
+    }
+    // Subsequent messages sent
+    else if (msg.type == "chat") {
+        db.pubClient.publish(msg.channel, msg.message);
+    }
+// Unsubscribe
+    else if (msg.type == 'unsubscribe') {
+        var index = channels.indexOf(msg.message);
+        // Remove channel from user's subscription set
+        db.client.srem(msg.username + ':sub', msg.message);
+        if (index > -1) {
+            channels.splice(index, 1);
         }
-        // Subsequent messages sent
-        else if (msg.type == "chat") {
-            db.pubClient.publish(channelId, msg.message);
+    }
+// Subscribe
+    else if (msg.type == 'subscribe') {
+        var index = channels.indexOf(msg.message);
+        // Add channel to user's subscription set
+        db.client.sadd(msg.username + ':sub', msg.message);
+        if (index > -1) {
+            channels.push(msg.message);
         }
-    });
+    }
+});
 
-    client.on("disconnect", function() {
-        db.pubClient.publish(channelId, "User is disconnected: " + client.id);
-    });
+client.on("disconnect", function() {
+    db.pubClient.publish(channels, "User is disconnected: " + client.id);
+});
 });
