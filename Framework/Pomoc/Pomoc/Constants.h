@@ -10,6 +10,6 @@
 #define Pomoc_constants_h
 
 #define PORT 3217
-#define WS_SERVER_URL "ws://localhost"
+#define WS_SERVER_URL @"localhost"
 
 #endif

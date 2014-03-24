@@ -7,14 +7,13 @@
 //
 
 #import "PMCore.h"
-#import "SRWebSocket.h"
+#import "SocketIO.h"
+#import "SocketIOPacket.h"
 
-@interface PMCore () <SRWebSocketDelegate>
+@interface PMCore () <SocketIODelegate>
 
 @property (nonatomic, strong) NSString *appId;
-@property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) SRWebSocket *socket;
-
+@property (nonatomic, strong) SocketIO *socket;
 @end
 
 @implementation PMCore
@@ -34,9 +33,7 @@
     PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
-        core.url = [NSURL URLWithString:@"ws://localhost:3217"];
-        core.socket = [[SRWebSocket alloc] initWithURL:core.url];
-        core.socket.delegate = core;
+        core.socket = [[SocketIO alloc] initWithDelegate:core];
         
         [core connect];
     }
@@ -46,32 +43,43 @@
 
 - (void)connect {
     // Check socket ready state
-    [self.socket open];
+    [self.socket connectToHost:WS_SERVER_URL onPort:PORT];
 }
 
 - (BOOL)authenticate:(NSDictionary *)creds {
     return NO;
 }
 
-#pragma mark - SRWebSocketDelegate methods
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"Received Message");
+#pragma mark - SocketIODelegate methods
+
+- (void) socketIODidConnect:(SocketIO *)socket {
+    NSLog(@"Connected");
 }
 
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    NSLog(@"Socket opened");
+- (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
+    NSLog(@"Disconnected");
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    
+- (void) socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet {
+    NSLog(@"Received Message:\npid: %@\ntype: %@\nname: %@\ndata: %@", packet.pId, packet.type, packet.name, packet.data);
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    if (!wasClean) {
-        NSString *msg = [NSString stringWithFormat:@"Unclean Socket Close\nError Code: %d\nReason: %@",code, reason];
-        NSLog(@"%@", msg);
-    }
+- (void) socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet {
+    NSLog(@"Received Json:\npid: %@\ntype: %@\nname: %@\ndata: %@", packet.pId, packet.type, packet.name, packet.data);
 }
+
+- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
+    NSLog(@"Received Event:\npid: %@\ntype: %@\nname: %@\ndata: %@", packet.pId, packet.type, packet.name, packet.data);
+}
+
+- (void) socketIO:(SocketIO *)socket didSendMessage:(SocketIOPacket *)packet {
+    NSLog(@"Sent Message:\npid: %@\ntype: %@\nname: %@\ndata: %@", packet.pId, packet.type, packet.name, packet.data);
+}
+
+- (void) socketIO:(SocketIO *)socket onError:(NSError *)error {
+    NSLog(@"%@", error);
+}
+
 
 
 @end

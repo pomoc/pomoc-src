@@ -58,7 +58,6 @@
 		60C2884718DD576F0097172E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884618DD576F0097172E /* libicucore.dylib */; };
 		60C2884918DD57720097172E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884818DD57720097172E /* Security.framework */; };
 		60C2884B18DD57760097172E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884A18DD57760097172E /* CFNetwork.framework */; };
-		60C2884D18DD57900097172E /* Pomoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884C18DD57900097172E /* Pomoc.framework */; };
 		60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
 		60C603E018D83E5B00CF0881 /* Pomoc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; };
 		60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603E818D83E5B00CF0881 /* XCTest.framework */; };
@@ -70,6 +69,7 @@
 		9F919D4A18DBD23C002DE055 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F919D4818DBD23C002DE055 /* PMCore.m */; };
 		9F919D5B18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
 		9F919D5C18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		9F919DD418DD6614002DE055 /* Pomoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919DD318DD6614002DE055 /* Pomoc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +147,6 @@
 		60C2884618DD576F0097172E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		60C2884818DD57720097172E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60C2884A18DD57760097172E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		60C2884C18DD57900097172E /* Pomoc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pomoc.framework; path = Distribution/Pomoc.framework; sourceTree = SOURCE_ROOT; };
 		60C603D718D83E5B00CF0881 /* libPomoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomoc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C603DA18D83E5B00CF0881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60C603DE18D83E5B00CF0881 /* Pomoc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomoc-Prefix.pch"; sourceTree = "<group>"; };
@@ -160,6 +159,7 @@
 		9F919D4718DBD23C002DE055 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
 		9F919D4818DBD23C002DE055 /* PMCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCore.m; sourceTree = "<group>"; };
 		9F919D5A18DBDFBB002DE055 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9F919DD318DD6614002DE055 /* Pomoc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pomoc.framework; path = Distribution/Pomoc.framework; sourceTree = SOURCE_ROOT; };
 		9F9DFFE718DBCC6700847311 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +170,7 @@
 			files = (
 				60C2884B18DD57760097172E /* CFNetwork.framework in Frameworks */,
 				60C2884918DD57720097172E /* Security.framework in Frameworks */,
-				60C2884D18DD57900097172E /* Pomoc.framework in Frameworks */,
+				9F919DD418DD6614002DE055 /* Pomoc.framework in Frameworks */,
 				60C2884718DD576F0097172E /* libicucore.dylib in Frameworks */,
 				60C2881518DD57260097172E /* CoreGraphics.framework in Frameworks */,
 				60C2881618DD57260097172E /* UIKit.framework in Frameworks */,
@@ -254,7 +254,7 @@
 		60C2881718DD57260097172E /* PomocAppTest */ = {
 			isa = PBXGroup;
 			children = (
-				60C2884C18DD57900097172E /* Pomoc.framework */,
+				9F919DD318DD6614002DE055 /* Pomoc.framework */,
 				60C2882018DD57260097172E /* AppDelegate.h */,
 				60C2882118DD57260097172E /* AppDelegate.m */,
 				60C2882318DD57260097172E /* Main_iPhone.storyboard */,
@@ -691,6 +691,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/Distribution,
+					"$(PROJECT_DIR)/Distribution",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
@@ -699,6 +700,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "PomocAppTest/PomocAppTest-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -715,6 +717,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/Distribution,
+					"$(PROJECT_DIR)/Distribution",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
@@ -951,6 +954,7 @@
 				60C2884218DD57270097172E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60C2884318DD57270097172E /* Build configuration list for PBXNativeTarget "PomocAppTestTests" */ = {
 			isa = XCConfigurationList;
@@ -959,6 +963,7 @@
 				60C2884518DD57270097172E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */ = {
 			isa = XCConfigurationList;
