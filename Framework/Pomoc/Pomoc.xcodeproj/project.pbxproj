@@ -40,19 +40,46 @@
 		603EE0F718D8969600E70457 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 603EE0F118D8969600E70457 /* SRWebSocket.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		603EE0F818D8969600E70457 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 603EE0F218D8969600E70457 /* SRWebSocket.m */; };
 		6066FFFF18D8444C00FABA30 /* Pomoc.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60C2881318DD57260097172E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
+		60C2881518DD57260097172E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2881418DD57260097172E /* CoreGraphics.framework */; };
+		60C2881618DD57260097172E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		60C2881C18DD57260097172E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60C2881A18DD57260097172E /* InfoPlist.strings */; };
+		60C2881E18DD57260097172E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C2881D18DD57260097172E /* main.m */; };
+		60C2882218DD57260097172E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C2882118DD57260097172E /* AppDelegate.m */; };
+		60C2882518DD57260097172E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C2882318DD57260097172E /* Main_iPhone.storyboard */; };
+		60C2882818DD57260097172E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60C2882618DD57260097172E /* Main_iPad.storyboard */; };
+		60C2882B18DD57260097172E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C2882A18DD57260097172E /* ViewController.m */; };
+		60C2882D18DD57260097172E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60C2882C18DD57260097172E /* Images.xcassets */; };
+		60C2883318DD57260097172E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603E818D83E5B00CF0881 /* XCTest.framework */; };
+		60C2883418DD57270097172E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
+		60C2883518DD57270097172E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		60C2883D18DD57270097172E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60C2883B18DD57270097172E /* InfoPlist.strings */; };
+		60C2883F18DD57270097172E /* PomocAppTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C2883E18DD57270097172E /* PomocAppTestTests.m */; };
+		60C2884718DD576F0097172E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884618DD576F0097172E /* libicucore.dylib */; };
+		60C2884918DD57720097172E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884818DD57720097172E /* Security.framework */; };
+		60C2884B18DD57760097172E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C2884A18DD57760097172E /* CFNetwork.framework */; };
 		60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
 		60C603E018D83E5B00CF0881 /* Pomoc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60C603DF18D83E5B00CF0881 /* Pomoc.h */; };
 		60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603E818D83E5B00CF0881 /* XCTest.framework */; };
 		60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603DA18D83E5B00CF0881 /* Foundation.framework */; };
-		60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603EB18D83E5B00CF0881 /* UIKit.framework */; };
 		60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C603D718D83E5B00CF0881 /* libPomoc.a */; };
 		60C603F518D83E5B00CF0881 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60C603F318D83E5B00CF0881 /* InfoPlist.strings */; };
 		60C603F718D83E5B00CF0881 /* PomocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C603F618D83E5B00CF0881 /* PomocTests.m */; };
-		60C6040318D83ED800CF0881 /* PomocTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C6040118D83ED800CF0881 /* PomocTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60C6040418D83ED800CF0881 /* PomocTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60C6040218D83ED800CF0881 /* PomocTest.m */; };
+		9F919D4918DBD23C002DE055 /* PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F919D4718DBD23C002DE055 /* PMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F919D4A18DBD23C002DE055 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F919D4818DBD23C002DE055 /* PMCore.m */; };
+		9F919D5B18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		9F919D5C18DBDFBB002DE055 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919D5A18DBDFBB002DE055 /* UIKit.framework */; };
+		9F919DD418DD6614002DE055 /* Pomoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F919DD318DD6614002DE055 /* Pomoc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		60C2883618DD57270097172E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60C603CF18D83E5B00CF0881 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60C2881118DD57260097172E;
+			remoteInfo = PomocAppTest;
+		};
 		60C603ED18D83E5B00CF0881 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60C603CF18D83E5B00CF0881 /* Project object */;
@@ -100,25 +127,72 @@
 		603EE0F018D8969600E70457 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+SRB64Additions.m"; path = "Pomoc/Libraries/socket-rocket/NSData+SRB64Additions.m"; sourceTree = "<group>"; };
 		603EE0F118D8969600E70457 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = "Pomoc/Libraries/socket-rocket/SRWebSocket.h"; sourceTree = "<group>"; };
 		603EE0F218D8969600E70457 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = "Pomoc/Libraries/socket-rocket/SRWebSocket.m"; sourceTree = "<group>"; };
+		60C2881218DD57260097172E /* PomocAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PomocAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C2881418DD57260097172E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		60C2881918DD57260097172E /* PomocAppTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocAppTest-Info.plist"; sourceTree = "<group>"; };
+		60C2881B18DD57260097172E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60C2881D18DD57260097172E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60C2881F18DD57260097172E /* PomocAppTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocAppTest-Prefix.pch"; sourceTree = "<group>"; };
+		60C2882018DD57260097172E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		60C2882118DD57260097172E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		60C2882418DD57260097172E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		60C2882718DD57260097172E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		60C2882918DD57260097172E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		60C2882A18DD57260097172E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		60C2882C18DD57260097172E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		60C2883218DD57260097172E /* PomocAppTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocAppTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60C2883A18DD57270097172E /* PomocAppTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocAppTestTests-Info.plist"; sourceTree = "<group>"; };
+		60C2883C18DD57270097172E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60C2883E18DD57270097172E /* PomocAppTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocAppTestTests.m; sourceTree = "<group>"; };
+		60C2884618DD576F0097172E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		60C2884818DD57720097172E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		60C2884A18DD57760097172E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		60C603D718D83E5B00CF0881 /* libPomoc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomoc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C603DA18D83E5B00CF0881 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60C603DE18D83E5B00CF0881 /* Pomoc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomoc-Prefix.pch"; sourceTree = "<group>"; };
 		60C603DF18D83E5B00CF0881 /* Pomoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pomoc.h; sourceTree = "<group>"; };
 		60C603E718D83E5B00CF0881 /* PomocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C603E818D83E5B00CF0881 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		60C603EB18D83E5B00CF0881 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		60C603F218D83E5B00CF0881 /* PomocTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocTests-Info.plist"; sourceTree = "<group>"; };
 		60C603F418D83E5B00CF0881 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60C603F618D83E5B00CF0881 /* PomocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocTests.m; sourceTree = "<group>"; };
-		60C6040118D83ED800CF0881 /* PomocTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocTest.h; sourceTree = "<group>"; };
-		60C6040218D83ED800CF0881 /* PomocTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocTest.m; sourceTree = "<group>"; };
+		9F919D4718DBD23C002DE055 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		9F919D4818DBD23C002DE055 /* PMCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMCore.m; sourceTree = "<group>"; };
+		9F919D5A18DBDFBB002DE055 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9F919DD318DD6614002DE055 /* Pomoc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pomoc.framework; path = Distribution/Pomoc.framework; sourceTree = SOURCE_ROOT; };
+		9F9DFFE718DBCC6700847311 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		60C2880F18DD57260097172E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2884B18DD57760097172E /* CFNetwork.framework in Frameworks */,
+				60C2884918DD57720097172E /* Security.framework in Frameworks */,
+				9F919DD418DD6614002DE055 /* Pomoc.framework in Frameworks */,
+				60C2884718DD576F0097172E /* libicucore.dylib in Frameworks */,
+				60C2881518DD57260097172E /* CoreGraphics.framework in Frameworks */,
+				60C2881618DD57260097172E /* UIKit.framework in Frameworks */,
+				60C2881318DD57260097172E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C2882F18DD57260097172E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2883318DD57260097172E /* XCTest.framework in Frameworks */,
+				60C2883518DD57270097172E /* UIKit.framework in Frameworks */,
+				60C2883418DD57270097172E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60C603D418D83E5B00CF0881 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F919D5B18DBDFBB002DE055 /* UIKit.framework in Frameworks */,
 				60C603DB18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60C603E918D83E5B00CF0881 /* XCTest.framework in Frameworks */,
-				60C603EC18D83E5B00CF0881 /* UIKit.framework in Frameworks */,
+				9F919D5C18DBDFBB002DE055 /* UIKit.framework in Frameworks */,
 				60C603EF18D83E5B00CF0881 /* libPomoc.a in Frameworks */,
 				60C603EA18D83E5B00CF0881 /* Foundation.framework in Frameworks */,
 			);
@@ -177,9 +251,64 @@
 			name = "socket-io";
 			sourceTree = "<group>";
 		};
+		60C2881718DD57260097172E /* PomocAppTest */ = {
+			isa = PBXGroup;
+			children = (
+				9F919DD318DD6614002DE055 /* Pomoc.framework */,
+				60C2882018DD57260097172E /* AppDelegate.h */,
+				60C2882118DD57260097172E /* AppDelegate.m */,
+				60C2882318DD57260097172E /* Main_iPhone.storyboard */,
+				60C2882618DD57260097172E /* Main_iPad.storyboard */,
+				60C2882918DD57260097172E /* ViewController.h */,
+				60C2882A18DD57260097172E /* ViewController.m */,
+				60C2882C18DD57260097172E /* Images.xcassets */,
+				60C2881818DD57260097172E /* Supporting Files */,
+			);
+			path = PomocAppTest;
+			sourceTree = "<group>";
+		};
+		60C2881818DD57260097172E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C2881918DD57260097172E /* PomocAppTest-Info.plist */,
+				60C2881A18DD57260097172E /* InfoPlist.strings */,
+				60C2881D18DD57260097172E /* main.m */,
+				60C2881F18DD57260097172E /* PomocAppTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60C2883818DD57270097172E /* PomocAppTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				60C2883E18DD57270097172E /* PomocAppTestTests.m */,
+				60C2883918DD57270097172E /* Supporting Files */,
+			);
+			path = PomocAppTestTests;
+			sourceTree = "<group>";
+		};
+		60C2883918DD57270097172E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60C2883A18DD57270097172E /* PomocAppTestTests-Info.plist */,
+				60C2883B18DD57270097172E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60C2884E18DD5A120097172E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				60C2881718DD57260097172E /* PomocAppTest */,
+				60C2883818DD57270097172E /* PomocAppTestTests */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		60C603CE18D83E5B00CF0881 = {
 			isa = PBXGroup;
 			children = (
+				60C2884E18DD5A120097172E /* iOS */,
 				60C603DC18D83E5B00CF0881 /* Pomoc */,
 				60C603F018D83E5B00CF0881 /* PomocTests */,
 				60C603D918D83E5B00CF0881 /* Frameworks */,
@@ -193,6 +322,8 @@
 			children = (
 				60C603D718D83E5B00CF0881 /* libPomoc.a */,
 				60C603E718D83E5B00CF0881 /* PomocTests.xctest */,
+				60C2881218DD57260097172E /* PomocAppTest.app */,
+				60C2883218DD57260097172E /* PomocAppTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,9 +331,13 @@
 		60C603D918D83E5B00CF0881 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60C2884A18DD57760097172E /* CFNetwork.framework */,
+				60C2884818DD57720097172E /* Security.framework */,
+				60C2884618DD576F0097172E /* libicucore.dylib */,
+				9F919D5A18DBDFBB002DE055 /* UIKit.framework */,
 				60C603DA18D83E5B00CF0881 /* Foundation.framework */,
 				60C603E818D83E5B00CF0881 /* XCTest.framework */,
-				60C603EB18D83E5B00CF0881 /* UIKit.framework */,
+				60C2881418DD57260097172E /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,9 +345,10 @@
 		60C603DC18D83E5B00CF0881 /* Pomoc */ = {
 			isa = PBXGroup;
 			children = (
-				60C6040118D83ED800CF0881 /* PomocTest.h */,
-				60C6040218D83ED800CF0881 /* PomocTest.m */,
 				60C603DF18D83E5B00CF0881 /* Pomoc.h */,
+				9F9DFFE718DBCC6700847311 /* Constants.h */,
+				9F919D4718DBD23C002DE055 /* PMCore.h */,
+				9F919D4818DBD23C002DE055 /* PMCore.m */,
 				60C603DD18D83E5B00CF0881 /* Supporting Files */,
 			);
 			path = Pomoc;
@@ -251,8 +387,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60C6040318D83ED800CF0881 /* PomocTest.h in Headers */,
 				603EE0E918D8968A00E70457 /* SocketIOTransportWebsocket.h in Headers */,
+				9F919D4918DBD23C002DE055 /* PMCore.h in Headers */,
 				603EE0F418D8969600E70457 /* base64.h in Headers */,
 				603EE0F718D8969600E70457 /* SRWebSocket.h in Headers */,
 				603EE0E618D8968A00E70457 /* SocketIOPacket.h in Headers */,
@@ -268,6 +404,41 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		60C2881118DD57260097172E /* PomocAppTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C2884018DD57270097172E /* Build configuration list for PBXNativeTarget "PomocAppTest" */;
+			buildPhases = (
+				60C2880E18DD57260097172E /* Sources */,
+				60C2880F18DD57260097172E /* Frameworks */,
+				60C2881018DD57260097172E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PomocAppTest;
+			productName = PomocAppTest;
+			productReference = 60C2881218DD57260097172E /* PomocAppTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		60C2883118DD57260097172E /* PomocAppTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C2884318DD57270097172E /* Build configuration list for PBXNativeTarget "PomocAppTestTests" */;
+			buildPhases = (
+				60C2882E18DD57260097172E /* Sources */,
+				60C2882F18DD57260097172E /* Frameworks */,
+				60C2883018DD57260097172E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				60C2883718DD57270097172E /* PBXTargetDependency */,
+			);
+			name = PomocAppTestTests;
+			productName = PomocAppTestTests;
+			productReference = 60C2883218DD57260097172E /* PomocAppTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		60C603D618D83E5B00CF0881 /* Pomoc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60C603FA18D83E5B00CF0881 /* Build configuration list for PBXNativeTarget "Pomoc" */;
@@ -311,8 +482,16 @@
 		60C603CF18D83E5B00CF0881 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = nus.cs3217;
+				TargetAttributes = {
+					60C2883118DD57260097172E = {
+						TestTargetID = 60C2881118DD57260097172E;
+					};
+					60C603E618D83E5B00CF0881 = {
+						TestTargetID = 60C2881118DD57260097172E;
+					};
+				};
 			};
 			buildConfigurationList = 60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -320,6 +499,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 60C603CE18D83E5B00CF0881;
 			productRefGroup = 60C603D818D83E5B00CF0881 /* Products */;
@@ -329,11 +509,32 @@
 				60C603D618D83E5B00CF0881 /* Pomoc */,
 				60C603E618D83E5B00CF0881 /* PomocTests */,
 				60FD531B18D8405900C2DB18 /* BuildPomoc */,
+				60C2881118DD57260097172E /* PomocAppTest */,
+				60C2883118DD57260097172E /* PomocAppTestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		60C2881018DD57260097172E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2882818DD57260097172E /* Main_iPad.storyboard in Resources */,
+				60C2882D18DD57260097172E /* Images.xcassets in Resources */,
+				60C2882518DD57260097172E /* Main_iPhone.storyboard in Resources */,
+				60C2881C18DD57260097172E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C2883018DD57260097172E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2883D18DD57270097172E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60C603E518D83E5B00CF0881 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +575,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		60C2880E18DD57260097172E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2882B18DD57260097172E /* ViewController.m in Sources */,
+				60C2882218DD57260097172E /* AppDelegate.m in Sources */,
+				60C2881E18DD57260097172E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60C2882E18DD57260097172E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C2883F18DD57270097172E /* PomocAppTestTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60C603D318D83E5B00CF0881 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,11 +601,11 @@
 				603EE0E718D8968A00E70457 /* SocketIOPacket.m in Sources */,
 				603EE0E318D8968A00E70457 /* SocketIO.m in Sources */,
 				603EE0F318D8969600E70457 /* base64.c in Sources */,
-				60C6040418D83ED800CF0881 /* PomocTest.m in Sources */,
 				603EE0EA18D8968A00E70457 /* SocketIOTransportWebsocket.m in Sources */,
 				603EE0F818D8969600E70457 /* SRWebSocket.m in Sources */,
 				603EE0E518D8968A00E70457 /* SocketIOJSONSerialization.m in Sources */,
 				603EE0EC18D8968A00E70457 /* SocketIOTransportXHR.m in Sources */,
+				9F919D4A18DBD23C002DE055 /* PMCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +620,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		60C2883718DD57270097172E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60C2881118DD57260097172E /* PomocAppTest */;
+			targetProxy = 60C2883618DD57270097172E /* PBXContainerItemProxy */;
+		};
 		60C603EE18D83E5B00CF0881 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 60C603D618D83E5B00CF0881 /* Pomoc */;
@@ -414,6 +638,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		60C2881A18DD57260097172E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60C2881B18DD57260097172E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		60C2882318DD57260097172E /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60C2882418DD57260097172E /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		60C2882618DD57260097172E /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60C2882718DD57260097172E /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		60C2883B18DD57270097172E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60C2883C18DD57270097172E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		60C603F318D83E5B00CF0881 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -425,11 +681,99 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		60C2884118DD57270097172E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/Distribution,
+					"$(PROJECT_DIR)/Distribution",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PomocAppTest/PomocAppTest-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		60C2884218DD57270097172E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/Distribution,
+					"$(PROJECT_DIR)/Distribution",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
+				INFOPLIST_FILE = "PomocAppTest/PomocAppTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		60C2884418DD57270097172E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocAppTest.app/PomocAppTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PomocAppTestTests/PomocAppTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		60C2884518DD57270097172E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocAppTest.app/PomocAppTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocAppTest/PomocAppTest-Prefix.pch";
+				INFOPLIST_FILE = "PomocAppTestTests/PomocAppTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		60C603F818D83E5B00CF0881 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -459,7 +803,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -467,7 +813,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -490,51 +835,68 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-all_load";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
 		60C603FB18D83E5B00CF0881 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Pomoc.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
 		60C603FC18D83E5B00CF0881 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Pomoc.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
 		60C603FE18D83E5B00CF0881 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocAppTest.app/PomocAppTest";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
@@ -544,6 +906,7 @@
 				);
 				INFOPLIST_FILE = "PomocTests/PomocTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -551,16 +914,18 @@
 		60C603FF18D83E5B00CF0881 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocAppTest.app/PomocAppTest";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc/Pomoc-Prefix.pch";
 				INFOPLIST_FILE = "PomocTests/PomocTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -582,6 +947,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		60C2884018DD57270097172E /* Build configuration list for PBXNativeTarget "PomocAppTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C2884118DD57270097172E /* Debug */,
+				60C2884218DD57270097172E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60C2884318DD57270097172E /* Build configuration list for PBXNativeTarget "PomocAppTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60C2884418DD57270097172E /* Debug */,
+				60C2884518DD57270097172E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		60C603D218D83E5B00CF0881 /* Build configuration list for PBXProject "Pomoc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
