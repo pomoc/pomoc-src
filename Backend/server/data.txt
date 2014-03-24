@@ -1,31 +1,31 @@
-sadd bang:sub chat:channel1 chat:channel2 chat:channel3 app:channel
+sadd bang:sub channel1:chat channel2:chat channel3:chat app:channel
 
-zadd chat:channel1 1395670118516 '{"username":"bang","channel":"chat:channel1","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
+zadd channel1:chat 1395670118516 '{"username":"bang","channel":"channel1:chat","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
 
-zadd chat:channel1 1395670118517 '{"username":"bang","channel":"chat:channel1","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
+zadd channel1:chat 1395670118517 '{"username":"bang","channel":"channel1:chat","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
 
-zadd chat:channel1 1395670118518 '{"username":"bang","channel":"chat:channel1","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
+zadd channel1:chat 1395670118518 '{"username":"bang","channel":"channel1:chat","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
 
-zadd chat:channel1 1395670118519 '{"username":"bang","channel":"chat:channel1","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
+zadd channel1:chat 1395670118519 '{"username":"bang","channel":"channel1:chat","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
 
-zadd chat:channel1 1395670118520 '{"username":"bang","channel":"chat:channel1","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
+zadd channel1:chat 1395670118520 '{"username":"bang","channel":"channel1:chat","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
 
-zadd chat:channel2 1395670118516 '{"username":"bang","channel":"chat:channel2","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
+zadd channel2:chat 1395670118516 '{"username":"bang","channel":"channel2:chat","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
 
-zadd chat:channel2 1395670118517 '{"username":"bang","channel":"chat:channel2","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
+zadd channel2:chat 1395670118517 '{"username":"bang","channel":"channel2:chat","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
 
-zadd chat:channel2 1395670118518 '{"username":"bang","channel":"chat:channel2","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
+zadd channel2:chat 1395670118518 '{"username":"bang","channel":"channel2:chat","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
 
-zadd chat:channel2 1395670118519 '{"username":"bang","channel":"chat:channel2","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
+zadd channel2:chat 1395670118519 '{"username":"bang","channel":"channel2:chat","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
 
-zadd chat:channel2 1395670118520 '{"username":"bang","channel":"chat:channel2","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
+zadd channel2:chat 1395670118520 '{"username":"bang","channel":"channel2:chat","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
 
-zadd chat:channel3 1395670118516 '{"username":"bang","channel":"chat:channel3","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
+zadd channel3:chat 1395670118516 '{"username":"bang","channel":"channel3:chat","type":"chat","message":"yolo", "timestamp":"1395670118516"}'
 
-zadd chat:channel3 1395670118517 '{"username":"bang","channel":"chat:channel3","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
+zadd channel3:chat 1395670118517 '{"username":"bang","channel":"channel3:chat","type":"chat","message":"yolo", "timestamp":"1395670118517"}'
 
-zadd chat:channel3 1395670118518 '{"username":"bang","channel":"chat:channel3","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
+zadd channel3:chat 1395670118518 '{"username":"bang","channel":"channel3:chat","type":"chat","message":"yolo", "timestamp":"1395670118518"}'
 
-zadd chat:channel3 1395670118519 '{"username":"bang","channel":"chat:channel3","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
+zadd channel3:chat 1395670118519 '{"username":"bang","channel":"channel3:chat","type":"chat","message":"yolo", "timestamp":"1395670118519"}'
 
-zadd chat:channel3 1395670118520 '{"username":"bang","channel":"chat:channel3","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
+zadd channel3:chat 1395670118520 '{"username":"bang","channel":"channel3:chat","type":"chat","message":"yolo", "timestamp":"1395670118520"}'
