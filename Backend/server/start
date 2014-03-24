@@ -1,3 +1,4 @@
-cat data.txt | redis-cli --pipe
-redis-server
+redis-server&
+setenv pid $!
 node app.js
+trap "kill 0" SIGINT SIGTERM EXIT
