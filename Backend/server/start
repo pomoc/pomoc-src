@@ -1,0 +1,3 @@
+cat data.txt | redis-cli --pipe
+redis-server
+node app.js
