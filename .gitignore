@@ -23,6 +23,10 @@ Pods
 # Backend stuff
 node_modules/
 settings_local.js
+*.rdb
 
 # Don't include the framework distribution folder
 Framework/Pomoc/Distribution/*
+
+# Others
+*.swp
