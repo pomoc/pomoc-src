@@ -15,6 +15,15 @@ Keys | Values| Description
 `<username>:sub` | `{channel1, channel2, channel3, ...}`| set of channels user is subscribed to
 `<appId>:notification` | `{channel1, channel2, channel3, ...}`| app channel where support staff receive notifications
 
+### Message Format
+`{
+    message: xxx,
+    type: ttt,
+    timestamp: qqq,
+    username: uuu,
+    channel: ccc
+}`
+
 ## Flow
 - user initiates chat
 - user gets subscribed to chat
