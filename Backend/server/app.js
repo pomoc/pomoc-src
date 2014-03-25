@@ -7,7 +7,6 @@ var socket_io = require('socket.io');
 var app = express();
 // Error logging / handling
 app.use(function(err, req, res, next) {
-    console.error(err.stack);
     res.send(500, 'Something broke!');
 });
 
@@ -31,7 +30,6 @@ var io = socket_io.listen(server, {
 // Socket IO chat connections
 io.sockets.on("connection", function(client) {
     var channels = []
-    console.log("connected",client);
     db.subClient.on("message", function (channel, message) {
         console.log("channel: %s", channel);
         if (channels.indexOf(channel) > -1) {
@@ -51,7 +49,6 @@ io.sockets.on("connection", function(client) {
         }));
     });
     client.on("message", function(msg) {
-        console.log(msg);
         // User initiates chat
         // channel name = user:appid:chat
         // msg.channel contains appId
@@ -70,43 +67,43 @@ io.sockets.on("connection", function(client) {
             // notification channel
             var notification_msg = {
                 type: 'notification',
-        channel: channelId,
-        message: '',
-        username: ''
+                channel: channelId,
+                message: '',
+                username: ''
             }
             db.pubClient.publish(msg.channel + ":notification",
                     JSON.stringify(notification_msg));
-    }
-
-    // Send messages
-    else if (msg.type == "chat") {
-        // publish message
-        db.pubClient.publish(msg.channel, msg.message);
-        // store message
-        db.client.zadd([msg.channel, JSON.parse(msg.message).timestamp, msg.message],
-            function(err, reply){});
-    }
-
-    // Unsubscribe
-    else if (msg.type == 'unsubscribe') {
-        var index = channels.indexOf(msg.message);
-        // Remove channel from user's subscription set
-        db.client.srem(msg.usernamename + ':sub', msg.channel);
-        if (index > -1) {
-            channels.splice(index, 1);
         }
-    }
 
-    // Subscribe
-    else if (msg.type == 'subscribe') {
-        var index = channels.indexOf(msg.message);
-        // Add channel to user's subscription set
-        db.client.sadd(msg.usernamename + ':sub', msg.channel);
-        if (index > -1) {
-            channels.push(msg.message);
+        // Send messages
+        else if (msg.type == "chat") {
+            // publish message
+            db.pubClient.publish(msg.channel, JSON.stringify(msg));
+            // store message
+            db.client.zadd([msg.channel, msg.timestamp, JSON.stringify(msg)],
+                function(err, reply){});
         }
-    }
-});
+
+        // Unsubscribe
+        else if (msg.type == 'unsubscribe') {
+            var index = channels.indexOf(msg.message);
+            // Remove channel from user's subscription set
+            db.client.srem(msg.usernamename + ':sub', msg.channel);
+            if (index > -1) {
+                channels.splice(index, 1);
+            }
+        }
+
+        // Subscribe
+        else if (msg.type == 'subscribe') {
+            var index = channels.indexOf(msg.message);
+            // Add channel to user's subscription set
+            db.client.sadd(msg.usernamename + ':sub', msg.channel);
+            if (index > -1) {
+                channels.push(msg.message);
+            }
+        }
+    });
 
     client.on("disconnect", function() {
         db.pubClient.publish(channels, "User is disconnected: " + client.id);

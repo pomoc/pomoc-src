@@ -1,18 +1,18 @@
 //
-//  PomocAppTestTests.m
-//  PomocAppTestTests
+//  PomocDriverAppTests.m
+//  PomocDriverAppTests
 //
-//  Created by soedar on 22/3/14.
+//  Created by soedar on 26/3/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface PomocAppTestTests : XCTestCase
+@interface PomocDriverAppTests : XCTestCase
 
 @end
 
-@implementation PomocAppTestTests
+@implementation PomocDriverAppTests
 
 - (void)setUp
 {

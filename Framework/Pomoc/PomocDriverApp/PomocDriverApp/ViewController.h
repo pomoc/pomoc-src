@@ -1,8 +1,8 @@
 //
 //  ViewController.h
-//  PomocAppTest
+//  PomocDriverApp
 //
-//  Created by soedar on 22/3/14.
+//  Created by soedar on 26/3/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
