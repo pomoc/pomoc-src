@@ -13,6 +13,8 @@
 @property (readonly) NSString * channel;
 @property (readonly) NSString * type;
 @property (readonly) NSString * message;
-- (id) initWithProperties:(NSString *)username :(NSString *)channel :(NSString *)type :(NSString *)message;
+- (id) initWithUsername:(NSString *)username withChannel:(NSString *)channel
+               withType:(NSString *)type withMessage:(NSString *)message;
 - (id) initWithJSONString:(NSString *)jsonString;
+- (NSDictionary *)getJSONObject;
 @end

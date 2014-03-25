@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
+#import "PomocMessage.h"
 
 @interface ViewController : UIViewController<UITableViewDataSource, UITableViewDataSource>
 

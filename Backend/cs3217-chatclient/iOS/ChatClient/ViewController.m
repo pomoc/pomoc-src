@@ -17,7 +17,11 @@
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) SocketIO * socketIO;
-@property BOOL hasChannel;
+
+// FOR TESTING
+@property NSString * username;
+@property NSString * channel;
+@property NSString * appId;
 
 @end
 
@@ -30,10 +34,10 @@
     
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
-    self.usernameLabel.text = [NSString stringWithFormat:@"User %i", arc4random()%10000];
     self.socketIO = [self connectSocketIO];
-    self.hasChannel = false;
-    
+    self.username = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    self.usernameLabel.text = self.username;
+    self.appId = @"testappid";
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,59 +55,102 @@
     return socketIO;
 }
 
-#pragma mark - Send Button Action
+#pragma mark - Init chat channel
 
-- (IBAction)sendMessage:(UIButton *)sender
+- (void)initChatChannelwithUsername:(NSString *)username withAppId:(NSString *)appId
 {
-    [self send:@{} :nil];
+    PomocMessage * message = [[PomocMessage alloc] initWithUsername:username
+                                                        withChannel:appId
+                                                           withType:MSG_TYPE_INIT
+                                                        withMessage:@""];
+    // Set chat channel Id
+    SocketIOCallback cb = ^(id argsData) {
+        NSDictionary * response = argsData;
+        NSLog(@"init callback: %@", response);
+        // TODO: set initialized channel id for user
+        // STUB
+        self.channel = response[MSG_CHANNEL];
+    };
+    [self.socketIO sendEvent:@"init" withData:[message getJSONObject] andAcknowledge:cb];
+    
 }
 
-#pragma mark - Send message (optional callback)
+#pragma mark - Send chat message
 
-- (void)send:(NSDictionary *)message :(SocketIOCallback)function
+- (void)sendMessage:(NSString *)msg withUsername:(NSString *)username withChannel:(NSString *)channel
 {
-    if (!function) {
-        [self.socketIO sendJSON:message];
-    }
-    else {
-        [self.socketIO sendJSON:message withAcknowledge:function];
-    }
+    PomocMessage * message = [[PomocMessage alloc] initWithUsername:username
+                                                        withChannel:channel
+                                                           withType:MSG_TYPE_CHAT
+                                                        withMessage:msg];
+    [self.socketIO sendJSON:[message getJSONObject]];
 }
 
 #pragma mark - Subscribe to channel
-- (void)subscribe:(NSString *)userId :(NSString *)channelId
+
+- (void)subscribeUsername:(NSString *)username toChannel:(NSString *)channel
 {
-    NSDictionary * message = @{
-                               };
+    PomocMessage * message = [[PomocMessage alloc] initWithUsername:username
+                                                        withChannel:channel
+                                                           withType:MSG_TYPE_SUB
+                                                        withMessage:@"" ];
+    [self.socketIO sendJSON:[message getJSONObject]];
+}
+
+#pragma mark - Unsubscribe from channel
+
+- (void)unsubscribeUsername:(NSString *)username fromChannel:(NSString *)channel
+{
+    PomocMessage * message = [[PomocMessage alloc] initWithUsername:username
+                                                        withChannel:channel
+                                                           withType:MSG_TYPE_UNSUB
+                                                        withMessage:@"" ];
+    [self.socketIO sendJSON:[message getJSONObject]];
 }
 
 #pragma mark - SocketIO Delegate method - receiving incoming messages
 
-- (void) socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
+- (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     NSLog(@"didReceiveMessage >>> data: %@", packet.data);
-    // Checks for message type
-    // Regular chat
-    NSDictionary * receivedObject =
-    [NSJSONSerialization JSONObjectWithData: [packet.data dataUsingEncoding:NSUTF8StringEncoding]
-                                    options: NSJSONReadingMutableContainers
-                                      error: nil];
-    NSString * messageType = (NSString *)receivedObject[@"type"];
-    
-    // Subscribe to new chat channel
-    if ([messageType isEqualToString:@"notification"]) {
-        
+    PomocMessage * message = [[PomocMessage alloc] initWithJSONString:packet.data];
+
+    // Normal chat message
+    if ([message.type isEqualToString:MSG_TYPE_CHAT]) {
+        // TODO: display chat message
+        // STUB
+        [self addMessage:message.message fromUser:message.username fromChannel:message.channel];
     }
-    //[self addMessage:packet.data fromUser:@"received lazy to write properly"];
+    
+    // Notification message
+    else if([message.type isEqualToString:MSG_TYPE_NOTIFY]) {
+        // Automatically subscribes user to channel
+        [self subscribeUsername:message.username toChannel:message.channel];
+        // TODO: show new chat in sidepanel or somethingy
+        // STUB
+    }
+}
+
+
+
+
+/* METHODS BELOW ARE FOR TESTING ONLY */
+
+#pragma mark - Send Button Action
+
+- (IBAction)sendButtonPressed:(UIButton *)sender
+{
+    [self initChatChannelwithUsername:self.username withAppId:self.appId];
 }
 
 #pragma mark - Adding Message
 
-- (void)addMessage:(NSString *)message fromUser:(NSString *)user
+- (void)addMessage:(NSString *)message fromUser:(NSString *)user fromChannel:(NSString *)channel
 {
     // Add a new message, and also update the tableview with the new message
+    NSString * userAndChannel = [user stringByAppendingString:channel];
     [self.messages addObject:message];
-    [self.users addObject:user];
+    [self.users addObject:userAndChannel];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
     

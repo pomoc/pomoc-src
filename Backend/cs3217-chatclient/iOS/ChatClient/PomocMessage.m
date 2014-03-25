@@ -10,7 +10,8 @@
 
 @implementation PomocMessage
 
-- (id) initWithProperties:(NSString *)username :(NSString *)channel :(NSString *)type :(NSString *)message
+- (id)initWithUsername:(NSString *)username withChannel:(NSString *)channel
+             withType:(NSString *)type withMessage:(NSString *)message
 {
     self = [super init];
     if ([MESSAGE_TYPES containsObject:type] && self) {
@@ -23,12 +24,13 @@
     return nil;
 }
 
-- (id) initWithJSONString:(NSString *)jsonString
+- (id)initWithJSONString:(NSString *)jsonString
 {
     self = [super init];
-    NSDictionary * jsonObject = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                    options:NSJSONReadingMutableContainers
-                                      error:nil];
+    NSDictionary * jsonObject = [NSJSONSerialization
+                                 JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                 options:NSJSONReadingMutableContainers
+                                 error:nil];
     if (self && jsonObject) {
         _username = jsonObject[MSG_USERNAME];
         _channel = jsonObject[MSG_CHANNEL];
@@ -39,7 +41,7 @@
     return nil;
 }
 
-- (NSDictionary *) getJSONObject
+- (NSDictionary *)getJSONObject
 {
     return @{MSG_USERNAME: _username,
              MSG_CHANNEL:_channel,

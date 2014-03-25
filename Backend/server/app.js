@@ -38,38 +38,77 @@ io.sockets.on("connection", function(client) {
             client.send(message);
         }
     });
-client.on("message", function(msg) {
-    console.log(msg);
-    // Upon connection, subscribe user to relevant channel
-    if (msg.type == "setChannel") {
-        channels = msg.channel;
-        db.subClient.subscribe(channels);
+    client.on("init", function(msg, fn) {
+        var channelId = msg.username + ":" +  msg.channel + ":chat";
+        channels.push(channelId);
+        db.subClient.subscribe(channelId);
+        // Send chatId back to user
+        fn(JSON.stringify({
+            type: "init",
+            channel: channelId,
+            message: "",
+            username: ""
+        }));
+    });
+    client.on("message", function(msg) {
+        console.log(msg);
+        // User initiates chat
+        // channel name = user:appid:chat
+        // msg.channel contains appId
+        if (msg.type == "init") {
+            var channelId = msg.username + ":" +  msg.channel + ":chat";
+            channels.push(channelId);
+            db.subClient.subscribe(channelId);
+            // Send chatId back to user
+            fn(JSON.stringify({
+                type: "init",
+                channel: channelId,
+                message: "",
+                username: ""
+            }));
+            // Notify all support staff about the new channel through the app's 
+            // notification channel
+            var notification_msg = {
+                type: 'notification',
+        channel: channelId,
+        message: '',
+        username: ''
+            }
+            db.pubClient.publish(msg.channel + ":notification",
+                    JSON.stringify(notification_msg));
     }
-    // Subsequent messages sent
+
+    // Send messages
     else if (msg.type == "chat") {
+        // publish message
         db.pubClient.publish(msg.channel, msg.message);
+        // store message
+        db.client.zadd([msg.channel, JSON.parse(msg.message).timestamp, msg.message],
+            function(err, reply){});
     }
-// Unsubscribe
+
+    // Unsubscribe
     else if (msg.type == 'unsubscribe') {
         var index = channels.indexOf(msg.message);
         // Remove channel from user's subscription set
-        db.client.srem(msg.username + ':sub', msg.message);
+        db.client.srem(msg.usernamename + ':sub', msg.channel);
         if (index > -1) {
             channels.splice(index, 1);
         }
     }
-// Subscribe
+
+    // Subscribe
     else if (msg.type == 'subscribe') {
         var index = channels.indexOf(msg.message);
         // Add channel to user's subscription set
-        db.client.sadd(msg.username + ':sub', msg.message);
+        db.client.sadd(msg.usernamename + ':sub', msg.channel);
         if (index > -1) {
             channels.push(msg.message);
         }
     }
 });
 
-client.on("disconnect", function() {
-    db.pubClient.publish(channels, "User is disconnected: " + client.id);
-});
+    client.on("disconnect", function() {
+        db.pubClient.publish(channels, "User is disconnected: " + client.id);
+    });
 });
