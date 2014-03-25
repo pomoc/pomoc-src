@@ -1,0 +1,4 @@
+redis-server&
+setenv pid $!
+node app.js
+trap "kill 0" SIGINT SIGTERM EXIT
