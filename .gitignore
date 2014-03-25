@@ -26,7 +26,8 @@ settings_local.js
 *.rdb
 
 # Don't include the framework distribution folder
-Framework/Pomoc/Distribution/*
+Distribution/
+build/
 
 # Others
 *.swp
