@@ -65,11 +65,11 @@
                                                         withMessage:@""];
     // Set chat channel Id
     SocketIOCallback cb = ^(id argsData) {
-        NSDictionary * response = argsData;
-        NSLog(@"init callback: %@", response);
+        PomocMessage * response = [[PomocMessage alloc] initWithJSONString: (NSString *)argsData];
+        NSLog(@"init callback: %@", [response getJSONObject]);
         // TODO: set initialized channel id for user
         // STUB
-        self.channel = response[MSG_CHANNEL];
+        self.channel = response.channel;
     };
     [self.socketIO sendEvent:@"init" withData:[message getJSONObject] andAcknowledge:cb];
     
