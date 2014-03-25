@@ -89,9 +89,10 @@ io.sockets.on("connection", function(client) {
 
     // Unsubscribe
     else if (msg.type == 'unsubscribe') {
-        var index = channels.indexOf(msg.message);
+        var index = channels.indexOf(msg.channel);
+        console.log("unsubscribed: " + msg.username + "," + msg.channel);
         // Remove channel from user's subscription set
-        db.client.srem(msg.usernamename + ':sub', msg.channel);
+        db.client.srem(msg.channel);
         if (index > -1) {
             channels.splice(index, 1);
         }
@@ -99,11 +100,12 @@ io.sockets.on("connection", function(client) {
 
     // Subscribe
     else if (msg.type == 'subscribe') {
+        console.log("Subscribed: " + msg.username + msg.channel);
         var index = channels.indexOf(msg.message);
         // Add channel to user's subscription set
-        db.client.sadd(msg.usernamename + ':sub', msg.channel);
+        db.client.sadd(msg.channel);
         if (index > -1) {
-            channels.push(msg.message);
+            channels.push(msg.channel);
         }
     }
 });
