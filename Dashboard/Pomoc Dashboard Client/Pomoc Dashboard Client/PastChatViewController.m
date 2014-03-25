@@ -8,15 +8,6 @@
 
 #import "PastChatViewController.h"
 
-#define CHAT_LIST_TABLEVIEW 1
-#define CHAT_MESSAGE_TABLEVIEW 2
-
-#define CHAT_CELL_STARTED 1
-#define CHAT_CELL_AGENT_NO 2
-
-#define CHAT_MESSAGE_CELL_NAME 1
-#define CHAT_MESSAGE_TEXT 2
-#define CHAT_MESSAGE_DATE 3
 
 @interface PastChatViewController ()
 

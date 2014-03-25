@@ -26,15 +26,26 @@
 		AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204F418D80BFA00D78156 /* SideNavigationController.m */; };
 		AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FA18D80F2200D78156 /* ChatViewController.m */; };
 		AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5204FD18D8109A00D78156 /* HomeViewController.m */; };
-		AA7F6E1D18DE86FC00400CDB /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */; };
-		AA7F6E2118DE89C600400CDB /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2018DE89C600400CDB /* Chat.m */; };
-		AA7F6E2418DE89C600400CDB /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2318DE89C600400CDB /* ChatMessage.m */; };
 		AA7F6E2718DE8A0100400CDB /* FakePomocSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */; };
 		AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */; };
 		AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */; };
 		AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */; };
 		AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */; };
 		AA9DC88618DF35B700B4FDF7 /* PomocChat.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88518DF35B700B4FDF7 /* PomocChat.m */; };
+		AA9DC88918E1311F00B4FDF7 /* ChatMessagePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88818E1311F00B4FDF7 /* ChatMessagePictureCell.m */; };
+		AA9DC88C18E1338100B4FDF7 /* ChatMessageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88B18E1338100B4FDF7 /* ChatMessageTextCell.m */; };
+		AA9DC88F18E13BD500B4FDF7 /* PomocChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88E18E13BD500B4FDF7 /* PomocChatMessage.m */; };
+		AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89118E175AF00B4FDF7 /* sampleImage.png */; };
+		AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89318E17ED700B4FDF7 /* administrator-512.png */; };
+		AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89518E17F7C00B4FDF7 /* speech_bubble_filled-512.png */; };
+		AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89618E17F7C00B4FDF7 /* speech_bubble-512.png */; };
+		AA9DC89B18E17F9F00B4FDF7 /* settings_filled-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89918E17F9F00B4FDF7 /* settings_filled-512.png */; };
+		AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89A18E17F9F00B4FDF7 /* settings-512.png */; };
+		AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89D18E17FE500B4FDF7 /* logout-512.png */; };
+		AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89F18E181B100B4FDF7 /* home-512.png */; };
+		AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */; };
+		AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC8AF18E1A43E00B4FDF7 /* attach-512.png */; };
+		AA9DC8B218E1A49E00B4FDF7 /* send_file-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,11 +88,6 @@
 		AA5204FA18D80F2200D78156 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		AA5204FC18D8109A00D78156 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		AA5204FD18D8109A00D78156 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
-		AA7F6E1F18DE89C600400CDB /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		AA7F6E2018DE89C600400CDB /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
-		AA7F6E2218DE89C600400CDB /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
-		AA7F6E2318DE89C600400CDB /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		AA7F6E2518DE8A0100400CDB /* FakePomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePomocSupport.h; sourceTree = "<group>"; };
 		AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePomocSupport.m; sourceTree = "<group>"; };
 		AA7F6E2918DE909300400CDB /* DashBoardSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardSingleton.h; sourceTree = "<group>"; };
@@ -94,6 +100,25 @@
 		AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AA9DC88418DF35B700B4FDF7 /* PomocChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocChat.h; sourceTree = "<group>"; };
 		AA9DC88518DF35B700B4FDF7 /* PomocChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocChat.m; sourceTree = "<group>"; };
+		AA9DC88718E1311F00B4FDF7 /* ChatMessagePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessagePictureCell.h; sourceTree = "<group>"; };
+		AA9DC88818E1311F00B4FDF7 /* ChatMessagePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessagePictureCell.m; sourceTree = "<group>"; };
+		AA9DC88A18E1338100B4FDF7 /* ChatMessageTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageTextCell.h; sourceTree = "<group>"; };
+		AA9DC88B18E1338100B4FDF7 /* ChatMessageTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageTextCell.m; sourceTree = "<group>"; };
+		AA9DC88D18E13BD500B4FDF7 /* PomocChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocChatMessage.h; sourceTree = "<group>"; };
+		AA9DC88E18E13BD500B4FDF7 /* PomocChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocChatMessage.m; sourceTree = "<group>"; };
+		AA9DC89118E175AF00B4FDF7 /* sampleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleImage.png; sourceTree = "<group>"; };
+		AA9DC89318E17ED700B4FDF7 /* administrator-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "administrator-512.png"; sourceTree = "<group>"; };
+		AA9DC89518E17F7C00B4FDF7 /* speech_bubble_filled-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech_bubble_filled-512.png"; sourceTree = "<group>"; };
+		AA9DC89618E17F7C00B4FDF7 /* speech_bubble-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech_bubble-512.png"; sourceTree = "<group>"; };
+		AA9DC89918E17F9F00B4FDF7 /* settings_filled-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_filled-512.png"; sourceTree = "<group>"; };
+		AA9DC89A18E17F9F00B4FDF7 /* settings-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-512.png"; sourceTree = "<group>"; };
+		AA9DC89D18E17FE500B4FDF7 /* logout-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-512.png"; sourceTree = "<group>"; };
+		AA9DC89F18E181B100B4FDF7 /* home-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-512.png"; sourceTree = "<group>"; };
+		AA9DC8AB18E1A07E00B4FDF7 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		AA9DC8AF18E1A43E00B4FDF7 /* attach-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attach-512.png"; sourceTree = "<group>"; };
+		AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file-512.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,18 +178,20 @@
 		AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
 			isa = PBXGroup;
 			children = (
+				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
 				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
 				AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */,
 				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
 				AA5204F418D80BFA00D78156 /* SideNavigationController.m */,
+				AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */,
+				AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */,
 				AA5204F018D80B3F00D78156 /* MainViewController.h */,
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupport */,
-				AA7F6E1E18DE870200400CDB /* Models */,
 				AA5204C518D7EF2C00D78156 /* Images.xcassets */,
 				AA5204EB18D7F74B00D78156 /* vendor */,
 				AA5204B418D7EF2C00D78156 /* Supporting Files */,
@@ -183,6 +210,7 @@
 				AA5204B618D7EF2C00D78156 /* InfoPlist.strings */,
 				AA5204B918D7EF2C00D78156 /* main.m */,
 				AA5204BB18D7EF2C00D78156 /* Pomoc Dashboard Client-Prefix.pch */,
+				AA9DC8AB18E1A07E00B4FDF7 /* constants.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -216,25 +244,15 @@
 			name = vendor;
 			sourceTree = "<group>";
 		};
-		AA7F6E1E18DE870200400CDB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */,
-				AA7F6E2218DE89C600400CDB /* ChatMessage.h */,
-				AA7F6E2318DE89C600400CDB /* ChatMessage.m */,
-				AA7F6E1F18DE89C600400CDB /* Chat.h */,
-				AA7F6E2018DE89C600400CDB /* Chat.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		AA7F6E2818DE8A8000400CDB /* PomocSupport */ = {
 			isa = PBXGroup;
 			children = (
 				AA7F6E2518DE8A0100400CDB /* FakePomocSupport.h */,
+				AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */,
 				AA9DC88418DF35B700B4FDF7 /* PomocChat.h */,
 				AA9DC88518DF35B700B4FDF7 /* PomocChat.m */,
-				AA7F6E2618DE8A0100400CDB /* FakePomocSupport.m */,
+				AA9DC88D18E13BD500B4FDF7 /* PomocChatMessage.h */,
+				AA9DC88E18E13BD500B4FDF7 /* PomocChatMessage.m */,
 			);
 			name = PomocSupport;
 			sourceTree = "<group>";
@@ -246,10 +264,31 @@
 				AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */,
 				AA5204F918D80F2200D78156 /* ChatViewController.h */,
 				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
+				AA9DC88718E1311F00B4FDF7 /* ChatMessagePictureCell.h */,
+				AA9DC88818E1311F00B4FDF7 /* ChatMessagePictureCell.m */,
+				AA9DC88A18E1338100B4FDF7 /* ChatMessageTextCell.h */,
+				AA9DC88B18E1338100B4FDF7 /* ChatMessageTextCell.m */,
 				AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */,
 				AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */,
 			);
 			name = ChatMVC;
+			sourceTree = "<group>";
+		};
+		AA9DC89018E1759500B4FDF7 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+				AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */,
+				AA9DC8AF18E1A43E00B4FDF7 /* attach-512.png */,
+				AA9DC89F18E181B100B4FDF7 /* home-512.png */,
+				AA9DC89D18E17FE500B4FDF7 /* logout-512.png */,
+				AA9DC89918E17F9F00B4FDF7 /* settings_filled-512.png */,
+				AA9DC89A18E17F9F00B4FDF7 /* settings-512.png */,
+				AA9DC89518E17F7C00B4FDF7 /* speech_bubble_filled-512.png */,
+				AA9DC89618E17F7C00B4FDF7 /* speech_bubble-512.png */,
+				AA9DC89118E175AF00B4FDF7 /* sampleImage.png */,
+				AA9DC89318E17ED700B4FDF7 /* administrator-512.png */,
+			);
+			name = Pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,8 +368,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA5204C618D7EF2C00D78156 /* Images.xcassets in Resources */,
+				AA9DC8B218E1A49E00B4FDF7 /* send_file-512.png in Resources */,
 				AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */,
 				AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */,
+				AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */,
+				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
+				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
+				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
+				AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */,
+				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
+				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
+				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,
+				AA9DC89B18E17F9F00B4FDF7 /* settings_filled-512.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,22 +399,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */,
+				AA9DC88F18E13BD500B4FDF7 /* PomocChatMessage.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
-				AA7F6E1D18DE86FC00400CDB /* Chat.xcdatamodeld in Sources */,
 				AA9DC88618DF35B700B4FDF7 /* PomocChat.m in Sources */,
+				AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
 				AA7F6E2718DE8A0100400CDB /* FakePomocSupport.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				AA9DC88918E1311F00B4FDF7 /* ChatMessagePictureCell.m in Sources */,
 				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
 				AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */,
 				6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */,
-				AA7F6E2118DE89C600400CDB /* Chat.m in Sources */,
 				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
 				AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */,
-				AA7F6E2418DE89C600400CDB /* ChatMessage.m in Sources */,
 				AA5204BA18D7EF2C00D78156 /* main.m in Sources */,
 				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
+				AA9DC88C18E1338100B4FDF7 /* ChatMessageTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,19 +634,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		AA7F6E1B18DE86FC00400CDB /* Chat.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */,
-			);
-			currentVersion = AA7F6E1C18DE86FC00400CDB /* Chat.xcdatamodel */;
-			path = Chat.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AA5204A218D7EF2C00D78156 /* Project object */;
 }

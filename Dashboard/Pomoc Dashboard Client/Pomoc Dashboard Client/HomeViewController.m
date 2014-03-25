@@ -21,6 +21,9 @@
     NSLog(@"loaded home view controller");
     
     self.title = @"Home";
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:[Utility navigationTitleDesign]];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -15,8 +15,11 @@
 #import "MainViewController.h"
 #import "ChatViewController.h"
 
-NSInteger const HOME = 0;
-NSInteger const CHAT = 1;
+#define HOME 0
+#define CHAT 1
+#define SETTING 0
+#define LOGOUT 1
+#define LOGO_WIDTH 20
 
 @interface SideNavigationController () {
 
@@ -35,15 +38,18 @@ NSInteger const CHAT = 1;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    dataArray = [[NSArray alloc] initWithObjects:@"Home",@"Chat", nil];
-    settingArray = [[NSArray alloc] initWithObjects:@"Settings",@"Logout", nil];
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", nil];
+    settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
     sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
 
+    _tableView.scrollEnabled = NO;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
 - (IBAction)Chat:(id)sender
 {
-    NSLog(@"clicked chat");
     self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
 }
 
@@ -77,30 +83,53 @@ NSInteger const CHAT = 1;
      UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
      if (indexPath.section == 0){
+         
          cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+         
+         if (indexPath.row == HOME) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-512.png"]
+                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+             
+         } else if(indexPath.row == CHAT) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-512.png"]
+                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+
+        }
      } else {
+         
          cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];
+         
+         if (indexPath.row == SETTING) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"settings-512.png"]
+                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+             
+         } else if(indexPath.row == LOGOUT){
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"logout-512.png"]
+                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+         }
      }
-     cell.contentView.backgroundColor = [UIColor darkGrayColor];
-     cell.textLabel.textColor = [UIColor whiteColor];
      
+     cell.textLabel.font = [UIFont fontWithName:@"Marker Felt" size:16];
+    
      return cell;
  }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    if(section != 0) {
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, view.center.y,  tableView.frame.size.width, 1)];
+        
+        lineView.backgroundColor =  [UIColor colorWithWhite:0.5 alpha:0.5];
+        
+        [view addSubview:lineView];
+        
+        return view;
+    }
     
-    /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:12]];
-    NSString *string =[sectionHeading objectAtIndex:section];
-    
-    /* Section header is in 0th index... */
-    [label setText:string];
-    [view addSubview:label];
-    //[view setBackgroundColor:[UIColor whiteColor]]; //your background color...
-    return view;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

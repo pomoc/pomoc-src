@@ -25,13 +25,12 @@
 
 - (void) setUpPanels {
     
+    self.bounceOnCenterPanelChange = false;
+    
     SideNavigationController *sideNav = [self.storyboard instantiateViewControllerWithIdentifier:@"sideNavigationController"];
     [self setLeftPanel:sideNav];
     [self setLeftGapPercentage:0.25];
-//    
-//    HomeViewController *homeView = [self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"];
-//    [self setCenterPanel:homeView];
-    
+
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"]];
 }
 

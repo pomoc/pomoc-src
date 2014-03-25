@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *chatView;
 
 //Chat nav IBOutlets
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *chatNavTable;
 
 //Chat message IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;

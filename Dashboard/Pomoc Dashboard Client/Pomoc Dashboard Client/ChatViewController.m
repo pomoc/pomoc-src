@@ -10,25 +10,21 @@
 #import "FakePomocSupport.h"
 #import "DashBoardSingleton.h"
 #import "PomocChat.h"
-
-#define CHAT_CELL_NAME 1
-#define CHAT_CELL_STARTED 2
-#define CHAT_CELL_AGENT_NO 3
-
-#define CHAT_LIST_TABLEVIEW 1
-#define CHAT_MESSAGE_TABLEVIEW 2
-
-#define CHAT_MESSAGE_CELL_NAME 1
-#define CHAT_MESSAGE_TEXT 2
-#define CHAT_MESSAGE_DATE 3
+#import "ChatMessagePictureCell.h"
+#import "ChatMessageTextCell.h"
 
 @interface ChatViewController (){
-    NSArray *dataArray;
     FakePomocSupport *pomocSupport;
     
-    //chat message original center
+    //tracking UI table view
     CGRect chatMessageOriginalFrame;
     CGPoint chatInputOriginalCenter;
+    CGRect chatNavOriginalFrame;
+    
+    NSMutableArray *chatArray;
+    NSMutableArray *chatMessagesArray;
+    NSInteger currentlySelectedChat;
+    
 }
 
 @end
@@ -39,7 +35,6 @@
 {
     [super viewDidLoad];
     self.title = @"Messages";
-    dataArray = [[NSArray alloc] initWithObjects:@"Home", @"Chat", nil];
     
     //init POMOC Support to retrieve all the chat
     NSDate *now = [NSDate date];
@@ -48,15 +43,27 @@
     pomocSupport = [[FakePomocSupport alloc] initWithLastUpdatedDate:now andAppId:appId];
     pomocSupport.delegate = self;
     
-    [pomocSupport testCallDelegate];
-    
     //ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
+    _chatNavTable.separatorColor = [UIColor clearColor];
     
     //storing the original position for moving them up when keyboard show
-    //chatMessageOriginalCenter = _chatMessageTable.center;
     chatMessageOriginalFrame = _chatMessageTable.frame;
     chatInputOriginalCenter = _chatInputView.center;
+    chatNavOriginalFrame = _chatNavTable.frame;
+    
+    chatArray = [[NSMutableArray alloc] init];
+    chatMessagesArray = [[NSMutableArray alloc] init];
+    currentlySelectedChat = -1;
+    
+    //border
+    _chatMessageTable.layer.borderWidth = 0.5;
+    CALayer *leftBorder = [CALayer layer];
+    [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
+    [leftBorder setFrame:CGRectMake(0, 0, 0.5, _chatInputView.frame.size.height)];
+    [_chatInputView.layer addSublayer:leftBorder];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:[Utility navigationTitleDesign]];
 }
 
 
@@ -72,26 +79,20 @@
 
 - (IBAction)sendMessage:(id)sender {
     NSLog(@"user sending message!");
-}
-
-- (void) chatListOnLoad:(NSArray *)Chat
-{
     
-}
-
-- (void) newChat: (PomocChat *)Chat
-{
-    NSLog(@"called new chat");
+    NSLog(@"simulating new chat now");
+    [pomocSupport simulateNewChat];
+    
+    NSLog(@"simulating chat message now");
+    [pomocSupport simulateChatMessage];
+    
+    [pomocSupport simulatePictureMessage];
+    
 }
 
 - (void) testProtocol
 {
     NSLog(@"called test protocol");
-}
-
-- (void) newChatMessage: (PomocChat *)Chat
-{
-    
 }
 
 
@@ -113,19 +114,35 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    //return [dataArray count];
-    return 10;
+    
+    NSLog(@"came inside number of rows");
+    
+    if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
+        return [chatArray count];
+        
+    } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        if ([chatArray count] == 0) {
+            return 0;
+            
+        } else {
+            PomocChat *chat = [chatArray objectAtIndex:currentlySelectedChat];
+            return [chat.chatMessages count];
+            
+        }
+    }
+    
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger row = indexPath.row;
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
-        return [self createChatNavTableView:tableView];
+        return [self createChatNavTableView:tableView atRow:row];
     
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        return [self createChatMessageTableView:tableView];
+        return [self createChatMessageTableView:tableView atRow:row];
     }
     
     return nil;
@@ -136,98 +153,235 @@
     //selecting one of the chat side nav
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         
+        currentlySelectedChat = indexPath.row;
+        
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        //setting the visitor name
         UILabel *visitorNameLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
         NSString *visitorName = [visitorNameLabel text];
-        [self updateChatViewWithVisitorName:visitorName];
+        [self.navigationItem setTitle:visitorName];
         
+        //setting the chat for chat table view
+        PomocChat *pomocchat = [chatArray objectAtIndex:currentlySelectedChat];
+        chatMessagesArray = pomocchat.chatMessages;
+        
+         [_chatMessageTable reloadData];
     }
     
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
+        return 65;
+        
+    }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        //call a method that
+            //get the cell there
+            //get the size
+            //calculate the height probably required
+        return 100;
+    }
+    
+    return 0;
+}
 
 #pragma mark - CHAT SIDE NAV
-- (UITableViewCell *) createChatNavTableView: (UITableView *) tableView
+- (UITableViewCell *) createChatNavTableView: (UITableView *) tableView atRow: (NSInteger)row
 {
-    static NSString *cellIdentifier = @"Cell";
+    static NSString *cellIdentifier = @"ChatTitleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    PomocChat *chat = [chatArray objectAtIndex:row];
     
     //Setting visitor name
     UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
-    [visitorLabel setText:@"Visitor XXX"];
+    [visitorLabel setText:chat.visitorName];
     
     //setting the started date of chat
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *dateString = [dateFormatter stringFromDate:chat.startedDate];
     
     UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
     [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
-    [agentLabel setText:@"8"];
+    [agentLabel setText:[NSString stringWithFormat: @"%ld",chat.noOfAgent]];
     
     return cell;
+}
+
+- (void) insertNewRow
+{
+    
+//    [_chatNavTable beginUpdates];
+//    
+//    NSIndexPath *path1 = [NSIndexPath indexPathForRow:temp inSection:0]; //ALSO TRIED WITH indexPathRow:0
+//    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
+//    
+//    [_chatNavTable insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationRight];
+//    
+//    [_chatNavTable endUpdates];
+    
 }
 
 
 #pragma mark - CHAT MESSAGE
-- (UITableViewCell *) createChatMessageTableView: (UITableView *) tableView
+- (UITableViewCell *) createChatMessageTableView: (UITableView *)tableView atRow: (NSInteger)row
 {
-    static NSString *cellIdentifier = @"ChatMessageCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    PomocChat *chat = [chatArray objectAtIndex:currentlySelectedChat];
+    PomocChatMessage *message = [chat.chatMessages objectAtIndex:row];
+    
+    if (message.messageImage == nil) {
+        return [self getChatMessageCell:message tableView:tableView];
+        
+    } else {
+        return [self getChatPictureCell:message tableView:tableView];
+    }
+    
+}
+
+
+- (UITableViewCell *)getChatPictureCell :(PomocChatMessage *) message tableView:(UITableView *)tableView;
+{
+    static NSString *cellIdentifier = @"ChatPictureCell";
+    ChatMessagePictureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[ChatMessagePictureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     //Setting visitor name
-    UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_CELL_NAME];
-    [visitorLabel setText:@"Visitor XXX"];
+    [cell.messageFrom setText:message.senderName];
     
     //setting the started date of chat
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd 'at' HH:MM"];
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *dateString = [self formatDateForTable:message.sentDate];
+    [cell.messageDate setText:[NSString stringWithFormat:@"%@",dateString]];
     
-    UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_DATE];
-    [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
-    
-    //setting number of agents
-    UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_MESSAGE_TEXT];
-    [agentLabel setText:@"Hey yoooolooooo yoooolooooo yoooolooooo yoooolooooo yoooolooooo yoooolooooo"];
+    //setting the display picture
+    [cell.messagePicture setImage:message.messageImage];
     
     return cell;
 }
 
-- (void) updateChatViewWithVisitorName: (NSString *) visitorName
+- (UITableViewCell *)getChatMessageCell :(PomocChatMessage *)message tableView:(UITableView *)tableView;
 {
-    [self.navigationItem setTitle:visitorName];
+    
+    static NSString *cellIdentifier = @"ChatMessageCell";
+    ChatMessageTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[ChatMessageTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    //Setting visitor name
+    [cell.messageFrom setText:message.senderName];
+    
+    //setting the started date of chat
+    NSString *dateString = [self formatDateForTable:message.sentDate];
+    [cell.messageDate setText:[NSString stringWithFormat:@"%@",dateString]];
+    
+    //setting the display text
+    [cell.messageText setText: message.messageText];
+    
+    return cell;
 }
+
+- (NSString *)formatDateForTable :(NSDate *)dateToFormat
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd 'at' HH:MM"];
+    NSString *dateString = [dateFormatter stringFromDate:dateToFormat];
+    return dateString;
+}
+
+#pragma  mark - Textfield editing delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    /* keyboard is visible, move views */
-    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - 350)];
-    
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - 350;
-    _chatMessageTable.frame = chatMessageOriginalFrame;
-
-    //scrolling to bottom http://stackoverflow.com/questions/5112346/uitableview-scroll-to-bottom-on-reload
-    NSInteger totalCell = [_chatMessageTable numberOfRowsInSection:0] - 1;
-    NSIndexPath* ipath = [NSIndexPath indexPathForRow: totalCell inSection: 0];
-    [_chatMessageTable scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionBottom animated: YES];
-    
-    NSLog(@"keyboard visible");
+    [self scrollThingUp];
 }
+
+- (void) scrollThingUp
+{
+    /* keyboard is visible, move views */
+    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
+    
+    //scrolling to bottom http://stackoverflow.com/questions/5112346/uitableview-scroll-to-bottom-on-reload
+    //    NSInteger totalCell = [_chatMessageTable numberOfRowsInSection:0];
+    //    NSIndexPath* ipath = [NSIndexPath indexPathForRow: totalCell inSection: 0];
+    //    [_chatMessageTable scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionBottom animated: YES];
+    //
+    chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _chatNavTable.frame = chatNavOriginalFrame;
+    
+}
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSLog(@"keyboard hidden");
     _chatInputView.center = chatInputOriginalCenter;
     
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + 350;
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    /* resign first responder, hide keyboard, move views */
+    chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
+    _chatNavTable.frame = chatNavOriginalFrame;
+}
+
+#pragma mark - Pomoc support delgate
+
+- (void) newChat:(PomocChat *) newPomocChat
+{
+    [chatArray addObject:newPomocChat];
+    [_chatNavTable reloadData];
+}
+
+-(void) newChatMessage:(PomocChatMessage *) newPomocChatMssage channel:(NSString *)channelId
+{
+    //Finding the pomoc chat with such channel id and add the chat message in
+    NSUInteger count = 0;
+    for (PomocChat *pomocChat in chatArray) {
+        if ([pomocChat.channelName isEqualToString:channelId]) {
+
+            [pomocChat.chatMessages addObject:newPomocChatMssage];
+            
+            //new message came to the currently selected chat
+            if (count == currentlySelectedChat) {
+                chatMessagesArray = pomocChat.chatMessages;
+                [_chatMessageTable reloadData];
+            }
+            break;
+        }
+        count ++;
+    }
+    
+}
+
+- (void) newPictureMessage: (PomocChatMessage *) newPomocChatMssage channel: (NSString *) channelId
+{
+    NSUInteger count = 0;
+    for (PomocChat *pomocChat in chatArray) {
+        if ([pomocChat.channelName isEqualToString:channelId]) {
+            
+            [pomocChat.chatMessages addObject:newPomocChatMssage];
+            
+            //new message came to the currently selected chat
+            if (count == currentlySelectedChat) {
+                chatMessagesArray = pomocChat.chatMessages;
+                [_chatMessageTable reloadData];
+            }
+            break;
+        }
+        count ++;
+    }
 }
 
 /*

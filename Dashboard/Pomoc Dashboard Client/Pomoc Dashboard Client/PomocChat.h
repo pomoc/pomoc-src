@@ -10,8 +10,18 @@
 
 @interface PomocChat : NSObject
 
-@property (nonatomic, weak) NSNumber *chatId;
-@property (nonatomic, weak) NSString *chatMessage;
+//identifier for the channel 
+@property (nonatomic, strong) NSString *channelName;
 
+@property (nonatomic, strong) NSNumber *visitorId;
+@property (nonatomic, strong) NSString *visitorName;
+@property (nonatomic, assign) NSInteger noOfAgent;
+
+@property (nonatomic, strong) NSDate *startedDate;
+
+@property (nonatomic, strong) NSMutableArray *chatMessages;
+
+
+- (id)initWithChannel: (NSString *)channelName;
 
 @end
