@@ -40,6 +40,8 @@
 		BD13532018D707D00055789A /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = BD13531618D707D00055789A /* SocketIOTransportWebsocket.m */; };
 		BD13532118D707D00055789A /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = BD13531818D707D00055789A /* SocketIOTransportXHR.m */; };
 		BD13532218D707D00055789A /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = BD13531818D707D00055789A /* SocketIOTransportXHR.m */; };
+		BD14F61718E1A83400899780 /* PomocMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BD14F61618E1A83400899780 /* PomocMessage.m */; };
+		BD14F61818E1A83400899780 /* PomocMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BD14F61618E1A83400899780 /* PomocMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		BD13531618D707D00055789A /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
 		BD13531718D707D00055789A /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
 		BD13531818D707D00055789A /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		BD14F61518E1A83400899780 /* PomocMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocMessage.h; sourceTree = "<group>"; };
+		BD14F61618E1A83400899780 /* PomocMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocMessage.m; sourceTree = "<group>"; };
 		BD8EE74018D70BB400026961 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +167,8 @@
 				6020CA4618D19069000BE371 /* Main.storyboard */,
 				6020CA4918D19069000BE371 /* ViewController.h */,
 				6020CA4A18D19069000BE371 /* ViewController.m */,
+				BD14F61518E1A83400899780 /* PomocMessage.h */,
+				BD14F61618E1A83400899780 /* PomocMessage.m */,
 				BD8EE74018D70BB400026961 /* constants.h */,
 				6020CA4C18D19069000BE371 /* Images.xcassets */,
 				6020CA3B18D19069000BE371 /* Supporting Files */,
@@ -334,6 +340,7 @@
 				BD13530518D705010055789A /* SRWebSocket.m in Sources */,
 				BD13530118D704EA0055789A /* NSData+SRB64Additions.m in Sources */,
 				6020CA4B18D19069000BE371 /* ViewController.m in Sources */,
+				BD14F61718E1A83400899780 /* PomocMessage.m in Sources */,
 				6020CA4518D19069000BE371 /* AppDelegate.m in Sources */,
 				BD13531918D707D00055789A /* SocketIO.m in Sources */,
 				BD1352FD18D704D60055789A /* base64.c in Sources */,
@@ -356,6 +363,7 @@
 				6020CA6018D19069000BE371 /* ChatClientTests.m in Sources */,
 				BD13531A18D707D00055789A /* SocketIO.m in Sources */,
 				BD13531C18D707D00055789A /* SocketIOJSONSerialization.m in Sources */,
+				BD14F61818E1A83400899780 /* PomocMessage.m in Sources */,
 				BD13532218D707D00055789A /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

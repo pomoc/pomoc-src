@@ -33,7 +33,7 @@
     self.usernameLabel.text = [NSString stringWithFormat:@"User %i", arc4random()%10000];
     self.socketIO = [self connectSocketIO];
     self.hasChannel = false;
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,20 +55,26 @@
 
 - (IBAction)sendMessage:(UIButton *)sender
 {
-    // Set channel
-    if (!self.hasChannel) {
-        [self.socketIO sendJSON:@{@"type": @"setChannel",
-                                  @"channel": self.messageTextField.text}];
-        self.hasChannel = true;
-        [sender setTitle:@"send" forState:UIControlStateNormal];
-        
+    [self send:@{} :nil];
+}
+
+#pragma mark - Send message (optional callback)
+
+- (void)send:(NSDictionary *)message :(SocketIOCallback)function
+{
+    if (!function) {
+        [self.socketIO sendJSON:message];
     }
-    // Send Message
     else {
-        [self.socketIO sendJSON:@{@"type": @"chat",
-                                  @"message": self.messageTextField.text}];
+        [self.socketIO sendJSON:message withAcknowledge:function];
     }
-    self.messageTextField.text = @"";
+}
+
+#pragma mark - Subscribe to channel
+- (void)subscribe:(NSString *)userId :(NSString *)channelId
+{
+    NSDictionary * message = @{
+                               };
 }
 
 #pragma mark - SocketIO Delegate method - receiving incoming messages
@@ -76,7 +82,19 @@
 - (void) socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     NSLog(@"didReceiveMessage >>> data: %@", packet.data);
-    [self addMessage:packet.data fromUser:@"received lazy to write properly"];
+    // Checks for message type
+    // Regular chat
+    NSDictionary * receivedObject =
+    [NSJSONSerialization JSONObjectWithData: [packet.data dataUsingEncoding:NSUTF8StringEncoding]
+                                    options: NSJSONReadingMutableContainers
+                                      error: nil];
+    NSString * messageType = (NSString *)receivedObject[@"type"];
+    
+    // Subscribe to new chat channel
+    if ([messageType isEqualToString:@"notification"]) {
+        
+    }
+    //[self addMessage:packet.data fromUser:@"received lazy to write properly"];
 }
 
 #pragma mark - Adding Message
