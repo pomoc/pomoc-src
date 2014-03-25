@@ -28,6 +28,7 @@ Keys | Values| Description
 ### New chat
 - User initiates chat
 - User gets subscribed to chat
+- Server creates chatId and sends it back to user through ACK packet
 - App's support staff gets notified about new channel through app's
   notification channel
 - After receiving notification, a subscription message from the support's staff
