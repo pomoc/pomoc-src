@@ -1,0 +1,32 @@
+//
+//  constants.h
+//  Pomoc Dashboard Client
+//
+//  Created by Steve Ng on 25/3/14.
+//  Copyright (c) 2014 nus.cs3217. All rights reserved.
+//
+
+//CHAT VIEW CONTROLLER
+#define CHAT_CELL_NAME 1
+
+#define CHAT_LIST_TABLEVIEW 1
+#define CHAT_MESSAGE_TABLEVIEW 2
+
+#define CHAT_MESSAGE_CELL_NAME 1
+#define CHAT_MESSAGE_TEXT 2
+#define CHAT_MESSAGE_PICTURE 2
+#define CHAT_MESSAGE_DATE 3
+
+#define KEYBOARD_UP_OFFSET 350
+
+//CHAT + PAST VIEW CONTROLLER
+#define CHAT_CELL_STARTED 2
+#define CHAT_CELL_AGENT_NO 3
+
+//PAST CHAT VIEW CONTROLLER
+#define CHAT_LIST_TABLEVIEW 1
+#define CHAT_MESSAGE_TABLEVIEW 2
+
+#define CHAT_MESSAGE_CELL_NAME 1
+#define CHAT_MESSAGE_TEXT 2
+#define CHAT_MESSAGE_DATE 3

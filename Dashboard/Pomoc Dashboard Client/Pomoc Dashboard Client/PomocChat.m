@@ -7,7 +7,17 @@
 //
 
 #import "PomocChat.h"
+#import "PomocChatMessage.h"
 
 @implementation PomocChat
+
+- (id)initWithChannel: (NSString *)channelName {
+    
+    if ((self = [super init])) {
+        _channelName = channelName;
+        _chatMessages = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 @end
