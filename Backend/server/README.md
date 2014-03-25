@@ -33,12 +33,14 @@ Keys | Values| Description
 - After receiving notification, a subscription message from the support's staff
   client app is sent to the server
 - Server subscribes staff to the new channel
+
 ### Resubscribing to existing channel
 - Support's staff client app does a http get call to `get_chat/<username>` to
   get all previous messages in chat channel
 - After which, the client app would send a subscription message to subscribe to
   the chat channel
 - Server subscribes staff to channel
+
 ### Unsubscribing from a channel
 - Unsubscription message sent to server
 - Server unsubscribes staff from channel
