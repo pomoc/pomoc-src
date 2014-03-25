@@ -25,10 +25,22 @@ Keys | Values| Description
 }`
 
 ## Flow
-- user initiates chat
-- user gets subscribed to chat
-- app's support staff gets notified about new channel through app's
+### New chat
+- User initiates chat
+- User gets subscribed to chat
+- App's support staff gets notified about new channel through app's
   notification channel
-- after receiving notification, a subscription message from the support's staff
+- After receiving notification, a subscription message from the support's staff
   client app is sent to the server
-- server subscribes staff to the new channel
+- Server subscribes staff to the new channel
+### Resubscribing to existing channel
+- Support's staff client app does a http get call to `get_chat/<username>` to
+  get all previous messages in chat channel
+- After which, the client app would send a subscription message to subscribe to
+  the chat channel
+- Server subscribes staff to channel
+### Unsubscribing from a channel
+- Unsubscription message sent to server
+- Server unsubscribes staff from channel
+- Staff will not receive new messages from channel unless he/she subscribes
+  back to the channel
