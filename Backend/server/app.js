@@ -27,79 +27,54 @@ var io = socket_io.listen(server, {
     require('./' + route)(app, db);
 });
 
-// Socket IO chat connections
-io.sockets.on("connection", function(client) {
-    var channels = []
-    db.subClient.on("message", function (channel, message) {
-        console.log("channel: %s", channel);
-        if (channels.indexOf(channel) > -1) {
-            client.send(message);
-        }
+console.log('server running');
+
+// Socke IO connection
+io.sockets.on('connection', function(client) {
+
+    // Subscribe
+    client.on('subscribe', function(data) {
+        client.join(data.channel);
+        db.client.sadd(data.username + ":sub", data.channel);
+        console.log(data.username + " subscribed: " + data.channel);
     });
 
-    // User initiates chat
-    // channel name = user:appid:chat
-    // msg.channel contains appId
-    client.on("init", function(msg, fn) {
-        var channelId = msg.username + ":" +  msg.channel + ":chat";
-        channels.push(channelId);
-        db.subClient.subscribe(channelId);
-        // Send chatId back to user
-        fn(JSON.stringify({
+    // Unsubscribe
+    client.on('unsubscribe', function(data) {
+        client.leave(data.channel);
+        db.client.srem(data.username + ":sub", data.channel); 
+        console.log(data.username + " unsubscribed: " + data.channel);
+    });
+
+    // Relaying chat messages
+    client.on('message', function(data) {
+        // broadcasts to all clients in room except this one
+       client.broadcast.to(data.channel).emit('message', data);
+        // send message back to client
+       client.emit('message', data);
+       db.client.zadd([data.channel, data.timestamp, JSON.stringify(data)], function(err,reply){});
+       console.log(data.username + " sent: " + data.message + " channel: " + data.channel);
+    });
+
+    // New Chat
+    client.on('init', function(data, callback) {
+        var channelId = data.username + ":" + data.channel + ":" + chat;
+        // subscribes client to new chat
+        client.join(channelId);
+        db.client.sadd(data.username + ":sub", channelId);
+        console.log(data.username + " subscribed to: " + channelId);
+        // sends back chat id of new chat
+        callback(JSON.stringify({
             type: "init",
             channel: channelId,
             message: "",
             username: ""
         }));
-
-        // Notify all support staff about the new channel through the app's 
-        // notification channel
-        var notification_msg = {
-            type: 'notification',
-            channel: channelId,
-            message: '',
-            username: ''
-        }
-        console.log("publishing: " + msg.channel + ":notification");
-        db.pubClient.publish(msg.channel + ":notification",
-                JSON.stringify(notification_msg));
+        // broadcast notification of new channel
+        client.broadcast.to(data.channel + ":notification", channelId);
+        console.log(data.channel + " notified about: " + channelId);
     });
     
-    client.on("message", function(msg) {
-        if (msg.type == "chat") {
-            // publish message
-            db.pubClient.publish(msg.channel, JSON.stringify(msg));
-            // store message
-            db.client.zadd([msg.channel, msg.timestamp, JSON.stringify(msg)],
-                function(err, reply){});
-        }
-
-        // Unsubscribe
-        else if (msg.type == 'unsubscribe') {
-            var index = channels.indexOf(msg.channel);
-            console.log("unsubscribed: " + msg.username + "," + msg.channel);
-            // Remove channel from user's subscription set
-            db.client.srem(msg.channel);
-            if (index > -1) {
-                channels.splice(index, 1);
-            }
-        }
-
-        // Subscribe
-        else if (msg.type == 'subscribe') {
-            console.log("Subscribed: " + "user="+ msg.username + " channel=" + msg.channel);
-            var index = channels.indexOf(msg.channel);
-            // Add channel to user's subscription set
-            db.client.sadd(msg.channel, msg.username);
-            if (index < 0) {
-                console.log("channel " + msg.channel + " pushed");
-                channels.push(msg.channel);
-            }
-            db.subClient.subscribe(msg.channel);
-        }
-    });
-
-    client.on("disconnect", function() {
-        db.pubClient.publish(channels, "User is disconnected: " + client.id);
-    });
+    // Disconnect
+    client.on('disconnect', function() {});
 });
