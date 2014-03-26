@@ -36,6 +36,10 @@ io.sockets.on("connection", function(client) {
             client.send(message);
         }
     });
+
+    // User initiates chat
+    // channel name = user:appid:chat
+    // msg.channel contains appId
     client.on("init", function(msg, fn) {
         var channelId = msg.username + ":" +  msg.channel + ":chat";
         channels.push(channelId);
@@ -47,37 +51,22 @@ io.sockets.on("connection", function(client) {
             message: "",
             username: ""
         }));
-    });
-    client.on("message", function(msg) {
-        // User initiates chat
-        // channel name = user:appid:chat
-        // msg.channel contains appId
-        if (msg.type == "init") {
-            var channelId = msg.username + ":" +  msg.channel + ":chat";
-            channels.push(channelId);
-            db.subClient.subscribe(channelId);
-            // Send chatId back to user
-            fn(JSON.stringify({
-                type: "init",
-                channel: channelId,
-                message: "",
-                username: ""
-            }));
-            // Notify all support staff about the new channel through the app's 
-            // notification channel
-            var notification_msg = {
-                type: 'notification',
-                channel: channelId,
-                message: '',
-                username: ''
-            }
-            console.log("publishing: " + msg.channel + ":notification");
-            db.pubClient.publish(msg.channel + ":notification",
-                    JSON.stringify(notification_msg));
-        }
 
-        // Send messages
-        else if (msg.type == "chat") {
+        // Notify all support staff about the new channel through the app's 
+        // notification channel
+        var notification_msg = {
+            type: 'notification',
+            channel: channelId,
+            message: '',
+            username: ''
+        }
+        console.log("publishing: " + msg.channel + ":notification");
+        db.pubClient.publish(msg.channel + ":notification",
+                JSON.stringify(notification_msg));
+    });
+    
+    client.on("message", function(msg) {
+        if (msg.type == "chat") {
             // publish message
             db.pubClient.publish(msg.channel, JSON.stringify(msg));
             // store message
