@@ -360,7 +360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nrm -r \"${BUILD_DIR}/${PRODUCT_NAME}\"\nmkdir -p \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"";
+			shellScript = "set -e\n\nrm -rf \"${BUILD_DIR}/${PRODUCT_NAME}\"\nmkdir -p \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"";
 		};
 		6068F2F818E1E4DE005B87F4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

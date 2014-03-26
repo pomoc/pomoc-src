@@ -124,7 +124,7 @@
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
-    NSDictionary *data = [packet dataAsJSON];
+    NSDictionary *data = [packet dataAsJSON][@"args"][0];
     
     if ([packet.name isEqualToString:@"chatMessage"]) {
         if ([self.delegate respondsToSelector:@selector(didReceiveMessage:conversationId:)]) {
