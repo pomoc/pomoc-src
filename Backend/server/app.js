@@ -27,6 +27,8 @@ var io = socket_io.listen(server, {
     require('./' + route)(app, db);
 });
 
+console.log('server running');
+
 // Socke IO connection
 io.sockets.on('connection', function(client) {
 
