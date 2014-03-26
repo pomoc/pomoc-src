@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class PomocMessage;
+@class PMMessage;
 
-@protocol PomocCoreDelegate <NSObject>
+@protocol PMCoreDelegate <NSObject>
 
-- (void)didReceiveMessage:(PomocMessage *)pomocMessage channel:(NSString *)channel;
+- (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channelId;
 
 @end

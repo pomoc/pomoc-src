@@ -23,16 +23,18 @@
 #define MSG_MESSAGE         @"message"
 
 
-@interface PomocMessage : NSObject
+@interface PMMessage : NSObject
 
-- (id) initWithUsername:(NSString *)username withChannel:(NSString *)channel
-               withType:(NSString *)type withMessage:(NSString *)message;
-- (id) initWithJSONString:(NSString *)jsonString;
+- (id)initWithUsername:(NSString *)username
+           withChannel:(NSString *)channel
+              withType:(NSString *)type
+           withMessage:(NSString *)message;
+- (id)initWithJSONString:(NSString *)jsonString;
 - (NSDictionary *)getJSONObject;
 
-@property (readonly) NSString * username;
-@property (readonly) NSString * channel;
-@property (readonly) NSString * type;
-@property (readonly) NSString * message;
+@property (readonly) NSString *username;
+@property (readonly) NSString *channel;
+@property (readonly) NSString *type;
+@property (readonly) NSString *message;
 
 @end

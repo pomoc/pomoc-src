@@ -8,10 +8,8 @@
 
 #import "ViewController.h"
 #import "PomocCore.h"
-#import "PomocCoreDelegate.h"
-#import "PomocMessage.h"
 
-@interface ViewController () <PomocCoreDelegate>
+@interface ViewController () <PMCoreDelegate>
 
 @end
 
@@ -22,12 +20,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [PomocCore initWithAppID:@"hello" delegate:self];
+    [PMCore initWithAppID:@"hello" delegate:self];
     
-    [PomocCore startConversationWithUserId:@"zz" completion:^(NSString *conversationId) {
+    [PMCore startConversationWithUserId:@"zz" completion:^(NSString *conversationId) {
         if (conversationId) {
             NSLog(@"%@", conversationId);
-            [PomocCore sendMessage:@"Hello!" userId:@"zz" channel:conversationId];
+            [PMCore sendMessage:@"Hello!" userId:@"zz" channelId:conversationId];
         }
         else {
             NSLog(@"Failed");
@@ -41,7 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didReceiveMessage:(PomocMessage *)pomocMessage channel:(NSString *)channel
+- (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channel
 {
     NSLog(@"Received: %@", pomocMessage.message);
 }

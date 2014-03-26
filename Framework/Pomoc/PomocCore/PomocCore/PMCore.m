@@ -6,26 +6,26 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import "PomocCore.h"
+#import "PMCore.h"
 
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 
-#import "PomocMessage.h"
+#import "PMMessage.h"
 
-@interface PomocCore () <SocketIODelegate>
+@interface PMCore () <SocketIODelegate>
 
 @property (nonatomic, strong) NSString *appId;
 @property (nonatomic, strong) SocketIO *socket;
-@property (nonatomic, weak) id<PomocCoreDelegate> delegate;
+@property (nonatomic, weak) id<PMCoreDelegate> delegate;
 
 @end
 
-@implementation PomocCore
+@implementation PMCore
 
-+ (PomocCore *)sharedInstance
++ (PMCore *)sharedInstance
 {
-    static PomocCore *sharedInstance = nil;
+    static PMCore *sharedInstance = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
@@ -34,8 +34,8 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppID:(NSString *)appId delegate:(id<PomocCoreDelegate>)delegate {
-    PomocCore *core = [PomocCore sharedInstance];
++ (void)initWithAppID:(NSString *)appId delegate:(id<PMCoreDelegate>)delegate {
+    PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
         core.socket = [[SocketIO alloc] initWithDelegate:core];
@@ -45,17 +45,17 @@
     }
 }
 
-+ (void)startConversationWithUserId:(NSString *)userId completion:(void (^)(NSString *conversationId))completion
++ (void)startConversationWithUserId:(NSString *)userId completion:(void (^)(NSString *channelId))completion
 {
-    PomocCore *core = [PomocCore sharedInstance];
+    PMCore *core = [PMCore sharedInstance];
 
-    PomocMessage * message = [[PomocMessage alloc] initWithUsername:userId
+    PMMessage * message = [[PMMessage alloc] initWithUsername:userId
                                                         withChannel:core.appId
                                                            withType:MSG_TYPE_INIT
                                                         withMessage:@""];
     
     [core.socket sendEvent:@"init" withData:[message getJSONObject] andAcknowledge:^(id argsData) {
-        PomocMessage * response = [[PomocMessage alloc] initWithJSONString: (NSString *)argsData];
+        PMMessage * response = [[PMMessage alloc] initWithJSONString: (NSString *)argsData];
         NSLog(@"init callback: %@", [response getJSONObject]);
         // TODO: set initialized channel id for user
         // STUB
@@ -65,11 +65,11 @@
     }];
 }
 
-+ (void)sendMessage:(NSString *)message userId:(NSString *)userId channel:(NSString *)channel
++ (void)sendMessage:(NSString *)message userId:(NSString *)userId channelId:(NSString *)channelId
 {
-    PomocCore *core = [PomocCore sharedInstance];
-    PomocMessage *pomocMessage = [[PomocMessage alloc] initWithUsername:userId
-                                                        withChannel:channel
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:userId
+                                                        withChannel:channelId
                                                            withType:MSG_TYPE_CHAT
                                                         withMessage:message];
     
@@ -86,14 +86,14 @@
 - (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     NSLog(@"didReceiveMessage >>> data: %@", packet.data);
-    PomocMessage *message = [[PomocMessage alloc] initWithJSONString:packet.data];
+    PMMessage *message = [[PMMessage alloc] initWithJSONString:packet.data];
     
     // Normal chat message
     if ([message.type isEqualToString:MSG_TYPE_CHAT]) {
         // TODO: display chat message
         // STUB
-        if ([self.delegate respondsToSelector:@selector(didReceiveMessage:channel:)]) {
-            [self.delegate didReceiveMessage:message channel:message.channel];
+        if ([self.delegate respondsToSelector:@selector(didReceiveMessage:channelId:)]) {
+            [self.delegate didReceiveMessage:message channelId:message.channel];
         }
     }
 }

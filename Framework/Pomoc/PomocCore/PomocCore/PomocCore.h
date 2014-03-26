@@ -6,13 +6,11 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "PomocCoreDelegate.h"
+#ifndef PomocCore_PomocCore_h
+#define PomocCore_PomocCore_h
 
-@interface PomocCore : NSObject
+#import "PMCore.h"
+#import "PMCoreDelegate.h"
+#import "PMMessage.h"
 
-+ (void)initWithAppID:(NSString *)appId delegate:(id<PomocCoreDelegate>)delegate;
-+ (void)startConversationWithUserId:(NSString *)userId completion:(void (^)(NSString *conversationId))completion;
-+ (void)sendMessage:(NSString *)message userId:(NSString *)userId channel:(NSString *)channel;
-
-@end
+#endif

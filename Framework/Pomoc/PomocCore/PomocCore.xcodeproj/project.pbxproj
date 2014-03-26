@@ -21,9 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		605B0BFC18E27AA400EA6717 /* PomocCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; };
 		6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
-		6068F2D418E1E40B005B87F4 /* PomocCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PomocCore.h */; };
-		6068F2D618E1E40B005B87F4 /* PomocCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2D518E1E40B005B87F4 /* PomocCore.m */; };
+		6068F2D418E1E40B005B87F4 /* PMCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; };
+		6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2D518E1E40B005B87F4 /* PMCore.m */; };
 		6068F2DD18E1E40B005B87F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2DC18E1E40B005B87F4 /* XCTest.framework */; };
 		6068F2DE18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
 		6068F2E018E1E40B005B87F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2DF18E1E40B005B87F4 /* UIKit.framework */; };
@@ -38,9 +39,9 @@
 		6068F35718E1E629005B87F4 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34B18E1E629005B87F4 /* base64.c */; };
 		6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */; };
 		6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F35118E1E629005B87F4 /* SRWebSocket.m */; };
-		60FC18A618E1EB6500BF4C95 /* PomocMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PomocMessage.m */; };
-		60FC18AD18E1ED0200BF4C95 /* PomocMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18A418E1EB6500BF4C95 /* PomocMessage.h */; };
-		60FC18EC18E1F50A00BF4C95 /* PomocCoreDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PomocCoreDelegate.h */; };
+		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
+		60FC18AD18E1ED0200BF4C95 /* PMMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18A418E1EB6500BF4C95 /* PMMessage.h */; };
+		60FC18EC18E1F50A00BF4C95 /* PMCoreDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,20 +61,22 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				60FC18EC18E1F50A00BF4C95 /* PomocCoreDelegate.h in CopyFiles */,
-				60FC18AD18E1ED0200BF4C95 /* PomocMessage.h in CopyFiles */,
-				6068F2D418E1E40B005B87F4 /* PomocCore.h in CopyFiles */,
+				605B0BFC18E27AA400EA6717 /* PomocCore.h in CopyFiles */,
+				60FC18EC18E1F50A00BF4C95 /* PMCoreDelegate.h in CopyFiles */,
+				60FC18AD18E1ED0200BF4C95 /* PMMessage.h in CopyFiles */,
+				6068F2D418E1E40B005B87F4 /* PMCore.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		605B0BF018E278E800EA6717 /* PomocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		6068F2CB18E1E40B005B87F4 /* libPomocCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomocCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6068F2CE18E1E40B005B87F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6068F2D218E1E40B005B87F4 /* PomocCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocCore-Prefix.pch"; sourceTree = "<group>"; };
-		6068F2D318E1E40B005B87F4 /* PomocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
-		6068F2D518E1E40B005B87F4 /* PomocCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocCore.m; sourceTree = "<group>"; };
+		6068F2D318E1E40B005B87F4 /* PMCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		6068F2D518E1E40B005B87F4 /* PMCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMCore.m; sourceTree = "<group>"; };
 		6068F2DB18E1E40B005B87F4 /* PomocCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6068F2DC18E1E40B005B87F4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6068F2DF18E1E40B005B87F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -98,9 +101,9 @@
 		6068F34F18E1E629005B87F4 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
 		6068F35018E1E629005B87F4 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		6068F35118E1E629005B87F4 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		60FC18A418E1EB6500BF4C95 /* PomocMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocMessage.h; sourceTree = "<group>"; };
-		60FC18A518E1EB6500BF4C95 /* PomocMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocMessage.m; sourceTree = "<group>"; };
-		60FC18E418E1F2F800BF4C95 /* PomocCoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCoreDelegate.h; sourceTree = "<group>"; };
+		60FC18A418E1EB6500BF4C95 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		60FC18A518E1EB6500BF4C95 /* PMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessage.m; sourceTree = "<group>"; };
+		60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,11 +162,12 @@
 		6068F2D018E1E40B005B87F4 /* PomocCore */ = {
 			isa = PBXGroup;
 			children = (
-				60FC18E418E1F2F800BF4C95 /* PomocCoreDelegate.h */,
-				6068F2D318E1E40B005B87F4 /* PomocCore.h */,
-				6068F2D518E1E40B005B87F4 /* PomocCore.m */,
-				60FC18A418E1EB6500BF4C95 /* PomocMessage.h */,
-				60FC18A518E1EB6500BF4C95 /* PomocMessage.m */,
+				605B0BF018E278E800EA6717 /* PomocCore.h */,
+				60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */,
+				6068F2D318E1E40B005B87F4 /* PMCore.h */,
+				6068F2D518E1E40B005B87F4 /* PMCore.m */,
+				60FC18A418E1EB6500BF4C95 /* PMMessage.h */,
+				60FC18A518E1EB6500BF4C95 /* PMMessage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
 			);
 			path = PomocCore;
@@ -327,7 +331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${SRCROOT}/Distribution/\"\n\n# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target PomocCore ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target PomocCore -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/\" \"${SRCROOT}/Distribution/\"";
+			shellScript = "rm -rf \"${SRCROOT}/Distribution/\"\n\n\n# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\nrm -rf \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target PomocCore ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target PomocCore -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/\" \"${SRCROOT}/Distribution/\"\nrm -rf \"${SRCROOT}/build\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -340,11 +344,11 @@
 				6068F35418E1E629005B87F4 /* SocketIOPacket.m in Sources */,
 				6068F35218E1E629005B87F4 /* SocketIO.m in Sources */,
 				6068F35718E1E629005B87F4 /* base64.c in Sources */,
-				6068F2D618E1E40B005B87F4 /* PomocCore.m in Sources */,
+				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
 				6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */,
 				6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */,
 				6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */,
-				60FC18A618E1EB6500BF4C95 /* PomocMessage.m in Sources */,
+				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				6068F35618E1E629005B87F4 /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +514,7 @@
 		6068F2F518E1E4C8005B87F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -517,6 +522,7 @@
 		6068F2F618E1E4C8005B87F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

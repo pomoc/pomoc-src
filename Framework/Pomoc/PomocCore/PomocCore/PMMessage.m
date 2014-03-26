@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import "PomocMessage.h"
+#import "PMMessage.h"
 
-@implementation PomocMessage
+@implementation PMMessage
 
 - (id)initWithUsername:(NSString *)username withChannel:(NSString *)channel
               withType:(NSString *)type withMessage:(NSString *)message
