@@ -122,11 +122,6 @@
 
 #pragma mark - SocketIO Delegate methods
 
-- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
-{
-    
-}
-
 - (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     /*

@@ -14,6 +14,7 @@
 				6068F2F818E1E4DE005B87F4 /* ShellScript */,
 			);
 			dependencies = (
+				605B0CAB18E3276D00EA6717 /* PBXTargetDependency */,
 			);
 			name = BuildPomocCore;
 			productName = BuildPomocCore;
@@ -21,11 +22,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		605B0BFC18E27AA400EA6717 /* PomocCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; };
 		605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */; };
 		605B0C1818E2DCFD00EA6717 /* PMChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */; };
+		605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FC18A418E1EB6500BF4C95 /* PMMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CAE18E32FEE00EA6717 /* PMInternalMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CAF18E32FEE00EA6717 /* PMChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
-		6068F2D418E1E40B005B87F4 /* PMCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; };
 		6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2D518E1E40B005B87F4 /* PMCore.m */; };
 		6068F2DD18E1E40B005B87F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2DC18E1E40B005B87F4 /* XCTest.framework */; };
 		6068F2DE18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
@@ -42,11 +47,16 @@
 		6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */; };
 		6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F35118E1E629005B87F4 /* SRWebSocket.m */; };
 		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
-		60FC18AD18E1ED0200BF4C95 /* PMMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18A418E1EB6500BF4C95 /* PMMessage.h */; };
-		60FC18EC18E1F50A00BF4C95 /* PMCoreDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		605B0CAA18E3276D00EA6717 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6068F2C318E1E40B005B87F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6068F2CA18E1E40B005B87F4;
+			remoteInfo = PomocCore;
+		};
 		6068F2E118E1E40B005B87F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6068F2C318E1E40B005B87F4 /* Project object */;
@@ -55,22 +65,6 @@
 			remoteInfo = PomocCore;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6068F2C918E1E40B005B87F4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				605B0BFC18E27AA400EA6717 /* PomocCore.h in CopyFiles */,
-				60FC18EC18E1F50A00BF4C95 /* PMCoreDelegate.h in CopyFiles */,
-				60FC18AD18E1ED0200BF4C95 /* PMMessage.h in CopyFiles */,
-				6068F2D418E1E40B005B87F4 /* PMCore.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		605B0BF018E278E800EA6717 /* PomocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
@@ -262,6 +256,22 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		605B0CAC18E32FD000EA6717 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				605B0CAE18E32FEE00EA6717 /* PMInternalMessage.h in Headers */,
+				605B0CAF18E32FEE00EA6717 /* PMChatMessage.h in Headers */,
+				605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */,
+				605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */,
+				605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */,
+				605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		6068F2CA18E1E40B005B87F4 /* PomocCore */ = {
 			isa = PBXNativeTarget;
@@ -269,7 +279,8 @@
 			buildPhases = (
 				6068F2C718E1E40B005B87F4 /* Sources */,
 				6068F2C818E1E40B005B87F4 /* Frameworks */,
-				6068F2C918E1E40B005B87F4 /* CopyFiles */,
+				605B0CAC18E32FD000EA6717 /* Headers */,
+				605B0CB318E3303D00EA6717 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -338,6 +349,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		605B0CB318E3303D00EA6717 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nrm -r \"${BUILD_DIR}/${PRODUCT_NAME}\"\nmkdir -p \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"";
+		};
 		6068F2F818E1E4DE005B87F4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${SRCROOT}/Distribution/\"\n\n\n# define output folder environment variable\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\nrm -rf \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target PomocCore ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\nxcodebuild -target PomocCore -configuration ${CONFIGURATION} -sdk iphonesimulator -arch i386 BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 2. Create universal binary file using lipo\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PROJECT_NAME}.a\"\n\n# Last touch. copy the header files. Just for convenience\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/include\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/\" \"${SRCROOT}/Distribution/\"\nrm -rf \"${SRCROOT}/build\"\n";
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Make an output folder for this target\nOUTPUT_FOLDER=${BUILD_DIR}/${PROJECT_NAME}\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${OUTPUT_FOLDER}/${SF_EXECUTABLE_PATH}\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\nmkdir -p \"${SRCROOT}/Distribution/${PROJECT_NAME}\"\ncp -R \"${OUTPUT_FOLDER}/\" \"${SRCROOT}/Distribution/${PROJECT_NAME}/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -384,6 +408,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		605B0CAB18E3276D00EA6717 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6068F2CA18E1E40B005B87F4 /* PomocCore */;
+			targetProxy = 605B0CAA18E3276D00EA6717 /* PBXContainerItemProxy */;
+		};
 		6068F2E218E1E40B005B87F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6068F2CA18E1E40B005B87F4 /* PomocCore */;
@@ -474,24 +503,32 @@
 		6068F2EF18E1E40B005B87F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/PomocCore.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocCore/PomocCore-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		6068F2F018E1E40B005B87F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/PomocCore.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocCore/PomocCore-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Release;
 		};
