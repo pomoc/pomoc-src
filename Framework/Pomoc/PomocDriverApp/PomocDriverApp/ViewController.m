@@ -20,7 +20,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [PMCore initWithAppID:@"hello" delegate:self];
+    [PMCore initWithAppID:@"anc" delegate:self];
     
     [PMCore startConversationWithUserId:@"zz" completion:^(NSString *conversationId) {
         if (conversationId) {
@@ -42,6 +42,11 @@
 - (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channel
 {
     NSLog(@"Received: %@", pomocMessage.message);
+}
+
+- (void)newChannelCreated:(NSString *)channedId
+{
+    NSLog(@"New Channel created %@", channedId);
 }
 
 @end

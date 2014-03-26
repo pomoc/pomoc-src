@@ -16,6 +16,7 @@
 @interface PMCore () <SocketIODelegate>
 
 @property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) SocketIO *socket;
 @property (nonatomic, weak) id<PMCoreDelegate> delegate;
 
@@ -34,10 +35,11 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppID:(NSString *)appId delegate:(id<PMCoreDelegate>)delegate {
++ (void)initWithAppID:(NSString *)appId userId:(NSString *)userId delegate:(id<PMCoreDelegate>)delegate {
     PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
+        core.userId = userId;
         core.socket = [[SocketIO alloc] initWithDelegate:core];
         core.delegate = delegate;
         
@@ -45,11 +47,11 @@
     }
 }
 
-+ (void)startConversationWithUserId:(NSString *)userId completion:(void (^)(NSString *channelId))completion
++ (void)startConversationWithCompletion:(void (^)(NSString *channelId))completion
 {
     PMCore *core = [PMCore sharedInstance];
 
-    PMMessage * message = [[PMMessage alloc] initWithUsername:userId
+    PMMessage * message = [[PMMessage alloc] initWithUsername:core.userId
                                                         withChannel:core.appId
                                                            withType:MSG_TYPE_INIT
                                                         withMessage:@""];
@@ -65,10 +67,10 @@
     }];
 }
 
-+ (void)sendMessage:(NSString *)message userId:(NSString *)userId channelId:(NSString *)channelId
++ (void)sendMessage:(NSString *)message channelId:(NSString *)channelId
 {
     PMCore *core = [PMCore sharedInstance];
-    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:userId
+    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:core.userId
                                                         withChannel:channelId
                                                            withType:MSG_TYPE_CHAT
                                                         withMessage:message];
@@ -78,7 +80,14 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"localhost" onPort:3217];
+    [self.socket connectToHost:@"microtriangle.net" onPort:3217];
+    
+    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:self.userId
+                                                      withChannel:[NSString stringWithFormat:@"%@:notification", self.appId]
+                                                         withType:MSG_TYPE_SUB
+                                                      withMessage:@""];
+    
+    [self.socket sendJSON:[pomocMessage getJSONObject]];
 }
 
 #pragma mark - SocketIO Delegate methods

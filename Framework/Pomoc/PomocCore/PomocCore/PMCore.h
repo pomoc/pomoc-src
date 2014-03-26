@@ -11,8 +11,8 @@
 
 @interface PMCore : NSObject
 
-+ (void)initWithAppID:(NSString *)appId delegate:(id<PMCoreDelegate>)delegate;
-+ (void)startConversationWithUserId:(NSString *)userId completion:(void (^)(NSString *channelId))completion;
-+ (void)sendMessage:(NSString *)message userId:(NSString *)userId channelId:(NSString *)channelId;
++ (void)initWithAppID:(NSString *)appId userId:(NSString *)userId delegate:(id<PMCoreDelegate>)delegate;
++ (void)startConversationWithCompletion:(void (^)(NSString *channelId))completion;
++ (void)sendMessage:(NSString *)message channelId:(NSString *)channelId;
 
 @end
