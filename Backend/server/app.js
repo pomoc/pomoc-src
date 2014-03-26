@@ -73,6 +73,21 @@ io.sockets.on('connection', function(client) {
             console.log('observing ' + key);
             client.join(key);
         }
+
+        // Observe existing conversation
+        if (data.type == 'observeExistingConversation') {
+            console.log('observing ' + data.conversationId);
+            client.join(data.conversationId);
+
+            // sends back all old messages from chat
+            if (callback) {
+                var timestamp = (new Date()).getTime();
+                db.client.zrange([data.conversationId, 0, 9999999999999], function(err, reply){
+                    callback({success: true, messages: reply});
+                    console.log('old messages sent for ' + data.conversationId);
+                });
+            }
+        }
     });
 
     client.on('chatMessage', function(data) {

@@ -12,7 +12,8 @@
 typedef enum {
     PMInternalMessageCodeNone,
     PMInternalMessageCodeNewConversation,
-    PMInternalMessageCodeObserveConversationList
+    PMInternalMessageCodeObserveConversationList,
+    PMInternalMessageCodeObserveExistingConversation
 } PMInternalMessageCode;
 
 #define MESSAGE_TIMESTAMP           @"timestamp"

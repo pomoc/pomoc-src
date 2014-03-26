@@ -74,6 +74,20 @@
     [core sendMessage:chatMessage withAcknowledge:nil];
 }
 
++ (void)observeConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeObserveExistingConversation
+                                                    conversationId:conversationId];
+    
+    [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
+        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+            completion(jsonResponse[@"messages"]);
+        }
+    }];
+}
+
+
 - (void)connect
 {
     [self.socket connectToHost:@"localhost" onPort:3217];

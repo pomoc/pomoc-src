@@ -24,6 +24,12 @@
     return [[PMInternalMessage alloc] initWithMessageCode:code];
 }
 
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
+                                conversationId:(NSString *)conversationId
+{
+    return [[PMInternalMessage alloc] initWithMessageCode:code conversationId:conversationId];
+}
+
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId
 {
     return [[PMChatMessage alloc] initWithMessage:message conversationId:conversationId];

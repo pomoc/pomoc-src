@@ -11,6 +11,7 @@
 @interface PMInternalMessage ()
 
 @property (nonatomic) PMInternalMessageCode code;
+@property (nonatomic) NSString *conversationId;
 
 @end
 
@@ -25,6 +26,8 @@
             return @"newConversation";
         case PMInternalMessageCodeObserveConversationList:
             return @"observeConversationList";
+        case PMInternalMessageCodeObserveExistingConversation:
+            return @"observeExistingConversation";
     }
     return nil;
 }
@@ -38,11 +41,26 @@
     return self;
 }
 
+- (id)initWithMessageCode:(PMInternalMessageCode)code
+           conversationId:(NSString *)conversationId
+{
+    self = [super init];
+    if (self) {
+        self.code = code;
+        self.conversationId = conversationId;
+    }
+    return self;
+}
+
 - (NSDictionary *)jsonObject
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
     
     jsonData[MESSAGE_TYPE] = [PMInternalMessage stringOfMessageCode:self.code];
+    
+    if (self.conversationId) {
+        jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
+    }
     
     return [NSDictionary dictionaryWithDictionary:jsonData];
 }

@@ -19,6 +19,8 @@
 - (NSDictionary *)jsonObject;
 
 + (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code;
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
+                                conversationId:(NSString *)conversationId;
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
 
 + (PMChatMessage *)chatMessageFromJsonData:(NSDictionary *)data;

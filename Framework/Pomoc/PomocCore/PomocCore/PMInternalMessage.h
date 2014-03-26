@@ -13,7 +13,10 @@
 @interface PMInternalMessage : PMMessage;
 
 - (id)initWithMessageCode:(PMInternalMessageCode)code;
+- (id)initWithMessageCode:(PMInternalMessageCode)code
+           conversationId:(NSString *)conversationId;
 
 @property (nonatomic, readonly) PMInternalMessageCode code;
+@property (nonatomic, strong, readonly) NSString *conversationId;
 
 @end
