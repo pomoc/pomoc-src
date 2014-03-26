@@ -33,3 +33,4 @@ build/
 # Others
 *.swp
 hook.sh
+nohup.out
