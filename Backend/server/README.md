@@ -2,6 +2,7 @@
 ## Dependencies
 - Redis server
 - Node
+- test
 
 ## Schema
 Keys | Values| Description
