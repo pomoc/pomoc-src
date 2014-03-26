@@ -2,7 +2,6 @@
 ## Dependencies
 - Redis server
 - Node
-- Changed
 
 ## Schema
 Keys | Values| Description
