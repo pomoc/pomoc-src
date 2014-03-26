@@ -90,13 +90,14 @@
     
     // Normal chat message
     if ([message.type isEqualToString:MSG_TYPE_CHAT]) {
-        // TODO: display chat message
-        // STUB
         if ([self.delegate respondsToSelector:@selector(didReceiveMessage:channelId:)]) {
             [self.delegate didReceiveMessage:message channelId:message.channel];
         }
+    } else if ([message.type isEqualToString:MSG_TYPE_NOTIFY]) {
+        if ([self.delegate respondsToSelector:@selector(newChannelCreated:)]) {
+            [self.delegate newChannelCreated:message.channel];
+        }
     }
 }
-
 
 @end

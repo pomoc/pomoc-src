@@ -13,5 +13,6 @@
 @protocol PMCoreDelegate <NSObject>
 
 - (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channelId;
+- (void)newChannelCreated:(NSString *)channedId;
 
 @end
