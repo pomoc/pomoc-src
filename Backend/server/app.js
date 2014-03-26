@@ -71,6 +71,7 @@ io.sockets.on("connection", function(client) {
                 message: '',
                 username: ''
             }
+            console.log("publishing: " + msg.channel + ":notification");
             db.pubClient.publish(msg.channel + ":notification",
                     JSON.stringify(notification_msg));
         }
@@ -97,7 +98,7 @@ io.sockets.on("connection", function(client) {
 
         // Subscribe
         else if (msg.type == 'subscribe') {
-            console.log("Subscribed: " + "user="+ msg.username + "channel=" + msg.channel);
+            console.log("Subscribed: " + "user="+ msg.username + " channel=" + msg.channel);
             var index = channels.indexOf(msg.channel);
             // Add channel to user's subscription set
             db.client.sadd(msg.channel, msg.username);
