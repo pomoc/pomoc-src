@@ -7,11 +7,9 @@
 //
 
 #import "PMMessage.h"
+
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
-
-#define MESSAGE_TIMESTAMP   @"timestamp"
-#define MESSAGE_CLASS       @"class"
 
 @interface PMMessage ()
 
@@ -21,14 +19,22 @@
 
 @implementation PMMessage
 
-+ (PMMessage *)internalMessageWithCode:(PMInternalMessageCode)code
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
 {
     return [[PMInternalMessage alloc] initWithMessageCode:code];
 }
 
-+ (PMMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId
++ (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId
 {
     return [[PMChatMessage alloc] initWithMessage:message conversationId:conversationId];
+}
+
++ (PMChatMessage *)chatMessageFromJsonData:(NSDictionary *)dictionary
+{
+    if ([dictionary[MESSAGE_CLASS] isEqualToString:[[PMChatMessage class] description]]) {
+        return [[PMChatMessage alloc] initWithJsonData:dictionary];
+    }
+    return nil;
 }
 
 - (id)init
@@ -36,6 +42,15 @@
     self = [super init];
     if (self) {
         self.timestamp = [NSDate date];
+    }
+    return self;
+}
+
+- (id)initWithJsonData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        self.timestamp = [NSDate dateWithTimeIntervalSince1970:[data[MESSAGE_TIMESTAMP] floatValue]];
     }
     return self;
 }

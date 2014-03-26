@@ -12,5 +12,7 @@
 #import "PMCore.h"
 #import "PMCoreDelegate.h"
 #import "PMMessage.h"
+#import "PMInternalMessage.h"
+#import "PMChatMessage.h"
 
 #endif

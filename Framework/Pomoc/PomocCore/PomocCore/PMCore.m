@@ -74,19 +74,6 @@
     [core sendMessage:chatMessage withAcknowledge:nil];
 }
 
-/*
-+ (void)subscibeToChannel:(NSString *)conversationId
-{
-    PMCore *core = [PMCore sharedInstance];
-    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:core.userId
-                                                      withChannel:conversationId
-                                                         withType:MSG_TYPE_SUB
-                                                      withMessage:@""];
-    
-    [core.socket sendJSON:[pomocMessage getJSONObject]];
-}
- */
-
 - (void)connect
 {
     [self.socket connectToHost:@"localhost" onPort:3217];
@@ -127,33 +114,15 @@
     NSDictionary *data = [packet dataAsJSON][@"args"][0];
     
     if ([packet.name isEqualToString:@"chatMessage"]) {
+        PMChatMessage *chatMessage = [PMMessage chatMessageFromJsonData:data];
         if ([self.delegate respondsToSelector:@selector(didReceiveMessage:conversationId:)]) {
-            [self.delegate didReceiveMessage:data[@"message"] conversationId:data[@"conversationId"]];
+            [self.delegate didReceiveMessage:chatMessage conversationId:data[@"conversationId"]];
         }
     } else if ([packet.name isEqualToString:@"newConversation"]) {
         if ([self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             [self.delegate newConversationCreated:data[@"conversationId"]];
         }
     }
-}
-
-- (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
-{
-    /*
-    NSLog(@"didReceiveMessage >>> data: %@", packet.data);
-    PMMessage *message = [[PMMessage alloc] initWithJSONString:packet.data];
-    
-    // Normal chat message
-    if ([message.type isEqualToString:MSG_TYPE_CHAT]) {
-        if ([self.delegate respondsToSelector:@selector(didReceiveMessage:channelId:)]) {
-            [self.delegate didReceiveMessage:message channelId:message.channel];
-        }
-    } else if ([message.type isEqualToString:MSG_TYPE_NOTIFY]) {
-        if ([self.delegate respondsToSelector:@selector(newChannelCreated:)]) {
-            [self.delegate newChannelCreated:message.channel];
-        }
-    }
-    */
 }
 
 @end

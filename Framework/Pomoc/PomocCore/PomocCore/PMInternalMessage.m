@@ -42,7 +42,7 @@
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
     
-    jsonData[@"type"] = [PMInternalMessage stringOfMessageCode:self.code];
+    jsonData[MESSAGE_TYPE] = [PMInternalMessage stringOfMessageCode:self.code];
     
     return [NSDictionary dictionaryWithDictionary:jsonData];
 }

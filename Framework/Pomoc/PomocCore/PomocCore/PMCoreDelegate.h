@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PMMessage;
+@class PMMessage, PMChatMessage;
 
 @protocol PMCoreDelegate <NSObject>
 

@@ -7,22 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PMMessageConstants.h"
 
-@class PMInternalMessage;
-
-typedef enum {
-    PMInternalMessageCodeNone,
-    PMInternalMessageCodeNewConversation,
-    PMInternalMessageCodeObserveConversationList
-} PMInternalMessageCode;
+@class PMInternalMessage, PMChatMessage;
 
 @interface PMMessage : NSObject
 
 - (id)init;
+- (id)initWithJsonData:(NSDictionary *)data;
+
 - (NSDictionary *)jsonObject;
 
-+ (PMMessage *)internalMessageWithCode:(PMInternalMessageCode)code;
-+ (PMMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code;
++ (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
+
++ (PMChatMessage *)chatMessageFromJsonData:(NSDictionary *)data;
 
 @property (nonatomic, readonly) NSDate *timestamp;
 

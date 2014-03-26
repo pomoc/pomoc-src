@@ -30,6 +30,7 @@
 		605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		605B0CC018E34E5900EA6717 /* PMMessageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
 		6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2D518E1E40B005B87F4 /* PMCore.m */; };
 		6068F2DD18E1E40B005B87F4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2DC18E1E40B005B87F4 /* XCTest.framework */; };
@@ -72,6 +73,7 @@
 		605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMInternalMessage.m; sourceTree = "<group>"; };
 		605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
 		605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMChatMessage.m; sourceTree = "<group>"; };
+		605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
 		6068F2CB18E1E40B005B87F4 /* libPomocCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomocCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6068F2CE18E1E40B005B87F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6068F2D218E1E40B005B87F4 /* PomocCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocCore-Prefix.pch"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */,
 				605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */,
 				605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */,
+				605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */,
 			);
 			name = PMMessage;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */,
 				605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */,
 				605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */,
+				605B0CC018E34E5900EA6717 /* PMMessageConstants.h in Headers */,
 				605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

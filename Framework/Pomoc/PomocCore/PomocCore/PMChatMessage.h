@@ -11,8 +11,10 @@
 @interface PMChatMessage : PMMessage
 
 - (id)initWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
+- (id)initWithJsonData:(NSDictionary *)data;
 
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *conversationId;
+@property (nonatomic, strong, readonly) NSString *userId;
 
 @end

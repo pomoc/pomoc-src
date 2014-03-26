@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) NSString *userId;
 
 @end
 
@@ -27,11 +28,22 @@
     return self;
 }
 
+- (id)initWithJsonData:(NSDictionary *)data
+{
+    self = [super initWithJsonData:data];
+    if (self) {
+        self.message = data[MESSAGE_MESSAGE];
+        self.conversationId = data[MESSAGE_CONVERSATION_ID];
+        self.userId = data[MESSAGE_USER_ID];
+    }
+    return self;
+}
+
 - (NSDictionary *)jsonObject
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
-    jsonData[@"message"] = self.message;
-    jsonData[@"conversationId"] = self.conversationId;
+    jsonData[MESSAGE_MESSAGE] = self.message;
+    jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
     
     return [NSDictionary dictionaryWithDictionary:jsonData];
 }
