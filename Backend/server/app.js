@@ -105,7 +105,7 @@ io.sockets.on("connection", function(client) {
                 console.log("channel " + msg.channel + " pushed");
                 channels.push(msg.channel);
             }
-            db.subClient.subcribe(msg.channel);
+            db.subClient.subscribe(msg.channel);
         }
     });
 
