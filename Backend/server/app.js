@@ -46,35 +46,42 @@ io.sockets.on('connection', function(client) {
         console.log(data.username + " unsubscribed: " + data.channel);
     });
 
-    // Relaying chat messages
-    client.on('message', function(data) {
-        // broadcasts to all clients in room except this one
-       client.broadcast.to(data.channel).emit('message', data);
-        // send message back to client
-       client.emit('message', data);
-       db.client.zadd([data.channel, data.timestamp, JSON.stringify(data)], function(err,reply){});
-       console.log(data.username + " sent: " + data.message + " channel: " + data.channel);
+    client.on('internalMessage', function(data, callback) {
+        // New Chat
+        if (data.type == "newConversation") {
+            var conversationId = data.userId + ":" + data.appId + ":chat";
+
+            // subscribes client to new chat
+            client.join(conversationId);
+
+            db.client.sadd(data.userId + ":sub", conversationId);
+            console.log(data.userId + " subscribed to: " + conversationId);
+
+            // sends back chat id of new chat
+            if (callback) {
+                callback({success: true, conversationId: conversationId});
+            }
+
+            // broadcast notification of new channel
+            client.broadcast.to(data.appId + ":notification", conversationId);
+            console.log(data.appId + " notified about: " + conversationId);
+        }
+
+        // Observe conversation lists
+        if (data.type == "observeConversationList") {
+            var key = data.appId + ":notification";
+            client.join(key);
+        }
     });
 
-    // New Chat
-    client.on('init', function(data, callback) {
-        var channelId = data.username + ":" + data.channel + ":" + chat;
-        // subscribes client to new chat
-        client.join(channelId);
-        db.client.sadd(data.username + ":sub", channelId);
-        console.log(data.username + " subscribed to: " + channelId);
-        // sends back chat id of new chat
-        callback(JSON.stringify({
-            type: "init",
-            channel: channelId,
-            message: "",
-            username: ""
-        }));
-        // broadcast notification of new channel
-        client.broadcast.to(data.channel + ":notification", channelId);
-        console.log(data.channel + " notified about: " + channelId);
+    client.on('chatMessage', function(data) {
+        io.sockets.in(data.conversationId).emit('chatMessage', data);
+
+        data.timestamp = (new Date()).getTime();
+        db.client.zadd(data.conversationId, data.timestamp, JSON.stringify(data));
+        console.log(data.userId + " sent: " + data.message + " channel: " + data.conversationId);
     });
-    
+
     // Disconnect
     client.on('disconnect', function() {});
 });

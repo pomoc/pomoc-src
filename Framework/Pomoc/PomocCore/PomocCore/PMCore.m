@@ -122,6 +122,17 @@
 
 #pragma mark - SocketIO Delegate methods
 
+- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
+{
+    NSDictionary *data = [packet dataAsJSON];
+    
+    if ([packet.name isEqualToString:@"chatMessage"]) {
+        if ([self.delegate respondsToSelector:@selector(didReceiveMessage:conversationId:)]) {
+            [self.delegate didReceiveMessage:data[@"message"] conversationId:data[@"conversationId"]];
+        }
+    }
+}
+
 - (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     /*

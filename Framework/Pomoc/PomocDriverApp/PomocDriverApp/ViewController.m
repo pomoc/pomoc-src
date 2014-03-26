@@ -38,14 +38,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channel
+- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversation
 {
     NSLog(@"Received: %@", pomocMessage);
 }
 
-- (void)newChannelCreated:(NSString *)channedId
+- (void)newConversationCreated:(NSString *)conversationId
 {
-    NSLog(@"New Channel created %@", channedId);
+    NSLog(@"New Channel created %@", conversationId);
 }
 
 @end
