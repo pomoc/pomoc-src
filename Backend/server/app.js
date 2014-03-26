@@ -34,12 +34,14 @@ io.sockets.on('connection', function(client) {
     client.on('subscribe', function(data) {
         client.join(data.channel);
         db.client.sadd(data.username + ":sub", data.channel);
+        console.log(data.username + " subscribed: " + data.channel);
     });
 
     // Unsubscribe
     client.on('unsubscribe', function(data) {
         client.leave(data.channel);
         db.client.srem(data.username + ":sub", data.channel); 
+        console.log(data.username + " unsubscribed: " + data.channel);
     });
 
     // Relaying chat messages
@@ -49,6 +51,7 @@ io.sockets.on('connection', function(client) {
         // send message back to client
        client.emit('message', data);
        db.client.zadd([data.channel, data.timestamp, JSON.stringify(data)], function(err,reply){});
+       console.log(data.username + " sent: " + data.message + " channel: " + data.channel);
     });
 
     // New Chat
@@ -57,6 +60,7 @@ io.sockets.on('connection', function(client) {
         // subscribes client to new chat
         client.join(channelId);
         db.client.sadd(data.username + ":sub", channelId);
+        console.log(data.username + " subscribed to: " + channelId);
         // sends back chat id of new chat
         callback(JSON.stringify({
             type: "init",
@@ -66,6 +70,7 @@ io.sockets.on('connection', function(client) {
         }));
         // broadcast notification of new channel
         client.broadcast.to(data.channel + ":notification", channelId);
+        console.log(data.channel + " notified about: " + channelId);
     });
     
     // Disconnect
