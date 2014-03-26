@@ -101,7 +101,7 @@ io.sockets.on("connection", function(client) {
             var index = channels.indexOf(msg.channel);
             // Add channel to user's subscription set
             db.client.sadd(msg.channel, msg.username);
-            if (index > -1) {
+            if (index < 0) {
                 console.log("channel " + msg.channel + " pushed");
                 channels.push(msg.channel);
             }
