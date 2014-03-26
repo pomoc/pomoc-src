@@ -12,8 +12,9 @@
 #import "PomocChat.h"
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
+#import "PomocCore.h"
 
-@interface ChatViewController (){
+@interface ChatViewController () <PMCoreDelegate> {
     FakePomocSupport *pomocSupport;
     
     //tracking UI table view
@@ -34,6 +35,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [PMCore initWithAppID:@"anc" delegate:self];
+//    [PMCore startConversationWithUserId:@"Steve" completion:^(NSString *conversationId) {
+//        if (conversationId) {
+//            NSLog(@"%@", conversationId);
+//            [PMCore sendMessage:@"Hello!" userId:@"hehehe" channelId:conversationId];
+//        }
+//        else {
+//            NSLog(@"Failed");
+//        }
+//    }];
+    
     self.title = @"Messages";
     
     //init POMOC Support to retrieve all the chat
@@ -78,6 +90,7 @@
 }
 
 - (IBAction)sendMessage:(id)sender {
+    
     NSLog(@"user sending message!");
     
     NSLog(@"simulating new chat now");
@@ -394,4 +407,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+/*
+ 
+ @property (readonly) NSString *username;
+ @property (readonly) NSString *channel;
+ @property (readonly) NSString *type;
+ @property (readonly) NSString *message;
+ */
+
+#pragma mark - PMCore Delegate
+- (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channelId
+{
+    NSLog(@"message delegae called ");
+    NSLog(@"Username = %@ and channel = %@ and type = %@ and message = %@",
+           pomocMessage.username,
+           pomocMessage.channel,
+           pomocMessage.type,
+           pomocMessage.message);
+}
+
+- (void) newChannelCreated:(NSString *)channedId
+{
+    NSLog(@"new channel created with channel id == %@", channedId);
+}
+
+
+
+
 @end
