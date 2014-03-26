@@ -11,8 +11,6 @@ app.use(function(err, req, res, next) {
 });
 
 console.log('test');
-console.log('test');
-console.log('test');
 // Startup servers
 var server = app.listen(process.env.PORT || settings.PORT || 3217, function() {
     if (settings.DEBUG) {
