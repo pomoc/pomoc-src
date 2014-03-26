@@ -12,6 +12,11 @@
 #import "SocketIOPacket.h"
 
 #import "PMMessage.h"
+#import "PMInternalMessage.h"
+#import "PMChatMessage.h"
+
+#define MESSAGE_USER_ID   @"userId"
+#define MESSAGE_APP_ID    @"appId"
 
 @interface PMCore () <SocketIODelegate>
 
@@ -47,53 +52,84 @@
     }
 }
 
-+ (void)startConversationWithCompletion:(void (^)(NSString *channelId))completion
++ (void)startConversationWithCompletion:(void (^)(NSString *conversationId))completion
 {
     PMCore *core = [PMCore sharedInstance];
-
-    PMMessage * message = [[PMMessage alloc] initWithUsername:core.userId
-                                                        withChannel:core.appId
-                                                           withType:MSG_TYPE_INIT
-                                                        withMessage:@""];
+    PMMessage *initMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeNewConversation];
+   
     
-    [core.socket sendEvent:@"init" withData:[message getJSONObject] andAcknowledge:^(id argsData) {
-        PMMessage * response = [[PMMessage alloc] initWithJSONString: (NSString *)argsData];
-        NSLog(@"init callback: %@", [response getJSONObject]);
-        // TODO: set initialized channel id for user
-        // STUB
-        if (completion) {
-            completion(response.channel);
+    [core sendMessage:initMessage withAcknowledge:^(NSDictionary *jsonResponse) {
+        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+            completion(jsonResponse[@"conversationId"]);
         }
     }];
 }
 
-+ (void)sendMessage:(NSString *)message channelId:(NSString *)channelId
++ (void)sendMessage:(NSString *)message conversationId:(NSString *)conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+
+    PMMessage *chatMessage = [PMMessage chatMessageWithMessage:message conversationId:conversationId];
+    
+    [core sendMessage:chatMessage withAcknowledge:nil];
+}
+
+/*
++ (void)subscibeToChannel:(NSString *)conversationId
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:core.userId
-                                                        withChannel:channelId
-                                                           withType:MSG_TYPE_CHAT
-                                                        withMessage:message];
-    
-    [core.socket sendJSON:[pomocMessage getJSONObject]];
-}
-
-- (void)connect
-{
-    [self.socket connectToHost:@"microtriangle.net" onPort:3217];
-    
-    PMMessage *pomocMessage = [[PMMessage alloc] initWithUsername:self.userId
-                                                      withChannel:[NSString stringWithFormat:@"%@:notification", self.appId]
+                                                      withChannel:conversationId
                                                          withType:MSG_TYPE_SUB
                                                       withMessage:@""];
     
-    [self.socket sendJSON:[pomocMessage getJSONObject]];
+    [core.socket sendJSON:[pomocMessage getJSONObject]];
+}
+ */
+
+- (void)connect
+{
+    [self.socket connectToHost:@"localhost" onPort:3217];
+    
+    // Join global channel for appId
+    [self observeNewConversations];
+}
+
+- (void)observeNewConversations
+{
+    PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeObserveConversationList];
+    [self sendMessage:observeMessage withAcknowledge:nil];
+}
+
+- (void)sendMessage:(PMMessage *)message withAcknowledge:(SocketIOCallback)function
+{
+    NSDictionary *jsonData = [self jsonDataForMessage:message];
+    if ([message isKindOfClass:[PMInternalMessage class]]) {
+        [self.socket sendEvent:@"internalMessage" withData:jsonData andAcknowledge:function];
+    } else if ([message isKindOfClass:[PMChatMessage class]]) {
+        [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
+    }
+}
+
+- (NSDictionary *)jsonDataForMessage:(PMMessage *)message
+{
+    NSMutableDictionary *jsonDict = [[message jsonObject] mutableCopy];
+    jsonDict[MESSAGE_APP_ID] = self.appId;
+    jsonDict[MESSAGE_USER_ID] = self.userId;
+    
+    return [NSDictionary dictionaryWithDictionary:jsonDict];
 }
 
 #pragma mark - SocketIO Delegate methods
 
+- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
+{
+    
+}
+
 - (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
+    /*
     NSLog(@"didReceiveMessage >>> data: %@", packet.data);
     PMMessage *message = [[PMMessage alloc] initWithJSONString:packet.data];
     
@@ -107,6 +143,7 @@
             [self.delegate newChannelCreated:message.channel];
         }
     }
+    */
 }
 
 @end

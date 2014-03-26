@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		605B0BFC18E27AA400EA6717 /* PomocCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; };
+		605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */; };
+		605B0C1818E2DCFD00EA6717 /* PMChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */; };
 		6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
 		6068F2D418E1E40B005B87F4 /* PMCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; };
 		6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2D518E1E40B005B87F4 /* PMCore.m */; };
@@ -72,6 +74,10 @@
 
 /* Begin PBXFileReference section */
 		605B0BF018E278E800EA6717 /* PomocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMInternalMessage.m; sourceTree = "<group>"; };
+		605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMChatMessage.m; sourceTree = "<group>"; };
 		6068F2CB18E1E40B005B87F4 /* libPomocCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomocCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6068F2CE18E1E40B005B87F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6068F2D218E1E40B005B87F4 /* PomocCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocCore-Prefix.pch"; sourceTree = "<group>"; };
@@ -129,6 +135,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		605B0C1518E2D60100EA6717 /* PMMessage */ = {
+			isa = PBXGroup;
+			children = (
+				60FC18A418E1EB6500BF4C95 /* PMMessage.h */,
+				60FC18A518E1EB6500BF4C95 /* PMMessage.m */,
+				605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */,
+				605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */,
+				605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */,
+				605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */,
+			);
+			name = PMMessage;
+			sourceTree = "<group>";
+		};
 		6068F2C218E1E40B005B87F4 = {
 			isa = PBXGroup;
 			children = (
@@ -162,12 +181,11 @@
 		6068F2D018E1E40B005B87F4 /* PomocCore */ = {
 			isa = PBXGroup;
 			children = (
+				605B0C1518E2D60100EA6717 /* PMMessage */,
 				605B0BF018E278E800EA6717 /* PomocCore.h */,
 				60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */,
 				6068F2D318E1E40B005B87F4 /* PMCore.h */,
 				6068F2D518E1E40B005B87F4 /* PMCore.m */,
-				60FC18A418E1EB6500BF4C95 /* PMMessage.h */,
-				60FC18A518E1EB6500BF4C95 /* PMMessage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
 			);
 			path = PomocCore;
@@ -340,11 +358,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				605B0C1818E2DCFD00EA6717 /* PMChatMessage.m in Sources */,
 				6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */,
 				6068F35418E1E629005B87F4 /* SocketIOPacket.m in Sources */,
 				6068F35218E1E629005B87F4 /* SocketIO.m in Sources */,
 				6068F35718E1E629005B87F4 /* base64.c in Sources */,
 				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
+				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */,
 				6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */,
 				6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */,

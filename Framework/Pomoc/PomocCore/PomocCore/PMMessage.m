@@ -7,47 +7,43 @@
 //
 
 #import "PMMessage.h"
+#import "PMInternalMessage.h"
+#import "PMChatMessage.h"
+
+#define MESSAGE_TIMESTAMP   @"timestamp"
+#define MESSAGE_CLASS       @"class"
+
+@interface PMMessage ()
+
+@property (nonatomic, strong) NSDate *timestamp;
+
+@end
 
 @implementation PMMessage
 
-- (id)initWithUsername:(NSString *)username withChannel:(NSString *)channel
-              withType:(NSString *)type withMessage:(NSString *)message
++ (PMMessage *)internalMessageWithCode:(PMInternalMessageCode)code
 {
-    self = [super init];
-    if ([MESSAGE_TYPES containsObject:type] && self) {
-        _username = username;
-        _channel = channel;
-        _type = type;
-        _message = message;
-        return self;
-    }
-    return nil;
+    return [[PMInternalMessage alloc] initWithMessageCode:code];
 }
 
-- (id)initWithJSONString:(NSString *)jsonString
++ (PMMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId
 {
-    self = [super init];
-    NSDictionary * jsonObject = [NSJSONSerialization
-                                 JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                 options:NSJSONReadingMutableContainers
-                                 error:nil];
-    if (self && jsonObject) {
-        _username = jsonObject[MSG_USERNAME];
-        _channel = jsonObject[MSG_CHANNEL];
-        _type = jsonObject[MSG_TYPE];
-        _message = jsonObject[MSG_MESSAGE];
-        return self;
-    }
-    return nil;
+    return [[PMChatMessage alloc] initWithMessage:message conversationId:conversationId];
 }
 
-- (NSDictionary *)getJSONObject
+- (id)init
 {
-    return @{MSG_USERNAME: _username,
-             MSG_CHANNEL:_channel,
-             MSG_TYPE: _type,
-             MSG_MESSAGE: _message
-             };
+    self = [super init];
+    if (self) {
+        self.timestamp = [NSDate date];
+    }
+    return self;
+}
+
+- (NSDictionary *)jsonObject
+{
+    return @{MESSAGE_TIMESTAMP: @((long long)([self.timestamp timeIntervalSince1970]*1000)),
+                 MESSAGE_CLASS: [[self class] description]};
 }
 
 @end

@@ -8,33 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-// Message types
-#define MSG_TYPE_SUB        @"subscribe"
-#define MSG_TYPE_UNSUB      @"unsubscribe"
-#define MSG_TYPE_CHAT       @"chat"
-#define MSG_TYPE_NOTIFY     @"notification"
-#define MSG_TYPE_INIT       @"init"
-#define MESSAGE_TYPES       @[MSG_TYPE_SUB, MSG_TYPE_UNSUB, MSG_TYPE_CHAT, MSG_TYPE_NOTIFY, MSG_TYPE_INIT]
+@class PMInternalMessage;
 
-// Pomoc message field types
-#define MSG_TYPE            @"type"
-#define MSG_CHANNEL         @"channel"
-#define MSG_USERNAME        @"username"
-#define MSG_MESSAGE         @"message"
-
+typedef enum {
+    PMInternalMessageCodeNone,
+    PMInternalMessageCodeNewConversation,
+    PMInternalMessageCodeObserveConversationList
+} PMInternalMessageCode;
 
 @interface PMMessage : NSObject
 
-- (id)initWithUsername:(NSString *)username
-           withChannel:(NSString *)channel
-              withType:(NSString *)type
-           withMessage:(NSString *)message;
-- (id)initWithJSONString:(NSString *)jsonString;
-- (NSDictionary *)getJSONObject;
+- (id)init;
+- (NSDictionary *)jsonObject;
 
-@property (readonly) NSString *username;
-@property (readonly) NSString *channel;
-@property (readonly) NSString *type;
-@property (readonly) NSString *message;
++ (PMMessage *)internalMessageWithCode:(PMInternalMessageCode)code;
++ (PMMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
+
+@property (nonatomic, readonly) NSDate *timestamp;
 
 @end
