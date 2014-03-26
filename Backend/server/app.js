@@ -32,20 +32,6 @@ console.log('server running');
 // Socke IO connection
 io.sockets.on('connection', function(client) {
 
-    // Subscribe
-    client.on('subscribe', function(data) {
-        client.join(data.channel);
-        db.client.sadd(data.username + ':sub', data.channel);
-        console.log(data.username + ' subscribed: ' + data.channel);
-    });
-
-    // Unsubscribe
-    client.on('unsubscribe', function(data) {
-        client.leave(data.channel);
-        db.client.srem(data.username + ':sub', data.channel); 
-        console.log(data.username + ' unsubscribed: ' + data.channel);
-    });
-
     client.on('internalMessage', function(data, callback) {
         // New Chat
         if (data.type == 'newConversation') {
@@ -54,7 +40,6 @@ io.sockets.on('connection', function(client) {
             // subscribes client to new chat
             client.join(conversationId);
 
-            db.client.sadd(data.userId + ':sub', conversationId);
             console.log(data.userId + ' subscribed to: ' + conversationId);
 
             // sends back chat id of new chat
@@ -78,11 +63,12 @@ io.sockets.on('connection', function(client) {
         if (data.type == 'observeExistingConversation') {
             console.log('observing ' + data.conversationId);
             client.join(data.conversationId);
+            db.client.sadd(data.userId + ':sub', conversationId);
 
             // sends back all old messages from chat
             if (callback) {
                 var timestamp = (new Date()).getTime();
-                db.client.zrange([data.conversationId, 0, 9999999999999], function(err, reply){
+                db.client.zrange([data.conversationId, 0, timestamp], function(err, reply){
                     callback({success: true, messages: reply});
                     console.log('old messages sent for ' + data.conversationId);
                 });
