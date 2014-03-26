@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [PMCore initWithAppID:@"anc" delegate:self];
+    [PMCore initWithAppID:@"anc" userId:@"Steve" delegate:self];
 //    [PMCore startConversationWithUserId:@"Steve" completion:^(NSString *conversationId) {
 //        if (conversationId) {
 //            NSLog(@"%@", conversationId);
