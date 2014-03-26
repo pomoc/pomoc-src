@@ -21,5 +21,11 @@ If the project is building out of date binaries, you can try the following:
 4. Rebuild for Device
 5. Rebuild for any simulator
 
+## Framework depedencies - link these in the project
+- libicucore.dylib
+- CFNetwork.framework
+- Security.framework
+- Foundation.framework
+
 ## Reference
 https://github.com/jverkoey/iOS-Framework#walkthrough
