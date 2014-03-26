@@ -75,9 +75,9 @@ io.sockets.on('connection', function(client) {
     });
 
     client.on('chatMessage', function(data) {
+        data.timestamp = (new Date()).getTime();
         io.sockets.in(data.conversationId).emit('chatMessage', data);
 
-        data.timestamp = (new Date()).getTime();
         db.client.zadd(data.conversationId, data.timestamp, JSON.stringify(data));
         console.log(data.userId + " sent: " + data.message + " channel: " + data.conversationId);
     });
