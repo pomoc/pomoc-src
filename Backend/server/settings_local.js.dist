@@ -1,0 +1,7 @@
+exports.DEBUG = true;
+
+exports.REDIS_HOST = 'localhost';
+exports.REDIS_PORT = 32170;
+
+exports.HOST = 'localhost';
+exports.PORT = 3217;

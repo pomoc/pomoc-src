@@ -1,4 +1,10 @@
-redis-server --port 32170 &
+#!/bin/sh
+
+# Modify the following port number
+REDIS_PORT=6379
+WEB_PORT=3217
+
+redis-server --port $REDIS_PORT &
 npm install
 echo "
       ___         ___           ___           ___           ___     
@@ -14,5 +20,5 @@ echo "
      \/__/       \/__/         \/__/         \/__/         \/__/    
 "
 
-nodemon app.js
+PORT=$WEB_PORT nodemon app.js
 trap "kill 0" SIGINT SIGTERM EXIT
