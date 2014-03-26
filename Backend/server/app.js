@@ -35,27 +35,27 @@ io.sockets.on('connection', function(client) {
     // Subscribe
     client.on('subscribe', function(data) {
         client.join(data.channel);
-        db.client.sadd(data.username + ":sub", data.channel);
-        console.log(data.username + " subscribed: " + data.channel);
+        db.client.sadd(data.username + ':sub', data.channel);
+        console.log(data.username + ' subscribed: ' + data.channel);
     });
 
     // Unsubscribe
     client.on('unsubscribe', function(data) {
         client.leave(data.channel);
-        db.client.srem(data.username + ":sub", data.channel); 
-        console.log(data.username + " unsubscribed: " + data.channel);
+        db.client.srem(data.username + ':sub', data.channel); 
+        console.log(data.username + ' unsubscribed: ' + data.channel);
     });
 
     client.on('internalMessage', function(data, callback) {
         // New Chat
-        if (data.type == "newConversation") {
-            var conversationId = data.userId + ":" + data.appId + ":chat";
+        if (data.type == 'newConversation') {
+            var conversationId = data.userId + ':' + data.appId + ':chat';
 
             // subscribes client to new chat
             client.join(conversationId);
 
-            db.client.sadd(data.userId + ":sub", conversationId);
-            console.log(data.userId + " subscribed to: " + conversationId);
+            db.client.sadd(data.userId + ':sub', conversationId);
+            console.log(data.userId + ' subscribed to: ' + conversationId);
 
             // sends back chat id of new chat
             if (callback) {
@@ -63,13 +63,14 @@ io.sockets.on('connection', function(client) {
             }
 
             // broadcast notification of new channel
-            client.broadcast.to(data.appId + ":notification", conversationId);
-            console.log(data.appId + " notified about: " + conversationId);
+            client.broadcast.to(data.appId + ':notification').emit('newConversation', {conversationId: conversationId});
+            console.log(data.appId + ' notified about: ' + conversationId);
         }
 
         // Observe conversation lists
-        if (data.type == "observeConversationList") {
-            var key = data.appId + ":notification";
+        if (data.type == 'observeConversationList') {
+            var key = data.appId + ':notification';
+            console.log('observing ' + key);
             client.join(key);
         }
     });
@@ -79,7 +80,7 @@ io.sockets.on('connection', function(client) {
         io.sockets.in(data.conversationId).emit('chatMessage', data);
 
         db.client.zadd(data.conversationId, data.timestamp, JSON.stringify(data));
-        console.log(data.userId + " sent: " + data.message + " channel: " + data.conversationId);
+        console.log(data.userId + ' sent: ' + data.message + ' channel: ' + data.conversationId);
     });
 
     // Disconnect

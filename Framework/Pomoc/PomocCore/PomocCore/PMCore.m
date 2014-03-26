@@ -130,6 +130,10 @@
         if ([self.delegate respondsToSelector:@selector(didReceiveMessage:conversationId:)]) {
             [self.delegate didReceiveMessage:data[@"message"] conversationId:data[@"conversationId"]];
         }
+    } else if ([packet.name isEqualToString:@"newConversation"]) {
+        if ([self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
+            [self.delegate newConversationCreated:data[@"conversationId"]];
+        }
     }
 }
 
