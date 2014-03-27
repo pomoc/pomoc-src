@@ -47,6 +47,8 @@
 		AA9DC92D18E44FCE00B4FDF7 /* ChatMessagePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC92A18E44FCE00B4FDF7 /* ChatMessagePictureCell.m */; };
 		AA9DC92E18E44FCE00B4FDF7 /* ChatMessageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC92C18E44FCE00B4FDF7 /* ChatMessageTextCell.m */; };
 		AA9DC95618E4566E00B4FDF7 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9DC95518E4566E00B4FDF7 /* libPomocCore.a */; };
+		AA9DC95D18E48F4100B4FDF7 /* worker-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95C18E48F4100B4FDF7 /* worker-512.png */; };
+		AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95E18E48F5C00B4FDF7 /* group-512.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		AA9DC95318E4566E00B4FDF7 /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
 		AA9DC95418E4566E00B4FDF7 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		AA9DC95518E4566E00B4FDF7 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
+		AA9DC95C18E48F4100B4FDF7 /* worker-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "worker-512.png"; sourceTree = "<group>"; };
+		AA9DC95E18E48F5C00B4FDF7 /* group-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-512.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,7 @@
 		AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
 			isa = PBXGroup;
 			children = (
+				AA9DC95718E4567200B4FDF7 /* PomocCore */,
 				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
 				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
@@ -216,7 +221,6 @@
 				AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */,
 				AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */,
 				AA5204F018D80B3F00D78156 /* MainViewController.h */,
-				AA9DC95718E4567200B4FDF7 /* PomocCore */,
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
@@ -300,6 +304,8 @@
 		AA9DC89018E1759500B4FDF7 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				AA9DC95E18E48F5C00B4FDF7 /* group-512.png */,
+				AA9DC95C18E48F4100B4FDF7 /* worker-512.png */,
 				AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */,
 				AA9DC8AF18E1A43E00B4FDF7 /* attach-512.png */,
 				AA9DC89F18E181B100B4FDF7 /* home-512.png */,
@@ -430,10 +436,12 @@
 				AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */,
 				AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */,
 				AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */,
+				AA9DC95D18E48F4100B4FDF7 /* worker-512.png in Resources */,
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
 				AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */,
+				AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */,
 				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
 				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
 				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,

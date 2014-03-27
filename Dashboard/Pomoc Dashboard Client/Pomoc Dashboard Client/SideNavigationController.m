@@ -18,6 +18,8 @@
 #define HOME 0
 #define CHAT 1
 #define SETTING 0
+#define VISITORS 2
+#define AGENTS 3
 #define LOGOUT 1
 #define LOGO_WIDTH 20
 
@@ -38,7 +40,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", nil];
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"VISITORS", @"AGENTS", nil];
     settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
     sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
 
@@ -94,7 +96,15 @@
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-512.png"]
                                               toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
 
-        }
+         } else if(indexPath.row == VISITORS) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-512.png"]
+                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+         } else if (indexPath.row == AGENTS) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"worker-512.png"]
+                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+         }
+         
+         
      } else {
          
          cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];

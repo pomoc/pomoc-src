@@ -17,7 +17,7 @@
 
 #import "PomocChat.h"
 
-@interface ChatViewController () <PMCoreDelegate> {
+@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -30,6 +30,7 @@
     NSString *currentSelectedConvoId;
     
     NSString *userName;
+    BOOL keyboardEditing;
 }
 
 @end
@@ -66,7 +67,10 @@
     chatMessageList = [[NSMutableArray alloc] init];
     
     currentlySelectedChat = -1;
-    currentSelectedConvoId = "";
+    currentSelectedConvoId = @"";
+    keyboardEditing = false;
+    
+    _pastAndInfoToolbar.clipsToBounds = true;
 }
 
 
@@ -85,7 +89,18 @@
     NSLog(@"user sending message!");
     NSString *userInput = _userTextInput.text;
     [PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
+//    
+    [_userTextInput setText:@""];
     
+}
+
+- (IBAction)selectPicturePressed:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void) testProtocol
@@ -100,6 +115,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UINavigationController methods
+- (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+-(BOOL)shouldAutorotate{
+    return YES;
+}
+
+
+#pragma mark - UIImagePickerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 #pragma mark - Navigation Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -112,12 +152,9 @@
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         if ([chatList count] == 0) {
-            
-            NSLog(@"came inside chat message tabel view, return 0");
             return 0;
-        } else {
             
-            NSLog(@"came inside chat message table view, return %ld", [chatMessageList count]);
+        } else {
             return [chatMessageList count];
         }
     }
@@ -133,8 +170,8 @@
         return [self createChatNavTableView:tableView atRow:row];
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        NSLog(@"came inside cell for row at index path for chat message table for row ==%ld", row);
         return [self createChatMessageTableView:tableView atRow:row];
+    
     }
     
     return nil;
@@ -161,6 +198,7 @@
         currentSelectedConvoId = pomocchat.conversationId;
         
         [_chatMessageTable reloadData];
+        [self scrollChatContentToBottom];
     }
     
     
@@ -192,7 +230,7 @@
     
     //Setting visitor name
     UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
-    [visitorLabel setText:chat.visitorName];
+    [visitorLabel setText:chat.userId];
     
     //setting the started date of chat
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -249,30 +287,49 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    keyboardEditing = true;
     [self scrollThingUp];
 }
 
 - (void) scrollThingUp
 {
-    /* keyboard is visible, move views */
     [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    //scrolling to bottom http://stackoverflow.com/questions/5112346/uitableview-scroll-to-bottom-on-reload
-    //    NSInteger totalCell = [_chatMessageTable numberOfRowsInSection:0];
-    //    NSIndexPath* ipath = [NSIndexPath indexPathForRow: totalCell inSection: 0];
-    //    [_chatMessageTable scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionBottom animated: YES];
-    //
+    /* keyboard is visible, move views */
+    [self scrollChatContentToBottom];
+    
+    //change chat nav table height
     chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
     
 }
 
+- (void) scrollChatMessageUp
+{
+    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
+    
+    /* keyboard is visible, move views */
+    [self scrollChatContentToBottom];
+}
+
+- (void) scrollChatContentToBottom
+{
+    NSInteger numberOfRows = [_chatMessageTable numberOfRowsInSection:0];
+    if (numberOfRows) {
+        [_chatMessageTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:true];
+    }
+}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    keyboardEditing = false;
+    NSLog(@"called end editing");
     _chatInputView.center = chatInputOriginalCenter;
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
@@ -283,9 +340,6 @@
 }
 
 #pragma mark - PMCore Delegate
-//NSString *message = [NSString stringWithFormat:@"You said: %@", [chatMessage message]];
-//
-
 - (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
     NSLog(@"message delegae called ");
@@ -305,13 +359,11 @@
                 PomocChat *currentChat = chatList[currentlySelectedChat];
                 
                 if (currentChat == chatMessageConv) {
-                    NSLog(@"message here!");
                     [_chatMessageTable reloadData];
-                } else {
-                    NSLog(@"not same");
+                    [self scrollChatContentToBottom];
+                    
                 }
             }
-            
         //}
     }
 }

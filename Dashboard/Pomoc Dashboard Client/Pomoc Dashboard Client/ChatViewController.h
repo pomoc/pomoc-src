@@ -19,6 +19,7 @@
 //Chat message IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
+@property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
 //Main
 - (IBAction)viewPastChat:(id)sender;
@@ -26,6 +27,7 @@
 
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
+- (IBAction)selectPicturePressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 
 @end

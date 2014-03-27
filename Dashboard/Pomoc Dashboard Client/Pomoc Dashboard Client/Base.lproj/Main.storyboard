@@ -249,6 +249,9 @@
                                                 <state key="normal" backgroundImage="attach-512.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="selectPicturePressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="aw0-DI-AJx"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAP-qz-ks3">
                                                 <rect key="frame" x="43" y="8" width="627" height="30"/>
@@ -315,6 +318,7 @@
                         <outlet property="chatMessageTable" destination="DyA-PS-qDp" id="f3Z-zx-DO4"/>
                         <outlet property="chatNavTable" destination="0ll-Sw-Dj7" id="M9u-Jp-GxC"/>
                         <outlet property="chatView" destination="snB-9T-lqP" id="nyG-gf-U46"/>
+                        <outlet property="pastAndInfoToolbar" destination="JAK-o3-fPz" id="ck5-sm-TiX"/>
                         <outlet property="userTextInput" destination="AAP-qz-ks3" id="pnT-a5-VnJ"/>
                     </connections>
                 </viewController>
