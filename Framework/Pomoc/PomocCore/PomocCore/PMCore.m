@@ -74,10 +74,10 @@
     [core sendMessage:chatMessage withAcknowledge:nil];
 }
 
-+ (void)observeConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
++ (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
 {
     PMCore *core = [PMCore sharedInstance];
-    PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeObserveExistingConversation
+    PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeJoinConversation
                                                     conversationId:conversationId];
     
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
@@ -90,7 +90,7 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"localhost" onPort:3217];
+    [self.socket connectToHost:@"192.168.1.102" onPort:3217];
     
     // Join global channel for appId
     [self observeNewConversations];

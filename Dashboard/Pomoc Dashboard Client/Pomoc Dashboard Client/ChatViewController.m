@@ -417,19 +417,17 @@
  */
 
 #pragma mark - PMCore Delegate
-- (void)didReceiveMessage:(PMMessage *)pomocMessage channelId:(NSString *)channelId
+- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
     NSLog(@"message delegae called ");
-    NSLog(@"Username = %@ and channel = %@ and type = %@ and message = %@",
-           pomocMessage.username,
-           pomocMessage.channel,
-           pomocMessage.type,
-           pomocMessage.message);
 }
 
-- (void) newChannelCreated:(NSString *)channedId
+- (void)newConversationCreated:(NSString *)conversationId
 {
-    NSLog(@"new channel created with channel id == %@", channedId);
+    NSLog(@"new channel created with channel id == %@", conversationId);
+    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
+        NSLog(@"%@", messages);
+    }];
 }
 
 

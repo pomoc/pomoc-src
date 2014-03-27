@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60CAC7F418E3DD50004EFCA0 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60CAC7F318E3DD50004EFCA0 /* libPomocCore.a */; };
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5204AD18D7EF2C00D78156 /* Foundation.framework */; };
@@ -48,7 +49,6 @@
 		AA9DC8B218E1A49E00B4FDF7 /* send_file-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */; };
 		AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9DC8BC18E29D8400B4FDF7 /* libicucore.dylib */; };
 		AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9DC8BE18E29D8B00B4FDF7 /* Security.framework */; };
-		AA9DC8C718E2A2AF00B4FDF7 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9DC8C618E2A2AF00B4FDF7 /* libPomocCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		60CAC7EC18E3DD50004EFCA0 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		60CAC7ED18E3DD50004EFCA0 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		60CAC7EE18E3DD50004EFCA0 /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
+		60CAC7EF18E3DD50004EFCA0 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		60CAC7F018E3DD50004EFCA0 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		60CAC7F118E3DD50004EFCA0 /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
+		60CAC7F218E3DD50004EFCA0 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		60CAC7F318E3DD50004EFCA0 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
 		6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -124,11 +132,6 @@
 		AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file-512.png"; sourceTree = "<group>"; };
 		AA9DC8BC18E29D8400B4FDF7 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		AA9DC8BE18E29D8B00B4FDF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		AA9DC8C218E2A2AF00B4FDF7 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AA9DC8C318E2A2AF00B4FDF7 /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
-		AA9DC8C418E2A2AF00B4FDF7 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
-		AA9DC8C518E2A2AF00B4FDF7 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
-		AA9DC8C618E2A2AF00B4FDF7 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/libPomocCore.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +142,7 @@
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
-				AA9DC8C718E2A2AF00B4FDF7 /* libPomocCore.a in Frameworks */,
+				60CAC7F418E3DD50004EFCA0 /* libPomocCore.a in Frameworks */,
 				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
 				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
 			);
@@ -158,10 +161,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60CAC7EA18E3DD50004EFCA0 /* PomocCore */ = {
+			isa = PBXGroup;
+			children = (
+				60CAC7EB18E3DD50004EFCA0 /* Headers */,
+				60CAC7F318E3DD50004EFCA0 /* libPomocCore.a */,
+			);
+			name = PomocCore;
+			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore;
+			sourceTree = "<group>";
+		};
+		60CAC7EB18E3DD50004EFCA0 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				60CAC7EC18E3DD50004EFCA0 /* PMChatMessage.h */,
+				60CAC7ED18E3DD50004EFCA0 /* PMCore.h */,
+				60CAC7EE18E3DD50004EFCA0 /* PMCoreDelegate.h */,
+				60CAC7EF18E3DD50004EFCA0 /* PMInternalMessage.h */,
+				60CAC7F018E3DD50004EFCA0 /* PMMessage.h */,
+				60CAC7F118E3DD50004EFCA0 /* PMMessageConstants.h */,
+				60CAC7F218E3DD50004EFCA0 /* PomocCore.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		AA5204A118D7EF2C00D78156 = {
 			isa = PBXGroup;
 			children = (
-				AA9DC8BB18E29C6300B4FDF7 /* PomocCore */,
 				AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */,
 				AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
 				AA5204AC18D7EF2C00D78156 /* Frameworks */,
@@ -181,6 +207,7 @@
 		AA5204AC18D7EF2C00D78156 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60CAC7EA18E3DD50004EFCA0 /* PomocCore */,
 				AA9DC8BE18E29D8B00B4FDF7 /* Security.framework */,
 				AA9DC8BC18E29D8400B4FDF7 /* libicucore.dylib */,
 				AA5204AD18D7EF2C00D78156 /* Foundation.framework */,
@@ -305,35 +332,6 @@
 				AA9DC89318E17ED700B4FDF7 /* administrator-512.png */,
 			);
 			name = Pictures;
-			sourceTree = "<group>";
-		};
-		AA9DC8BB18E29C6300B4FDF7 /* PomocCore */ = {
-			isa = PBXGroup;
-			children = (
-				AA9DC8C018E2A2AF00B4FDF7 /* include */,
-				AA9DC8C618E2A2AF00B4FDF7 /* libPomocCore.a */,
-			);
-			name = PomocCore;
-			sourceTree = "<group>";
-		};
-		AA9DC8C018E2A2AF00B4FDF7 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				AA9DC8C118E2A2AF00B4FDF7 /* PomocCore */,
-			);
-			name = include;
-			path = ../../Framework/Pomoc/PomocCore/Distribution/include;
-			sourceTree = "<group>";
-		};
-		AA9DC8C118E2A2AF00B4FDF7 /* PomocCore */ = {
-			isa = PBXGroup;
-			children = (
-				AA9DC8C218E2A2AF00B4FDF7 /* PMCore.h */,
-				AA9DC8C318E2A2AF00B4FDF7 /* PMCoreDelegate.h */,
-				AA9DC8C418E2A2AF00B4FDF7 /* PMMessage.h */,
-				AA9DC8C518E2A2AF00B4FDF7 /* PomocCore.h */,
-			);
-			path = PomocCore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,12 +588,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/steve/Dropbox/NUS,
 					"-",
 					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -611,12 +612,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/steve/Dropbox/NUS,
 					"-",
 					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

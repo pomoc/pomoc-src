@@ -14,6 +14,6 @@
 + (void)initWithAppID:(NSString *)appId userId:(NSString *)userId delegate:(id<PMCoreDelegate>)delegate;
 + (void)startConversationWithCompletion:(void (^)(NSString *conversationId))completion;
 + (void)sendMessage:(NSString *)message conversationId:(NSString *)conversationId;
-+ (void)observeConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion;
++ (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion;
 
 @end

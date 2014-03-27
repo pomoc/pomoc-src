@@ -48,19 +48,20 @@ io.sockets.on('connection', function(client) {
             }
 
             // broadcast notification of new channel
+            var key = data.appId + ':notification';
             client.broadcast.to(data.appId + ':notification').emit('newConversation', {conversationId: conversationId});
             console.log(data.appId + ' notified about: ' + conversationId);
         }
 
         // Observe conversation lists
-        if (data.type == 'observeConversationList') {
+        else if (data.type == 'observeConversationList') {
             var key = data.appId + ':notification';
-            console.log('observing ' + key);
+            console.log(data.userId + ' observing ' + key);
             client.join(key);
         }
 
         // Observe existing conversation
-        if (data.type == 'observeExistingConversation') {
+        else if (data.type == 'joinConversation') {
             console.log('observing ' + data.conversationId);
             client.join(data.conversationId);
             db.client.sadd(data.userId + ':sub', conversationId);
