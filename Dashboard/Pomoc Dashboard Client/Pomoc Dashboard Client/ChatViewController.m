@@ -420,6 +420,13 @@
 - (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
     NSLog(@"message delegae called ");
+    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
+        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
+        if (![chatMessage.userId isEqualToString:@"Steve"]) {
+            NSString *message = [NSString stringWithFormat:@"You said: %@", [chatMessage message]];
+            [PMCore sendMessage:message conversationId:conversationId];
+        }
+    }
 }
 
 - (void)newConversationCreated:(NSString *)conversationId
