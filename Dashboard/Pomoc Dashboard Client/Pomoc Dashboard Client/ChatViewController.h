@@ -10,7 +10,6 @@
 
 @interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-
 //Main
 @property (weak, nonatomic) IBOutlet UIView *chatView;
 

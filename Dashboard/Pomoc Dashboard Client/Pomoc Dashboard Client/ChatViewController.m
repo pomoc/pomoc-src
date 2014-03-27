@@ -12,6 +12,8 @@
 #import "ChatMessageTextCell.h"
 
 #import "PomocCore.h"
+#import "PMChatMessage.h"
+#import "PMMessage.h"
 
 #import "PomocChat.h"
 
@@ -290,13 +292,10 @@
             
         }
     }
-    
-    
 }
 
 - (void)newConversationCreated:(NSString *)conversationId
 {
-    
     [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
         
         PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
