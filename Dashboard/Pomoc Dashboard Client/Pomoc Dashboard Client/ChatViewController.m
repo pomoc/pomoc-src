@@ -382,6 +382,40 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+/*
+ 
+ @property (readonly) NSString *username;
+ @property (readonly) NSString *channel;
+ @property (readonly) NSString *type;
+ @property (readonly) NSString *message;
+ */
+
+#pragma mark - PMCore Delegate
+- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
+{
+    NSLog(@"message delegae called ");
+    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
+        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
+        if (![chatMessage.userId isEqualToString:@"Steve"]) {
+            NSString *message = [NSString stringWithFormat:@"You said: %@", [chatMessage message]];
+            [PMCore sendMessage:message conversationId:conversationId];
+        }
+    }
+}
+>>>>>>> 9731a4b06ca3ce669f502773cd6ac9a829682097
 
 
 

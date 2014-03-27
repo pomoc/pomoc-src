@@ -64,7 +64,9 @@ io.sockets.on('connection', function(client) {
         else if (data.type == 'joinConversation') {
             console.log('observing ' + data.conversationId);
             client.join(data.conversationId);
-            db.client.sadd(data.userId + ':sub', conversationId);
+            db.client.sadd(data.userId + ':sub', conversationId, function(err, reply) {
+                
+            });
 
             // sends back all old messages from chat
             if (callback) {
