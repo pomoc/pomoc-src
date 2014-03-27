@@ -26,8 +26,8 @@
             return @"newConversation";
         case PMInternalMessageCodeObserveConversationList:
             return @"observeConversationList";
-        case PMInternalMessageCodeObserveExistingConversation:
-            return @"observeExistingConversation";
+        case PMInternalMessageCodeJoinConversation:
+            return @"joinConversation";
     }
     return nil;
 }
