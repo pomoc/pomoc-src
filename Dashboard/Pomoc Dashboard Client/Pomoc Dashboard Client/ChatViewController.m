@@ -296,6 +296,8 @@
 
 - (void)newConversationCreated:(NSString *)conversationId
 {
+    NSLog(@"new conversation!");
+    
     [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
         
         PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];

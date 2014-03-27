@@ -82,7 +82,16 @@
     
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
-            completion(jsonResponse[@"messages"]);
+            NSMutableArray *messages = [NSMutableArray array];
+            for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
+                // TODO: Generalize this
+                if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]]) {
+                    PMChatMessage *message = [PMMessage chatMessageFromJsonData:jsonMessage];
+                    [messages addObject:message];
+                }
+            }
+            
+            completion([NSArray arrayWithArray:messages]);
         }
     }];
 }
