@@ -10,9 +10,9 @@
 
 @interface PomocChat : NSObject
 
-//identifier for the channel 
+//identifier for the channel
 @property (nonatomic, strong) NSString *conversationId;
-@property (nonatomic, strong) NSNumber *userId;
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSDate *startedDate;
 @property (nonatomic, strong) NSMutableArray *chatMessages;
 

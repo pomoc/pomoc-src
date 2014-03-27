@@ -10,6 +10,13 @@
 
 @implementation Utility
 
++ (NSString *)formatDateForTable :(NSDate *)dateToFormat
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd 'at' HH:MM"];
+    NSString *dateString = [dateFormatter stringFromDate:dateToFormat];
+    return dateString;
+}
 
 + (NSDictionary *)navigationTitleDesign
 {
