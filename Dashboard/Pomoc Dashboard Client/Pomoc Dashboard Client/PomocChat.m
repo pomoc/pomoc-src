@@ -11,10 +11,10 @@
 
 @implementation PomocChat
 
-- (id)initWithChannel: (NSString *)channelName {
-    
+- (id)initWithConversation: (NSString *)conversationId
+{
     if ((self = [super init])) {
-        _channelName = channelName;
+        _conversationId = conversationId;
         _chatMessages = [[NSMutableArray alloc] init];
     }
     return self;

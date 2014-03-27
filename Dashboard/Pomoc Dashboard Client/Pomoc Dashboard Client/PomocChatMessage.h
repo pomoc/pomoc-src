@@ -11,9 +11,14 @@
 @interface PomocChatMessage : NSObject
 
 @property (nonatomic, strong) NSString *messageText;
-@property (nonatomic, strong) UIImage *messageImage;
-@property (nonatomic, strong) NSDate *sentDate;
+@property (nonatomic, strong) NSDate *timestamp;
+@property (nonatomic, strong) NSString *userId;
 
-@property (nonatomic, strong) NSString *senderName;
+
+@property (nonatomic, strong) NSString *messageType;
+@property (nonatomic, strong) NSString *messageClass;
+
+//future expansion
+@property (nonatomic, strong) UIImage *messageImage;
 
 @end

@@ -7,16 +7,17 @@
 //
 
 #import "ChatViewController.h"
-#import "PomocWrapper.h"
+#import "FakePomocSupport.h"
 #import "DashBoardSingleton.h"
 #import "PomocChat.h"
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
 #import "PomocCore.h"
 
-@interface ChatViewController () {
-
-    PomocWrapper *pomocSupport;
+//@interface ChatViewController () <PMCoreDelegate> {
+@interface BackUp () <PMCoreDelegate> {
+    
+    FakePomocSupport *pomocSupport;
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -31,14 +32,30 @@
 
 @end
 
-@implementation ChatViewController
+@implementation BackUp
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //    [PMCore initWithAppID:@"anc" userId:@"Steve" delegate:self];
+    //    [PMCore startConversationWithUserId:@"Steve" completion:^(NSString *conversationId) {
+    //        if (conversationId) {
+    //            NSLog(@"%@", conversationId);
+    //            [PMCore sendMessage:@"Hello!" userId:@"hehehe" channelId:conversationId];
+    //        }
+    //        else {
+    //            NSLog(@"Failed");
+    //        }
+    //    }];
+    
     self.title = @"Messages";
     
-    pomocSupport = [[PomocWrapper alloc] initWithDelegate:self];
+    //init POMOC Support to retrieve all the chat
+    NSDate *now = [NSDate date];
+    NSString *appId = [[DashBoardSingleton sharedModel] appId];
+    
+    pomocSupport = [[FakePomocSupport alloc] initWithLastUpdatedDate:now andAppId:appId];
+    pomocSupport.delegate = self;
     
     //ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
@@ -138,7 +155,7 @@
     NSInteger row = indexPath.row;
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         return [self createChatNavTableView:tableView atRow:row];
-    
+        
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         return [self createChatMessageTableView:tableView atRow:row];
     }
@@ -164,7 +181,7 @@
         PomocChat *pomocchat = [chatArray objectAtIndex:currentlySelectedChat];
         chatMessagesArray = pomocchat.chatMessages;
         
-         [_chatMessageTable reloadData];
+        [_chatMessageTable reloadData];
     }
     
     
@@ -177,9 +194,9 @@
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         //call a method that
-            //get the cell there
-            //get the size
-            //calculate the height probably required
+        //get the cell there
+        //get the size
+        //calculate the height probably required
         return 100;
     }
     
@@ -216,14 +233,14 @@
 - (void) insertNewRow
 {
     
-//    [_chatNavTable beginUpdates];
-//    
-//    NSIndexPath *path1 = [NSIndexPath indexPathForRow:temp inSection:0]; //ALSO TRIED WITH indexPathRow:0
-//    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
-//    
-//    [_chatNavTable insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationRight];
-//    
-//    [_chatNavTable endUpdates];
+    //    [_chatNavTable beginUpdates];
+    //
+    //    NSIndexPath *path1 = [NSIndexPath indexPathForRow:temp inSection:0]; //ALSO TRIED WITH indexPathRow:0
+    //    NSArray *indexArray = [NSArray arrayWithObjects:path1,nil];
+    //
+    //    [_chatNavTable insertRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationRight];
+    //
+    //    [_chatNavTable endUpdates];
     
 }
 
@@ -342,13 +359,13 @@
     [_chatNavTable reloadData];
 }
 
--(void) newChatMessage:(PomocChatMessage *) newPomocChatMssage channel:(NSString *)conversationId
+-(void) newChatMessage:(PomocChatMessage *) newPomocChatMssage channel:(NSString *)channelId
 {
     //Finding the pomoc chat with such channel id and add the chat message in
     NSUInteger count = 0;
     for (PomocChat *pomocChat in chatArray) {
-        if ([pomocChat.conversationId isEqualToString:conversationId]) {
-
+        if ([pomocChat.channelName isEqualToString:channelId]) {
+            
             [pomocChat.chatMessages addObject:newPomocChatMssage];
             
             //new message came to the currently selected chat
@@ -363,11 +380,11 @@
     
 }
 
-- (void) newPictureMessage: (PomocChatMessage *) newPomocChatMssage channel: (NSString *) conversationId
+- (void) newPictureMessage: (PomocChatMessage *) newPomocChatMssage channel: (NSString *) channelId
 {
     NSUInteger count = 0;
     for (PomocChat *pomocChat in chatArray) {
-        if ([pomocChat.conversationId isEqualToString:conversationId]) {
+        if ([pomocChat.channelName isEqualToString:channelId]) {
             
             [pomocChat.chatMessages addObject:newPomocChatMssage];
             
@@ -382,6 +399,25 @@
     }
 }
 
+#pragma mark - PMCore Delegate
+- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
+{
+    NSLog(@"message delegae called ");
+    
+    [pomocMessage.jsonObject enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *item = key;
+        NSString *value = obj;
+        NSLog(@"item = %@ and value = %@",item, value);
+    }];
+    
+    
+}
+
+- (void)newConversationCreated:(NSString *)conversationId
+{
+    [chatArray addObject:conversationId];
+    [_chatNavTable reloadData];
+}
 
 
 

@@ -7,14 +7,17 @@
 //
 //
 
-#import "FakePomocSupport.h"
+#import "PomocWrapper.h"
+#import "PomocCore.h"
 
-@implementation FakePomocSupport
+@implementation PomocWrapper 
 
-- (id) initWithLastUpdatedDate: (NSDate *)lastUpdatedDate andAppId: (NSString *) appId;
+- (id) initWithDelegate: (id) delegate
 {
-    self = [super init];
-    _chatList = [[NSMutableArray alloc] init];
+    if (self = [super init]) {
+        _delegate = delegate;
+        [PMCore initWithAppID:@"anc" userId:@"Steve" delegate:self];
+    }
     
     return self;
 }
@@ -22,7 +25,7 @@
 //This method is the app channels notify of a new channel
 - (void) simulateNewChat
 {
-    PomocChat *newPomocChat = [[PomocChat alloc] initWithChannel:@"channel1"];
+    PomocChat *newPomocChat = [[PomocChat alloc] initWithConversation:@"channel1"];
     
     NSInteger randomNumber = [self randomNumberGeneratorMax: 15000];
     newPomocChat.visitorName = [NSString stringWithFormat:@"Stupid User %ld",randomNumber];
@@ -43,8 +46,8 @@
     //Creating the pomoc chat message
     PomocChatMessage *newPomocChatMessage = [[PomocChatMessage alloc] init];
     newPomocChatMessage.messageText = @"Hi, I need help";
-    newPomocChatMessage.senderName = @"Stupid user";
-    newPomocChatMessage.sentDate = [NSDate date];
+    newPomocChatMessage.userId = @"Stupid user";
+    newPomocChatMessage.timestamp = [NSDate date];
     
     //Finding the pomoc chat with such channel
     NSString *channelId = @"channel1";
@@ -59,8 +62,8 @@
     //Creating the pomoc chat message
     PomocChatMessage *newPomocChatMessage = [[PomocChatMessage alloc] init];
     newPomocChatMessage.messageImage = [UIImage imageNamed:@"sampleImage.png"];
-    newPomocChatMessage.senderName = @"Stupid user";
-    newPomocChatMessage.sentDate = [NSDate date];
+    newPomocChatMessage.userId = @"Stupid user";
+    newPomocChatMessage.timestamp = [NSDate date];
     
     //Finding the pomoc chat with such channel
     NSString *channelId = @"channel1";
@@ -74,5 +77,18 @@
 {
     return arc4random() % max;
 }
+
+
+#pragma mark - PMCore Delegate
+- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
+{
+    
+}
+
+- (void)newConversationCreated:(NSString *)conversationId
+{
+    
+}
+
 
 @end
