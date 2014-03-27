@@ -82,7 +82,16 @@
     
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
-            completion(jsonResponse[@"messages"]);
+            NSMutableArray *messages = [NSMutableArray array];
+            for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
+                // TODO: Generalize this
+                if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]]) {
+                    PMChatMessage *message = [PMMessage chatMessageFromJsonData:jsonMessage];
+                    [messages addObject:message];
+                }
+            }
+
+            completion([NSArray arrayWithArray:messages]);
         }
     }];
 }
@@ -90,7 +99,7 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"192.168.1.102" onPort:3217];
+    [self.socket connectToHost:@"172.28.180.90" onPort:3217];
     
     // Join global channel for appId
     [self observeNewConversations];

@@ -56,7 +56,8 @@
 {
     self = [super init];
     if (self) {
-        self.timestamp = [NSDate dateWithTimeIntervalSince1970:[data[MESSAGE_TIMESTAMP] floatValue]];
+        NSTimeInterval intervalSince1970 = [data[MESSAGE_TIMESTAMP] floatValue] / 1000;
+        self.timestamp = [NSDate dateWithTimeIntervalSince1970:intervalSince1970];
     }
     return self;
 }
