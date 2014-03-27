@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface BackUp : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
 
 //Main
 @property (weak, nonatomic) IBOutlet UIView *chatView;

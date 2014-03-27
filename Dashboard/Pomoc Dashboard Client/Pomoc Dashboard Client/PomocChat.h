@@ -10,18 +10,22 @@
 
 @interface PomocChat : NSObject
 
-//identifier for the channel 
-@property (nonatomic, strong) NSString *channelName;
-
-@property (nonatomic, strong) NSNumber *visitorId;
-@property (nonatomic, strong) NSString *visitorName;
-@property (nonatomic, assign) NSInteger noOfAgent;
-
+//identifier for the channel
+@property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSDate *startedDate;
-
 @property (nonatomic, strong) NSMutableArray *chatMessages;
 
 
-- (id)initWithChannel: (NSString *)channelName;
+- (id)initWithConversation: (NSString *)conversationId;
+
+
+//Future expansion
+@property (nonatomic, strong) NSString *visitorName;
+@property (nonatomic, assign) NSInteger noOfAgent;
+
+
+
+
 
 @end

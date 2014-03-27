@@ -72,6 +72,10 @@ io.sockets.on('connection', function(client) {
             if (callback) {
                 var timestamp = (new Date()).getTime();
                 db.client.zrange([data.conversationId, 0, timestamp], function(err, reply){
+                    reply = reply.map(function(message) {
+                        return JSON.parse(message);
+                    });
+                    
                     callback({success: true, messages: reply});
                     console.log('old messages sent for ' + data.conversationId);
                 });
