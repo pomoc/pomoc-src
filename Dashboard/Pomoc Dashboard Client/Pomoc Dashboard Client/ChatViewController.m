@@ -27,6 +27,7 @@
     NSMutableArray *chatList;
     NSMutableArray *chatMessageList;
     NSInteger currentlySelectedChat;
+    NSString *currentSelectedConvoId;
     
     NSString *userName;
 }
@@ -65,6 +66,7 @@
     chatMessageList = [[NSMutableArray alloc] init];
     
     currentlySelectedChat = -1;
+    currentSelectedConvoId = "";
 }
 
 
@@ -81,6 +83,8 @@
 - (IBAction)sendMessage:(id)sender {
     
     NSLog(@"user sending message!");
+    NSString *userInput = _userTextInput.text;
+    [PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
     
 }
 
@@ -108,14 +112,13 @@
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         if ([chatList count] == 0) {
-            return 0;
             
+            NSLog(@"came inside chat message tabel view, return 0");
+            return 0;
         } else {
+            
+            NSLog(@"came inside chat message table view, return %ld", [chatMessageList count]);
             return [chatMessageList count];
-            //
-            //            PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
-            //            return [chat.chatMessages count];
-            //
         }
     }
     
@@ -130,6 +133,7 @@
         return [self createChatNavTableView:tableView atRow:row];
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        NSLog(@"came inside cell for row at index path for chat message table for row ==%ld", row);
         return [self createChatMessageTableView:tableView atRow:row];
     }
     
@@ -153,6 +157,8 @@
         //setting the chat for chat table view
         PomocChat *pomocchat = [chatList objectAtIndex:currentlySelectedChat];
         chatMessageList = pomocchat.chatMessages;
+        
+        currentSelectedConvoId = pomocchat.conversationId;
         
         [_chatMessageTable reloadData];
     }
@@ -277,6 +283,8 @@
 }
 
 #pragma mark - PMCore Delegate
+//NSString *message = [NSString stringWithFormat:@"You said: %@", [chatMessage message]];
+//
 
 - (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
@@ -286,11 +294,25 @@
         
         PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
         
-        if (![chatMessage.userId isEqualToString:userName]) {
-            NSString *message = [NSString stringWithFormat:@"You said: %@", [chatMessage message]];
-            [PMCore sendMessage:message conversationId:conversationId];
+        //if (![chatMessage.userId isEqualToString:userName]) {
             
-        }
+            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
+            [chatMessageConv.chatMessages addObject:chatMessage];
+            
+            //check if current chat being displayed is where the new chat message comign in
+            if (currentlySelectedChat != -1) {
+                
+                PomocChat *currentChat = chatList[currentlySelectedChat];
+                
+                if (currentChat == chatMessageConv) {
+                    NSLog(@"message here!");
+                    [_chatMessageTable reloadData];
+                } else {
+                    NSLog(@"not same");
+                }
+            }
+            
+        //}
     }
 }
 
@@ -319,7 +341,16 @@
     }];
 }
 
-
+- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
+{
+    for (PomocChat *chat in chatList) {
+        if ([chat.conversationId isEqualToString:conversationId]) {
+            return chat;
+        }
+    }
+    
+    return nil;
+}
 
 
 @end
