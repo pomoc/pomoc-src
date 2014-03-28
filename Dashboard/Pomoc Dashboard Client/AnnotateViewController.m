@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Soon Chun Mun. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "AnnotateViewController.h"
 #import "AnnotationView.h"
 #import "AnnotationPalette.h"
 
-@interface ViewController () <PaletteTouchDelegate>
+@interface AnnotateViewController () <PaletteTouchDelegate>
 
 @end
 
-@implementation ViewController {
+@implementation AnnotateViewController {
     AnnotationView *drawArea;
     AnnotationPalette *palette;
     CGPoint last;

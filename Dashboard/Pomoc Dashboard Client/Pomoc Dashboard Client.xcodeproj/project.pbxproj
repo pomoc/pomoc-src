@@ -49,6 +49,9 @@
 		AA9DC95D18E48F4100B4FDF7 /* worker-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95C18E48F4100B4FDF7 /* worker-512.png */; };
 		AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95E18E48F5C00B4FDF7 /* group-512.png */; };
 		AAC2A19D18E53D7B008ACDBD /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC2A19C18E53D7B008ACDBD /* libPomocCore.a */; };
+		AAC2A1EF18E55498008ACDBD /* AnnotateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EA18E55498008ACDBD /* AnnotateViewController.m */; };
+		AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */; };
+		AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EE18E55498008ACDBD /* AnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +133,12 @@
 		AAC2A19A18E53D7B008ACDBD /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
 		AAC2A19B18E53D7B008ACDBD /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		AAC2A19C18E53D7B008ACDBD /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
+		AAC2A1E918E55498008ACDBD /* AnnotateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotateViewController.h; sourceTree = "<group>"; };
+		AAC2A1EA18E55498008ACDBD /* AnnotateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotateViewController.m; sourceTree = "<group>"; };
+		AAC2A1EB18E55498008ACDBD /* AnnotationPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationPalette.h; sourceTree = "<group>"; };
+		AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPalette.m; sourceTree = "<group>"; };
+		AAC2A1ED18E55498008ACDBD /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
+		AAC2A1EE18E55498008ACDBD /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +234,7 @@
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
+				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */,
 				AA5204C518D7EF2C00D78156 /* Images.xcassets */,
@@ -347,6 +357,20 @@
 			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
 			sourceTree = "<group>";
 		};
+		AAC2A1F218E5549C008ACDBD /* Annotate MVC */ = {
+			isa = PBXGroup;
+			children = (
+				AAC2A1E918E55498008ACDBD /* AnnotateViewController.h */,
+				AAC2A1EA18E55498008ACDBD /* AnnotateViewController.m */,
+				AAC2A1EB18E55498008ACDBD /* AnnotationPalette.h */,
+				AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */,
+				AAC2A1ED18E55498008ACDBD /* AnnotationView.h */,
+				AAC2A1EE18E55498008ACDBD /* AnnotationView.m */,
+			);
+			name = "Annotate MVC";
+			path = ..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -458,13 +482,16 @@
 			files = (
 				AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
+				AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */,
 				AA9DC88618DF35B700B4FDF7 /* PomocChat.m in Sources */,
 				AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
+				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
 				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
 				AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */,
+				AAC2A1EF18E55498008ACDBD /* AnnotateViewController.m in Sources */,
 				6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */,
 				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
 				AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */,
@@ -604,21 +631,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					../../Framework/Pomoc/PomocCore/Distribution,
-					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -637,21 +651,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					../../Framework/Pomoc/PomocCore/Distribution,
-					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -6,6 +6,11 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
+//ANNOTATE VIEW CONTROLLER
+#define NUM_COLORS 20
+#define BUTTON_SIZE 25
+#define BUTTON_SIDE_OFFSET 7
+
 //CHAT VIEW CONTROLLER
 #define CHAT_CELL_NAME 1
 

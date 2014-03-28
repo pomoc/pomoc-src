@@ -17,6 +17,8 @@
 
 #import "PomocChat.h"
 
+#import "AnnotateViewController.h"
+
 @interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     
     //tracking UI table view
@@ -101,6 +103,13 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (IBAction)annotateActionPressed:(id)sender {
+    
+    AnnotateViewController *annotateVC = [[AnnotateViewController alloc] init];
+    [self.navigationController pushViewController:annotateVC animated:YES];
+    
 }
 
 - (void) testProtocol
