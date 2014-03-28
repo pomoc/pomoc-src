@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		600C415418E59990009F43C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415318E59990009F43C1 /* Foundation.framework */; };
+		600C415618E59990009F43C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415518E59990009F43C1 /* CoreGraphics.framework */; };
+		600C415818E59990009F43C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415718E59990009F43C1 /* UIKit.framework */; };
+		600C415E18E59990009F43C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 600C415C18E59990009F43C1 /* InfoPlist.strings */; };
+		600C416018E59990009F43C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 600C415F18E59990009F43C1 /* main.m */; };
+		600C416418E59990009F43C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 600C416318E59990009F43C1 /* AppDelegate.m */; };
+		600C416718E59990009F43C1 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600C416518E59990009F43C1 /* Main_iPhone.storyboard */; };
+		600C416A18E59990009F43C1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600C416818E59990009F43C1 /* Main_iPad.storyboard */; };
+		600C416D18E59990009F43C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 600C416C18E59990009F43C1 /* ViewController.m */; };
+		600C416F18E59990009F43C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 600C416E18E59990009F43C1 /* Images.xcassets */; };
+		600C417618E59990009F43C1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C417518E59990009F43C1 /* XCTest.framework */; };
+		600C417718E59990009F43C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415318E59990009F43C1 /* Foundation.framework */; };
+		600C417818E59990009F43C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415718E59990009F43C1 /* UIKit.framework */; };
+		600C418018E59990009F43C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 600C417E18E59990009F43C1 /* InfoPlist.strings */; };
+		600C418218E59990009F43C1 /* PomocSDKDriverAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 600C418118E59990009F43C1 /* PomocSDKDriverAppTests.m */; };
+		600C418C18E599BB009F43C1 /* PomocSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418B18E599BB009F43C1 /* PomocSDK.framework */; };
+		600C418E18E59A5F009F43C1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418D18E59A5F009F43C1 /* CFNetwork.framework */; };
+		600C419018E59A63009F43C1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418F18E59A63009F43C1 /* Security.framework */; };
+		600C419218E59A6C009F43C1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C419118E59A6C009F43C1 /* libicucore.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		600C417918E59990009F43C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 600C414818E59990009F43C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 600C414F18E59990009F43C1;
+			remoteInfo = PomocSDKDriverApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		600C415018E59990009F43C1 /* PomocSDKDriverApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PomocSDKDriverApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		600C415318E59990009F43C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		600C415518E59990009F43C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		600C415718E59990009F43C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		600C415B18E59990009F43C1 /* PomocSDKDriverApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocSDKDriverApp-Info.plist"; sourceTree = "<group>"; };
+		600C415D18E59990009F43C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		600C415F18E59990009F43C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		600C416118E59990009F43C1 /* PomocSDKDriverApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocSDKDriverApp-Prefix.pch"; sourceTree = "<group>"; };
+		600C416218E59990009F43C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		600C416318E59990009F43C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		600C416618E59990009F43C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		600C416918E59990009F43C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		600C416B18E59990009F43C1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		600C416C18E59990009F43C1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		600C416E18E59990009F43C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		600C417418E59990009F43C1 /* PomocSDKDriverAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocSDKDriverAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		600C417518E59990009F43C1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		600C417D18E59990009F43C1 /* PomocSDKDriverAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocSDKDriverAppTests-Info.plist"; sourceTree = "<group>"; };
+		600C417F18E59990009F43C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		600C418118E59990009F43C1 /* PomocSDKDriverAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocSDKDriverAppTests.m; sourceTree = "<group>"; };
+		600C418B18E599BB009F43C1 /* PomocSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PomocSDK.framework; path = ../Pomoc/PomocSDK/Distribution/PomocSDK.framework; sourceTree = "<group>"; };
+		600C418D18E59A5F009F43C1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		600C418F18E59A63009F43C1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		600C419118E59A6C009F43C1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		600C414D18E59990009F43C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C419218E59A6C009F43C1 /* libicucore.dylib in Frameworks */,
+				600C419018E59A63009F43C1 /* Security.framework in Frameworks */,
+				600C418E18E59A5F009F43C1 /* CFNetwork.framework in Frameworks */,
+				600C415618E59990009F43C1 /* CoreGraphics.framework in Frameworks */,
+				600C415818E59990009F43C1 /* UIKit.framework in Frameworks */,
+				600C418C18E599BB009F43C1 /* PomocSDK.framework in Frameworks */,
+				600C415418E59990009F43C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		600C417118E59990009F43C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C417618E59990009F43C1 /* XCTest.framework in Frameworks */,
+				600C417818E59990009F43C1 /* UIKit.framework in Frameworks */,
+				600C417718E59990009F43C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		600C414718E59990009F43C1 = {
+			isa = PBXGroup;
+			children = (
+				600C415918E59990009F43C1 /* PomocSDKDriverApp */,
+				600C417B18E59990009F43C1 /* PomocSDKDriverAppTests */,
+				600C415218E59990009F43C1 /* Frameworks */,
+				600C415118E59990009F43C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		600C415118E59990009F43C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				600C415018E59990009F43C1 /* PomocSDKDriverApp.app */,
+				600C417418E59990009F43C1 /* PomocSDKDriverAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		600C415218E59990009F43C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				600C419118E59A6C009F43C1 /* libicucore.dylib */,
+				600C418F18E59A63009F43C1 /* Security.framework */,
+				600C418D18E59A5F009F43C1 /* CFNetwork.framework */,
+				600C418B18E599BB009F43C1 /* PomocSDK.framework */,
+				600C415318E59990009F43C1 /* Foundation.framework */,
+				600C415518E59990009F43C1 /* CoreGraphics.framework */,
+				600C415718E59990009F43C1 /* UIKit.framework */,
+				600C417518E59990009F43C1 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		600C415918E59990009F43C1 /* PomocSDKDriverApp */ = {
+			isa = PBXGroup;
+			children = (
+				600C416218E59990009F43C1 /* AppDelegate.h */,
+				600C416318E59990009F43C1 /* AppDelegate.m */,
+				600C416518E59990009F43C1 /* Main_iPhone.storyboard */,
+				600C416818E59990009F43C1 /* Main_iPad.storyboard */,
+				600C416B18E59990009F43C1 /* ViewController.h */,
+				600C416C18E59990009F43C1 /* ViewController.m */,
+				600C416E18E59990009F43C1 /* Images.xcassets */,
+				600C415A18E59990009F43C1 /* Supporting Files */,
+			);
+			path = PomocSDKDriverApp;
+			sourceTree = "<group>";
+		};
+		600C415A18E59990009F43C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				600C415B18E59990009F43C1 /* PomocSDKDriverApp-Info.plist */,
+				600C415C18E59990009F43C1 /* InfoPlist.strings */,
+				600C415F18E59990009F43C1 /* main.m */,
+				600C416118E59990009F43C1 /* PomocSDKDriverApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		600C417B18E59990009F43C1 /* PomocSDKDriverAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				600C418118E59990009F43C1 /* PomocSDKDriverAppTests.m */,
+				600C417C18E59990009F43C1 /* Supporting Files */,
+			);
+			path = PomocSDKDriverAppTests;
+			sourceTree = "<group>";
+		};
+		600C417C18E59990009F43C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				600C417D18E59990009F43C1 /* PomocSDKDriverAppTests-Info.plist */,
+				600C417E18E59990009F43C1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		600C414F18E59990009F43C1 /* PomocSDKDriverApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 600C418518E59990009F43C1 /* Build configuration list for PBXNativeTarget "PomocSDKDriverApp" */;
+			buildPhases = (
+				600C414C18E59990009F43C1 /* Sources */,
+				600C414D18E59990009F43C1 /* Frameworks */,
+				600C414E18E59990009F43C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PomocSDKDriverApp;
+			productName = PomocSDKDriverApp;
+			productReference = 600C415018E59990009F43C1 /* PomocSDKDriverApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		600C417318E59990009F43C1 /* PomocSDKDriverAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 600C418818E59990009F43C1 /* Build configuration list for PBXNativeTarget "PomocSDKDriverAppTests" */;
+			buildPhases = (
+				600C417018E59990009F43C1 /* Sources */,
+				600C417118E59990009F43C1 /* Frameworks */,
+				600C417218E59990009F43C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				600C417A18E59990009F43C1 /* PBXTargetDependency */,
+			);
+			name = PomocSDKDriverAppTests;
+			productName = PomocSDKDriverAppTests;
+			productReference = 600C417418E59990009F43C1 /* PomocSDKDriverAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		600C414818E59990009F43C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = nus.cs3217;
+				TargetAttributes = {
+					600C417318E59990009F43C1 = {
+						TestTargetID = 600C414F18E59990009F43C1;
+					};
+				};
+			};
+			buildConfigurationList = 600C414B18E59990009F43C1 /* Build configuration list for PBXProject "PomocSDKDriverApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 600C414718E59990009F43C1;
+			productRefGroup = 600C415118E59990009F43C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				600C414F18E59990009F43C1 /* PomocSDKDriverApp */,
+				600C417318E59990009F43C1 /* PomocSDKDriverAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		600C414E18E59990009F43C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C416A18E59990009F43C1 /* Main_iPad.storyboard in Resources */,
+				600C416F18E59990009F43C1 /* Images.xcassets in Resources */,
+				600C416718E59990009F43C1 /* Main_iPhone.storyboard in Resources */,
+				600C415E18E59990009F43C1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		600C417218E59990009F43C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C418018E59990009F43C1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		600C414C18E59990009F43C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C416D18E59990009F43C1 /* ViewController.m in Sources */,
+				600C416418E59990009F43C1 /* AppDelegate.m in Sources */,
+				600C416018E59990009F43C1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		600C417018E59990009F43C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600C418218E59990009F43C1 /* PomocSDKDriverAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		600C417A18E59990009F43C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 600C414F18E59990009F43C1 /* PomocSDKDriverApp */;
+			targetProxy = 600C417918E59990009F43C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		600C415C18E59990009F43C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				600C415D18E59990009F43C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		600C416518E59990009F43C1 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				600C416618E59990009F43C1 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		600C416818E59990009F43C1 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				600C416918E59990009F43C1 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		600C417E18E59990009F43C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				600C417F18E59990009F43C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		600C418318E59990009F43C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		600C418418E59990009F43C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		600C418618E59990009F43C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../Pomoc/PomocSDK/Distribution,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
+				INFOPLIST_FILE = "PomocSDKDriverApp/PomocSDKDriverApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		600C418718E59990009F43C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../Pomoc/PomocSDK/Distribution,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
+				INFOPLIST_FILE = "PomocSDKDriverApp/PomocSDKDriverApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		600C418918E59990009F43C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocSDKDriverApp.app/PomocSDKDriverApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PomocSDKDriverAppTests/PomocSDKDriverAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		600C418A18E59990009F43C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PomocSDKDriverApp.app/PomocSDKDriverApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
+				INFOPLIST_FILE = "PomocSDKDriverAppTests/PomocSDKDriverAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		600C414B18E59990009F43C1 /* Build configuration list for PBXProject "PomocSDKDriverApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				600C418318E59990009F43C1 /* Debug */,
+				600C418418E59990009F43C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		600C418518E59990009F43C1 /* Build configuration list for PBXNativeTarget "PomocSDKDriverApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				600C418618E59990009F43C1 /* Debug */,
+				600C418718E59990009F43C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		600C418818E59990009F43C1 /* Build configuration list for PBXNativeTarget "PomocSDKDriverAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				600C418918E59990009F43C1 /* Debug */,
+				600C418A18E59990009F43C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 600C414818E59990009F43C1 /* Project object */;
+}
