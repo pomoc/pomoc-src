@@ -613,14 +613,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					../../Framework/Pomoc/PomocCore/Distribution,
-					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
+					"../../Framework/Pomoc/PomocCore/Distribution/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -640,14 +633,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					../../Framework/Pomoc/PomocCore/Distribution,
-					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
+					"../../Framework/Pomoc/PomocCore/Distribution/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
