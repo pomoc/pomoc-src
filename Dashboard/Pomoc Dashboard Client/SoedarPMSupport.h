@@ -65,6 +65,9 @@
 - (void)newUserOnline:(NSString *)customerName;
 - (void)userOffline:(NSString *)customerName;
 
+- (void)newAgentOnline:(NSString *)agentId;
+- (void)agentOffline:(NSString *)agentId;
+
 
 
 @end
