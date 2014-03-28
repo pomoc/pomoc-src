@@ -21,6 +21,8 @@
 		9F5D503818E4F946006FABDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F5D501A18E4F946006FABDB /* UIKit.framework */; };
 		9F5D504018E4F946006FABDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F5D503E18E4F946006FABDB /* InfoPlist.strings */; };
 		9F5D504218E4F946006FABDB /* AnnotatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D504118E4F946006FABDB /* AnnotatorTests.m */; };
+		9F5D504F18E4F953006FABDB /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D504C18E4F953006FABDB /* AnnotationView.m */; };
+		9F5D505018E4F953006FABDB /* AnnotationPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D504E18E4F953006FABDB /* AnnotationPalette.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,11 @@
 		9F5D503D18E4F946006FABDB /* AnnotatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnnotatorTests-Info.plist"; sourceTree = "<group>"; };
 		9F5D503F18E4F946006FABDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F5D504118E4F946006FABDB /* AnnotatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnnotatorTests.m; sourceTree = "<group>"; };
+		9F5D504B18E4F953006FABDB /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
+		9F5D504C18E4F953006FABDB /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
+		9F5D504D18E4F953006FABDB /* AnnotationPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationPalette.h; sourceTree = "<group>"; };
+		9F5D504E18E4F953006FABDB /* AnnotationPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPalette.m; sourceTree = "<group>"; };
+		9F5D505118E51915006FABDB /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +124,11 @@
 				9F5D502818E4F946006FABDB /* Main.storyboard */,
 				9F5D502B18E4F946006FABDB /* ViewController.h */,
 				9F5D502C18E4F946006FABDB /* ViewController.m */,
+				9F5D504B18E4F953006FABDB /* AnnotationView.h */,
+				9F5D504C18E4F953006FABDB /* AnnotationView.m */,
+				9F5D504D18E4F953006FABDB /* AnnotationPalette.h */,
+				9F5D504E18E4F953006FABDB /* AnnotationPalette.m */,
+				9F5D505118E51915006FABDB /* Constants.h */,
 				9F5D502E18E4F946006FABDB /* Images.xcassets */,
 				9F5D501D18E4F946006FABDB /* Supporting Files */,
 			);
@@ -250,6 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F5D502D18E4F946006FABDB /* ViewController.m in Sources */,
+				9F5D504F18E4F953006FABDB /* AnnotationView.m in Sources */,
+				9F5D505018E4F953006FABDB /* AnnotationPalette.m in Sources */,
 				9F5D502718E4F946006FABDB /* AppDelegate.m in Sources */,
 				9F5D502318E4F946006FABDB /* main.m in Sources */,
 			);
