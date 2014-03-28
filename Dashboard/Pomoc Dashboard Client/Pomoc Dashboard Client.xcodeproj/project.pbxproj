@@ -49,6 +49,10 @@
 		AA9DC95618E4566E00B4FDF7 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9DC95518E4566E00B4FDF7 /* libPomocCore.a */; };
 		AA9DC95D18E48F4100B4FDF7 /* worker-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95C18E48F4100B4FDF7 /* worker-512.png */; };
 		AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC95E18E48F5C00B4FDF7 /* group-512.png */; };
+<<<<<<< Updated upstream
+=======
+		AAC2A1DE18E54889008ACDBD /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC2A1DD18E54889008ACDBD /* libPomocCore.a */; };
+>>>>>>> Stashed changes
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +134,17 @@
 		AA9DC95518E4566E00B4FDF7 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AA9DC95C18E48F4100B4FDF7 /* worker-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "worker-512.png"; sourceTree = "<group>"; };
 		AA9DC95E18E48F5C00B4FDF7 /* group-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-512.png"; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
+=======
+		AAC2A1D618E54889008ACDBD /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		AAC2A1D718E54889008ACDBD /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		AAC2A1D818E54889008ACDBD /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
+		AAC2A1D918E54889008ACDBD /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		AAC2A1DA18E54889008ACDBD /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		AAC2A1DB18E54889008ACDBD /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
+		AAC2A1DC18E54889008ACDBD /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		AAC2A1DD18E54889008ACDBD /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
+>>>>>>> Stashed changes
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +155,11 @@
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
+<<<<<<< Updated upstream
 				AA9DC95618E4566E00B4FDF7 /* libPomocCore.a in Frameworks */,
+=======
+				AAC2A1DE18E54889008ACDBD /* libPomocCore.a in Frameworks */,
+>>>>>>> Stashed changes
 				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
 				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
 			);
@@ -178,6 +197,10 @@
 		AA5204A118D7EF2C00D78156 = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< Updated upstream
+=======
+				AAC2A1D418E54889008ACDBD /* PomocCore */,
+>>>>>>> Stashed changes
 				AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */,
 				AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
 				AA5204AC18D7EF2C00D78156 /* Frameworks */,
@@ -331,6 +354,7 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+<<<<<<< Updated upstream
 		AA9DC94D18E4566E00B4FDF7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +377,30 @@
 				AA9DC95518E4566E00B4FDF7 /* libPomocCore.a */,
 			);
 			name = PomocCore;
+=======
+		AAC2A1D418E54889008ACDBD /* PomocCore */ = {
+			isa = PBXGroup;
+			children = (
+				AAC2A1D518E54889008ACDBD /* Headers */,
+				AAC2A1DD18E54889008ACDBD /* libPomocCore.a */,
+			);
+			name = PomocCore;
+			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore;
+			sourceTree = "<group>";
+		};
+		AAC2A1D518E54889008ACDBD /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				AAC2A1D618E54889008ACDBD /* PMChatMessage.h */,
+				AAC2A1D718E54889008ACDBD /* PMCore.h */,
+				AAC2A1D818E54889008ACDBD /* PMCoreDelegate.h */,
+				AAC2A1D918E54889008ACDBD /* PMInternalMessage.h */,
+				AAC2A1DA18E54889008ACDBD /* PMMessage.h */,
+				AAC2A1DB18E54889008ACDBD /* PMMessageConstants.h */,
+				AAC2A1DC18E54889008ACDBD /* PomocCore.h */,
+			);
+			path = Headers;
+>>>>>>> Stashed changes
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -612,7 +660,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+<<<<<<< Updated upstream
 					../../Framework/Pomoc/PomocCore/Distribution,
 					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 					/Users/steve/Dropbox/NUS,
@@ -621,6 +671,8 @@
 					/Users/steve/Dropbox/NUS,
 					"-",
 					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
+=======
+>>>>>>> Stashed changes
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -639,7 +691,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+<<<<<<< Updated upstream
 					../../Framework/Pomoc/PomocCore/Distribution,
 					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 					/Users/steve/Dropbox/NUS,
@@ -648,6 +702,8 @@
 					/Users/steve/Dropbox/NUS,
 					"-",
 					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
+=======
+>>>>>>> Stashed changes
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
