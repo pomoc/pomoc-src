@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "PomocCore.h"
-#import "ChatViewController.h"
 
 @interface ViewController () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate>
 
