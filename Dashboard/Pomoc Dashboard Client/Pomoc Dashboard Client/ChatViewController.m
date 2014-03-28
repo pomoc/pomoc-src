@@ -214,7 +214,7 @@
         //get the cell there
         //get the size
         //calculate the height probably required
-        return 100;
+        return 50;
     }
     
     return 0;

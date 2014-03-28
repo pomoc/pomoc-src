@@ -99,7 +99,7 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"222.164.47.244" onPort:3217];
+    [self.socket connectToHost:@"54.255.135.169" onPort:3217];
     
     // Join global channel for appId
     [self observeNewConversations];
