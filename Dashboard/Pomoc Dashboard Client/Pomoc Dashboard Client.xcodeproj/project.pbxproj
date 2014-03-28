@@ -52,6 +52,7 @@
 		AAC2A1EF18E55498008ACDBD /* AnnotateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EA18E55498008ACDBD /* AnnotateViewController.m */; };
 		AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */; };
 		AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EE18E55498008ACDBD /* AnnotationView.m */; };
+		AADE13FC18E5DD960042BF1A /* SoedarPMSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,8 @@
 		AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPalette.m; sourceTree = "<group>"; };
 		AAC2A1ED18E55498008ACDBD /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
 		AAC2A1EE18E55498008ACDBD /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
+		AADE13FA18E5DD960042BF1A /* SoedarPMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoedarPMSupport.h; sourceTree = "<group>"; };
+		AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoedarPMSupport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				AADE13F918E5DC910042BF1A /* PMCore */,
-				AAC2A19C18E53D7B008ACDBD /* libPomocCore.a */,
 				AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */,
 				AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
 				AA5204AC18D7EF2C00D78156 /* Frameworks */,
@@ -374,7 +376,10 @@
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
 			isa = PBXGroup;
 			children = (
+				AAC2A19C18E53D7B008ACDBD /* libPomocCore.a */,
 				AAC2A19418E53D7B008ACDBD /* Headers */,
+				AADE13FA18E5DD960042BF1A /* SoedarPMSupport.h */,
+				AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */,
 			);
 			name = PMCore;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
 				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
+				AADE13FC18E5DD960042BF1A /* SoedarPMSupport.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
 				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
 				AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */,
