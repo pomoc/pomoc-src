@@ -187,7 +187,7 @@
 		AA5204A118D7EF2C00D78156 = {
 			isa = PBXGroup;
 			children = (
-				AAC2A19418E53D7B008ACDBD /* Headers */,
+				AADE13F918E5DC910042BF1A /* PMCore */,
 				AAC2A19C18E53D7B008ACDBD /* libPomocCore.a */,
 				AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */,
 				AA5204D218D7EF2C00D78156 /* Pomoc Dashboard ClientTests */,
@@ -371,6 +371,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		AADE13F918E5DC910042BF1A /* PMCore */ = {
+			isa = PBXGroup;
+			children = (
+				AAC2A19418E53D7B008ACDBD /* Headers */,
+			);
+			name = PMCore;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,6 +426,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = nus.cs3217;
 				TargetAttributes = {
+					AA5204A918D7EF2C00D78156 = {
+						DevelopmentTeam = W76H98A34A;
+					};
 					AA5204CA18D7EF2C00D78156 = {
 						TestTargetID = AA5204A918D7EF2C00D78156;
 					};
@@ -564,6 +575,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tan Steve (8CADEXU9VB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -603,6 +615,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tan Steve (8CADEXU9VB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -625,6 +638,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
@@ -636,6 +651,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -645,6 +661,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
@@ -656,6 +674,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

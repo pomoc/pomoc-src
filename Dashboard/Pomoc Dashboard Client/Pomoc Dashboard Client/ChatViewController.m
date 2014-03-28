@@ -108,6 +108,8 @@
 - (IBAction)annotateActionPressed:(id)sender {
     
     AnnotateViewController *annotateVC = [[AnnotateViewController alloc] init];
+    
+    
     [self.navigationController pushViewController:annotateVC animated:YES];
     
 }
@@ -385,7 +387,7 @@
         
         PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
         [chatList addObject:chat];
-        
+
         [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             PMChatMessage *message = (PMChatMessage *)obj;
