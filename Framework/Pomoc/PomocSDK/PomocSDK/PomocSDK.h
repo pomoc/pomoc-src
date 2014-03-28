@@ -10,6 +10,6 @@
 #define PomocSDK_PomocSDK_h
 
 #import <Foundation/Foundation.h>
-#import "PomocStub.h"
+#import "Pomoc.h"
 
 #endif

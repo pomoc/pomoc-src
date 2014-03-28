@@ -1,39 +1,39 @@
 //
-//  ViewController.m
-//  PomocDriverApp
+//  ChatViewController.m
+//  PomocSDK
 //
-//  Created by soedar on 26/3/14.
+//  Created by soedar on 28/3/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "PomocCore.h"
 #import "ChatViewController.h"
+#import "PomocCore.h"
 
-@interface ViewController () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ChatViewController () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITextField *textField;
-@property (nonatomic, weak) IBOutlet UIButton *sendButton;
-@property (nonatomic, weak) IBOutlet UIButton *startConversation;
-@property (nonatomic, weak) IBOutlet UITableView *chatTableView;
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UIButton *sendButton;
+@property (nonatomic, strong) UIButton *startConversation;
+@property (nonatomic, strong) UITableView *chatTableView;
 
 @property (nonatomic, strong) NSString *conversationId;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSString *userId;
+
 @end
 
-@implementation ViewController
+@implementation ChatViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
+    [self setupViews];
     
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     self.userId = @"customer";
-    
     [PMCore initWithAppID:@"anc" userId:self.userId delegate:self];
 }
 
@@ -43,9 +43,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupViews
+{
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 25, 320, 200)];
+    
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 210, 260, 40)];
+    self.textField.borderStyle = UITextBorderStyleRoundedRect;
+    self.textField.backgroundColor = [UIColor whiteColor];
+    
+    self.sendButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.sendButton.frame = CGRectMake(270, 210, 50, 40);
+    [self.sendButton setTitle:@"Send" forState:UIControlStateNormal];
+    
+    self.startConversation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.startConversation.frame = CGRectMake(0, 50, 300, 30);
+    [self.startConversation setTitle:@"Start Conversation" forState:UIControlStateNormal];
+    
+    [self.chatTableView setHidden:YES];
+    [self.textField setHidden:YES];
+    [self.sendButton setHidden:YES];
+    
+    [self.view addSubview:self.chatTableView];
+    [self.view addSubview:self.textField];
+    [self.view addSubview:self.sendButton];
+    [self.view addSubview:self.startConversation];
+    
+    self.chatTableView.delegate = self;
+    self.chatTableView.dataSource = self;
+    
+    [self.startConversation addTarget:self action:@selector(startConversationPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.sendButton addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 #pragma mark - Button action
 
-- (IBAction)startConversationPressed:(UIButton *)button
+- (void)startConversationPressed:(UIButton *)button
 {
     [button setEnabled:NO];
     [PMCore startConversationWithCompletion:^(NSString *conversationId) {
@@ -57,7 +90,7 @@
     }];
 }
 
-- (IBAction)sendPressed:(UIButton *)button
+- (void)sendPressed:(UIButton *)button
 {
     [PMCore sendMessage:self.textField.text conversationId:self.conversationId];
     self.textField.text = @"";
