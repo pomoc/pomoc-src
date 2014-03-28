@@ -11,7 +11,7 @@
 
 @interface Pomoc ()
 
-@property (nonatomic, strong) ChatViewController *chatViewController;
+@property (nonatomic, strong) UIWindow *window;
 
 @end
 
@@ -23,16 +23,23 @@
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
+        sharedInstance.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     });
     
     return sharedInstance;
 }
 
-+ (void)showChatViewControllerOnViewController:(UIViewController *)viewController;
++ (void)showChatViewController
 {
     Pomoc *pomoc = [Pomoc sharedInstance];
-    pomoc.chatViewController = [[ChatViewController alloc] init];
-    [viewController presentViewController:pomoc.chatViewController animated:YES completion:nil];
+    
+    if (pomoc.window.hidden == YES) {
+        [pomoc.window setWindowLevel:UIWindowLevelStatusBar];
+        [pomoc.window setHidden:NO];
+    }
+    
+    ChatViewController *viewController = [[ChatViewController alloc] init];
+    [pomoc.window setRootViewController:viewController];
 }
 
 @end
