@@ -269,6 +269,9 @@
                                         </state>
                                         <connections>
                                             <action selector="selectPicturePressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="aw0-DI-AJx"/>
+                                            <segue destination="epF-RJ-mXK" kind="popover" popoverAnchorView="vkX-xP-fu3" id="2On-uU-yGs">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -320,6 +323,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og2-lc-I3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1575" y="-1081"/>
+        </scene>
+        <!--Upload View Controller-->
+        <scene sceneID="v4B-RF-b76">
+            <objects>
+                <viewController id="epF-RJ-mXK" customClass="UploadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RDb-IX-9hp">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="200"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ne-zN-dBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1290" y="-210"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="yrJ-xC-Wdk">
@@ -424,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ld-Uk-sYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-327" y="-1278"/>
+            <point key="canvasLocation" x="-332" y="-1286"/>
         </scene>
         <!--Past Chat View Controller-->
         <scene sceneID="5MR-5X-FqL">

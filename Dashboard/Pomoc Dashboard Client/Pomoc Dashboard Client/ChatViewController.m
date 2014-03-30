@@ -108,12 +108,14 @@
 }
 
 - (IBAction)selectPicturePressed:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+
+    //UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    //picker.delegate = self;
+    //picker.allowsEditing = YES;
+    //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    //[self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (IBAction)annotateActionPressed:(id)sender {
@@ -152,7 +154,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
