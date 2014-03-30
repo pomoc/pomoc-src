@@ -33,4 +33,7 @@
 
 - (IBAction)editPicturePressed:(id)sender {
 }
+
+- (IBAction)viewPicturePressed:(id)sender {
+}
 @end
