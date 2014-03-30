@@ -3,6 +3,7 @@ var settings = require('./settings_local');
 var db = require('./db');
 var express = require('express');
 var socket_io = require('socket.io');
+var crypto = require('crypto');
 
 var app = express();
 // Error logging / handling
@@ -24,7 +25,7 @@ var io = socket_io.listen(server, {
 
 // Load all HTTP routes
 ['routes/index', 'routes/api'].forEach(function(route) {
-    require('./' + route)(app, db);
+    require('./' + route)(app, db, crypto);
 });
 
 console.log('server running');
