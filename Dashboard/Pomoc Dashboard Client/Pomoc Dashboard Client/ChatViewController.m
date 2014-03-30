@@ -17,6 +17,14 @@
 
 #import "PomocChat.h"
 
+#import "UILabel+boldAndGray.h"
+
+#import "UIImageView+WebCache.h"
+
+//testing
+#import "FakePMChatMessage.h"
+#import "FakePMImageMessage.h"
+
 #import "AnnotateViewController.h"
 
 @interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
@@ -73,6 +81,9 @@
     keyboardEditing = false;
     
     _pastAndInfoToolbar.clipsToBounds = true;
+    
+    //testing
+    [self testCreateMock];
 }
 
 
@@ -97,12 +108,14 @@
 }
 
 - (IBAction)selectPicturePressed:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+
+    //UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    //picker.delegate = self;
+    //picker.allowsEditing = YES;
+    //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    //[self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (IBAction)annotateActionPressed:(id)sender {
@@ -141,7 +154,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -155,9 +167,6 @@
 #pragma mark - Navigation Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    NSLog(@"came inside number of rows");
-    
     if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
         return [chatList count];
         
@@ -181,7 +190,20 @@
         return [self createChatNavTableView:tableView atRow:row];
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        return [self createChatMessageTableView:tableView atRow:row];
+        
+        PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
+        id obj = [chat.chatMessages objectAtIndex:indexPath.row];
+        
+        if ([obj isKindOfClass:[FakePMChatMessage class]] ||
+            [obj isKindOfClass:[PMChatMessage class]]) {
+            
+            NSLog(@"is chat message");
+            return [self createChatMessageTableView:tableView atRow:row];
+            
+        } else if([obj isKindOfClass:[FakePMImageMessage class]]) {
+            NSLog(@"is picture message");
+            return [self createChatImageTableView: tableView atRow:row];
+        }
     
     }
     
@@ -221,11 +243,30 @@
         return 65;
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        //call a method that
-        //get the cell there
-        //get the size
-        //calculate the height probably required
-        return 50;
+        
+        PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
+        id obj = [chat.chatMessages objectAtIndex:indexPath.row];
+        
+        if ([obj isKindOfClass:[PMChatMessage class]] ||
+            [obj isKindOfClass:[FakePMChatMessage class]]) {
+        
+            PMChatMessage *message = [chat.chatMessages objectAtIndex:indexPath.row];
+            NSString *text = message.message;
+        
+            //[[message.message sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15] boundingRectWithSize:CGSizeMake(695, 999)] ];
+            UILabel *gettingSizeLabel = [[UILabel alloc] init];
+            gettingSizeLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+            gettingSizeLabel.text = text;
+            gettingSizeLabel.numberOfLines = 0;
+            gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            CGSize maximumLabelSize = CGSizeMake(695, 9999);
+        
+            CGSize expectedSize = [gettingSizeLabel sizeThatFits:maximumLabelSize];
+        
+            return expectedSize.height + 35;
+        } else {
+            return 170;
+        }
     }
     
     return 0;
@@ -258,8 +299,48 @@
     return cell;
 }
 
-
 #pragma mark - CHAT MESSAGE
+-(UITableViewCell *) createChatImageTableView: (UITableView *)tableView atRow: (NSInteger)row
+{
+    PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
+    FakePMImageMessage *message = [chat.chatMessages objectAtIndex:row];
+    
+    return [self getChatImageCell :message tableView:tableView];
+}
+
+- (UITableViewCell *)getChatImageCell :(FakePMImageMessage *)message tableView:(UITableView *)tableView
+{
+    static NSString *cellIdentifier = @"ChatPictureCell";
+    ChatMessagePictureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[ChatMessagePictureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    //setting the started date of chat
+    NSString *dateString = [Utility formatDateForTable:message.timestamp];
+    
+    //Setting visitor name
+    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
+    [cell.messageFrom boldAndBlackSubstring:message.userId];
+    
+    //setting the display text
+    UIImage *image = [UIImage imageNamed:message.imageUrl];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.imageView.clipsToBounds = YES;
+
+    __weak typeof(UITableViewCell *) weakCell = cell;
+    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://28.media.tumblr.com/tumblr_lwdu1460fh1r7o3dfo1_500.jpg"]
+                    placeholderImage:image
+                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                        UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
+                        [weakCell.imageView setImage:scaled];
+                        
+                    }];
+    
+    return cell;
+}
+
 - (UITableViewCell *) createChatMessageTableView: (UITableView *)tableView atRow: (NSInteger)row
 {
     PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
@@ -279,15 +360,16 @@
         cell = [[ChatMessageTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    //Setting visitor name
-    [cell.messageFrom setText:message.userId];
-    
     //setting the started date of chat
     NSString *dateString = [Utility formatDateForTable:message.timestamp];
-    [cell.messageDate setText:[NSString stringWithFormat:@"%@",dateString]];
+    
+    //Setting visitor name
+    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
+    [cell.messageFrom boldAndBlackSubstring:message.userId];
     
     //setting the display text
     [cell.messageText setText: message.message];
+    
     
     return cell;
 }
@@ -348,6 +430,50 @@
     
     chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
+}
+#pragma mark - Testing
+- (void) testCreateMock
+{
+    //create some conversaiton
+    PomocChat *chat = [[PomocChat alloc] initWithConversation:@"1"];
+    [chatList addObject:chat];
+
+    chat.userId = @"Visitor";
+    chat.startedDate = [NSDate new];
+
+    //add some messages inside
+    FakePMChatMessage *message = [[FakePMChatMessage alloc] init];
+    message.message = @"0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789";
+    message.conversationId = @"1";
+    message.userId = @"visitor";
+    
+    FakePMChatMessage *message2 = [[FakePMChatMessage alloc] init];
+    message2.message = @"simi rans jiao? ";
+    message2.conversationId = @"1";
+    message2.userId = @"agent Chun Mun";
+    
+    FakePMChatMessage *message3 = [[FakePMChatMessage alloc] init];
+    message3.message = @"simi rans rans jiao? ";
+    message3.conversationId = @"1";
+    message3.userId = @"agent Steve";
+    
+    FakePMImageMessage *image1 = [[FakePMImageMessage alloc] init];
+    image1.userId = @"visitor";
+    image1.conversationId = @"1";
+    image1.imageUrl = @"testImage.png";
+    
+    FakePMChatMessage *message4 = [[FakePMChatMessage alloc] init];
+    message4.message = @"simi rans rans rans jiao? ";
+    message4.conversationId = @"1";
+    message4.userId = @"Agent BangHui";
+    
+    [chat.chatMessages addObject:message];
+    [chat.chatMessages addObject:message2];
+    [chat.chatMessages addObject:message3];
+    [chat.chatMessages addObject:image1];
+    [chat.chatMessages addObject:message4];
+    
+    [_chatNavTable reloadData];
 }
 
 #pragma mark - PMCore Delegate
