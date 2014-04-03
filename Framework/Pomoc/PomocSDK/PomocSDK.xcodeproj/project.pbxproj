@@ -54,6 +54,8 @@
 		60AC91C618E55811006007E2 /* PMMessageConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60AC91AE18E553A1006007E2 /* PMMessageConstants.h */; };
 		60AC91C718E55811006007E2 /* PomocCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60AC91AF18E553A1006007E2 /* PomocCore.h */; };
 		60AC91C818E55811006007E2 /* libPomocCore.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60AC91B018E553A1006007E2 /* libPomocCore.a */; };
+		60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */; };
+		60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */; };
 		60E6408518E59F9C0089B51F /* PomocWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 60E6408318E59F9C0089B51F /* PomocWindow.h */; };
 		60E6408618E59F9C0089B51F /* PomocWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E6408418E59F9C0089B51F /* PomocWindow.m */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,8 @@
 		60AC91B018E553A1006007E2 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
 		60AC91B918E553B8006007E2 /* Pomoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pomoc.h; sourceTree = "<group>"; };
 		60AC91BA18E553B8006007E2 /* Pomoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pomoc.m; sourceTree = "<group>"; };
+		60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PomocChatView+Screenshot.h"; sourceTree = "<group>"; };
+		60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PomocChatView+Screenshot.m"; sourceTree = "<group>"; };
 		60E6408318E59F9C0089B51F /* PomocWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocWindow.h; sourceTree = "<group>"; };
 		60E6408418E59F9C0089B51F /* PomocWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +241,8 @@
 			children = (
 				609FD58818ED4CE30091EE41 /* PomocChatView.h */,
 				609FD58918ED4CE30091EE41 /* PomocChatView.m */,
+				60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */,
+				60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -276,6 +282,7 @@
 				609FD58318ED41DD0091EE41 /* YSChatHead.h in Headers */,
 				60AC91B218E553A1006007E2 /* PMCore.h in Headers */,
 				60AC91BB18E553B8006007E2 /* Pomoc.h in Headers */,
+				60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */,
 				609FD58E18ED4DBC0091EE41 /* PomocViewController.h in Headers */,
 				609FD58A18ED4CE30091EE41 /* PomocChatView.h in Headers */,
 				60AC91B618E553A1006007E2 /* PMMessageConstants.h in Headers */,
@@ -405,6 +412,7 @@
 				60E6408618E59F9C0089B51F /* PomocWindow.m in Sources */,
 				609FD58F18ED4DBC0091EE41 /* PomocViewController.m in Sources */,
 				609FD58B18ED4CE30091EE41 /* PomocChatView.m in Sources */,
+				60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */,
 				609FD58418ED41DD0091EE41 /* YSChatHead.m in Sources */,
 				60AC91BC18E553B8006007E2 /* Pomoc.m in Sources */,
 			);

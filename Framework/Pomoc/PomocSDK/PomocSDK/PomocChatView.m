@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PomocChatView.h"
 #import "PomocCore.h"
+#import "PomocChatView+Screenshot.h"
 
 @interface PomocChatView () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
