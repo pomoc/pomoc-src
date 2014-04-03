@@ -11,6 +11,8 @@
 #import "PomocCore.h"
 #import "PomocChatView+Screenshot.h"
 
+#define CHAT_VIEW_HEADER_HEIGHT   40
+
 @interface PomocChatView () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
@@ -61,7 +63,7 @@
 
 - (void)setupHeaderView
 {
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
     self.headerView.backgroundColor = [UIColor blueColor];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:self.headerView.bounds];
@@ -80,7 +82,7 @@
     self.chatTextField.delegate = self;
     [self addSubview:self.chatTextField];
 
-    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, self.frame.size.width, self.frame.size.height - 2*30)];
+    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CHAT_VIEW_HEADER_HEIGHT, self.frame.size.width, self.frame.size.height - 2*30)];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
     [self addSubview:self.chatTableView];

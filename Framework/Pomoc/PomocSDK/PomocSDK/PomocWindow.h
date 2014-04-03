@@ -10,4 +10,6 @@
 
 @interface PomocWindow : UIWindow
 
++ (NSBundle *)frameworkBundle;
+
 @end

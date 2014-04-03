@@ -14,6 +14,7 @@
 				605B0CA518E3248100EA6717 /* ShellScript */,
 			);
 			dependencies = (
+				60D5E2B318EDA9C200CA9DE8 /* PBXTargetDependency */,
 				605B0CA418E3247600EA6717 /* PBXTargetDependency */,
 			);
 			name = BuildPomocSDK;
@@ -56,6 +57,10 @@
 		60AC91C818E55811006007E2 /* libPomocCore.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60AC91B018E553A1006007E2 /* libPomocCore.a */; };
 		60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */; };
 		60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */; };
+		60D5E2A718EDA97F00CA9DE8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D5E29418EDA6FE00CA9DE8 /* CoreFoundation.framework */; };
+		60D5E2AD18EDA97F00CA9DE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2AB18EDA97F00CA9DE8 /* InfoPlist.strings */; };
+		60D5E2B618EDAA3E00CA9DE8 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */; };
+		60D5E2B718EDAA3E00CA9DE8 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */; };
 		60E6408518E59F9C0089B51F /* PomocWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 60E6408318E59F9C0089B51F /* PomocWindow.h */; };
 		60E6408618E59F9C0089B51F /* PomocWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E6408418E59F9C0089B51F /* PomocWindow.m */; };
 /* End PBXBuildFile section */
@@ -74,6 +79,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 605B0C7018E322EB00EA6717;
 			remoteInfo = PomocSDK;
+		};
+		60D5E2B218EDA9C200CA9DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 605B0C6918E322EB00EA6717 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60D5E2A518EDA97F00CA9DE8;
+			remoteInfo = PomocSDKResources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -126,6 +138,13 @@
 		60AC91BA18E553B8006007E2 /* Pomoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pomoc.m; sourceTree = "<group>"; };
 		60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PomocChatView+Screenshot.h"; sourceTree = "<group>"; };
 		60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PomocChatView+Screenshot.m"; sourceTree = "<group>"; };
+		60D5E29418EDA6FE00CA9DE8 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		60D5E2A618EDA97F00CA9DE8 /* PomocSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomocSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		60D5E2AA18EDA97F00CA9DE8 /* PomocSDKResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocSDKResources-Info.plist"; sourceTree = "<group>"; };
+		60D5E2AC18EDA97F00CA9DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		60D5E2AE18EDA97F00CA9DE8 /* PomocSDKResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocSDKResources-Prefix.pch"; sourceTree = "<group>"; };
+		60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 		60E6408318E59F9C0089B51F /* PomocWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocWindow.h; sourceTree = "<group>"; };
 		60E6408418E59F9C0089B51F /* PomocWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +170,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60D5E2A318EDA97F00CA9DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D5E2A718EDA97F00CA9DE8 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -159,6 +186,7 @@
 			children = (
 				605B0C7618E322EB00EA6717 /* PomocSDK */,
 				605B0C8A18E322EB00EA6717 /* PomocSDKTests */,
+				60D5E2A818EDA97F00CA9DE8 /* PomocSDKResources */,
 				605B0C7318E322EB00EA6717 /* Frameworks */,
 				605B0C7218E322EB00EA6717 /* Products */,
 			);
@@ -169,6 +197,7 @@
 			children = (
 				605B0C7118E322EB00EA6717 /* libPomocSDK.a */,
 				605B0C8118E322EB00EA6717 /* PomocSDKTests.xctest */,
+				60D5E2A618EDA97F00CA9DE8 /* PomocSDK.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,6 +209,7 @@
 				605B0C7418E322EB00EA6717 /* Foundation.framework */,
 				605B0C8218E322EB00EA6717 /* XCTest.framework */,
 				605B0C8518E322EB00EA6717 /* UIKit.framework */,
+				60D5E29418EDA6FE00CA9DE8 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,6 +301,26 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		60D5E2A818EDA97F00CA9DE8 /* PomocSDKResources */ = {
+			isa = PBXGroup;
+			children = (
+				60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */,
+				60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */,
+				60D5E2A918EDA97F00CA9DE8 /* Supporting Files */,
+			);
+			path = PomocSDKResources;
+			sourceTree = "<group>";
+		};
+		60D5E2A918EDA97F00CA9DE8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60D5E2AA18EDA97F00CA9DE8 /* PomocSDKResources-Info.plist */,
+				60D5E2AB18EDA97F00CA9DE8 /* InfoPlist.strings */,
+				60D5E2AE18EDA97F00CA9DE8 /* PomocSDKResources-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -335,6 +385,23 @@
 			productReference = 605B0C8118E322EB00EA6717 /* PomocSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		60D5E2A518EDA97F00CA9DE8 /* PomocSDKResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60D5E2AF18EDA97F00CA9DE8 /* Build configuration list for PBXNativeTarget "PomocSDKResources" */;
+			buildPhases = (
+				60D5E2A218EDA97F00CA9DE8 /* Sources */,
+				60D5E2A318EDA97F00CA9DE8 /* Frameworks */,
+				60D5E2A418EDA97F00CA9DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PomocSDKResources;
+			productName = PomocSDKResources;
+			productReference = 60D5E2A618EDA97F00CA9DE8 /* PomocSDK.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -359,6 +426,7 @@
 				605B0C7018E322EB00EA6717 /* PomocSDK */,
 				605B0C8018E322EB00EA6717 /* PomocSDKTests */,
 				605B0C9F18E3246F00EA6717 /* BuildPomocSDK */,
+				60D5E2A518EDA97F00CA9DE8 /* PomocSDKResources */,
 			);
 		};
 /* End PBXProject section */
@@ -369,6 +437,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				605B0C8F18E322EB00EA6717 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60D5E2A418EDA97F00CA9DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D5E2B618EDAA3E00CA9DE8 /* thumbnail.png in Resources */,
+				60D5E2AD18EDA97F00CA9DE8 /* InfoPlist.strings in Resources */,
+				60D5E2B718EDAA3E00CA9DE8 /* thumbnail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILD_DIR}/${PROJECT_NAME}/${SF_WRAPPER_NAME}/${SF_TARGET_NAME}\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\ncp -R \"${BUILD_DIR}/${PROJECT_NAME}\" \"${SRCROOT}/Distribution\"";
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILD_DIR}/${PROJECT_NAME}/${SF_WRAPPER_NAME}/${SF_TARGET_NAME}\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/${SF_TARGET_NAME}.bundle\" \"${BUILD_DIR}/${PROJECT_NAME}/${SF_TARGET_NAME}.bundle\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\ncp -R \"${BUILD_DIR}/${PROJECT_NAME}\" \"${SRCROOT}/Distribution\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,6 +504,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60D5E2A218EDA97F00CA9DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -439,6 +524,11 @@
 			target = 605B0C7018E322EB00EA6717 /* PomocSDK */;
 			targetProxy = 605B0CA318E3247600EA6717 /* PBXContainerItemProxy */;
 		};
+		60D5E2B318EDA9C200CA9DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60D5E2A518EDA97F00CA9DE8 /* PomocSDKResources */;
+			targetProxy = 60D5E2B218EDA9C200CA9DE8 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -446,6 +536,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				605B0C8E18E322EB00EA6717 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		60D5E2AB18EDA97F00CA9DE8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60D5E2AC18EDA97F00CA9DE8 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -612,6 +710,41 @@
 			};
 			name = Release;
 		};
+		60D5E2B018EDA97F00CA9DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = "";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKResources/PomocSDKResources-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PomocSDKResources/PomocSDKResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = PomocSDK;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		60D5E2B118EDA97F00CA9DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PomocSDKResources/PomocSDKResources-Prefix.pch";
+				INFOPLIST_FILE = "PomocSDKResources/PomocSDKResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = PomocSDK;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -650,6 +783,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		60D5E2AF18EDA97F00CA9DE8 /* Build configuration list for PBXNativeTarget "PomocSDKResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60D5E2B018EDA97F00CA9DE8 /* Debug */,
+				60D5E2B118EDA97F00CA9DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
