@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AnnotateViewController : UIViewController
-
+- (id)initWithImage:(UIImage *)loadImage;
 @end
