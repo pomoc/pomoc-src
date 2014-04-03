@@ -11,6 +11,5 @@
 @interface ChatMessageTextCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *messageFrom;
 @property (weak, nonatomic) IBOutlet UILabel *messageText;
-@property (weak, nonatomic) IBOutlet UILabel *messageDate;
 
 @end

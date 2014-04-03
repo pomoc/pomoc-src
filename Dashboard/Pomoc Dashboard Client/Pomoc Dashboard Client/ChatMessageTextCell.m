@@ -31,4 +31,20 @@
     // Configure the view for the selected state
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    //update the UILabel's height based on text size
+    _messageText.numberOfLines = 0;
+    
+    CGSize maximumLabelSize = CGSizeMake(_messageText.frame.size.width, 9999);
+    CGSize expectedSize = [_messageText sizeThatFits:maximumLabelSize];
+
+    CGRect newFrame = _messageText.frame;
+    newFrame.size.height = expectedSize.height;
+    _messageText.frame = newFrame;
+    
+}
+
 @end
