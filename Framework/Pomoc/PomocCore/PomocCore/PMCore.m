@@ -40,13 +40,12 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppID:(NSString *)appId userId:(NSString *)userId delegate:(id<PMCoreDelegate>)delegate {
++ (void)initWithAppID:(NSString *)appId userId:(NSString *)userId {
     PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
         core.userId = userId;
         core.socket = [[SocketIO alloc] initWithDelegate:core];
-        core.delegate = delegate;
         
         [core connect];
     }
@@ -94,6 +93,11 @@
             completion([NSArray arrayWithArray:messages]);
         }
     }];
+}
+
++ (void)setDelegate:(id<PMCoreDelegate>)delegate
+{
+    [PMCore sharedInstance].delegate = delegate;
 }
 
 

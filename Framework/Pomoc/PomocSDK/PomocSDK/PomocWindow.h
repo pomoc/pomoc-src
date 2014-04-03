@@ -1,5 +1,5 @@
 //
-//  ChatViewController.h
+//  PomocWindow.h
 //  PomocSDK
 //
 //  Created by soedar on 28/3/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatViewController : UIViewController
+@interface PomocWindow : UIWindow
+
++ (NSBundle *)frameworkBundle;
 
 @end

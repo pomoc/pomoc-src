@@ -1,5 +1,5 @@
 //
-//  Pomoc.h
+//  PomocViewController.h
 //  PomocSDK
 //
 //  Created by soedar on 28/3/14.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Pomoc : NSObject
-
-+ (void)initWithAppId:(NSString *)appId userId:(NSString *)userId;
-+ (void)toggleChatHead;
+@interface PomocViewController : UIViewController
 
 @end

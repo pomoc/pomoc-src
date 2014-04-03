@@ -22,10 +22,11 @@
 		600C417818E59990009F43C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C415718E59990009F43C1 /* UIKit.framework */; };
 		600C418018E59990009F43C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 600C417E18E59990009F43C1 /* InfoPlist.strings */; };
 		600C418218E59990009F43C1 /* PomocSDKDriverAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 600C418118E59990009F43C1 /* PomocSDKDriverAppTests.m */; };
-		600C418C18E599BB009F43C1 /* PomocSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418B18E599BB009F43C1 /* PomocSDK.framework */; };
 		600C418E18E59A5F009F43C1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418D18E59A5F009F43C1 /* CFNetwork.framework */; };
 		600C419018E59A63009F43C1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C418F18E59A63009F43C1 /* Security.framework */; };
 		600C419218E59A6C009F43C1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 600C419118E59A6C009F43C1 /* libicucore.dylib */; };
+		60D5E2BB18EDAE4900CA9DE8 /* PomocSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D5E2BA18EDAE4900CA9DE8 /* PomocSDK.framework */; };
+		60D5E2BD18EDAE5600CA9DE8 /* PomocSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2BC18EDAE5600CA9DE8 /* PomocSDK.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +60,11 @@
 		600C417D18E59990009F43C1 /* PomocSDKDriverAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocSDKDriverAppTests-Info.plist"; sourceTree = "<group>"; };
 		600C417F18E59990009F43C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		600C418118E59990009F43C1 /* PomocSDKDriverAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocSDKDriverAppTests.m; sourceTree = "<group>"; };
-		600C418B18E599BB009F43C1 /* PomocSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PomocSDK.framework; path = ../Pomoc/PomocSDK/Distribution/PomocSDK.framework; sourceTree = "<group>"; };
 		600C418D18E59A5F009F43C1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		600C418F18E59A63009F43C1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		600C419118E59A6C009F43C1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		60D5E2BA18EDAE4900CA9DE8 /* PomocSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PomocSDK.framework; path = ../Pomoc/PomocSDK/Distribution/PomocSDK.framework; sourceTree = "<group>"; };
+		60D5E2BC18EDAE5600CA9DE8 /* PomocSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PomocSDK.bundle; path = ../Pomoc/PomocSDK/Distribution/PomocSDK.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +75,9 @@
 				600C419218E59A6C009F43C1 /* libicucore.dylib in Frameworks */,
 				600C419018E59A63009F43C1 /* Security.framework in Frameworks */,
 				600C418E18E59A5F009F43C1 /* CFNetwork.framework in Frameworks */,
+				60D5E2BB18EDAE4900CA9DE8 /* PomocSDK.framework in Frameworks */,
 				600C415618E59990009F43C1 /* CoreGraphics.framework in Frameworks */,
 				600C415818E59990009F43C1 /* UIKit.framework in Frameworks */,
-				600C418C18E599BB009F43C1 /* PomocSDK.framework in Frameworks */,
 				600C415418E59990009F43C1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,10 +117,11 @@
 		600C415218E59990009F43C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60D5E2BC18EDAE5600CA9DE8 /* PomocSDK.bundle */,
+				60D5E2BA18EDAE4900CA9DE8 /* PomocSDK.framework */,
 				600C419118E59A6C009F43C1 /* libicucore.dylib */,
 				600C418F18E59A63009F43C1 /* Security.framework */,
 				600C418D18E59A5F009F43C1 /* CFNetwork.framework */,
-				600C418B18E599BB009F43C1 /* PomocSDK.framework */,
 				600C415318E59990009F43C1 /* Foundation.framework */,
 				600C415518E59990009F43C1 /* CoreGraphics.framework */,
 				600C415718E59990009F43C1 /* UIKit.framework */,
@@ -250,6 +253,7 @@
 				600C416A18E59990009F43C1 /* Main_iPad.storyboard in Resources */,
 				600C416F18E59990009F43C1 /* Images.xcassets in Resources */,
 				600C416718E59990009F43C1 /* Main_iPhone.storyboard in Resources */,
+				60D5E2BD18EDAE5600CA9DE8 /* PomocSDK.bundle in Resources */,
 				600C415E18E59990009F43C1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +413,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../Pomoc/PomocSDK/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocSDK/Distribution,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
@@ -427,6 +432,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../Pomoc/PomocSDK/Distribution,
+					/Users/soedar/NUS/1314_Sem_2/CS3217/pomoc/Framework/Pomoc/PomocSDK/Distribution,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PomocSDKDriverApp/PomocSDKDriverApp-Prefix.pch";
@@ -496,6 +502,7 @@
 				600C418718E59990009F43C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		600C418818E59990009F43C1 /* Build configuration list for PBXNativeTarget "PomocSDKDriverAppTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +511,7 @@
 				600C418A18E59990009F43C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
