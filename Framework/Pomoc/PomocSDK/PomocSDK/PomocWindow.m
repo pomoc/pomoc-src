@@ -55,8 +55,8 @@
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGFloat width = bounds.size.width;
     CGFloat height = bounds.size.height;
-    self.chatView = [[PomocChatView alloc] initWithFrame:CGRectMake(0, 0, width*0.75, height*0.75)];
-    self.chatView.center = CGPointMake(width/2, height/2);
+    self.chatView = [[PomocChatView alloc] initWithFrame:CGRectMake(0, 30, width*0.75, height*0.75)];
+    self.chatView.center = CGPointMake(width/2, self.chatView.center.y);
     
     [self insertSubview:self.chatView belowSubview:self.chatHead];
 }
@@ -88,6 +88,7 @@
     }
     
     self.chatView.hidden = !self.chatView.hidden;
+    [self.chatView dismissKeyboard];
 }
 
 @end

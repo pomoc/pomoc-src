@@ -11,18 +11,23 @@
 #import "PomocCore.h"
 #import "PomocChatView+Screenshot.h"
 
-#define CHAT_VIEW_HEADER_HEIGHT   40
+#define CHAT_VIEW_HEADER_HEIGHT     30
+#define CHAT_VIEW_FOOTER_HEIGHT     30
 
 @interface PomocChatView () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UITextField *chatTextField;
 @property (nonatomic, strong) UITableView *chatTableView;
+@property (nonatomic, strong) UIView *footerView;
+
+@property (nonatomic, strong) UITextField *chatTextField;
 
 @property (nonatomic, strong) NSString *conversationId;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSString *userId;
+
+@property (nonatomic) CGFloat originalHeight;
 
 @end
 
@@ -36,6 +41,8 @@
         [self setupView];
         [self setupHeaderView];
         [self setupChatView];
+        [self setupFooterView];
+        [self adjustViewsToHeight:self.frame.size.height];
         
         self.messages = [@[] mutableCopy];
         self.users = [@[] mutableCopy];
@@ -45,6 +52,9 @@
         [PMCore startConversationWithCompletion:^(NSString *conversationId) {
             self.conversationId = conversationId;
         }];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -63,10 +73,10 @@
 
 - (void)setupHeaderView
 {
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
+    self.headerView = [[UIView alloc] init];
     self.headerView.backgroundColor = [UIColor blueColor];
     
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:self.headerView.bounds];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
     [headerLabel setText:@"Pomoc Chat"];
     [headerLabel setTextAlignment:NSTextAlignmentCenter];
     [headerLabel setTextColor:[UIColor whiteColor]];
@@ -75,17 +85,49 @@
     [self addSubview:self.headerView];
 }
 
-- (void)setupChatView
+- (void)setupFooterView
 {
-    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, self.frame.size.height-30, self.frame.size.width, 30)];
+    self.footerView = [[UIView alloc] init];
+    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 0, self.frame.size.width-40, CHAT_VIEW_FOOTER_HEIGHT)];
     [self.chatTextField setPlaceholder:@"Enter message here"];
     self.chatTextField.delegate = self;
-    [self addSubview:self.chatTextField];
+    [self.footerView addSubview:self.chatTextField];
+    [self addSubview:self.footerView];
+}
 
-    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CHAT_VIEW_HEADER_HEIGHT, self.frame.size.width, self.frame.size.height - 2*30)];
+- (void)setupChatView
+{
+    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
+    self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.chatTableView.allowsSelection = NO;
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [self.chatTableView addGestureRecognizer:gestureRecognizer];
+    
     [self addSubview:self.chatTableView];
+}
+
+- (void)adjustViewsToHeight:(CGFloat)height animate:(BOOL)animate
+{
+    if (animate) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [self adjustViewsToHeight:height];
+        }];
+    } else {
+        [self adjustViewsToHeight:height];
+    }
+}
+- (void)adjustViewsToHeight:(CGFloat)height
+{
+    self.headerView.frame = CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT);
+    self.footerView.frame = CGRectMake(0, height-CHAT_VIEW_FOOTER_HEIGHT, self.frame.size.width, CHAT_VIEW_FOOTER_HEIGHT);
+    self.chatTableView.frame = CGRectMake(0, CHAT_VIEW_HEADER_HEIGHT, self.frame.size.width, height - CHAT_VIEW_HEADER_HEIGHT - CHAT_VIEW_FOOTER_HEIGHT);
+    
+    CGRect viewFrame = self.frame;
+    viewFrame.size.height = height;
+    self.frame = viewFrame;
 }
 
 - (void)addMessage:(NSString *)message fromUser:(NSString *)user
@@ -118,14 +160,44 @@
 #pragma mark - TextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [PMCore sendMessage:self.chatTextField.text conversationId:self.conversationId];
+    if (![self.chatTextField.text isEqualToString:@""]) {
+        [PMCore sendMessage:self.chatTextField.text conversationId:self.conversationId];
+    }
     self.chatTextField.text = @"";
-    [textField resignFirstResponder];
     return NO;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+}
+
+#pragma mark - Touch Notifications
+
+- (void)dismissKeyboard
+{
+    if ([self.chatTextField isFirstResponder]) {
+        [self.chatTextField resignFirstResponder];
+    }
+}
+
+#pragma mark - Keyboard Notification
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *keyboardInfo = [notification userInfo];
+    NSValue *frameValue = keyboardInfo[UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardFrame = [frameValue CGRectValue];
+    
+    // This will probably cause all sort of mayhem for other orientations
+    self.originalHeight = self.frame.size.height;
+    CGFloat newHeight = [UIScreen mainScreen].bounds.size.height - keyboardFrame.size.height - self.frame.origin.x;
+    [self adjustViewsToHeight:newHeight animate:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    [self adjustViewsToHeight:self.originalHeight animate:YES];
 }
 
 #pragma mark - UITableView datasource/delegate

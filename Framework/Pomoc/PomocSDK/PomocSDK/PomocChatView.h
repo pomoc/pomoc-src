@@ -10,4 +10,6 @@
 
 @interface PomocChatView : UIView
 
+- (void)dismissKeyboard;
+
 @end
