@@ -10,6 +10,7 @@
 
 @interface Pomoc : NSObject
 
-+ (void)showChatViewController;
++ (void)initWithAppId:(NSString *)appId userId:(NSString *)userId;
++ (void)toggleChatHead;
 
 @end

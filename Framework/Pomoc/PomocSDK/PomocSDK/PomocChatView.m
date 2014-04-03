@@ -37,7 +37,8 @@
         self.messages = [@[] mutableCopy];
         self.users = [@[] mutableCopy];
         self.userId = @"customer";
-        [PMCore initWithAppID:@"anc" userId:self.userId delegate:self];
+        
+        [PMCore setDelegate:self];
         [PMCore startConversationWithCompletion:^(NSString *conversationId) {
             self.conversationId = conversationId;
         }];

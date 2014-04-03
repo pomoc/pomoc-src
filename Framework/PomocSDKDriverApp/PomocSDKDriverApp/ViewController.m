@@ -20,7 +20,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Pomoc showChatViewController];
+    [Pomoc initWithAppId:@"anc" userId:@"customer"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,7 +31,7 @@
 
 - (IBAction)buttonPressed:(id)sender
 {
-    NSLog(@"Button is Pressed");
+    [Pomoc toggleChatHead];
 }
 
 @end

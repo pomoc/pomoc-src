@@ -92,6 +92,10 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self setOriginalSize];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(chatHeadPressed:)]) {
+        [self.delegate chatHeadPressed:self];
+    }
 }
 
 - (void)drag:(UIPanGestureRecognizer *)pan {

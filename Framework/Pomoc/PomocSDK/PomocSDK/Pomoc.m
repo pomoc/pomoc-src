@@ -9,10 +9,13 @@
 #import "Pomoc.h"
 #import "PomocWindow.h"
 #import "PomocViewController.h"
+#import "PomocCore.h"
 
 @interface Pomoc ()
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *appId;
 
 @end
 
@@ -28,23 +31,24 @@
         
         [sharedInstance.window setWindowLevel:UIWindowLevelStatusBar];
         [sharedInstance.window setRootViewController:[[PomocViewController alloc] init]];
-        [sharedInstance.window setHidden:NO];
     });
     
     return sharedInstance;
 }
 
-+ (void)showChatViewController
++ (void)initWithAppId:(NSString *)appId userId:(NSString *)userId
 {
     Pomoc *pomoc = [Pomoc sharedInstance];
+    pomoc.userId = userId;
+    pomoc.appId = appId;
     
-    /*
-    ChatViewController *viewController = [[ChatViewController alloc] init];
-    [viewController.view setBackgroundColor:[UIColor greenColor]];
-    
-    [pomoc.pomocController presentViewController:viewController animated:NO completion:nil];
-    viewController.view.frame = CGRectMake(0, 0, viewController.view.frame.size.width, 300);
-     */
+    [PMCore initWithAppID:appId userId:userId];
+}
+
++ (void)toggleChatHead
+{
+    Pomoc *pomoc = [Pomoc sharedInstance];
+    pomoc.window.hidden = !pomoc.window.hidden;
 }
 
 @end

@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YSChatHead : UIImageView
+@class YSChatHead;
+
+#pragma mark - Delegate Definition
+@protocol YSChatHeadDelegate <NSObject>
+
+- (void)chatHeadPressed:(YSChatHead *)chatHead;
+
+@end
+
+
+#pragma mark - YSChatHead definition
+
+@interface YSChatHead : UIView
 
 - (id)initWithFrame:(CGRect)frame image:(UIImage *)image;
+
+@property (nonatomic, weak) id<YSChatHeadDelegate> delegate;
 
 @end
