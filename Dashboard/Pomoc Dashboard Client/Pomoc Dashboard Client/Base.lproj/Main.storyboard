@@ -173,7 +173,7 @@
                                                     <outlet property="messageText" destination="OvQ-yx-4ha" id="BZ1-gG-0kB"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatPictureCell" rowHeight="170" id="2hy-kf-t0X" customClass="ChatMessagePictureCell">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatPictureCell" rowHeight="170" id="2hy-kf-t0X" customClass="ChatMessagePictureCell">
                                                 <rect key="frame" x="0.0" y="92" width="751" height="170"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hy-kf-t0X" id="kUE-QT-UTC">
@@ -187,10 +187,10 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="editPicturePressed:" destination="2hy-kf-t0X" eventType="touchUpInside" id="8qt-nf-B3p"/>
+                                                                <action selector="annotateActionPressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="WRt-vQ-GuM"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KHS-1W-Yv9">
+                                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KHS-1W-Yv9">
                                                             <rect key="frame" x="10" y="36" width="120" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>

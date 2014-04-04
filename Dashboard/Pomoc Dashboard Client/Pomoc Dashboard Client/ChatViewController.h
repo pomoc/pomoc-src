@@ -25,6 +25,9 @@
 - (IBAction)viewPastChat:(id)sender;
 - (IBAction)viewAction:(id)sender;
 
+// Annotation
+- (IBAction)annotateActionPressed:(id)sender;
+
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
 - (IBAction)selectPicturePressed:(id)sender;
