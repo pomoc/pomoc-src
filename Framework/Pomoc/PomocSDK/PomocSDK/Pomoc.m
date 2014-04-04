@@ -7,7 +7,9 @@
 //
 
 #import "Pomoc.h"
-#import "ChatViewController.h"
+#import "PomocWindow.h"
+#import "PomocViewController.h"
+#import "PomocCore.h"
 
 @interface Pomoc ()
 
@@ -23,23 +25,26 @@
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
-        sharedInstance.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        sharedInstance.window = [[PomocWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
+        [sharedInstance.window setWindowLevel:UIWindowLevelStatusBar];
+        [sharedInstance.window setRootViewController:[[PomocViewController alloc] init]];
     });
     
     return sharedInstance;
 }
 
-+ (void)showChatViewController
++ (void)initWithAppId:(NSString *)appId secretKey:(NSString *)secretKey
+{
+    [Pomoc sharedInstance];
+    [PMCore initWithAppID:appId secretKey:secretKey];
+    [PMCore setUserId:@"customer"];
+}
+
++ (void)toggleChatHead
 {
     Pomoc *pomoc = [Pomoc sharedInstance];
-    
-    if (pomoc.window.hidden == YES) {
-        [pomoc.window setWindowLevel:UIWindowLevelStatusBar];
-        [pomoc.window setHidden:NO];
-    }
-    
-    ChatViewController *viewController = [[ChatViewController alloc] init];
-    [pomoc.window setRootViewController:viewController];
+    pomoc.window.hidden = !pomoc.window.hidden;
 }
 
 @end

@@ -22,13 +22,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592ACC18EE8715006D5DEC /* PMConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592ACD18EE8715006D5DEC /* PMConversation.m */; };
+		60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */; };
+		60592AD818EE8962006D5DEC /* PMConversation+PMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592AD618EE8962006D5DEC /* PMConversation+PMCore.m */; };
 		605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */; };
 		605B0C1818E2DCFD00EA6717 /* PMChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */; };
 		605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FC18A418E1EB6500BF4C95 /* PMMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CAE18E32FEE00EA6717 /* PMInternalMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CAF18E32FEE00EA6717 /* PMChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0BF018E278E800EA6717 /* PomocCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6068F2D318E1E40B005B87F4 /* PMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605B0CC018E34E5900EA6717 /* PMMessageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CE18E1E40B005B87F4 /* Foundation.framework */; };
@@ -68,6 +71,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		60592ACC18EE8715006D5DEC /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
+		60592ACD18EE8715006D5DEC /* PMConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMConversation.m; sourceTree = "<group>"; };
+		60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMConversation+PMCore.h"; sourceTree = "<group>"; };
+		60592AD618EE8962006D5DEC /* PMConversation+PMCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PMConversation+PMCore.m"; sourceTree = "<group>"; };
+		60592AD918EE8973006D5DEC /* PMConversation_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMConversation_Private.h; sourceTree = "<group>"; };
+		60592ADA18EE8A46006D5DEC /* PMCore_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMCore_Private.h; sourceTree = "<group>"; };
 		605B0BF018E278E800EA6717 /* PomocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
 		605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMInternalMessage.m; sourceTree = "<group>"; };
@@ -105,7 +114,6 @@
 		6068F35118E1E629005B87F4 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		60FC18A418E1EB6500BF4C95 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
 		60FC18A518E1EB6500BF4C95 /* PMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessage.m; sourceTree = "<group>"; };
-		60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60592AD018EE871D006D5DEC /* PMConversation */ = {
+			isa = PBXGroup;
+			children = (
+				60592AD918EE8973006D5DEC /* PMConversation_Private.h */,
+				60592ACC18EE8715006D5DEC /* PMConversation.h */,
+				60592ACD18EE8715006D5DEC /* PMConversation.m */,
+				60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */,
+				60592AD618EE8962006D5DEC /* PMConversation+PMCore.m */,
+			);
+			name = PMConversation;
+			sourceTree = "<group>";
+		};
 		605B0C1518E2D60100EA6717 /* PMMessage */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,11 +198,12 @@
 		6068F2D018E1E40B005B87F4 /* PomocCore */ = {
 			isa = PBXGroup;
 			children = (
+				60592AD018EE871D006D5DEC /* PMConversation */,
 				605B0C1518E2D60100EA6717 /* PMMessage */,
 				605B0BF018E278E800EA6717 /* PomocCore.h */,
-				60FC18E418E1F2F800BF4C95 /* PMCoreDelegate.h */,
 				6068F2D318E1E40B005B87F4 /* PMCore.h */,
 				6068F2D518E1E40B005B87F4 /* PMCore.m */,
+				60592ADA18EE8A46006D5DEC /* PMCore_Private.h */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
 			);
 			path = PomocCore;
@@ -267,7 +288,8 @@
 				605B0CAE18E32FEE00EA6717 /* PMInternalMessage.h in Headers */,
 				605B0CAF18E32FEE00EA6717 /* PMChatMessage.h in Headers */,
 				605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */,
-				605B0CB118E32FEE00EA6717 /* PMCoreDelegate.h in Headers */,
+				60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */,
+				60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */,
 				605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */,
 				605B0CC018E34E5900EA6717 /* PMMessageConstants.h in Headers */,
 				605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */,
@@ -393,11 +415,13 @@
 				6068F35718E1E629005B87F4 /* base64.c in Sources */,
 				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
+				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
 				6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */,
 				6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */,
 				6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				6068F35618E1E629005B87F4 /* SocketIOTransportXHR.m in Sources */,
+				60592AD818EE8962006D5DEC /* PMConversation+PMCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

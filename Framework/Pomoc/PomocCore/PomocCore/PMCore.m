@@ -7,6 +7,7 @@
 //
 
 #import "PMCore.h"
+#import "PMCore_Private.h"
 
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
@@ -15,15 +16,23 @@
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
 
+#import "PMConversation.h"
+#import "PMConversation+PMCore.h"
+
 #define MESSAGE_USER_ID   @"userId"
 #define MESSAGE_APP_ID    @"appId"
 
 @interface PMCore () <SocketIODelegate>
 
 @property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong) NSString *secretKey;
+
 @property (nonatomic, strong) NSString *userId;
+
 @property (nonatomic, strong) SocketIO *socket;
 @property (nonatomic, weak) id<PMCoreDelegate> delegate;
+
+@property (nonatomic, strong) NSMutableDictionary *conversations;
 
 @end
 
@@ -40,37 +49,45 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppID:(NSString *)appId userId:(NSString *)userId delegate:(id<PMCoreDelegate>)delegate {
++ (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey {
     PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
-        core.userId = userId;
+        core.secretKey = secretKey;
         core.socket = [[SocketIO alloc] initWithDelegate:core];
-        core.delegate = delegate;
+        core.conversations = [NSMutableDictionary dictionary];
         
         [core connect];
     }
 }
 
-+ (void)startConversationWithCompletion:(void (^)(NSString *conversationId))completion
++ (void)setUserId:(NSString *)userId
+{
+    [PMCore sharedInstance].userId = userId;
+}
+
++ (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *initMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeNewConversation];
-   
     
     [core sendMessage:initMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
-            completion(jsonResponse[@"conversationId"]);
+            NSString *conversationId = jsonResponse[@"conversationId"];
+            PMConversation *conversation = [[PMConversation alloc] initWithConversationId:conversationId];
+            
+            @synchronized(core.conversations) {
+                core.conversations[conversationId] = conversation;
+            }
+            completion(conversation);
         }
     }];
 }
 
-+ (void)sendMessage:(NSString *)message conversationId:(NSString *)conversationId
++ (void)sendTextMessage:(NSString *)message conversationId:(NSString *)conversationId
 {
     PMCore *core = [PMCore sharedInstance];
-
     PMMessage *chatMessage = [PMMessage chatMessageWithMessage:message conversationId:conversationId];
-    
     [core sendMessage:chatMessage withAcknowledge:nil];
 }
 
@@ -96,13 +113,19 @@
     }];
 }
 
++ (void)setDelegate:(id<PMCoreDelegate>)delegate
+{
+    [PMCore sharedInstance].delegate = delegate;
+}
+
++ (void)observeNewConversations
+{
+    [[PMCore sharedInstance] observeNewConversations];
+}
 
 - (void)connect
 {
     [self.socket connectToHost:@"54.255.135.169" onPort:3217];
-    
-    // Join global channel for appId
-    [self observeNewConversations];
 }
 
 - (void)observeNewConversations
@@ -138,12 +161,24 @@
     
     if ([packet.name isEqualToString:@"chatMessage"]) {
         PMChatMessage *chatMessage = [PMMessage chatMessageFromJsonData:data];
-        if ([self.delegate respondsToSelector:@selector(didReceiveMessage:conversationId:)]) {
-            [self.delegate didReceiveMessage:chatMessage conversationId:data[@"conversationId"]];
+        
+        PMConversation *conversation = self.conversations[chatMessage.conversationId];
+        if (conversation) {
+            [conversation addMessage:chatMessage];
         }
     } else if ([packet.name isEqualToString:@"newConversation"]) {
         if ([self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
-            [self.delegate newConversationCreated:data[@"conversationId"]];
+            NSString *conversationId = data[@"conversationId"];
+            
+            PMConversation *conversation = self.conversations[conversationId];
+            if (!conversation) {
+                conversation = [[PMConversation alloc] initWithConversationId:conversationId];
+                @synchronized(self.conversations) {
+                    self.conversations[conversationId] = conversation;
+                }
+            }
+            
+            [self.delegate newConversationCreated:conversation];
         }
     }
 }

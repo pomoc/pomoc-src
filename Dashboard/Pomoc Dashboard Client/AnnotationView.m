@@ -40,16 +40,12 @@ typedef struct {
     if (self) {
         // Initialization code
         [self setMultipleTouchEnabled:NO];
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.0]];
         drawingQueue = dispatch_queue_create("drawingQueue", NULL);
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addDot:)];
         [self addGestureRecognizer:tap];
-        
-        UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
-        [self addGestureRecognizer:pinch];
-        
-        
+       
         selectedColor = [UIColor blackColor];
         offset = CGPointZero;
     }
@@ -62,19 +58,6 @@ typedef struct {
 
 - (void)addDot:(UITapGestureRecognizer *)t {
     
-}
-
-- (void)pinch:(UIPinchGestureRecognizer *)p {
-    if (!zoom) zoom = 1.0;
-    CGFloat trans = zoom * p.scale;
-    
-    if (p.state == UIGestureRecognizerStateEnded) {
-        zoom *= p.scale;
-        trans = zoom;
-    }
-    
-    CGAffineTransform transform = CGAffineTransformMakeScale(trans, trans);
-    self.transform = transform;
 }
 
 - (void)eraseDrawing {
@@ -140,21 +123,22 @@ typedef struct {
                 lastSegmentOfPrev = ls[3];
             }
             
-            UIGraphicsBeginImageContextWithOptions(bounds.size, YES, 0.0);
+            CGFloat xScale = self.transform.a;
             
-            if (!incrementalImage) {
-                UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:bounds];
-                [[UIColor whiteColor] setFill];
-                [rectPath fill];
-            }
-            
+            UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, xScale);
+            [[UIColor clearColor] set];
+           
             [incrementalImage drawAtPoint:offset];
             [selectedColor setStroke];
             [selectedColor setFill];
+            if (selectedColor == [UIColor whiteColor]) {
+                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
+            } 
             [offsetPath stroke];
             [offsetPath fill];
             incrementalImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
+           
             [offsetPath removeAllPoints];
             dispatch_async(dispatch_get_main_queue(), ^{
                 bufIdx = 0;

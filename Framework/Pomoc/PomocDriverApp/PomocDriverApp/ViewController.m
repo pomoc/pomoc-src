@@ -9,14 +9,14 @@
 #import "ViewController.h"
 #import "PomocCore.h"
 
-@interface ViewController () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <PMCoreDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 @property (nonatomic, weak) IBOutlet UIButton *startConversation;
 @property (nonatomic, weak) IBOutlet UITableView *chatTableView;
 
-@property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) PMConversation *conversation;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSString *userId;
@@ -33,7 +33,10 @@
     self.users = [@[] mutableCopy];
     self.userId = @"customer";
     
-    [PMCore initWithAppID:@"anc" userId:self.userId delegate:self];
+    [PMCore initWithAppID:@"anc" secretKey:@"mySecret"];
+    [PMCore setUserId:self.userId];
+    [PMCore setDelegate:self];
+    [PMCore observeNewConversations];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,8 +50,9 @@
 - (IBAction)startConversationPressed:(UIButton *)button
 {
     [button setEnabled:NO];
-    [PMCore startConversationWithCompletion:^(NSString *conversationId) {
-        self.conversationId = conversationId;
+    [PMCore startConversationWithCompletion:^(PMConversation *conversation) {
+        self.conversation = conversation;
+        self.conversation.delegate = self;
         [self.sendButton setHidden:NO];
         [self.textField setHidden:NO];
         [self.chatTableView setHidden:NO];
@@ -58,23 +62,22 @@
 
 - (IBAction)sendPressed:(UIButton *)button
 {
-    [PMCore sendMessage:self.textField.text conversationId:self.conversationId];
+    [self.conversation sendTextMessage:self.textField.text];
     self.textField.text = @"";
 }
 
-#pragma mark - PMCoreDelegate
+#pragma mark - PMCore Delegate
 
-- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversation
+- (void)newConversationCreated:(PMConversation *)conversation
 {
-    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
-        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
-        [self addMessage:chatMessage.message fromUser:chatMessage.userId];
-    }
+    NSLog(@"New Channel created %@", conversation);
 }
 
-- (void)newConversationCreated:(NSString *)conversationId
+#pragma mark - PMConversation Delegate
+
+- (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    NSLog(@"New Channel created %@", conversationId);
+    [self addMessage:chatMessage.message fromUser:chatMessage.userId];
 }
 
 #pragma mark - Adding Message
