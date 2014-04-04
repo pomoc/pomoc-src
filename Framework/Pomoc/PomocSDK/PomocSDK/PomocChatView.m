@@ -14,7 +14,7 @@
 #define CHAT_VIEW_HEADER_HEIGHT     30
 #define CHAT_VIEW_FOOTER_HEIGHT     30
 
-@interface PomocChatView () <PMCoreDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface PomocChatView () <PMConversationDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *chatTableView;
@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UITextField *chatTextField;
 
-@property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) PMConversation *conversation;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSString *userId;
@@ -48,9 +48,9 @@
         self.users = [@[] mutableCopy];
         self.userId = @"customer";
         
-        [PMCore setDelegate:self];
-        [PMCore startConversationWithCompletion:^(NSString *conversationId) {
-            self.conversationId = conversationId;
+        [PMCore startConversationWithCompletion:^(PMConversation *conversation) {
+            self.conversation = conversation;
+            self.conversation.delegate = self;
         }];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -155,18 +155,10 @@
     [self.chatTableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
-#pragma mark - PomocCore Delegate
-- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversation
+#pragma mark - PMMessage Delegate
+- (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
-        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
-        [self addMessage:chatMessage.message fromUser:chatMessage.userId];
-    }
-}
-
-- (void)newConversationCreated:(NSString *)conversationId
-{
-    NSLog(@"New Channel created %@", conversationId);
+    [self addMessage:chatMessage.message fromUser:chatMessage.userId];
 }
 
 
@@ -174,7 +166,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (![self.chatTextField.text isEqualToString:@""]) {
-        [PMCore sendMessage:self.chatTextField.text conversationId:self.conversationId];
+        [self.conversation sendTextMessage:self.chatTextField.text];
     }
     self.chatTextField.text = @"";
     return NO;

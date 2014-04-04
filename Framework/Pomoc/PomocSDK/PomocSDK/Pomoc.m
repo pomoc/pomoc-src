@@ -14,8 +14,6 @@
 @interface Pomoc ()
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSString *appId;
 
 @end
 
@@ -36,13 +34,11 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppId:(NSString *)appId userId:(NSString *)userId
++ (void)initWithAppId:(NSString *)appId secretKey:(NSString *)secretKey
 {
-    Pomoc *pomoc = [Pomoc sharedInstance];
-    pomoc.userId = userId;
-    pomoc.appId = appId;
-    
-    [PMCore initWithAppID:appId userId:userId];
+    [Pomoc sharedInstance];
+    [PMCore initWithAppID:appId secretKey:secretKey];
+    [PMCore setUserId:@"customer"];
 }
 
 + (void)toggleChatHead

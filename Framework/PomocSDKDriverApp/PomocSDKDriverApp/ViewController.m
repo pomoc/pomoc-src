@@ -20,7 +20,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Pomoc initWithAppId:@"anc" userId:@"customer"];
+    [Pomoc initWithAppId:@"anc" secretKey:@"secret"];
 }
 
 - (void)didReceiveMemoryWarning
