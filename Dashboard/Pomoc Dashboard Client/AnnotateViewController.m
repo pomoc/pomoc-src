@@ -60,9 +60,11 @@
     
     [self.view addSubview:drawArea];
      
-    int s = BUTTON_SIDE_OFFSET * 2 + BUTTON_SIZE;
-    int height = s * NUM_COLORS - ((NUM_COLORS-1) * BUTTON_SIDE_OFFSET);
-    CGRect pFrame = CGRectMake(0,(self.view.bounds.size.height-height)/2, s, height);
+    //int s = BUTTON_SIDE_OFFSET * 2 + BUTTON_SIZE;
+    //int height = s * NUM_COLORS - ((NUM_COLORS-1) * BUTTON_SIDE_OFFSET);
+    //CGRect pFrame = CGRectMake(0,(self.view.bounds.size.height-height)/2, s, height);
+    
+    CGRect pFrame = CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50);
     palette = [[AnnotationPalette alloc] initWithFrame:pFrame];
     palette.delegate = self;
     [self.view addSubview:palette];

@@ -27,7 +27,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate> {
+@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, AnnotateViewControllerDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -561,10 +561,10 @@
     return nil;
 }
 
-
-- (void) sayHello
+#pragma mark - Upload View Controller Delegate
+- (void)userCompleteAnnotation:(UIImage *)image
 {
-    NSLog(@"hello!");
+    NSLog(@"called user complete annotation !");
 }
 
 @end

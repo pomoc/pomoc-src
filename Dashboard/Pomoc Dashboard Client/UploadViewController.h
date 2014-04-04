@@ -23,5 +23,3 @@
 @property (nonatomic, assign) id  delegate;
 
 @end
-
-_delegate 

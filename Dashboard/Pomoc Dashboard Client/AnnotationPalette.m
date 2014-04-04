@@ -41,14 +41,20 @@
 - (void)initButtons {
     buttons = [NSMutableArray array];
     for (int i=0; i<NUM_COLORS; i++) {
-        int offset = i * BUTTON_SIDE_OFFSET;
-        int top = BUTTON_SIDE_OFFSET;
-        if (i == 0) offset = 0;
         
-        CGRect btnFrame = CGRectMake(BUTTON_SIDE_OFFSET, i * BUTTON_SIZE+offset+top, BUTTON_SIZE, BUTTON_SIZE);
+        //int offset = i * BUTTON_SIDE_OFFSET;
+        //int top = BUTTON_SIDE_OFFSET;
+        
+        //CGRect btnFrame = CGRectMake(BUTTON_SIDE_OFFSET, i * BUTTON_SIZE+offset+top, BUTTON_SIZE, BUTTON_SIZE);
+        CGRect btnFrame = CGRectMake(i * BUTTON_SIZE, 0, BUTTON_SIZE, BUTTON_SIZE);
         UIButton *b = [[UIButton alloc] initWithFrame:btnFrame];
+        CGFloat x = i * BUTTON_SIZE;
+        NSLog(@"button size == %f", x);
+        
+        //[b.layer setBorderWidth: 0.0];
+        // b.layer.borderWidth = 0.0;
         [b.layer setBorderColor: [[UIColor grayColor] CGColor]];
-        [b.layer setBorderWidth: 4.0];
+        //[b.layer setBorderWidth: 4.0];
         [b.layer setMasksToBounds:YES];
         //[b.layer setCornerRadius:BUTTON_SIZE/2.0];
         [b setAlpha:0.5];
