@@ -131,10 +131,14 @@ typedef struct {
             [incrementalImage drawAtPoint:offset];
             [selectedColor setStroke];
             [selectedColor setFill];
+            if (selectedColor == [UIColor whiteColor]) {
+                CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeClear);
+            } 
             [offsetPath stroke];
             [offsetPath fill];
             incrementalImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
+           
             [offsetPath removeAllPoints];
             dispatch_async(dispatch_get_main_queue(), ^{
                 bufIdx = 0;
