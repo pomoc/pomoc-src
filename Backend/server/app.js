@@ -5,6 +5,7 @@ var express = require('express');
 var socket_io = require('socket.io');
 
 var app = express();
+app.use(express.static(__dirname + '/site'));
 // Error logging / handling
 app.use(function(err, req, res, next) {
     res.send(500, 'Something broke!');
