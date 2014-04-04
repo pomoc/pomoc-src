@@ -114,6 +114,7 @@
 {
     UIImage *editedImage = [self saveImage];
     [_delegate userCompleteAnnotation:editedImage];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UIImage *)saveImage {
