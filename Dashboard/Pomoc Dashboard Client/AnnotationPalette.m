@@ -20,6 +20,9 @@
         [self initColors];
         [self initButtons];
     }
+    
+    self.backgroundColor = [[UIColor alloc] initWithWhite:1 alpha:1];
+    
     return self;
 }
 
@@ -48,16 +51,14 @@
         //CGRect btnFrame = CGRectMake(BUTTON_SIDE_OFFSET, i * BUTTON_SIZE+offset+top, BUTTON_SIZE, BUTTON_SIZE);
         CGRect btnFrame = CGRectMake(i * BUTTON_SIZE, 0, BUTTON_SIZE, BUTTON_SIZE);
         UIButton *b = [[UIButton alloc] initWithFrame:btnFrame];
-        CGFloat x = i * BUTTON_SIZE;
-        NSLog(@"button size == %f", x);
-        
+    
         //[b.layer setBorderWidth: 0.0];
-        // b.layer.borderWidth = 0.0;
-        [b.layer setBorderColor: [[UIColor grayColor] CGColor]];
+        b.layer.borderWidth = 0.0;
+        //[b.layer setBorderColor: [[UIColor grayColor] CGColor]];
         //[b.layer setBorderWidth: 4.0];
         [b.layer setMasksToBounds:YES];
         //[b.layer setCornerRadius:BUTTON_SIZE/2.0];
-        [b setAlpha:0.5];
+        [b setAlpha:0.40];
         
         [b setBackgroundColor:colors[i%[colors count]]];
         [b addTarget:self action:@selector(colorTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -70,16 +71,23 @@
 
 - (void)colorTap:(UIButton *)b {
     [self.delegate tap:b];
+//    
+//    for (int i=0; i<[buttons count]; i++){
+//        [((UIButton *)buttons[i]).layer setBorderColor: [[UIColor grayColor] CGColor]];
+//        [((UIButton *)buttons[i]).layer setBorderWidth: 4.0];
+//        [(UIButton *)buttons[i] setAlpha:0.5];
+//    }
+//    
+//    [b.layer setBorderColor: [[UIColor blackColor] CGColor]];
+//    [b.layer setBorderWidth: 4.0];
+//    [b setAlpha:1.0];
     
-    for (int i=0; i<[buttons count]; i++){
-        [((UIButton *)buttons[i]).layer setBorderColor: [[UIColor grayColor] CGColor]];
-        [((UIButton *)buttons[i]).layer setBorderWidth: 4.0];
-        [(UIButton *)buttons[i] setAlpha:0.5];
+    for (int i =0; i < [buttons count]; i ++) {
+        [(UIButton *)buttons[i] setAlpha:0.40];
     }
     
-    [b.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [b.layer setBorderWidth: 4.0];
-    [b setAlpha:1.0];
+    [b setAlpha: 1];
+    
 }
 
 - (void)undo {

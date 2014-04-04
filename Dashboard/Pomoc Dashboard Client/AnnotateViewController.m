@@ -42,7 +42,11 @@
     [self.view addGestureRecognizer:pinch];
         
     [self.view setBackgroundColor:[UIColor grayColor]];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(editedImage:)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     // Initialize image
@@ -106,14 +110,18 @@
 }
 
 
+- (IBAction) editedImage:(id)sender
+{
+    UIImage *editedImage = [self saveImage];
+    [_delegate userCompleteAnnotation:editedImage];
+}
+
 - (UIImage *)saveImage {
     UIGraphicsBeginImageContext(drawArea.frame.size);
     [[drawArea layer] renderInContext:UIGraphicsGetCurrentContext()];
     [[bgView layer] renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *savedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    [self.delegate userCompleteAnnotation:savedImage];
     return savedImage;
 }
 

@@ -104,20 +104,8 @@
     NSLog(@"user sending message!");
     NSString *userInput = _userTextInput.text;
     [PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
-//    
     [_userTextInput setText:@""];
     
-}
-
-- (IBAction)selectPicturePressed:(id)sender {
-    
-
-    //UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    //picker.delegate = self;
-    //picker.allowsEditing = YES;
-    //picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    //[self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (IBAction)annotateActionPressed:(id)sender {
@@ -132,7 +120,7 @@
     if (imv) {
         UIImage *picture = imv.image;
         AnnotateViewController *annotateVC = [[AnnotateViewController alloc] initWithImage:picture];
-        
+        annotateVC.delegate = self;
         [self.navigationController pushViewController:annotateVC animated:YES];
     }
 }
@@ -565,6 +553,7 @@
 - (void)userCompleteAnnotation:(UIImage *)image
 {
     NSLog(@"called user complete annotation !");
+    
 }
 
 @end
