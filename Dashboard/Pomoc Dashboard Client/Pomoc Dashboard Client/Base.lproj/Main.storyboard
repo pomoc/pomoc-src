@@ -181,7 +181,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aaJ-dM-i0o">
-                                                            <rect key="frame" x="138" y="42" width="77" height="30"/>
+                                                            <rect key="frame" x="138" y="56" width="77" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="EditImage">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,7 +202,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6aK-oW-7FO">
-                                                            <rect key="frame" x="141" y="74" width="77" height="30"/>
+                                                            <rect key="frame" x="138" y="30" width="77" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="View">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -269,7 +269,7 @@
                                         </state>
                                         <connections>
                                             <action selector="selectPicturePressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="aw0-DI-AJx"/>
-                                            <segue destination="epF-RJ-mXK" kind="popover" popoverAnchorView="vkX-xP-fu3" id="2On-uU-yGs">
+                                            <segue destination="epF-RJ-mXK" kind="popover" identifier="uploadPicture" popoverAnchorView="vkX-xP-fu3" id="2On-uU-yGs">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -371,43 +371,37 @@
             <objects>
                 <viewController id="mTl-jf-a1g" customClass="ContactInfoViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="top" id="wfS-c6-KUg">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="337"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: xxxxxxxx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e4k-VB-Vhh">
-                                <rect key="frame" x="7" y="51" width="209" height="24"/>
+                                <rect key="frame" x="7" y="7" width="209" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OBZ-uP-Dm8">
-                                <rect key="frame" x="7" y="9" width="236" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total time on app : 95 mins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t5m-k7-qAY">
-                                <rect key="frame" x="7" y="83" width="209" height="24"/>
+                                <rect key="frame" x="7" y="32" width="209" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iS7-CS-UQD">
-                                <rect key="frame" x="7" y="115" width="209" height="24"/>
+                                <rect key="frame" x="7" y="58" width="209" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xbz-yC-3tS">
-                                <rect key="frame" x="7" y="138" width="223" height="264"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" id="xbz-yC-3tS">
+                                <rect key="frame" x="7" y="82" width="223" height="201"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="TGg-eH-NqX">
-                                        <rect key="frame" x="0.0" y="22" width="223" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="30" id="TGg-eH-NqX">
+                                        <rect key="frame" x="0.0" y="22" width="223" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGg-eH-NqX" id="KK8-uK-TcU">
-                                            <rect key="frame" x="0.0" y="0.0" width="223" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="223" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -418,13 +412,13 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="pnI-84-EFc">
-                                <rect key="frame" x="10" y="410" width="179" height="30"/>
+                                <rect key="frame" x="7" y="299" width="179" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Dz-dp-EJ5">
-                                <rect key="frame" x="197" y="410" width="30" height="30"/>
+                                <rect key="frame" x="194" y="299" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -437,7 +431,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="450"/>
+                    <size key="freeformSize" width="250" height="337"/>
                     <connections>
                         <outlet property="notesTableView" destination="xbz-yC-3tS" id="fMg-6a-t6h"/>
                     </connections>

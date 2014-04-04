@@ -7,8 +7,11 @@
 //
 
 #import "UploadViewController.h"
+#import "ChatViewController.h"
 
 @interface UploadViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+{
+}
 
 @end
 
@@ -33,6 +36,7 @@
     [super viewDidAppear:animated];
     
     [self showActionSheet];
+    
 }
 
 - (void) showActionSheet
@@ -47,33 +51,46 @@
     [actionSheet showInView:self.view];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    UIImage* originalImage = nil;
+    originalImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    if(originalImage==nil) {
+        originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    }
+    
+    [_delegate pictureSelected:originalImage];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]) {
+        [_delegate closePopOver];
+        return;
+    }
+
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     
+    NSLog(@"button pressed == %@",[actionSheet buttonTitleAtIndex:buttonIndex]);
+    
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Camera"]) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
+    
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
+        return;
     }
+    
+    
+    picker.modalPresentationStyle = UIModalPresentationCurrentContext;
     
     //[self presentViewController:picker animated:YES];
     [self presentViewController:picker animated:YES completion:^(){}];

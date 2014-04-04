@@ -5,7 +5,7 @@
 //  Created by Steve Ng on 18/3/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
-
+#import "UploadViewController.h"
 #import "ChatViewController.h"
 #import "DashBoardSingleton.h"
 #import "ChatMessagePictureCell.h"
@@ -27,7 +27,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -41,6 +41,8 @@
     
     NSString *userName;
     BOOL keyboardEditing;
+    
+    UIPopoverController *uploadSegue;
 }
 
 @end
@@ -147,21 +149,6 @@
 
 -(BOOL)shouldAutorotate{
     return YES;
-}
-
-
-#pragma mark - UIImagePickerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 #pragma mark - Navigation Table view data source
@@ -374,7 +361,32 @@
     return cell;
 }
 
+#pragma  mark - Preparation for Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"uploadPicture"]) {
+        
+        UploadViewController *child = [segue destinationViewController];
+        child.delegate = self;
+        uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+    }
+}
 
+#pragma mark - Upload View Controller Delegate 
+- (void)pictureSelected:(UIImage *)image
+{
+    //dismiss segue
+    [uploadSegue dismissPopoverAnimated:YES];
+    
+    //handling of photo
+    
+    NSLog(@"picture selected");
+}
+
+- (void) closePopOver
+{
+    [uploadSegue dismissPopoverAnimated:YES];
+}
 
 #pragma  mark - Textfield editing delegate
 
@@ -541,5 +553,10 @@
     return nil;
 }
 
+
+- (void) sayHello
+{
+    NSLog(@"hello!");
+}
 
 @end
