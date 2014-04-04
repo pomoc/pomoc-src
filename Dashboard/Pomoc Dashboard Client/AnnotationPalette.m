@@ -50,7 +50,7 @@
         [b.layer setBorderColor: [[UIColor grayColor] CGColor]];
         [b.layer setBorderWidth: 4.0];
         [b.layer setMasksToBounds:YES];
-        [b.layer setCornerRadius:BUTTON_SIZE/2.0];
+        //[b.layer setCornerRadius:BUTTON_SIZE/2.0];
         [b setAlpha:0.5];
         
         [b setBackgroundColor:colors[i%[colors count]]];

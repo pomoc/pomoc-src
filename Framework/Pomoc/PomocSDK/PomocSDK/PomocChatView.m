@@ -88,15 +88,28 @@
 - (void)setupFooterView
 {
     self.footerView = [[UIView alloc] init];
-    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, 0, self.frame.size.width-40, CHAT_VIEW_FOOTER_HEIGHT)];
+    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(CHAT_VIEW_HEADER_HEIGHT, 0, self.frame.size.width-40, CHAT_VIEW_FOOTER_HEIGHT)];
     [self.chatTextField setPlaceholder:@"Enter message here"];
     self.chatTextField.delegate = self;
     [self.footerView addSubview:self.chatTextField];
     [self addSubview:self.footerView];
+    
+    UIButton *screenshotButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [screenshotButton setTitle:@"SS" forState:UIControlStateNormal];
+    screenshotButton.frame = CGRectMake(0, 0, CHAT_VIEW_FOOTER_HEIGHT, CHAT_VIEW_FOOTER_HEIGHT);
+    [screenshotButton addTarget:self action:@selector(screenshotPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView addSubview:screenshotButton];
+}
+
+- (void)screenshotPressed:(UIButton *)button
+{
+    UIImage *image = [self screenshotOfMainWindow];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    NSLog(@"Writing to photo album");
 }
 
 - (void)setupChatView
-{
+{;
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;

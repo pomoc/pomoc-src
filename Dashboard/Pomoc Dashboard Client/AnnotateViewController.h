@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AnnotateViewController : UIViewController
+@protocol AnnotateViewControllerDelegate
+@required
+- (void)userCompleteAnnotation:(UIImage *)image;
+@end
 
+
+@interface AnnotateViewController : UIViewController
+@property (nonatomic, assign) id delegate;
+- (id)initWithImage:(UIImage *)loadImage;
 @end

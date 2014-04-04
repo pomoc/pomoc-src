@@ -53,7 +53,7 @@
     self.title = @"Messages";
     
     userName = @"Steve";
-    [PMCore initWithAppID:@"anc" userId:userName delegate:self];
+    //[PMCore initWithAppID:@"anc" userId:userName delegate:self];
     
     //ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
@@ -119,12 +119,20 @@
 }
 
 - (IBAction)annotateActionPressed:(id)sender {
-    
-    AnnotateViewController *annotateVC = [[AnnotateViewController alloc] init];
-    
-    
-    [self.navigationController pushViewController:annotateVC animated:YES];
-    
+    NSArray *subviews = [sender superview].subviews;
+    UIImageView *imv;
+    for (int i=0; i<[subviews count]; i++) {
+        if ([subviews[i] isKindOfClass:[UIImageView class]] &&
+            ((UIImageView *)subviews[i]).image) {
+            imv = subviews[i];
+        }
+    }
+    if (imv) {
+        UIImage *picture = imv.image;
+        AnnotateViewController *annotateVC = [[AnnotateViewController alloc] initWithImage:picture];
+        
+        [self.navigationController pushViewController:annotateVC animated:YES];
+    }
 }
 
 - (void) testProtocol
