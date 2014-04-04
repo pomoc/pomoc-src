@@ -280,12 +280,6 @@
                                         <rect key="frame" x="55" y="-5" width="172" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
-                                            <barButtonItem title="Past (0)" id="jDo-dd-Sl9">
-                                                <connections>
-                                                    <action selector="viewPastChat:" destination="QxH-3e-iTU" id="BN7-YM-aej"/>
-                                                    <segue destination="gHV-Hf-sbF" kind="push" id="n9U-ko-cwh"/>
-                                                </connections>
-                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="G07-VU-Fwa"/>
                                             <barButtonItem title="Info" id="Ngi-NJ-foP">
                                                 <connections>

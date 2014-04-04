@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
 //Main
-- (IBAction)viewPastChat:(id)sender;
 - (IBAction)viewAction:(id)sender;
 
 // Annotation
@@ -31,7 +30,6 @@
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
 - (IBAction)selectPicturePressed:(id)sender;
-- (IBAction)annotateActionPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 

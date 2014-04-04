@@ -71,19 +71,33 @@
 
 - (void)colorTap:(UIButton *)b {
     [self.delegate tap:b];
-//    
-//    for (int i=0; i<[buttons count]; i++){
-//        [((UIButton *)buttons[i]).layer setBorderColor: [[UIColor grayColor] CGColor]];
-//        [((UIButton *)buttons[i]).layer setBorderWidth: 4.0];
-//        [(UIButton *)buttons[i] setAlpha:0.5];
-//    }
-//    
-//    [b.layer setBorderColor: [[UIColor blackColor] CGColor]];
-//    [b.layer setBorderWidth: 4.0];
-//    [b setAlpha:1.0];
+
+    BOOL found = 0;
+    CGRect btnFrame;
     
     for (int i =0; i < [buttons count]; i ++) {
-        [(UIButton *)buttons[i] setAlpha:0.40];
+        
+        UIButton *btn = (UIButton *)buttons[i];
+        [btn setAlpha:0.40];
+        
+        if (b == btn) {
+            found = true;
+        }
+        
+        if( !found ) {
+            btnFrame = CGRectMake(i * BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE, BUTTON_SIZE);
+            [btn setFrame:btnFrame];
+            
+        } else {
+            
+            if (b == btn) {
+                btnFrame = CGRectMake(i * BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE * 2, BUTTON_SIZE);
+            } else {
+                btnFrame = CGRectMake(i * BUTTON_SIZE + BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE, BUTTON_SIZE);
+            }
+        }
+        
+        [btn setFrame:btnFrame];
     }
     
     [b setAlpha: 1];

@@ -88,12 +88,6 @@
     [self testCreateMock];
 }
 
-
-- (IBAction)viewPastChat:(id)sender
-{
-    NSLog(@"clicked view past chat!");
-}
-
 - (IBAction)viewAction:(id)sender
 {
     NSLog(@"clicked view action");
