@@ -53,6 +53,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     cell.textLabel.text = @"This guy is an ass!";
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
     
     return cell;
 }

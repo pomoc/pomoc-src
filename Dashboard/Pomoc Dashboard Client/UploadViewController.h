@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class UploadViewController;
+@protocol UploadDelegate
+
+// define protocol functions that can be used in any class using this delegate
+- (void)pictureSelected:(UIImage *)image;
+
+- (void)closePopOver;
+
+@end
+
 @interface UploadViewController : UIViewController
-- (IBAction)takePhotoPressed:(id)sender;
-- (IBAction)uploadLibraryPressed:(id)sender;
+
+@property (nonatomic, assign) id  delegate;
 
 @end

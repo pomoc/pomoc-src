@@ -10,9 +10,9 @@
 #define PomocCore_PomocCore_h
 
 #import "PMCore.h"
-#import "PMCoreDelegate.h"
 #import "PMMessage.h"
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
+#import "PMConversation.h"
 
 #endif

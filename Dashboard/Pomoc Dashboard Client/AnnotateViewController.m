@@ -42,7 +42,11 @@
     [self.view addGestureRecognizer:pinch];
         
     [self.view setBackgroundColor:[UIColor grayColor]];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(editedImage:)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     // Initialize image
@@ -60,9 +64,11 @@
     
     [self.view addSubview:drawArea];
      
-    int s = BUTTON_SIDE_OFFSET * 2 + BUTTON_SIZE;
-    int height = s * NUM_COLORS - ((NUM_COLORS-1) * BUTTON_SIDE_OFFSET);
-    CGRect pFrame = CGRectMake(0,(self.view.bounds.size.height-height)/2, s, height);
+    //int s = BUTTON_SIDE_OFFSET * 2 + BUTTON_SIZE;
+    //int height = s * NUM_COLORS - ((NUM_COLORS-1) * BUTTON_SIDE_OFFSET);
+    //CGRect pFrame = CGRectMake(0,(self.view.bounds.size.height-height)/2, s, height);
+    
+    CGRect pFrame = CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50);
     palette = [[AnnotationPalette alloc] initWithFrame:pFrame];
     palette.delegate = self;
     [self.view addSubview:palette];
@@ -104,14 +110,19 @@
 }
 
 
+- (IBAction) editedImage:(id)sender
+{
+    UIImage *editedImage = [self saveImage];
+    [_delegate userCompleteAnnotation:editedImage];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (UIImage *)saveImage {
     UIGraphicsBeginImageContext(drawArea.frame.size);
     [[drawArea layer] renderInContext:UIGraphicsGetCurrentContext()];
     [[bgView layer] renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *savedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    [self.delegate userCompleteAnnotation:savedImage];
     return savedImage;
 }
 

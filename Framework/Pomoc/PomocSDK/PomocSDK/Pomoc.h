@@ -10,7 +10,7 @@
 
 @interface Pomoc : NSObject
 
-+ (void)initWithAppId:(NSString *)appId userId:(NSString *)userId;
++ (void)initWithAppId:(NSString *)appId secretKey:(NSString *)secretKey;
 + (void)toggleChatHead;
 
 @end
