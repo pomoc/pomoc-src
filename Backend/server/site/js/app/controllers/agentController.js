@@ -44,6 +44,12 @@ agent_controller.controller('agentController',
         $('#signUpModal').modal('hide');
         $('.modal-backdrop').remove();
       })
+
+      addAgentPromise.error(function(data, textStatus, xhr){
+        $scope.errorMessage = 'User already exist!'
+        $scope.$apply();
+      })
+
   	}
 
   }

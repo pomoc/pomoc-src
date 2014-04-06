@@ -47,6 +47,17 @@ home_controller.controller('homeController',
         
       })
 
+
+      userLogin.error(function(data, textStatus, xhr){
+        console.log('failed!!');
+        console.log(data);
+        console.log(textStatus);
+        console.log(xhr);
+
+        $scope.errorMessage = 'Invalid login credential, please try again';
+        $scope.$apply();
+      });
+
   	}
 
   	$scope.signUp = function() {
@@ -75,25 +86,28 @@ home_controller.controller('homeController',
         console.log(textStatus);
         console.log(xhr);
 
-        if (data.success == false) {
-          $scope.errorMessage = 'User already exist! Try logging in'
-          $scope.$apply();
-        } else {
-          $('#signUpModal').modal('hide');
-          $('.modal-backdrop').remove();
+       
+        $('#signUpModal').modal('hide');
+        $('.modal-backdrop').remove();
 
-          $rootScope.appToken = data.appToken;
-          $rootScope.appSecret = data.appSecret;
-          $rootScope.userId = data.userId;
-          $rootScope.selectedIndex = 2; 
-          $rootScope.$apply();
+        $rootScope.appToken = data.appToken;
+        $rootScope.appSecret = data.appSecret;
+        $rootScope.userId = email;
+        $rootScope.selectedIndex = 2; 
+        $rootScope.$apply();
 
-          $location.path('/setup');
-          $scope.$apply();
-        }
+        $location.path('/setup');
+        $scope.$apply();
+      
 
 
       })
+
+      appRegistrationPromise.error(function(data, textStatus, xhr){
+        $scope.errorMessage = 'User already exist! Try logging in'
+        $scope.$apply();
+
+      });
 
       
 
