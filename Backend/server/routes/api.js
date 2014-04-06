@@ -140,7 +140,7 @@ module.exports = function(app, db, crypto) {
             for (var i = 0; i < fields.length; i++) {
                 result[fields[i]] = reply[i];
             }
-            callback(response)
+            callback(result)
         });
     }
 }
