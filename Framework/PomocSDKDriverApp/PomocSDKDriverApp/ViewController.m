@@ -21,6 +21,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [Pomoc initWithAppId:@"anc" secretKey:@"secret"];
+    [Pomoc registerUserWithName:@"customer" completion:^(NSString *userId) {
+        NSLog(@"userid %@", userId);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
