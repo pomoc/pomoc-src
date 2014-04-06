@@ -24,3 +24,12 @@
         controller: 'homeController'
       })
   }]);
+
+
+  app.run(function($rootScope, $location){
+
+    if ($rootScope.userId == undefined) {
+      $location.path('/');
+    }
+
+  });

@@ -167,7 +167,7 @@
             [conversation addMessage:chatMessage];
         }
     } else if ([packet.name isEqualToString:@"newConversation"]) {
-        if ([self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
             
             PMConversation *conversation = self.conversations[conversationId];
@@ -180,6 +180,13 @@
             
             [self.delegate newConversationCreated:conversation];
         }
+    }
+}
+
+- (void)socketIODidConnect:(SocketIO *)socket
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hasConnected)]) {
+        [self.delegate hasConnected];
     }
 }
 

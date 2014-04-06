@@ -113,6 +113,7 @@
 
           </form>
           <div style="text-align:right; margin-right:12px" > 
+            <span style="color:red" ng-show="errorMessage.length > 0">{{errorMessage}} </span>
             <button type="button" ng-click="login()" class="btn btn-primary">Login</button>
           </div>
         </div>
@@ -147,6 +148,7 @@
 
           </form>
           <div style="text-align:right; margin-right:12px" > 
+            <span style="color:red" ng-show="errorMessage.length > 0">{{errorMessage}} </span>
             <button type="button" ng-click="signUp()"  class="btn btn-primary">Sign Up</button>
           </div>
         </div>

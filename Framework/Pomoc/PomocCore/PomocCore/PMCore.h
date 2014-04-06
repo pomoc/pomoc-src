@@ -13,6 +13,7 @@
 @protocol PMCoreDelegate <NSObject>
 
 - (void)newConversationCreated:(PMConversation *)conversation;
+- (void)hasConnected;
 
 @end
 
