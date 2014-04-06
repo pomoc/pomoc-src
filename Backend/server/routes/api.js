@@ -67,9 +67,8 @@ module.exports = function(app, db, crypto) {
         var appToken = appHash.digest('hex');
         var appKey = appToken + ":app";
         db.client.smembers(appKey, function(err, reply) {
-            console.log(reply);
             var response = {success: false, error: "app already registered"};
-            if (!reply) {
+            if (reply.length == 0) {
                 // Generate appToken and appSecret
                 // trivial app_token omg bbq
                 var userKey = req.body.userId + ':account';
@@ -96,6 +95,18 @@ module.exports = function(app, db, crypto) {
 
                 // Return appToken and appSecret
                 response = {success:true, appToken:appToken, appSecret:appSecret};
+            }
+            res.send(response);
+        });
+    });
+
+    app.get('/user/:userId', function(req, res) {
+        var key = req.param('userId') + ':account';
+        var fields = ['name', 'userId', 'appToken', 'appSecret', 'type'];
+        db.client.hmget([key].concat(fields),  function(err, reply) {
+            var response = {};
+            for (var i = 0; i < fields.length; i++) {
+                response[fields[i]] = reply[i];
             }
             res.send(response);
         });
