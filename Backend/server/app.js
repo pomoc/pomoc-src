@@ -7,6 +7,7 @@ var crypto = require('crypto');
 
 var app = express();
 app.use(express.static(__dirname + '/site'));
+app.use(express.bodyParser());
 // Error logging / handling
 app.use(function(err, req, res, next) {
     res.send(500, 'Something broke!');
