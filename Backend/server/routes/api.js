@@ -1,42 +1,43 @@
 module.exports = function(app, db, crypto) {
 
     // User registration
-    app.post('/userregistration', function(req, res) {
+    app.post('/userRegistration', function(req, res) {
         // Returns {success:true} or {success:false, error:""}
-        var key = req.query.userId + ":account";
+        var key = req.body.userId + ":account";
         db.client.hgetall(key, function(err, reply) {
             var response = {success: false, error: "user already exists"};
             if (!reply) {
                 var salt = Date.now();
                 var hash = crypto.createHash('sha1');
-                hash.write(req.query.password + salt);
+                hash.write(req.body.password + salt);
                 var password = hash.digest('hex');
                 // Store user data
                 db.client.hmset(key,
-                    "name", req.query.userId,
-                    "userId", req.query.userId,
+                    "name", req.body.userId,
+                    "userId", req.body.userId,
                     "password", password,
                     "salt", salt,
-                    "appToken", req.query.appToken,
-                    "appSecret", req.query.appSecret,
+                    "appToken", req.body.appToken,
+                    "appSecret", req.body.appSecret,
                     "type", "admin"
                 );
 
                 response = {success: true};
             }
+            console.log('sentsuccess 123456');
             res.send(response);
         });
     });
 
     // User login
-    app.post('/login', function(req, res) {
-        var key = req.query.userId + ":account";
+    app.post('/agentLogin', function(req, res) {
+        var key = req.body.userId + ":account";
         db.client.hgetall(key, function(err, reply) {
             if (reply) {
                 var credentials = reply;
                 console.log(credentials);
                 var hash = crypto.createHash('sha1');
-                hash.write(req.query.password + credentials.salt);
+                hash.write(req.body.password + credentials.salt);
                 var password = hash.digest('hex');
 
                 if (password == credentials.password) {
@@ -60,9 +61,9 @@ module.exports = function(app, db, crypto) {
 
     // App registration / AKA root user registration
     // Registration generates appToken and appSecret that will be sent in the response
-    app.post('/appregistration', function(req, res) {
+    app.post('/appRegistration', function(req, res) {
         var appHash = crypto.createHash('sha1');
-        appHash.write(req.query.userId);
+        appHash.write(req.body.userId);
         var appToken = appHash.digest('hex');
         var appKey = appToken + ":app";
         db.client.smembers(appKey, function(err, reply) {
@@ -71,18 +72,18 @@ module.exports = function(app, db, crypto) {
             if (!reply) {
                 // Generate appToken and appSecret
                 // trivial app_token omg bbq
-                var userKey = req.query.userId + ':account';
+                var userKey = req.body.userId + ':account';
                 var salt = Date.now();
                 var appSecret = salt + appToken;
                 var hash = crypto.createHash('sha1');
-                hash.write(req.query.password + salt);
+                hash.write(req.body.password + salt);
                 var password = hash.digest('hex');
 
                 // Store super user data
                 // TODO: check if user already exists, currently doesnt bother
                 db.client.hmset(userKey,
-                    "name", req.query.userId,
-                    "userId", req.query.userId,
+                    "name", req.body.userId,
+                    "userId", req.body.userId,
                     "password", password,
                     "salt", salt,
                     "appToken", appToken,
