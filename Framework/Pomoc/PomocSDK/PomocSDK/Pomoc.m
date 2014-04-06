@@ -9,11 +9,12 @@
 #import "Pomoc.h"
 #import "PomocWindow.h"
 #import "PomocViewController.h"
-#import "PomocCore.h"
+#import "PomocSupport.h"
 
 @interface Pomoc ()
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) NSString *userId;
 
 @end
 
@@ -37,8 +38,18 @@
 + (void)initWithAppId:(NSString *)appId secretKey:(NSString *)secretKey
 {
     [Pomoc sharedInstance];
-    [PMCore initWithAppID:appId secretKey:secretKey];
-    [PMCore setUserId:@"customer"];
+    [PMSupport initWithAppID:appId secretKey:secretKey];
+}
+
++ (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *))completion
+{
+    Pomoc *pomoc = [Pomoc sharedInstance];
+    [PMSupport registerUserWithName:@"Customer" completion:^(NSString *userId) {
+        pomoc.userId = userId;
+        if (completion) {
+            completion(userId);
+        }
+    }];
 }
 
 + (void)toggleChatHead
