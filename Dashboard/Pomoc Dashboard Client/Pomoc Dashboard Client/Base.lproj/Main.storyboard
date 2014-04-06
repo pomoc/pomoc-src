@@ -229,7 +229,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="AAP-qz-ks3">
-                                                <rect key="frame" x="84" y="7" width="612" height="30"/>
+                                                <rect key="frame" x="47" y="7" width="652" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -442,7 +442,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatMessageCell" rowHeight="62" id="I9Z-rM-56d">
-                                                <rect key="frame" x="0.0" y="86" width="724" height="62"/>
+                                                <rect key="frame" x="0.0" y="22" width="724" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I9Z-rM-56d" id="a8Y-f2-nwh">
                                                     <rect key="frame" x="0.0" y="0.0" width="724" height="61"/>
