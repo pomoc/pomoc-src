@@ -4,6 +4,7 @@ module.exports = function(app, db, crypto) {
     app.post('/userRegistration', function(req, res) {
         // Returns {success:true} or {success:false, error:""}
         var key = req.body.userId + ":account";
+        res.statusCode = 400;
         db.client.hgetall(key, function(err, reply) {
             var response = {success: false, error: "user already exists"};
             if (!reply) {
@@ -21,10 +22,9 @@ module.exports = function(app, db, crypto) {
                     "appSecret", req.body.appSecret,
                     "type", "admin"
                 );
-
+                res.statusCode = 200;
                 response = {success: true};
             }
-            console.log('sentsuccess 123456');
             res.send(response);
         });
     });
@@ -49,12 +49,14 @@ module.exports = function(app, db, crypto) {
                         appToken: credentials.appToken,
                         appSecret: credentials.appSecret
                     }
+                    res.statusCode = 200;
                     res.send(response);
                 }
             }
 
             // No such user exist or wrong password
             var response = {success: false, error: 'wrong username/password'};
+            res.statusCode = 400
             res.send(response);
         });
     });
@@ -108,8 +110,16 @@ module.exports = function(app, db, crypto) {
             for (var i = 0; i < fields.length; i++) {
                 response[fields[i]] = reply[i];
             }
+            res.statusCode = 200;
             res.send(response);
         });
+    });
+
+    app.post('/user/:userId', function(req, res) {
+        var key = req.param('userId') + ':account';
+        db.client.hmset(key, 'userId', req.param('userId'), 'name', req.body.name);
+        res.statusCode = 200;
+        res.send({success: true});
     });
 
 }
