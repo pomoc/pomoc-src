@@ -16,6 +16,7 @@
 #import "PMMessage.h"
 
 #import "PomocChat.h"
+#import "PomocImageUpload.h"
 
 #import "UILabel+boldAndGray.h"
 
@@ -43,6 +44,10 @@
     BOOL keyboardEditing;
     
     UIPopoverController *uploadSegue;
+    
+    // For testing
+    PomocChat *chat;
+    PomocImageUpload *uploader;
 }
 
 @end
@@ -365,8 +370,27 @@
 #pragma mark - Upload View Controller Delegate 
 - (void)pictureSelected:(UIImage *)image
 {
+    uploader = [PomocImageUpload sharedInstance];
+    void (^download) (UIImage *) = ^void (UIImage *image) {
+        NSLog(@"Image downloaded");
+    };
+    
+    [uploader downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:download];
+    
     //dismiss segue
     [uploadSegue dismissPopoverAnimated:YES];
+    
+    //upload to S3
+    void (^block) (NSString *) = ^void(NSString *url) {
+        FakePMImageMessage *image1 = [[FakePMImageMessage alloc] init];
+        image1.userId = @"visitor";
+        image1.conversationId = @"1";
+        image1.imageUrl = url;
+        
+        [chat.chatMessages addObject:image1];
+        [_chatNavTable reloadData];
+    };
+    [uploader uploadImage:image withCompletion:block];
     
     //handling of photo
     NSLog(@"picture selected");
@@ -376,6 +400,7 @@
 {
     [uploadSegue dismissPopoverAnimated:YES];
 }
+
 
 #pragma  mark - Textfield editing delegate
 
@@ -436,7 +461,7 @@
 - (void) testCreateMock
 {
     //create some conversaiton
-    PomocChat *chat = [[PomocChat alloc] initWithConversation:@"1"];
+    chat = [[PomocChat alloc] initWithConversation:@"1"];
     [chatList addObject:chat];
 
     chat.userId = @"Visitor";
