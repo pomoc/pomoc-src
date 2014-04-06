@@ -133,7 +133,7 @@ module.exports = function(app, db, crypto) {
 
 
     function getPublicUserObject(userId, callback) {
-        var key = req.param('userId') + ':account';
+        var key = userId + ':account';
         var fields = ['name', 'userId', 'appToken', 'appSecret', 'type'];
         db.client.hmget([key].concat(fields), function(err, reply) {
             var result = {}
