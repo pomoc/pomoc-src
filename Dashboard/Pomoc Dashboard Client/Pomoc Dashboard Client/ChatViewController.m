@@ -369,7 +369,6 @@
     [uploadSegue dismissPopoverAnimated:YES];
     
     //handling of photo
-    
     NSLog(@"picture selected");
 }
 
@@ -547,6 +546,11 @@
 - (void)userCompleteAnnotation:(UIImage *)image
 {
     NSLog(@"called user complete annotation !");
+    
+}
+
+- (IBAction)selectPicturePressed:(id)sender
+{
     
 }
 
