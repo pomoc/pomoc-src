@@ -549,9 +549,4 @@
     
 }
 
-- (IBAction)selectPicturePressed:(id)sender
-{
-    NSLog(@"select picture pressed");
-}
-
 @end

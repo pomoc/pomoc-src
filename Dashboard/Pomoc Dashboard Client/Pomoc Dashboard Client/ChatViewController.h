@@ -29,7 +29,6 @@
 
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
-- (IBAction)selectPicturePressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 
