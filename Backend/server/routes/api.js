@@ -66,6 +66,7 @@ module.exports = function(app, db, crypto) {
         var appToken = appHash.digest('hex');
         var appKey = appToken + ":app";
         db.client.smembers(appKey, function(err, reply) {
+            console.log(reply);
             var response = {success: false, error: "app already registered"};
             if (!reply) {
                 // Generate appToken and appSecret
