@@ -125,7 +125,7 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"54.255.135.169" onPort:3217];
+    [self.socket connectToHost:@"api.pomoc.im" onPort:3217];
 }
 
 - (void)observeNewConversations

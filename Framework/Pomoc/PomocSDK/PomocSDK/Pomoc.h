@@ -11,7 +11,7 @@
 @interface Pomoc : NSObject
 
 + (void)initWithAppId:(NSString *)appId secretKey:(NSString *)secretKey;
-+ (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *))completion;
++ (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *userId))completion;
 + (void)toggleChatHead;
 
 @end
