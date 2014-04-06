@@ -64,6 +64,9 @@ module.exports = function(app, db, crypto) {
     // App registration / AKA root user registration
     // Registration generates appToken and appSecret that will be sent in the response
     app.post('/appRegistration', function(req, res) {
+        // Guilty till proven innocent
+        res.statusCode = 400
+
         var appHash = crypto.createHash('sha1');
         appHash.write(req.body.userId);
         var appToken = appHash.digest('hex');
@@ -96,6 +99,7 @@ module.exports = function(app, db, crypto) {
                 db.client.sadd(appKey, userKey); 
 
                 // Return appToken and appSecret
+                res.statusCode = 200;
                 response = {success:true, appToken:appToken, appSecret:appSecret};
             }
             res.send(response);
@@ -103,23 +107,40 @@ module.exports = function(app, db, crypto) {
     });
 
     app.get('/user/:userId', function(req, res) {
-        var key = req.param('userId') + ':account';
-        var fields = ['name', 'userId', 'appToken', 'appSecret', 'type'];
-        db.client.hmget([key].concat(fields),  function(err, reply) {
-            var response = {};
-            for (var i = 0; i < fields.length; i++) {
-                response[fields[i]] = reply[i];
+        getPublicUserObject(req.param('userId'), function(result) {
+            if (result == {}) {
+                res.statusCode = 400;
             }
-            res.statusCode = 200;
-            res.send(response);
+            res.send(result);
         });
     });
 
+
     app.post('/user/:userId', function(req, res) {
         var key = req.param('userId') + ':account';
-        db.client.hmset(key, 'userId', req.param('userId'), 'name', req.body.name);
-        res.statusCode = 200;
-        res.send({success: true});
+        db.client.hmset(
+            key,
+            {'userId': req.param('userId'), 'name': req.body.name},
+            function(err, reply) {
+                getPublicUserObject(req.param('userId'), function(result) {
+                    if (result == {}) {
+                        res.statusCode = 400;
+                    }
+                    res.send(result);
+                });
+        });
     });
 
+
+    function getPublicUserObject(userId, callback) {
+        var key = req.param('userId') + ':account';
+        var fields = ['name', 'userId', 'appToken', 'appSecret', 'type'];
+        db.client.hmget([key].concat(fields), function(err, reply) {
+            var result = {}
+            for (var i = 0; i < fields.length; i++) {
+                result[fields[i]] = reply[i];
+            }
+            callback(response)
+        });
+    }
 }
