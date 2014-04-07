@@ -41,7 +41,7 @@
     [PMSupport initWithAppID:appId secretKey:secretKey];
 }
 
-+ (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *))completion
++ (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *userId))completion
 {
     Pomoc *pomoc = [Pomoc sharedInstance];
     [PMSupport registerUserWithName:@"Customer" completion:^(NSString *userId) {
@@ -50,6 +50,10 @@
             completion(userId);
         }
     }];
+}
+
++ (void)login
+{
 }
 
 + (void)toggleChatHead

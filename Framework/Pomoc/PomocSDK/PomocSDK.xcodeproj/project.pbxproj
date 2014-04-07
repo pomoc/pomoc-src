@@ -33,6 +33,11 @@
 		60592B3218F13B0C006D5DEC /* PomocCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592B2818F13B0C006D5DEC /* PomocCore.h */; };
 		60592B3318F13B0C006D5DEC /* PomocSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592B2918F13B0C006D5DEC /* PomocSupport.h */; };
 		60592B3418F13B0C006D5DEC /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60592B2A18F13B0C006D5DEC /* libPomocCore.a */; };
+		60592B3C18F1628A006D5DEC /* pomoc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 60592B3B18F1628A006D5DEC /* pomoc_logo.png */; };
+		60592B3E18F16670006D5DEC /* attach-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 60592B3D18F16670006D5DEC /* attach-512.png */; };
+		60592B4018F16A0F006D5DEC /* send_file-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 60592B3F18F16A0F006D5DEC /* send_file-512.png */; };
+		60592B4318F16A34006D5DEC /* PomocResources.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592B4118F16A34006D5DEC /* PomocResources.h */; };
+		60592B4418F16A34006D5DEC /* PomocResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592B4218F16A34006D5DEC /* PomocResources.m */; };
 		605B0C7518E322EB00EA6717 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605B0C7418E322EB00EA6717 /* Foundation.framework */; };
 		605B0C8318E322EB00EA6717 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605B0C8218E322EB00EA6717 /* XCTest.framework */; };
 		605B0C8418E322EB00EA6717 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605B0C7418E322EB00EA6717 /* Foundation.framework */; };
@@ -53,8 +58,6 @@
 		60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */; };
 		60D5E2A718EDA97F00CA9DE8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D5E29418EDA6FE00CA9DE8 /* CoreFoundation.framework */; };
 		60D5E2AD18EDA97F00CA9DE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2AB18EDA97F00CA9DE8 /* InfoPlist.strings */; };
-		60D5E2B618EDAA3E00CA9DE8 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */; };
-		60D5E2B718EDAA3E00CA9DE8 /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */; };
 		60E6408518E59F9C0089B51F /* PomocWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 60E6408318E59F9C0089B51F /* PomocWindow.h */; };
 		60E6408618E59F9C0089B51F /* PomocWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E6408418E59F9C0089B51F /* PomocWindow.m */; };
 /* End PBXBuildFile section */
@@ -106,6 +109,11 @@
 		60592B2818F13B0C006D5DEC /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		60592B2918F13B0C006D5DEC /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		60592B2A18F13B0C006D5DEC /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
+		60592B3B18F1628A006D5DEC /* pomoc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pomoc_logo.png; sourceTree = "<group>"; };
+		60592B3D18F16670006D5DEC /* attach-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attach-512.png"; sourceTree = "<group>"; };
+		60592B3F18F16A0F006D5DEC /* send_file-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file-512.png"; sourceTree = "<group>"; };
+		60592B4118F16A34006D5DEC /* PomocResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocResources.h; sourceTree = "<group>"; };
+		60592B4218F16A34006D5DEC /* PomocResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocResources.m; sourceTree = "<group>"; };
 		605B0C7118E322EB00EA6717 /* libPomocSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPomocSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		605B0C7418E322EB00EA6717 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		605B0C7818E322EB00EA6717 /* PomocSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -131,8 +139,6 @@
 		60D5E2AA18EDA97F00CA9DE8 /* PomocSDKResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocSDKResources-Info.plist"; sourceTree = "<group>"; };
 		60D5E2AC18EDA97F00CA9DE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60D5E2AE18EDA97F00CA9DE8 /* PomocSDKResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PomocSDKResources-Prefix.pch"; sourceTree = "<group>"; };
-		60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
-		60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 		60E6408318E59F9C0089B51F /* PomocWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocWindow.h; sourceTree = "<group>"; };
 		60E6408418E59F9C0089B51F /* PomocWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +246,8 @@
 				609FD58D18ED4DBC0091EE41 /* PomocViewController.m */,
 				60E6408318E59F9C0089B51F /* PomocWindow.h */,
 				60E6408418E59F9C0089B51F /* PomocWindow.m */,
+				60592B4118F16A34006D5DEC /* PomocResources.h */,
+				60592B4218F16A34006D5DEC /* PomocResources.m */,
 				605B0C7718E322EB00EA6717 /* Supporting Files */,
 			);
 			path = PomocSDK;
@@ -294,8 +302,9 @@
 		60D5E2A818EDA97F00CA9DE8 /* PomocSDKResources */ = {
 			isa = PBXGroup;
 			children = (
-				60D5E2B418EDAA3E00CA9DE8 /* thumbnail.png */,
-				60D5E2B518EDAA3E00CA9DE8 /* thumbnail@2x.png */,
+				60592B3D18F16670006D5DEC /* attach-512.png */,
+				60592B3B18F1628A006D5DEC /* pomoc_logo.png */,
+				60592B3F18F16A0F006D5DEC /* send_file-512.png */,
 				60D5E2A918EDA97F00CA9DE8 /* Supporting Files */,
 			);
 			path = PomocSDKResources;
@@ -324,6 +333,7 @@
 				60E6408518E59F9C0089B51F /* PomocWindow.h in Headers */,
 				609FD58318ED41DD0091EE41 /* YSChatHead.h in Headers */,
 				60592B2E18F13B0C006D5DEC /* PMInternalMessage.h in Headers */,
+				60592B4318F16A34006D5DEC /* PomocResources.h in Headers */,
 				60AC91BB18E553B8006007E2 /* Pomoc.h in Headers */,
 				60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */,
 				609FD58E18ED4DBC0091EE41 /* PomocViewController.h in Headers */,
@@ -436,9 +446,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60D5E2B618EDAA3E00CA9DE8 /* thumbnail.png in Resources */,
 				60D5E2AD18EDA97F00CA9DE8 /* InfoPlist.strings in Resources */,
-				60D5E2B718EDAA3E00CA9DE8 /* thumbnail@2x.png in Resources */,
+				60592B3E18F16670006D5DEC /* attach-512.png in Resources */,
+				60592B4018F16A0F006D5DEC /* send_file-512.png in Resources */,
+				60592B3C18F1628A006D5DEC /* pomoc_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +481,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILD_DIR}/${PROJECT_NAME}/${SF_WRAPPER_NAME}/${SF_TARGET_NAME}\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/${SF_TARGET_NAME}.bundle\" \"${BUILD_DIR}/${PROJECT_NAME}/${SF_TARGET_NAME}.bundle\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\ncp -R \"${BUILD_DIR}/${PROJECT_NAME}\" \"${SRCROOT}/Distribution\"";
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILD_DIR}/${PROJECT_NAME}/${SF_WRAPPER_NAME}/${SF_TARGET_NAME}\"\n\ncp -R \"${BUILT_PRODUCTS_DIR}/${SF_TARGET_NAME}.bundle\" \"${BUILD_DIR}/${PROJECT_NAME}/\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\ncp -R \"${BUILD_DIR}/${PROJECT_NAME}\" \"${SRCROOT}/Distribution\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -482,6 +493,7 @@
 				60E6408618E59F9C0089B51F /* PomocWindow.m in Sources */,
 				609FD58F18ED4DBC0091EE41 /* PomocViewController.m in Sources */,
 				609FD58B18ED4CE30091EE41 /* PomocChatView.m in Sources */,
+				60592B4418F16A34006D5DEC /* PomocResources.m in Sources */,
 				60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */,
 				609FD58418ED41DD0091EE41 /* YSChatHead.m in Sources */,
 				60AC91BC18E553B8006007E2 /* Pomoc.m in Sources */,

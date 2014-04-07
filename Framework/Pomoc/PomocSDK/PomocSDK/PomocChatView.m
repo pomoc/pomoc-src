@@ -10,6 +10,8 @@
 #import "PomocChatView.h"
 #import "PomocSupport.h"
 #import "PomocChatView+Screenshot.h"
+#import "PomocWindow.h"
+#import "PomocResources.h"
 
 #define CHAT_VIEW_HEADER_HEIGHT     30
 #define CHAT_VIEW_FOOTER_HEIGHT     30
@@ -78,7 +80,7 @@
 - (void)setupHeaderView
 {
     self.headerView = [[UIView alloc] init];
-    self.headerView.backgroundColor = [UIColor blueColor];
+    self.headerView.backgroundColor = [UIColor colorWithRed:24/255.0 green:181/255.0 blue:240/255.0 alpha:1.0];
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
     [headerLabel setText:@"Pomoc Chat"];
@@ -92,17 +94,26 @@
 - (void)setupFooterView
 {
     self.footerView = [[UIView alloc] init];
-    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(CHAT_VIEW_HEADER_HEIGHT, 0, self.frame.size.width-40, CHAT_VIEW_FOOTER_HEIGHT)];
+    self.chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(CHAT_VIEW_HEADER_HEIGHT+5, 0, self.frame.size.width-2*CHAT_VIEW_FOOTER_HEIGHT, CHAT_VIEW_FOOTER_HEIGHT)];
     [self.chatTextField setPlaceholder:@"Enter message here"];
     self.chatTextField.delegate = self;
     [self.footerView addSubview:self.chatTextField];
     [self addSubview:self.footerView];
     
-    UIButton *screenshotButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [screenshotButton setTitle:@"SS" forState:UIControlStateNormal];
+    UIImage *screenshotImage = [PomocResources imageNamed:@"attach-512" type:@"png"];
+    UIButton *screenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [screenshotButton setImage:screenshotImage forState:UIControlStateNormal];
     screenshotButton.frame = CGRectMake(0, 0, CHAT_VIEW_FOOTER_HEIGHT, CHAT_VIEW_FOOTER_HEIGHT);
     [screenshotButton addTarget:self action:@selector(screenshotPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView addSubview:screenshotButton];
+    
+    
+    UIImage *sendImage = [PomocResources imageNamed:@"send_file-512" type:@"png"];
+    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sendButton.frame = CGRectMake(self.frame.size.width-CHAT_VIEW_FOOTER_HEIGHT, 0, CHAT_VIEW_FOOTER_HEIGHT, CHAT_VIEW_FOOTER_HEIGHT);
+    [sendButton setImage:sendImage forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView addSubview:sendButton];
 }
 
 - (void)screenshotPressed:(UIButton *)button
@@ -110,6 +121,14 @@
     UIImage *image = [self screenshotOfMainWindow];
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     NSLog(@"Writing to photo album");
+}
+
+- (void)sendPressed:(UIButton *)button
+{
+    if (![self.chatTextField.text isEqualToString:@""]) {
+        [self.conversation sendTextMessage:self.chatTextField.text];
+    }
+    self.chatTextField.text = @"";
 }
 
 - (void)setupChatView
@@ -169,10 +188,7 @@
 #pragma mark - TextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (![self.chatTextField.text isEqualToString:@""]) {
-        [self.conversation sendTextMessage:self.chatTextField.text];
-    }
-    self.chatTextField.text = @"";
+    [self sendPressed:nil];
     return NO;
 }
 

@@ -9,6 +9,7 @@
 #import "PomocWindow.h"
 #import "YSChatHead.h"
 #import "PomocChatView.h"
+#import "PomocResources.h"
 
 @interface PomocWindow () <YSChatHeadDelegate>
 
@@ -18,18 +19,6 @@
 @end
 
 @implementation PomocWindow
-
-+ (NSBundle *)frameworkBundle
-{
-    static NSBundle* frameworkBundle = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        NSString* mainBundlePath = [[NSBundle mainBundle] resourcePath];
-        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"PomocSDK.bundle"];
-        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
-    });
-    return frameworkBundle;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -43,8 +32,7 @@
 
 - (void)setupChatHead
 {
-    NSString *imageString = [[PomocWindow frameworkBundle] pathForResource:@"thumbnail" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:imageString];
+    UIImage *image = [PomocResources imageNamed:@"pomoc_logo" type:@"png"];
     self.chatHead = [[YSChatHead alloc] initWithFrame:CGRectMake(80, 80, 80, 80) image:image];
     self.chatHead.delegate = self;
     [self addSubview:self.chatHead];

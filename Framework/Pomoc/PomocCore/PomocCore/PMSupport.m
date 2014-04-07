@@ -79,7 +79,7 @@
     NSDictionary *parameters = @{@"name": name};
    
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *postUrl = [NSString stringWithFormat:@"http://localhost:3217/user/%@", userId];
+    NSString *postUrl = [NSString stringWithFormat:@"http://api.pomoc.im:3217/user/%@", userId];
     
     [manager POST:postUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
