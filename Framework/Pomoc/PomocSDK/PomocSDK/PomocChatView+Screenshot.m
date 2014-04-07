@@ -13,7 +13,7 @@
 - (UIImage *)screenshotOfMainWindow
 {
     // iOS >= 7
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [[UIApplication sharedApplication] windows][0];
 
     UIGraphicsBeginImageContext(window.bounds.size);
     [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
