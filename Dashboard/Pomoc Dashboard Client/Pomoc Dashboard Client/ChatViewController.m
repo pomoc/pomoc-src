@@ -307,6 +307,7 @@
     cell.imageView.clipsToBounds = YES;
 
     __weak typeof(UITableViewCell *) weakCell = cell;
+    
     [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://28.media.tumblr.com/tumblr_lwdu1460fh1r7o3dfo1_500.jpg"]
                     placeholderImage:image
                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
