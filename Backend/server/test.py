@@ -1,7 +1,7 @@
 import requests
 
 # user registration test
-endpoint = 'http://localhost:3217/userRegistration'
+endpoint = 'http://api.pomoc.im:3217/userRegistration'
 data = {
     'userId': 'testuser',
     'password': 'testpassword',
@@ -13,7 +13,7 @@ print 'login:', r.json()
 
 
 # user login test
-endpoint = 'http://localhost:3217/agentLogin'
+endpoint = 'http://api.pomoc.im:3217/agentLogin'
 data = {
     'userId': 'testuser',
     'password': 'testpassword',
@@ -21,13 +21,14 @@ data = {
     'appSecret': 'testsecret',
 }
 r = requests.post(endpoint, data=data)
+print r
 print 'agentLogin:', r.json()
 
 
 # app registration test
-endpoint = 'http://localhost:3217/appRegistration'
+endpoint = 'http://api.pomoc.im:3217/appRegistration'
 data = {
-    'userId': 'testuser',
+    'userId': 'testuser2',
     'password': 'testpassword',
 }
 r = requests.post(endpoint, data=data)
