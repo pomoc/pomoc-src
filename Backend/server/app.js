@@ -143,15 +143,17 @@ io.sockets.on('connection', function(client) {
         }
 
 
-        // Get list of agents/users for a given conversation id
+        // Get list of agents/users for a given app
         // Doesn't include users
-        else if (data.type == 'getConversationUsers') {
+        else if (data.type == 'getAppUsers') {
             if (callback) {
                 db.client.smembers(data.appToke + ':users', function(err, reply) {
                     callback({success: true, users: reply});
                 });
             }
         }
+
+
     });
 
 
@@ -165,7 +167,7 @@ io.sockets.on('connection', function(client) {
     });
 
 
-    // Disconnect
+    // DISCONNECT
     client.on('disconnect', function() {
         // On disconnect, remove userId from list of conversations
         db.client.smembers(userId + ':sub', function(err, conversations) {
