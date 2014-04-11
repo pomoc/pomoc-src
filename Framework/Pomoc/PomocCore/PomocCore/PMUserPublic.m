@@ -10,4 +10,14 @@
 
 @implementation PMUserPublic
 
+- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken
+{
+    return [super init];
+}
+
+- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken name:(NSString *)name
+{
+    return [super init];
+}
+
 @end
