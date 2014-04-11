@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, weak) IBOutlet UIButton *toggleButton;
+
 @end
 
 @implementation ViewController
@@ -23,6 +25,7 @@
     [Pomoc initWithAppId:@"anc" secretKey:@"secret"];
     [Pomoc registerUserWithName:@"customer" completion:^(NSString *userId) {
         NSLog(@"userid %@", userId);
+        [self.toggleButton setEnabled:YES];
     }];
 }
 

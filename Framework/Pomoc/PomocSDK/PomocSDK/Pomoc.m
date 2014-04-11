@@ -47,7 +47,13 @@
     [PMSupport registerUserWithName:@"Customer" completion:^(NSString *userId) {
         pomoc.userId = userId;
         if (completion) {
-            completion(userId);
+            [PMSupport connectWithCompletion:^(BOOL connected) {
+                if (connected) {
+                    completion(userId);
+                } else {
+                    completion(nil);
+                }
+            }];
         }
     }];
 }

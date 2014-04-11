@@ -20,10 +20,11 @@
 
 @interface PMCore : NSObject
 
-+ (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey;
++ (void)initWithAppID:(NSString *)appId;
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
 + (void)setDelegate:(id<PMCoreDelegate>)delegate;
 + (void)observeNewConversations;
++ (void)connect;
 
 #pragma mark - Temp methods
 + (void)setUserId:(NSString *)userId;
