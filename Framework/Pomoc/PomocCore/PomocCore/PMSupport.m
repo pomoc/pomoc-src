@@ -111,10 +111,10 @@
 
 + (void)connect
 {
-    [PMSupport connectWithCallback:nil];
+    [PMSupport connectWithCompletion:nil];
 }
 
-+ (void)connectWithCallback:(void (^)(BOOL connected))callback
++ (void)connectWithCompletion:(void (^)(BOOL connected))callback
 {
     [[PMSupport sharedInstance] setConnectCallback:callback];
     [PMCore connect];

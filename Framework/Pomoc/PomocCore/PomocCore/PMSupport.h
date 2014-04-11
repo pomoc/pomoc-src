@@ -22,7 +22,7 @@
 + (void)registerUserWithName:(NSString *)name completion:(void(^)(NSString *userId))completion;
 + (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(NSString *userId))completion;
 + (void)connect;
-+ (void)connectWithCallback:(void (^)(BOOL connected))callback;
++ (void)connectWithCompletion:(void (^)(BOOL connected))callback;
 
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
 + (void)setDelegate:(id<PMSupportDelegate>)delegate;
