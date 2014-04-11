@@ -1,13 +1,13 @@
 //
-//  socketlib.m
-//  socketlib
+//  socketio.m
+//  socketio
 //
 //  Created by soedar on 12/4/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import "socketlib.h"
+#import "socketio.h"
 
-@implementation socketlib
+@implementation socketio
 
 @end

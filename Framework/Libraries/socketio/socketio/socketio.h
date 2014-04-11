@@ -1,6 +1,6 @@
 //
-//  socketlib.h
-//  socketlib
+//  socketio.h
+//  socketio
 //
 //  Created by soedar on 12/4/14.
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface socketlib : NSObject
+@interface socketio : NSObject
 
 @end
