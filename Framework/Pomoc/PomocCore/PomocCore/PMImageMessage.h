@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
-#import <PomocCore/PomocCore.h>
+#import "PMChatMessage.h"
+#import <UIKit/UIKit.h>
 
 @interface PMImageMessage : PMChatMessage
 

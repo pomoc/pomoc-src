@@ -9,10 +9,7 @@
 #ifndef PomocCore_PomocSupport_h
 #define PomocCore_PomocSupport_h
 
+#import "PomocCore.h"
 #import "PMSupport.h"
-#import "PMMessage.h"
-#import "PMInternalMessage.h"
-#import "PMChatMessage.h"
-#import "PMConversation.h"
 
 #endif

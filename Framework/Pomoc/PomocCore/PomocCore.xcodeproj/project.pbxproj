@@ -73,7 +73,7 @@
 		6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */; };
 		6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F35118E1E629005B87F4 /* SRWebSocket.m */; };
 		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
-		9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */; };
+		9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F2AE7D118F7D0C40078D22A /* PMImageMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2AE7CF18F7D0C40078D22A /* PMImageMessage.m */; };
 		9F2AE7D418F7D3060078D22A /* PomocImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2AE7D218F7D3060078D22A /* PomocImage.h */; };
 		9F2AE7D518F7D3060078D22A /* PomocImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2AE7D318F7D3060078D22A /* PomocImage.m */; };
@@ -913,6 +913,7 @@
 				9F2AE9BD18F7D4C50078D22A /* AmazonAbstractJsonWebServiceClient.h in Headers */,
 				9F2AEA1C18F7D4C50078D22A /* S3GetBucketVersioningConfigurationRequest.h in Headers */,
 				9F2AEA2718F7D4C50078D22A /* S3InitiateMultipartUploadRequest.h in Headers */,
+				9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */,
 				9F2AE9D318F7D4C50078D22A /* AWS_SBJson.h in Headers */,
 				9F2AEA5318F7D4C50078D22A /* S3SetBucketVersioningConfigurationResponse.h in Headers */,
 				9F2AEA5818F7D4C50078D22A /* S3UploadInputStream.h in Headers */,
@@ -993,7 +994,6 @@
 				9F2AE9C718F7D4C50078D22A /* AmazonMD5Util.h in Headers */,
 				9F2AE9E418F7D4C50078D22A /* S3AbortMultipartUploadRequest.h in Headers */,
 				9F2AEA4318F7D4C50078D22A /* S3Response.h in Headers */,
-				9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */,
 				9F2AE9E718F7D4C50078D22A /* S3AccessControlList.h in Headers */,
 				BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */,
 				9F2AEA3018F7D4C50078D22A /* S3ListObjectsRequest.h in Headers */,

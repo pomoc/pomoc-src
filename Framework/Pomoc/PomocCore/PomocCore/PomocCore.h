@@ -14,5 +14,6 @@
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
 #import "PMConversation.h"
+#import "PMImageMessage.h"
 
 #endif

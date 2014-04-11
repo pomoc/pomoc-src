@@ -77,7 +77,7 @@
     S3GetObjectRequest *gor = [[S3GetObjectRequest alloc] initWithKey:filename withBucket:S3_BUCKET_NAME];
     gor.requestTag = filename;
     __weak PomocImage *weakSelf = self;
-    reqBlocks[filepath] = ^void (UIImage *image) {
+    reqBlocks[filename] = ^void (UIImage *image) {
         [weakSelf saveFileToCache:image withFilename:filename];
         block(image);
     };

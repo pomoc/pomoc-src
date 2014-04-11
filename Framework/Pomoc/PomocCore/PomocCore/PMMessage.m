@@ -40,6 +40,8 @@
 {
     if ([dictionary[MESSAGE_CLASS] isEqualToString:[[PMChatMessage class] description]]) {
         return [[PMChatMessage alloc] initWithJsonData:dictionary];
+    } else if ([dictionary[MESSAGE_CLASS] isEqualToString:[[PMImageMessage class] description]]) {
+        return [[PMImageMessage alloc] initWithJsonData:dictionary];
     }
     return nil;
 }
@@ -47,14 +49,6 @@
 + (PMImageMessage *)imageMessageWithUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId
 {
     return [[PMImageMessage alloc] initWithImageUrl:imageUrl conversationId:conversationId];
-}
-
-+ (PMImageMessage *)imageMessageFromJsonData:(NSDictionary *)dictionary
-{
-    if ([dictionary[MESSAGE_CLASS] isEqualToString:[[PMImageMessage class] description]]) {
-        return [[PMImageMessage alloc] initWithJsonData:dictionary];
-    }
-    return nil;
 }
 
 - (id)init
