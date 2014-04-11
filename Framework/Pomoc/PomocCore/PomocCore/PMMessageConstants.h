@@ -22,6 +22,5 @@ typedef enum {
 #define MESSAGE_CONVERSATION_ID     @"conversationId"
 #define MESSAGE_TYPE                @"type"
 #define MESSAGE_USER_ID             @"userId"
-#define MESSAGE_IMAGE_URL_MESSAGE   @"imageUrl"
 
 #endif

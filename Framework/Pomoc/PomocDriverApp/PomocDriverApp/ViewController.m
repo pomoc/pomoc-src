@@ -100,6 +100,8 @@
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
     // CHeck if the image message is right
+    NSLog(@"Received image");
+    
 }
 
 #pragma mark - Adding Message

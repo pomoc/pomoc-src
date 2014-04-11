@@ -12,24 +12,22 @@
 @interface PMImageMessage ()
 
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSString *imageUrl;
 
 @end
 
 @implementation PMImageMessage
 
 
-- (id)initWithImageUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId
+- (id)initWithImageUrl:(NSString *)imageId conversationId:(NSString *)conversationId
 {
-    if (self = [super initWithMessage:nil conversationId:conversationId]) {
-        self.imageUrl = imageUrl;
+    if (self = [super initWithMessage:imageId conversationId:conversationId]) {
         self.image = nil;
     }
     return self;
 }
 
 - (void)retrieveImageWithCompletion:(void (^) (UIImage *image))block {
-    [[PomocImage sharedInstance] downloadImage:self.imageUrl withCompletion:^(UIImage *image) {
+    [[PomocImage sharedInstance] downloadImage:self.message withCompletion:^(UIImage *image) {
         self.image = image;
         if (block) {
             block(image);
@@ -40,7 +38,7 @@
 - (NSDictionary *)jsonObject
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
-    jsonData[MESSAGE_IMAGE_URL_MESSAGE] = self.imageUrl;
+    jsonData[MESSAGE_MESSAGE] = self.message;
     jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
     
     return [NSDictionary dictionaryWithDictionary:jsonData];

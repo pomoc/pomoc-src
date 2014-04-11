@@ -10,6 +10,7 @@
 #import "PMConversation_Private.h"
 #import "PMMessage.h"
 #import "PMChatMessage.h"
+#import "PMImageMessage.h"
 #import "PMInternalMessage.h"
 
 @implementation PMConversation (PMCore)
@@ -36,6 +37,10 @@
         
         if (messageClass == [PMChatMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveChatMessage:)]) {
             [self.delegate conversation:self didReceiveChatMessage:(PMChatMessage *)message];
+        }
+        
+        if (messageClass == [PMImageMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveImageMessage:)]) {
+            [self.delegate conversation:self didReceiveImageMessage:(PMImageMessage *)message];
         }
         
         if (messageClass == [PMInternalMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveInternalMessage:)]) {
