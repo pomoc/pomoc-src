@@ -27,6 +27,7 @@
         NSLog(@"userid %@", userId);
         [self.toggleButton setEnabled:YES];
     }];
+    [self.view setBackgroundColor:[UIColor greenColor]];
 }
 
 - (void)didReceiveMemoryWarning

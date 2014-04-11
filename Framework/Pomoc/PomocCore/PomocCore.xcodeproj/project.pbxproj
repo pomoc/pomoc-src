@@ -584,8 +584,6 @@
 				605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */,
 				9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */,
 				9F2AE7CF18F7D0C40078D22A /* PMImageMessage.m */,
-				9F2AE7D218F7D3060078D22A /* PomocImage.h */,
-				9F2AE7D318F7D3060078D22A /* PomocImage.m */,
 				605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */,
 				BDCBCB3F18F784C100A394CE /* PMUser */,
 			);
@@ -634,6 +632,8 @@
 				6068F2D318E1E40B005B87F4 /* PMCore.h */,
 				6068F2D518E1E40B005B87F4 /* PMCore.m */,
 				60592ADA18EE8A46006D5DEC /* PMCore_Private.h */,
+				9F2AE7D218F7D3060078D22A /* PomocImage.h */,
+				9F2AE7D318F7D3060078D22A /* PomocImage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
 			);
 			path = PomocCore;
