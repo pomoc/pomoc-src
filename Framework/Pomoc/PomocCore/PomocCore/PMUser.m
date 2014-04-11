@@ -30,7 +30,6 @@
     return self;
 }
 
-
 - (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken type:(NSString *)type name:(NSString *)name
 {
     self = [super init];
@@ -39,6 +38,18 @@
         self.appToken = appToken;
         self.type = type;
         self.name = name;
+    }
+    return self;
+}
+
+- (id)initWithJsonData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        self.userId = data[USER_USERID];
+        self.appToken = data[USER_APP_TOKEN];
+        self.type = data[USER_TYPE];
+        self.name = data[USER_NAME];
     }
     return self;
 }

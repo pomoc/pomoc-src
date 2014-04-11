@@ -82,6 +82,9 @@
 		BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */; };
 		BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
 		BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
+		BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */; };
+		BDCBCB5218F7A8A700A394CE /* PMUserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB5018F7A8A700A394CE /* PMUserConstants.m */; };
+		BDCBCB5318F7A8A700A394CE /* PMUserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB5018F7A8A700A394CE /* PMUserConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +176,8 @@
 		BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserAgent.m; sourceTree = "<group>"; };
 		BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserPublic.h; sourceTree = "<group>"; };
 		BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserPublic.m; sourceTree = "<group>"; };
+		BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserConstants.h; sourceTree = "<group>"; };
+		BDCBCB5018F7A8A700A394CE /* PMUserConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +383,8 @@
 				BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */,
 				BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */,
 				BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */,
+				BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */,
+				BDCBCB5018F7A8A700A394CE /* PMUserConstants.m */,
 			);
 			name = PMUser;
 			sourceTree = "<group>";
@@ -405,6 +412,7 @@
 				BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */,
 				60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */,
 				BDCBCB4718F78EEB00A394CE /* PMUserAgent.h in Headers */,
+				BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */,
 				60592AFE18F12E58006D5DEC /* AFURLConnectionOperation.h in Headers */,
 				605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */,
 				60592AF318F12E58006D5DEC /* AFHTTPRequestOperation.h in Headers */,
@@ -540,6 +548,7 @@
 				60592B0518F12E58006D5DEC /* AFURLSessionManager.m in Sources */,
 				6068F35718E1E629005B87F4 /* base64.c in Sources */,
 				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
+				BDCBCB5218F7A8A700A394CE /* PMUserConstants.m in Sources */,
 				60592ADE18F12C6D006D5DEC /* PMSupport.m in Sources */,
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
@@ -565,6 +574,7 @@
 				6068F2EB18E1E40B005B87F4 /* PomocCoreTests.m in Sources */,
 				BDCBCB4418F784E900A394CE /* PMUser.m in Sources */,
 				BDCBCB4918F78EEB00A394CE /* PMUserAgent.m in Sources */,
+				BDCBCB5318F7A8A700A394CE /* PMUserConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

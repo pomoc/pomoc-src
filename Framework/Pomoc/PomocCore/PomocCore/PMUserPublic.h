@@ -10,4 +10,8 @@
 
 @interface PMUserPublic : PMUser
 
+- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken;
+- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken name:(NSString *)name;
+- (id)initWithJsonData:(NSDictionary *)data;
+
 @end
