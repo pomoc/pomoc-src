@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
-		9F60031B18F7944800BEC857 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F60031A18F7944800BEC857 /* AWSS3.framework */; };
 		9F60031E18F7993800BEC857 /* PomocImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60031D18F7993800BEC857 /* PomocImage.m */; };
+		AA35A2C218F7C77E008DC33D /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA35A2BE18F7C624008DC33D /* AWSS3.framework */; };
+		AA35A2C418F7C828008DC33D /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA35A2C318F7C828008DC33D /* AWSRuntime.framework */; };
 		AA4649CD18E7E33600A607E0 /* FakePMChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CC18E7E33600A607E0 /* FakePMChatMessage.m */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
 		AA4649D218E80EEE00A607E0 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4649D118E80EEE00A607E0 /* testImage.png */; };
@@ -91,9 +92,11 @@
 		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
 		6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
-		9F60031A18F7944800BEC857 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "../../../../Downloads/aws-ios-sdk-1.7.1/AWSS3.framework"; sourceTree = "<group>"; };
 		9F60031C18F7993800BEC857 /* PomocImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocImage.h; sourceTree = "<group>"; };
 		9F60031D18F7993800BEC857 /* PomocImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocImage.m; sourceTree = "<group>"; };
+		AA35A2BE18F7C624008DC33D /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = ../../Vendor/AWSS3.framework; sourceTree = "<group>"; };
+		AA35A2C018F7C76A008DC33D /* AWSS3 */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = AWSS3; path = ../../Vendor/AWSS3.framework/AWSS3; sourceTree = "<group>"; };
+		AA35A2C318F7C828008DC33D /* AWSRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSRuntime.framework; path = ../../Vendor/AWSRuntime.framework; sourceTree = "<group>"; };
 		AA4649CB18E7E33600A607E0 /* FakePMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakePMChatMessage.h; sourceTree = "<group>"; };
 		AA4649CC18E7E33600A607E0 /* FakePMChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakePMChatMessage.m; sourceTree = "<group>"; };
 		AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+boldAndGray.h"; sourceTree = "<group>"; };
@@ -211,7 +214,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F60031B18F7944800BEC857 /* AWSS3.framework in Frameworks */,
+				AA35A2C418F7C828008DC33D /* AWSRuntime.framework in Frameworks */,
+				AA35A2C218F7C77E008DC33D /* AWSS3.framework in Frameworks */,
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
@@ -309,7 +313,9 @@
 		AA5204AC18D7EF2C00D78156 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9F60031A18F7944800BEC857 /* AWSS3.framework */,
+				AA35A2C318F7C828008DC33D /* AWSRuntime.framework */,
+				AA35A2C018F7C76A008DC33D /* AWSS3 */,
+				AA35A2BE18F7C624008DC33D /* AWSS3.framework */,
 				6054742F18E42A2800B1DD9F /* PomocCore */,
 				AA9DC8BE18E29D8B00B4FDF7 /* Security.framework */,
 				AA9DC8BC18E29D8400B4FDF7 /* libicucore.dylib */,
@@ -781,6 +787,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/chunmun/Downloads/aws-ios-sdk-1.7.1",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Vendor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
@@ -790,6 +799,9 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Vendor/AWSS3.framework,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -808,6 +820,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/chunmun/Downloads/aws-ios-sdk-1.7.1",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Vendor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
@@ -818,6 +833,9 @@
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
 					"../../Framework/Pomoc/PomocCore/Distribution/**",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Vendor/AWSS3.framework,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -102,7 +102,7 @@
     
     NSLog(@"user sending message!");
     NSString *userInput = _userTextInput.text;
-    [PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
+    //[PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
     [_userTextInput setText:@""];
     
 }
@@ -509,30 +509,30 @@
 #pragma mark - PMCore Delegate
 - (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
-    NSLog(@"message delegae called ");
-    
-    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
-        
-        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
-        
-        //if (![chatMessage.userId isEqualToString:userName]) {
-            
-            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
-            [chatMessageConv.chatMessages addObject:chatMessage];
-            
-            //check if current chat being displayed is where the new chat message comign in
-            if (currentlySelectedChat != -1) {
-                
-                PomocChat *currentChat = chatList[currentlySelectedChat];
-                
-                if (currentChat == chatMessageConv) {
-                    [_chatMessageTable reloadData];
-                    [self scrollChatContentToBottom];
-                    
-                }
-            }
-        //}
-    }
+//    NSLog(@"message delegae called ");
+//    
+//    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
+//        
+//        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
+//        
+//        //if (![chatMessage.userId isEqualToString:userName]) {
+//            
+//            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
+//            [chatMessageConv.chatMessages addObject:chatMessage];
+//            
+//            //check if current chat being displayed is where the new chat message comign in
+//            if (currentlySelectedChat != -1) {
+//                
+//                PomocChat *currentChat = chatList[currentlySelectedChat];
+//                
+//                if (currentChat == chatMessageConv) {
+//                    [_chatMessageTable reloadData];
+//                    [self scrollChatContentToBottom];
+//                    
+//                }
+//            }
+//        //}
+//    }
 }
 
 - (void)newConversationCreated:(NSString *)conversationId
@@ -560,16 +560,16 @@
 //    }];
 }
 
-- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
-{
-//    for (PomocChat *chat in chatList) {
-//        if ([chat.conversationId isEqualToString:conversationId]) {
-//            return chat;
-//        }
-//    }
-//    
-//    return nil;
-}
+//- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
+//{
+////    for (PomocChat *chat in chatList) {
+////        if ([chat.conversationId isEqualToString:conversationId]) {
+////            return chat;
+////        }
+////    }
+////    
+////    return nil;
+//}
 
 #pragma mark - Upload View Controller Delegate
 - (void)userCompleteAnnotation:(UIImage *)image
