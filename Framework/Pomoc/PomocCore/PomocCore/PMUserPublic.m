@@ -12,12 +12,21 @@
 
 - (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken
 {
-    return [super init];
+    return [super initWithUserID:userId appToken:appToken type:USER_TYPE_PUBLIC];
 }
 
 - (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken name:(NSString *)name
 {
-    return [super init];
+    return [super initWithUserID:userId appToken:appToken type:USER_TYPE_PUBLIC name:name ];
+}
+
+- (id)initWithJsonData:(NSDictionary *)data
+{
+    self = nil;
+    if ([USER_TYPE_PUBLIC isEqualToString:self.type]) {
+        self = [super initWithJsonData:data];
+    }
+    return self;
 }
 
 @end
