@@ -73,6 +73,16 @@
 		6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */; };
 		6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F35118E1E629005B87F4 /* SRWebSocket.m */; };
 		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
+		BDCBCB4218F784E900A394CE /* PMUser.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4018F784E900A394CE /* PMUser.h */; };
+		BDCBCB4318F784E900A394CE /* PMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4118F784E900A394CE /* PMUser.m */; };
+		BDCBCB4418F784E900A394CE /* PMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4118F784E900A394CE /* PMUser.m */; };
+		BDCBCB4718F78EEB00A394CE /* PMUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */; };
+		BDCBCB4818F78EEB00A394CE /* PMUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */; };
+		BDCBCB4918F78EEB00A394CE /* PMUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */; };
+		BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */; };
+		BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
+		BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
+		BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +168,13 @@
 		6068F35118E1E629005B87F4 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		60FC18A418E1EB6500BF4C95 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
 		60FC18A518E1EB6500BF4C95 /* PMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessage.m; sourceTree = "<group>"; };
+		BDCBCB4018F784E900A394CE /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
+		BDCBCB4118F784E900A394CE /* PMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUser.m; sourceTree = "<group>"; };
+		BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserAgent.h; sourceTree = "<group>"; };
+		BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserAgent.m; sourceTree = "<group>"; };
+		BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserPublic.h; sourceTree = "<group>"; };
+		BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserPublic.m; sourceTree = "<group>"; };
+		BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +249,7 @@
 				605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */,
 				605B0C1718E2DCFD00EA6717 /* PMChatMessage.m */,
 				605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */,
+				BDCBCB3F18F784C100A394CE /* PMUser */,
 			);
 			name = PMMessage;
 			sourceTree = "<group>";
@@ -353,6 +371,20 @@
 			path = "Libraries/socket-rocket";
 			sourceTree = "<group>";
 		};
+		BDCBCB3F18F784C100A394CE /* PMUser */ = {
+			isa = PBXGroup;
+			children = (
+				BDCBCB4018F784E900A394CE /* PMUser.h */,
+				BDCBCB4118F784E900A394CE /* PMUser.m */,
+				BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */,
+				BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */,
+				BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */,
+				BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */,
+				BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */,
+			);
+			name = PMUser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -373,11 +405,15 @@
 				60592AFC18F12E58006D5DEC /* AFSecurityPolicy.h in Headers */,
 				60592AFA18F12E58006D5DEC /* AFNetworkReachabilityManager.h in Headers */,
 				60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */,
+				BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */,
 				60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */,
+				BDCBCB4718F78EEB00A394CE /* PMUserAgent.h in Headers */,
+				BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */,
 				60592AFE18F12E58006D5DEC /* AFURLConnectionOperation.h in Headers */,
 				605B0CB218E32FEE00EA6717 /* PMCore.h in Headers */,
 				60592AF318F12E58006D5DEC /* AFHTTPRequestOperation.h in Headers */,
 				60592B0218F12E58006D5DEC /* AFURLResponseSerialization.h in Headers */,
+				BDCBCB4218F784E900A394CE /* PMUser.h in Headers */,
 				605B0CC018E34E5900EA6717 /* PMMessageConstants.h in Headers */,
 				605B0CAD18E32FE800EA6717 /* PMMessage.h in Headers */,
 			);
@@ -504,6 +540,7 @@
 				60592AF418F12E58006D5DEC /* AFHTTPRequestOperation.m in Sources */,
 				60592B0118F12E58006D5DEC /* AFURLRequestSerialization.m in Sources */,
 				60592AFF18F12E58006D5DEC /* AFURLConnectionOperation.m in Sources */,
+				BDCBCB4318F784E900A394CE /* PMUser.m in Sources */,
 				60592B0518F12E58006D5DEC /* AFURLSessionManager.m in Sources */,
 				6068F35718E1E629005B87F4 /* base64.c in Sources */,
 				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
@@ -511,8 +548,10 @@
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
 				6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */,
+				BDCBCB4818F78EEB00A394CE /* PMUserAgent.m in Sources */,
 				6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */,
 				6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */,
+				BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				60592AFD18F12E58006D5DEC /* AFSecurityPolicy.m in Sources */,
 				6068F35618E1E629005B87F4 /* SocketIOTransportXHR.m in Sources */,
@@ -526,7 +565,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */,
 				6068F2EB18E1E40B005B87F4 /* PomocCoreTests.m in Sources */,
+				BDCBCB4418F784E900A394CE /* PMUser.m in Sources */,
+				BDCBCB4918F78EEB00A394CE /* PMUserAgent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

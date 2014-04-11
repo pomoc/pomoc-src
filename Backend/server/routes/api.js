@@ -24,6 +24,8 @@ module.exports = function(app, db, crypto) {
                 );
                 res.statusCode = 200;
                 response = {success: true};
+                // Add user to app's list of users/agents
+                db.client.sadd(req.body.appToken + ':users', req.body.userId);
             }
             res.send(response);
         });

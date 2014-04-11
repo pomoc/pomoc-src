@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "PomocCore.h"
+#import "PomocSupport.h"
 
-@interface ViewController () <PMCoreDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <PMSupportDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
@@ -31,12 +31,24 @@
     
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
-    self.userId = @"customer";
     
-    [PMCore initWithAppID:@"anc" secretKey:@"mySecret"];
-    [PMCore setUserId:self.userId];
-    [PMCore setDelegate:self];
-    [PMCore observeNewConversations];
+    [PMSupport initWithAppID:@"anc" secretKey:@"mySecret"];
+    [PMSupport setDelegate:self];
+    
+    // User 'login' code
+    NSString *customer = @"customer";
+    [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+        [PMSupport connect];
+    }];
+    
+    /*
+    // Agent 'login' code
+    [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
+        self.userId = userId;
+        NSLog(@"------- USER ID IS %@", userId);
+        [PMSupport connectWithCallback:nil];
+    }];
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +62,7 @@
 - (IBAction)startConversationPressed:(UIButton *)button
 {
     [button setEnabled:NO];
-    [PMCore startConversationWithCompletion:^(PMConversation *conversation) {
+    [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
         self.conversation = conversation;
         self.conversation.delegate = self;
         [self.sendButton setHidden:NO];

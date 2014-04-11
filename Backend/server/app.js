@@ -47,7 +47,7 @@ io.sockets.on('connection', function(client) {
             client.join(conversationId);
             db.client.sadd(data.userId + ':sub', conversationId);
             db.client.sadd(conversationId + ':party', data.userId);
-            db.client.sadd(conversationId + ':active', data.userId);
+            db.client.sadd(conversationId + ':online', data.userId);
 
             // client also joins the chat activity channel
             client.join(conversationId + ':activity');
@@ -78,7 +78,7 @@ io.sockets.on('connection', function(client) {
             client.join(data.conversationId);
             db.client.sadd(data.userId + ':sub', data.conversationId);
             db.client.sadd(data.conversationId + ':party', data.userId);
-            db.client.sadd(data.conversationId + ':active', data.userId);
+            db.client.sadd(data.conversationId + ':online', data.userId);
 
             // client also joins the chat activity channel
             client.join(data.conversationId + ':activity');
@@ -107,8 +107,8 @@ io.sockets.on('connection', function(client) {
 
                     // Register client's activity for each conversation
                     client.join(conversationId + ':activity');
-                    db.client.smembers(conversationId + ':active', function(err, reply) {
-                        // Broadcasts list of active user for each conversation
+                    db.client.smembers(conversationId + ':online', function(err, reply) {
+                        // Broadcasts list of online user for each conversation
                         client.broadcast.to(conversationId + ':activity').emit('activity', reply);
                     });
                 });
@@ -142,6 +142,18 @@ io.sockets.on('connection', function(client) {
             }
         }
 
+
+        // Get list of agents/users for a given app
+        // Doesn't include users
+        else if (data.type == 'getAppUsers') {
+            if (callback) {
+                db.client.smembers(data.appToke + ':users', function(err, reply) {
+                    callback({success: true, users: reply});
+                });
+            }
+        }
+
+
     });
 
 
@@ -154,6 +166,28 @@ io.sockets.on('connection', function(client) {
         console.log(data.userId + ' sent: ' + data.message + ' channel: ' + data.conversationId);
     });
 
-    // Disconnect
-    client.on('disconnect', function() {});
+
+    // DISCONNECT
+    client.on('disconnect', function() {
+        // Get list of conversations users is in
+        db.client.smembers(userId + ':sub', function(err, conversations) {
+            var multiRemove = db.client.multi();
+            // Remove them from the online list
+            for (var i = 0; i < conversations.length; i++) {
+                multiRemove.srem(conversations[i] + ':online', userId);
+            }
+            // broadcast to conversations the new online participant list
+            multiRemove.exec(function(err, replies) {
+                for (var j = 0; j < conversations.length; j++) {
+                    // For each conversation, get the list of participants online
+                    db.client.smembers(conversations[j] + ':online', function(err, reply) { 
+                        // Broadcast that list onto the conversation's activity
+                        // channel to notify clients
+                        client.broadcast.to(conversations[j] + ':activity').emit('activity', reply);
+                        console.log('Disconnected from: ' + conversations[j]);
+                    });;
+                }
+            });
+        });
+    });
 });
