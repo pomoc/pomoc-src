@@ -102,7 +102,7 @@
     
     NSLog(@"user sending message!");
     NSString *userInput = _userTextInput.text;
-    [PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
+    //[PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
     [_userTextInput setText:@""];
     
 }
@@ -312,6 +312,7 @@
     cell.imageView.clipsToBounds = YES;
 
     __weak typeof(UITableViewCell *) weakCell = cell;
+    
     [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://28.media.tumblr.com/tumblr_lwdu1460fh1r7o3dfo1_500.jpg"]
                     placeholderImage:image
                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
@@ -508,67 +509,67 @@
 #pragma mark - PMCore Delegate
 - (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
 {
-    NSLog(@"message delegae called ");
-    
-    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
-        
-        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
-        
-        //if (![chatMessage.userId isEqualToString:userName]) {
-            
-            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
-            [chatMessageConv.chatMessages addObject:chatMessage];
-            
-            //check if current chat being displayed is where the new chat message comign in
-            if (currentlySelectedChat != -1) {
-                
-                PomocChat *currentChat = chatList[currentlySelectedChat];
-                
-                if (currentChat == chatMessageConv) {
-                    [_chatMessageTable reloadData];
-                    [self scrollChatContentToBottom];
-                    
-                }
-            }
-        //}
-    }
+//    NSLog(@"message delegae called ");
+//    
+//    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
+//        
+//        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
+//        
+//        //if (![chatMessage.userId isEqualToString:userName]) {
+//            
+//            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
+//            [chatMessageConv.chatMessages addObject:chatMessage];
+//            
+//            //check if current chat being displayed is where the new chat message comign in
+//            if (currentlySelectedChat != -1) {
+//                
+//                PomocChat *currentChat = chatList[currentlySelectedChat];
+//                
+//                if (currentChat == chatMessageConv) {
+//                    [_chatMessageTable reloadData];
+//                    [self scrollChatContentToBottom];
+//                    
+//                }
+//            }
+//        //}
+//    }
 }
 
 - (void)newConversationCreated:(NSString *)conversationId
 {
-    NSLog(@"new conversation!");
-    
-    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
-        
-        PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
-        [chatList addObject:chat];
-
-        [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            PMChatMessage *message = (PMChatMessage *)obj;
-            
-            if(idx == 0) {
-                chat.startedDate = message.timestamp;
-                chat.userId = message.userId;
-            }
-            
-            [chat.chatMessages addObject:message];
-        }];
-        
-        [_chatNavTable reloadData];
-    }];
+//    NSLog(@"new conversation!");
+//    
+//    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
+//        
+//        PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
+//        [chatList addObject:chat];
+//
+//        [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            
+//            PMChatMessage *message = (PMChatMessage *)obj;
+//            
+//            if(idx == 0) {
+//                chat.startedDate = message.timestamp;
+//                chat.userId = message.userId;
+//            }
+//            
+//            [chat.chatMessages addObject:message];
+//        }];
+//        
+//        [_chatNavTable reloadData];
+//    }];
 }
 
-- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
-{
-    for (PomocChat *chat in chatList) {
-        if ([chat.conversationId isEqualToString:conversationId]) {
-            return chat;
-        }
-    }
-    
-    return nil;
-}
+//- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
+//{
+////    for (PomocChat *chat in chatList) {
+////        if ([chat.conversationId isEqualToString:conversationId]) {
+////            return chat;
+////        }
+////    }
+////    
+////    return nil;
+//}
 
 #pragma mark - Upload View Controller Delegate
 - (void)userCompleteAnnotation:(UIImage *)image
