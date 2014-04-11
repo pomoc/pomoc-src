@@ -21,6 +21,7 @@
 + (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey;
 + (void)registerUserWithName:(NSString *)name completion:(void(^)(NSString *userId))completion;
 + (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(NSString *userId))completion;
++ (void)connect;
 + (void)connectWithCallback:(void (^)(BOOL connected))callback;
 
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;

@@ -34,25 +34,21 @@
     
     [PMSupport initWithAppID:@"anc" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
-    [PMSupport connectWithCallback:^(BOOL connected) {
-        if (connected) {
-            /* 
-            // User 'login' code
-             NSString *userName = @"customer";
-            [PMSupport registerUserWithName:userName completion:^(NSString *userId) {
-                self.userId = userId;
-                NSLog(@"--------USERID IS %@", self.userId);
-            }];
-             */
-            
-            
-            // Agent 'login' code
-            [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
-                self.userId = userId;
-                NSLog(@"------- USER ID IS %@", userId);
-            }];
-        }
+    
+    // User 'login' code
+    NSString *customer = @"customer";
+    [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+        [PMSupport connect];
     }];
+    
+    /*
+    // Agent 'login' code
+    [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
+        self.userId = userId;
+        NSLog(@"------- USER ID IS %@", userId);
+        [PMSupport connectWithCallback:nil];
+    }];
+     */
 }
 
 - (void)didReceiveMemoryWarning

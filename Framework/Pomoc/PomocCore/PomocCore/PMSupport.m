@@ -109,6 +109,11 @@
     [PMCore startConversationWithCompletion:completion];
 }
 
++ (void)connect
+{
+    [PMSupport connectWithCallback:nil];
+}
+
 + (void)connectWithCallback:(void (^)(BOOL connected))callback
 {
     [[PMSupport sharedInstance] setConnectCallback:callback];
