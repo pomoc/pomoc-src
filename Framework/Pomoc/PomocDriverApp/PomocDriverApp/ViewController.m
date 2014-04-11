@@ -74,7 +74,12 @@
 
 - (IBAction)sendPressed:(UIButton *)button
 {
-    [self.conversation sendTextMessage:self.textField.text];
+    if ([self.textField.text isEqualToString:@"image"]) {
+        UIImage *image = [UIImage imageNamed:@"image_small"];
+        [self.conversation sendImageMessage:image];
+    } else {
+        [self.conversation sendTextMessage:self.textField.text];
+    }
     self.textField.text = @"";
 }
 
