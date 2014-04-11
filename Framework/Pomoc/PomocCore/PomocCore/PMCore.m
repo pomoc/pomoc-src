@@ -16,6 +16,7 @@
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
 #import "PMImageMessage.h"
+#import "PomocImage.h"
 
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
@@ -90,11 +91,11 @@
 
 + (void)sendImageMessage:(UIImage *)image conversationId:(NSString *)conversationId
 {
-    PMCore *core = [PMCore sharedInstance];
-    
-    // PMImage uploading here
-    // Inside completion: [core sendImageMessage:chatMessage withAcknowledge:nil];
-    // PMImageMessage *imageMessage = [PMMessage imageMessageWithURL:imageUrl conversationId:conversationId];
+    [[PomocImage sharedInstance] uploadImage:image withCompletion:^(NSString *imageUrl) {
+        PMImageMessage *imageMessage = [PMMessage imageMessageWithUrl:imageUrl conversationId:conversationId];
+        PMCore *core = [PMCore sharedInstance];
+        [core sendMessage:imageMessage withAcknowledge:nil];
+    }];
 }
 
 + (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
