@@ -16,7 +16,7 @@
 #import "PMMessage.h"
 
 #import "PomocChat.h"
-#import "PomocImageUpload.h"
+#import "PomocImage.h"
 
 #import "UILabel+boldAndGray.h"
 
@@ -47,7 +47,7 @@
     
     // For testing
     PomocChat *chat;
-    PomocImageUpload *uploader;
+    PomocImage *pmImage;
 }
 
 @end
@@ -370,18 +370,20 @@
 #pragma mark - Upload View Controller Delegate 
 - (void)pictureSelected:(UIImage *)image
 {
-    uploader = [PomocImageUpload sharedInstance];
-    void (^download) (UIImage *) = ^void (UIImage *image) {
+    pmImage = [PomocImage sharedInstance];
+    
+    // Download from S3
+    void (^downloadCompleted) (UIImage *) = ^void (UIImage *image) {
         NSLog(@"Image downloaded");
     };
     
-    [uploader downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:download];
+    [pmImage downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:downloadCompleted];
     
     //dismiss segue
     [uploadSegue dismissPopoverAnimated:YES];
     
-    //upload to S3
-    void (^block) (NSString *) = ^void(NSString *url) {
+    // Upload to S3
+    void (^uploadCompleted) (NSString *) = ^void(NSString *url) {
         FakePMImageMessage *image1 = [[FakePMImageMessage alloc] init];
         image1.userId = @"visitor";
         image1.conversationId = @"1";
@@ -390,7 +392,8 @@
         [chat.chatMessages addObject:image1];
         [_chatNavTable reloadData];
     };
-    [uploader uploadImage:image withCompletion:block];
+    
+    [pmImage uploadImage:image withCompletion:uploadCompleted];
     
     //handling of photo
     NSLog(@"picture selected");
