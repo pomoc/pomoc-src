@@ -11,10 +11,9 @@
 
 @interface PMImageMessage : PMChatMessage
 
-- (id)initWithImageUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId;
+- (id)initWithImageId:(NSString *)imageId conversationId:(NSString *)conversationId;
 - (void)retrieveImageWithCompletion:(void (^) (UIImage *image))block;
 
 @property (nonatomic, strong, readonly) UIImage *image;
-
 
 @end

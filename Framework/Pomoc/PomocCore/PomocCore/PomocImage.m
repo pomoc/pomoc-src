@@ -133,20 +133,20 @@
 # pragma mark - AmazonServiceRequestDelegate
 
 -(void)request:(AmazonServiceRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse called: %@", response);
+    // NSLog(@"didReceiveResponse called: %@", response);
 }
 
 -(void)request:(AmazonServiceRequest *)request didReceiveData:(NSData *)data {
-    NSLog(@"didReceiveData called");
+    // NSLog(@"didReceiveData called");
 }
 
 -(void)request:(AmazonServiceRequest *)request didSendData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten totalBytesExpectedToWrite:(long long)totalBytesExpectedToWrite {
-    NSLog(@"didSendData called: %ll - %ll / %ll", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+    // NSLog(@"didSendData called: %ll - %ll / %ll", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
 }
 
 -(void)request:(AmazonServiceRequest *)request didCompleteWithResponse:(AmazonServiceResponse *)response {
-    NSLog(@"didCompleteWithResponse response called\n: %@", response);
-    NSLog(@"didCompleteWithResponse request called\n: %@", request);
+    // NSLog(@"didCompleteWithResponse response called\n: %@", response);
+    // NSLog(@"didCompleteWithResponse request called\n: %@", request);
     
     void(^block)(NSString *) = reqBlocks[request.requestTag];
     if (block) {
@@ -157,7 +157,7 @@
 }
 
 -(void)request:(AmazonServiceRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError called: %@", error);
+    // NSLog(@"didFailWithError called: %@", error);
 }
 
 @end

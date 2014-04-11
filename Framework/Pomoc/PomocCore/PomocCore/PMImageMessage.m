@@ -15,10 +15,10 @@
 
 @end
 
+
 @implementation PMImageMessage
 
-
-- (id)initWithImageUrl:(NSString *)imageId conversationId:(NSString *)conversationId
+- (id)initWithImageId:(NSString *)imageId conversationId:(NSString *)conversationId
 {
     if (self = [super initWithMessage:imageId conversationId:conversationId]) {
         self.image = nil;
@@ -26,22 +26,13 @@
     return self;
 }
 
-- (void)retrieveImageWithCompletion:(void (^) (UIImage *image))block {
+- (void)retrieveImageWithCompletion:(void(^)(UIImage *image))block {
     [[PomocImage sharedInstance] downloadImage:self.message withCompletion:^(UIImage *image) {
         self.image = image;
         if (block) {
             block(image);
         }
     }];
-}
-
-- (NSDictionary *)jsonObject
-{
-    NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
-    jsonData[MESSAGE_MESSAGE] = self.message;
-    jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
-    
-    return [NSDictionary dictionaryWithDictionary:jsonData];
 }
 
 @end

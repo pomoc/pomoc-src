@@ -46,9 +46,9 @@
     return nil;
 }
 
-+ (PMImageMessage *)imageMessageWithUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId
++ (PMImageMessage *)imageMessageWithId:(NSString *)imageId conversationId:(NSString *)conversationId
 {
-    return [[PMImageMessage alloc] initWithImageUrl:imageUrl conversationId:conversationId];
+    return [[PMImageMessage alloc] initWithImageId:imageId conversationId:conversationId];
 }
 
 - (id)init

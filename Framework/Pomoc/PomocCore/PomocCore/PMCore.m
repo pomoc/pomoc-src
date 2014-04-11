@@ -91,8 +91,8 @@
 
 + (void)sendImageMessage:(UIImage *)image conversationId:(NSString *)conversationId
 {
-    [[PomocImage sharedInstance] uploadImage:image withCompletion:^(NSString *imageUrl) {
-        PMImageMessage *imageMessage = [PMMessage imageMessageWithUrl:imageUrl conversationId:conversationId];
+    [[PomocImage sharedInstance] uploadImage:image withCompletion:^(NSString *imageId) {
+        PMImageMessage *imageMessage = [PMMessage imageMessageWithId:imageId conversationId:conversationId];
         PMCore *core = [PMCore sharedInstance];
         [core sendMessage:imageMessage withAcknowledge:nil];
     }];

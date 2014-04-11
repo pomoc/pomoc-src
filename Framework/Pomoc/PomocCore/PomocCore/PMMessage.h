@@ -22,7 +22,7 @@
 + (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
                                 conversationId:(NSString *)conversationId;
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
-+ (PMImageMessage *)imageMessageWithUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId;
++ (PMImageMessage *)imageMessageWithId:(NSString *)imageId conversationId:(NSString *)conversationId;
 
 + (PMChatMessage *)chatMessageFromJsonData:(NSDictionary *)data;
 
