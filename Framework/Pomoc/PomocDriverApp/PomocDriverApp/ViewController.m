@@ -97,6 +97,11 @@
     [self addMessage:chatMessage.message fromUser:chatMessage.userId];
 }
 
+- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
+{
+    // CHeck if the image message is right
+}
+
 #pragma mark - Adding Message
 
 - (void)addMessage:(NSString *)message fromUser:(NSString *)user
