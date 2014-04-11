@@ -64,14 +64,16 @@
 		6068F2E318E1E40B005B87F4 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6068F2CB18E1E40B005B87F4 /* libPomocCore.a */; };
 		6068F2E918E1E40B005B87F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6068F2E718E1E40B005B87F4 /* InfoPlist.strings */; };
 		6068F2EB18E1E40B005B87F4 /* PomocCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F2EA18E1E40B005B87F4 /* PomocCoreTests.m */; };
-		6068F35218E1E629005B87F4 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34018E1E629005B87F4 /* SocketIO.m */; };
-		6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34218E1E629005B87F4 /* SocketIOJSONSerialization.m */; };
-		6068F35418E1E629005B87F4 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34418E1E629005B87F4 /* SocketIOPacket.m */; };
-		6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34718E1E629005B87F4 /* SocketIOTransportWebsocket.m */; };
-		6068F35618E1E629005B87F4 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34918E1E629005B87F4 /* SocketIOTransportXHR.m */; };
-		6068F35718E1E629005B87F4 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34B18E1E629005B87F4 /* base64.c */; };
-		6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */; };
-		6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F35118E1E629005B87F4 /* SRWebSocket.m */; };
+		60807FC318F8655F009B84D2 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FB918F8655F009B84D2 /* base64.h */; };
+		60807FC418F8655F009B84D2 /* NSData+SRB64Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBA18F8655F009B84D2 /* NSData+SRB64Additions.h */; };
+		60807FC518F8655F009B84D2 /* SocketIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBB18F8655F009B84D2 /* SocketIO.h */; };
+		60807FC618F8655F009B84D2 /* SocketIOJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBC18F8655F009B84D2 /* SocketIOJSONSerialization.h */; };
+		60807FC718F8655F009B84D2 /* SocketIOPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBD18F8655F009B84D2 /* SocketIOPacket.h */; };
+		60807FC818F8655F009B84D2 /* SocketIOTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBE18F8655F009B84D2 /* SocketIOTransport.h */; };
+		60807FC918F8655F009B84D2 /* SocketIOTransportWebsocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FBF18F8655F009B84D2 /* SocketIOTransportWebsocket.h */; };
+		60807FCA18F8655F009B84D2 /* SocketIOTransportXHR.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */; };
+		60807FCB18F8655F009B84D2 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FC118F8655F009B84D2 /* SRWebSocket.h */; };
+		60807FCC18F8655F009B84D2 /* libsocketio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60807FC218F8655F009B84D2 /* libsocketio.a */; };
 		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
 		9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F2AE7D118F7D0C40078D22A /* PMImageMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2AE7CF18F7D0C40078D22A /* PMImageMessage.m */; };
@@ -314,24 +316,16 @@
 		6068F2E618E1E40B005B87F4 /* PomocCoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PomocCoreTests-Info.plist"; sourceTree = "<group>"; };
 		6068F2E818E1E40B005B87F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6068F2EA18E1E40B005B87F4 /* PomocCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PomocCoreTests.m; sourceTree = "<group>"; };
-		6068F33F18E1E629005B87F4 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
-		6068F34018E1E629005B87F4 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
-		6068F34118E1E629005B87F4 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
-		6068F34218E1E629005B87F4 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
-		6068F34318E1E629005B87F4 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
-		6068F34418E1E629005B87F4 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
-		6068F34518E1E629005B87F4 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
-		6068F34618E1E629005B87F4 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
-		6068F34718E1E629005B87F4 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
-		6068F34818E1E629005B87F4 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
-		6068F34918E1E629005B87F4 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
-		6068F34B18E1E629005B87F4 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
-		6068F34C18E1E629005B87F4 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
-		6068F34D18E1E629005B87F4 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
-		6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
-		6068F34F18E1E629005B87F4 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
-		6068F35018E1E629005B87F4 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
-		6068F35118E1E629005B87F4 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		60807FB918F8655F009B84D2 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		60807FBA18F8655F009B84D2 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		60807FBB18F8655F009B84D2 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		60807FBC18F8655F009B84D2 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		60807FBD18F8655F009B84D2 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		60807FBE18F8655F009B84D2 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		60807FBF18F8655F009B84D2 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		60807FC118F8655F009B84D2 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		60807FC218F8655F009B84D2 /* libsocketio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsocketio.a; sourceTree = "<group>"; };
 		60FC18A418E1EB6500BF4C95 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
 		60FC18A518E1EB6500BF4C95 /* PMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessage.m; sourceTree = "<group>"; };
 		9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
@@ -514,6 +508,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60807FCC18F8655F009B84D2 /* libsocketio.a in Frameworks */,
 				9F2AE87B18F7D3AD0078D22A /* AWSS3 in Frameworks */,
 				6068F2CF18E1E40B005B87F4 /* Foundation.framework in Frameworks */,
 				9F2AE87A18F7D3AD0078D22A /* AWSRuntime in Frameworks */,
@@ -668,46 +663,37 @@
 		6068F33D18E1E613005B87F4 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				60807FB718F8655F009B84D2 /* socketio */,
 				9F2AE7D618F7D35F0078D22A /* AWS */,
 				60592ADF18F12E58006D5DEC /* AFNetworking */,
-				6068F33E18E1E629005B87F4 /* socket-io */,
-				6068F34A18E1E629005B87F4 /* socket-rocket */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		6068F33E18E1E629005B87F4 /* socket-io */ = {
+		60807FB718F8655F009B84D2 /* socketio */ = {
 			isa = PBXGroup;
 			children = (
-				6068F33F18E1E629005B87F4 /* SocketIO.h */,
-				6068F34018E1E629005B87F4 /* SocketIO.m */,
-				6068F34118E1E629005B87F4 /* SocketIOJSONSerialization.h */,
-				6068F34218E1E629005B87F4 /* SocketIOJSONSerialization.m */,
-				6068F34318E1E629005B87F4 /* SocketIOPacket.h */,
-				6068F34418E1E629005B87F4 /* SocketIOPacket.m */,
-				6068F34518E1E629005B87F4 /* SocketIOTransport.h */,
-				6068F34618E1E629005B87F4 /* SocketIOTransportWebsocket.h */,
-				6068F34718E1E629005B87F4 /* SocketIOTransportWebsocket.m */,
-				6068F34818E1E629005B87F4 /* SocketIOTransportXHR.h */,
-				6068F34918E1E629005B87F4 /* SocketIOTransportXHR.m */,
+				60807FB818F8655F009B84D2 /* Headers */,
+				60807FC218F8655F009B84D2 /* libsocketio.a */,
 			);
-			name = "socket-io";
-			path = "Libraries/socket-io";
+			name = socketio;
+			path = Libraries/socketio;
 			sourceTree = "<group>";
 		};
-		6068F34A18E1E629005B87F4 /* socket-rocket */ = {
+		60807FB818F8655F009B84D2 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				6068F34B18E1E629005B87F4 /* base64.c */,
-				6068F34C18E1E629005B87F4 /* base64.h */,
-				6068F34D18E1E629005B87F4 /* NSData+SRB64Additions.h */,
-				6068F34E18E1E629005B87F4 /* NSData+SRB64Additions.m */,
-				6068F34F18E1E629005B87F4 /* SocketRocket-Prefix.pch */,
-				6068F35018E1E629005B87F4 /* SRWebSocket.h */,
-				6068F35118E1E629005B87F4 /* SRWebSocket.m */,
+				60807FB918F8655F009B84D2 /* base64.h */,
+				60807FBA18F8655F009B84D2 /* NSData+SRB64Additions.h */,
+				60807FBB18F8655F009B84D2 /* SocketIO.h */,
+				60807FBC18F8655F009B84D2 /* SocketIOJSONSerialization.h */,
+				60807FBD18F8655F009B84D2 /* SocketIOPacket.h */,
+				60807FBE18F8655F009B84D2 /* SocketIOTransport.h */,
+				60807FBF18F8655F009B84D2 /* SocketIOTransportWebsocket.h */,
+				60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */,
+				60807FC118F8655F009B84D2 /* SRWebSocket.h */,
 			);
-			name = "socket-rocket";
-			path = "Libraries/socket-rocket";
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		9F2AE7D618F7D35F0078D22A /* AWS */ = {
@@ -941,6 +927,7 @@
 				9F2AEA2D18F7D4C50078D22A /* S3ListMultipartUploadsRequest.h in Headers */,
 				9F2AE9CE18F7D4C50078D22A /* AmazonServiceResponse.h in Headers */,
 				9F2AEA1018F7D4C50078D22A /* S3DeleteVersionRequest.h in Headers */,
+				60807FC618F8655F009B84D2 /* SocketIOJSONSerialization.h in Headers */,
 				60592AF518F12E58006D5DEC /* AFHTTPRequestOperationManager.h in Headers */,
 				9F2AEA3D18F7D4C50078D22A /* S3Part.h in Headers */,
 				60592AF718F12E58006D5DEC /* AFHTTPSessionManager.h in Headers */,
@@ -958,12 +945,14 @@
 				9F2AE9FC18F7D4C50078D22A /* S3CopyPartResult.h in Headers */,
 				9F2AEA3618F7D4C50078D22A /* S3ListVersionsRequest.h in Headers */,
 				9F2AEA5C18F7D4C50078D22A /* SBJson.h in Headers */,
+				60807FC718F8655F009B84D2 /* SocketIOPacket.h in Headers */,
 				9F2AEA5518F7D4C50078D22A /* S3SetBucketWebsiteConfigurationResponse.h in Headers */,
 				9F2AEA3818F7D4C50078D22A /* S3ListVersionsResult.h in Headers */,
 				9F2AE9F718F7D4C50078D22A /* S3CopyObjectRequest.h in Headers */,
 				9F2AEA5018F7D4C50078D22A /* S3SetBucketTaggingRequest.h in Headers */,
 				9F2AE9C318F7D4C50078D22A /* AmazonEndpoints.h in Headers */,
 				605B0CB018E32FEE00EA6717 /* PomocCore.h in Headers */,
+				60807FC418F8655F009B84D2 /* NSData+SRB64Additions.h in Headers */,
 				9F2AEA1B18F7D4C50078D22A /* S3GetBucketTaggingResponse.h in Headers */,
 				9F2AEA2318F7D4C50078D22A /* S3GetObjectResponse.h in Headers */,
 				9F2AE9ED18F7D4C50078D22A /* S3BucketNameUtilities.h in Headers */,
@@ -993,6 +982,7 @@
 				9F2AEA1418F7D4C50078D22A /* S3GetBucketCrossOriginRequest.h in Headers */,
 				9F2AE9C718F7D4C50078D22A /* AmazonMD5Util.h in Headers */,
 				9F2AE9E418F7D4C50078D22A /* S3AbortMultipartUploadRequest.h in Headers */,
+				60807FCB18F8655F009B84D2 /* SRWebSocket.h in Headers */,
 				9F2AEA4318F7D4C50078D22A /* S3Response.h in Headers */,
 				9F2AE9E718F7D4C50078D22A /* S3AccessControlList.h in Headers */,
 				BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */,
@@ -1005,6 +995,7 @@
 				9F2AE9CD18F7D4C50078D22A /* AmazonServiceRequestConfig.h in Headers */,
 				9F2AEA4A18F7D4C50078D22A /* S3SetBucketCrossOriginRequest.h in Headers */,
 				9F2AE9D518F7D4C50078D22A /* AWS_SBJsonStreamParser.h in Headers */,
+				60807FC918F8655F009B84D2 /* SocketIOTransportWebsocket.h in Headers */,
 				9F2AE9EF18F7D4C50078D22A /* S3BucketTaggingConfiguration.h in Headers */,
 				9F2AEA5618F7D4C50078D22A /* S3TransferManager.h in Headers */,
 				9F2AE9DE18F7D4C50078D22A /* AWS_SBJsonWriter.h in Headers */,
@@ -1043,6 +1034,7 @@
 				9F2AEA0418F7D4C50078D22A /* S3DeleteBucketPolicyRequest.h in Headers */,
 				9F2AEA4718F7D4C50078D22A /* S3ServiceModel.h in Headers */,
 				9F2AE9D418F7D4C50078D22A /* AWS_SBJsonParser.h in Headers */,
+				60807FCA18F8655F009B84D2 /* SocketIOTransportXHR.h in Headers */,
 				9F2AE9D718F7D4C50078D22A /* AWS_SBJsonStreamParserAdapter.h in Headers */,
 				9F2AE9D018F7D4C50078D22A /* AmazonStaticCredentialsProvider.h in Headers */,
 				9F2AE9DD18F7D4C50078D22A /* AWS_SBJsonUTF8Stream.h in Headers */,
@@ -1051,6 +1043,8 @@
 				9F2AE9E018F7D4C50078D22A /* AWSS3.h in Headers */,
 				9F2AEA2518F7D4C50078D22A /* S3Grant.h in Headers */,
 				9F2AE9C818F7D4C50078D22A /* AmazonRequestDelegate.h in Headers */,
+				60807FC518F8655F009B84D2 /* SocketIO.h in Headers */,
+				60807FC318F8655F009B84D2 /* base64.h in Headers */,
 				9F2AE9E318F7D4C50078D22A /* DeleteError.h in Headers */,
 				9F2AE9DC18F7D4C50078D22A /* AWS_SBJsonTokeniser.h in Headers */,
 				BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */,
@@ -1087,6 +1081,7 @@
 				9F2AE9F118F7D4C50078D22A /* S3BucketVersioningConfiguration.h in Headers */,
 				9F2AE9FA18F7D4C50078D22A /* S3CopyPartRequest.h in Headers */,
 				9F2AEA0018F7D4C50078D22A /* S3DeleteBucketCrossOriginRequest.h in Headers */,
+				60807FC818F8655F009B84D2 /* SocketIOTransport.h in Headers */,
 				9F2AE9E918F7D4C50078D22A /* S3BucketCrossOriginConfiguration.h in Headers */,
 				9F2AE9C018F7D4C50078D22A /* AmazonClientException.h in Headers */,
 				9F2AEA4418F7D4C50078D22A /* S3ResponseHeaderOverrides.h in Headers */,
@@ -1211,11 +1206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				605B0C1818E2DCFD00EA6717 /* PMChatMessage.m in Sources */,
-				6068F35818E1E629005B87F4 /* NSData+SRB64Additions.m in Sources */,
-				6068F35418E1E629005B87F4 /* SocketIOPacket.m in Sources */,
 				9F2AE7D518F7D3060078D22A /* PomocImage.m in Sources */,
 				60592AF818F12E58006D5DEC /* AFHTTPSessionManager.m in Sources */,
-				6068F35218E1E629005B87F4 /* SocketIO.m in Sources */,
 				60592AFB18F12E58006D5DEC /* AFNetworkReachabilityManager.m in Sources */,
 				60592AF418F12E58006D5DEC /* AFHTTPRequestOperation.m in Sources */,
 				60592B0118F12E58006D5DEC /* AFURLRequestSerialization.m in Sources */,
@@ -1223,19 +1215,14 @@
 				60592AFF18F12E58006D5DEC /* AFURLConnectionOperation.m in Sources */,
 				BDCBCB4318F784E900A394CE /* PMUser.m in Sources */,
 				60592B0518F12E58006D5DEC /* AFURLSessionManager.m in Sources */,
-				6068F35718E1E629005B87F4 /* base64.c in Sources */,
 				6068F2D618E1E40B005B87F4 /* PMCore.m in Sources */,
 				60592ADE18F12C6D006D5DEC /* PMSupport.m in Sources */,
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
-				6068F35518E1E629005B87F4 /* SocketIOTransportWebsocket.m in Sources */,
 				BDCBCB4818F78EEB00A394CE /* PMUserAgent.m in Sources */,
-				6068F35918E1E629005B87F4 /* SRWebSocket.m in Sources */,
-				6068F35318E1E629005B87F4 /* SocketIOJSONSerialization.m in Sources */,
 				BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				60592AFD18F12E58006D5DEC /* AFSecurityPolicy.m in Sources */,
-				6068F35618E1E629005B87F4 /* SocketIOTransportXHR.m in Sources */,
 				60592AF618F12E58006D5DEC /* AFHTTPRequestOperationManager.m in Sources */,
 				60592AD818EE8962006D5DEC /* PMConversation+PMCore.m in Sources */,
 				60592B0318F12E58006D5DEC /* AFURLResponseSerialization.m in Sources */,
@@ -1358,7 +1345,7 @@
 				GCC_PREFIX_HEADER = "PomocCore/PomocCore-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Libraries/AWS",
+					"$(PROJECT_DIR)/Libraries/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1378,7 +1365,7 @@
 				GCC_PREFIX_HEADER = "PomocCore/PomocCore-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Libraries/AWS",
+					"$(PROJECT_DIR)/Libraries/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

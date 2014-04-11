@@ -6,20 +6,57 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		60DE892D18F85F51000F3234 /* BuildSocketio */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 60DE892E18F85F51000F3234 /* Build configuration list for PBXAggregateTarget "BuildSocketio" */;
+			buildPhases = (
+				60DE893118F85F65000F3234 /* ShellScript */,
+			);
+			dependencies = (
+				60DE893318F85F8E000F3234 /* PBXTargetDependency */,
+			);
+			name = BuildSocketio;
+			productName = BuildSocketio;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		60DE88C918F85B2A000F3234 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE88C818F85B2A000F3234 /* Foundation.framework */; };
-		60DE88CE18F85B2A000F3234 /* socketio.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 60DE88CD18F85B2A000F3234 /* socketio.h */; };
-		60DE88D018F85B2A000F3234 /* socketio.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88CF18F85B2A000F3234 /* socketio.m */; };
 		60DE88D718F85B2A000F3234 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE88D618F85B2A000F3234 /* XCTest.framework */; };
 		60DE88D818F85B2A000F3234 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE88C818F85B2A000F3234 /* Foundation.framework */; };
 		60DE88DA18F85B2A000F3234 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE88D918F85B2A000F3234 /* UIKit.framework */; };
 		60DE88DD18F85B2A000F3234 /* libsocketio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DE88C518F85B2A000F3234 /* libsocketio.a */; };
 		60DE88E318F85B2A000F3234 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60DE88E118F85B2A000F3234 /* InfoPlist.strings */; };
 		60DE88E518F85B2A000F3234 /* socketioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88E418F85B2A000F3234 /* socketioTests.m */; };
+		60DE890418F85BD3000F3234 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88F218F85BD3000F3234 /* SocketIO.m */; };
+		60DE890518F85BD3000F3234 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88F418F85BD3000F3234 /* SocketIOJSONSerialization.m */; };
+		60DE890618F85BD3000F3234 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88F618F85BD3000F3234 /* SocketIOPacket.m */; };
+		60DE890718F85BD3000F3234 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88F918F85BD3000F3234 /* SocketIOTransportWebsocket.m */; };
+		60DE890818F85BD3000F3234 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88FB18F85BD3000F3234 /* SocketIOTransportXHR.m */; };
+		60DE890918F85BD3000F3234 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 60DE88FD18F85BD3000F3234 /* base64.c */; };
+		60DE890A18F85BD3000F3234 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE890018F85BD3000F3234 /* NSData+SRB64Additions.m */; };
+		60DE890B18F85BD3000F3234 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DE890318F85BD3000F3234 /* SRWebSocket.m */; };
+		60DE890D18F85BF3000F3234 /* SocketIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88F118F85BD3000F3234 /* SocketIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE890E18F85BF3000F3234 /* SocketIOJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88F318F85BD3000F3234 /* SocketIOJSONSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE890F18F85BF3000F3234 /* SocketIOPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88F518F85BD3000F3234 /* SocketIOPacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891018F85BF3000F3234 /* SocketIOTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88F718F85BD3000F3234 /* SocketIOTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891118F85BF3000F3234 /* SocketIOTransportWebsocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88F818F85BD3000F3234 /* SocketIOTransportWebsocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891218F85BF3000F3234 /* SocketIOTransportXHR.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88FA18F85BD3000F3234 /* SocketIOTransportXHR.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891318F85BF3000F3234 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88FE18F85BD3000F3234 /* base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891418F85BF3000F3234 /* NSData+SRB64Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE88FF18F85BD3000F3234 /* NSData+SRB64Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60DE891518F85BF3000F3234 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60DE890218F85BD3000F3234 /* SRWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		60DE88DB18F85B2A000F3234 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60DE88BD18F85B2A000F3234 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60DE88C418F85B2A000F3234;
+			remoteInfo = socketio;
+		};
+		60DE893218F85F8E000F3234 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60DE88BD18F85B2A000F3234 /* Project object */;
 			proxyType = 1;
@@ -35,7 +72,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				60DE88CE18F85B2A000F3234 /* socketio.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,14 +81,30 @@
 		60DE88C518F85B2A000F3234 /* libsocketio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsocketio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DE88C818F85B2A000F3234 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		60DE88CC18F85B2A000F3234 /* socketio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "socketio-Prefix.pch"; sourceTree = "<group>"; };
-		60DE88CD18F85B2A000F3234 /* socketio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socketio.h; sourceTree = "<group>"; };
-		60DE88CF18F85B2A000F3234 /* socketio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = socketio.m; sourceTree = "<group>"; };
 		60DE88D518F85B2A000F3234 /* socketioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = socketioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DE88D618F85B2A000F3234 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		60DE88D918F85B2A000F3234 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		60DE88E018F85B2A000F3234 /* socketioTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "socketioTests-Info.plist"; sourceTree = "<group>"; };
 		60DE88E218F85B2A000F3234 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60DE88E418F85B2A000F3234 /* socketioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = socketioTests.m; sourceTree = "<group>"; };
+		60DE88F118F85BD3000F3234 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		60DE88F218F85BD3000F3234 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		60DE88F318F85BD3000F3234 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		60DE88F418F85BD3000F3234 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		60DE88F518F85BD3000F3234 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		60DE88F618F85BD3000F3234 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		60DE88F718F85BD3000F3234 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		60DE88F818F85BD3000F3234 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		60DE88F918F85BD3000F3234 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		60DE88FA18F85BD3000F3234 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		60DE88FB18F85BD3000F3234 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		60DE88FD18F85BD3000F3234 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		60DE88FE18F85BD3000F3234 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		60DE88FF18F85BD3000F3234 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		60DE890018F85BD3000F3234 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		60DE890118F85BD3000F3234 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		60DE890218F85BD3000F3234 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		60DE890318F85BD3000F3234 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +162,8 @@
 		60DE88CA18F85B2A000F3234 /* socketio */ = {
 			isa = PBXGroup;
 			children = (
-				60DE88CD18F85B2A000F3234 /* socketio.h */,
-				60DE88CF18F85B2A000F3234 /* socketio.m */,
+				60DE88F018F85BD3000F3234 /* socket-io */,
+				60DE88FC18F85BD3000F3234 /* socket-rocket */,
 				60DE88CB18F85B2A000F3234 /* Supporting Files */,
 			);
 			path = socketio;
@@ -143,7 +195,58 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		60DE88F018F85BD3000F3234 /* socket-io */ = {
+			isa = PBXGroup;
+			children = (
+				60DE88F118F85BD3000F3234 /* SocketIO.h */,
+				60DE88F218F85BD3000F3234 /* SocketIO.m */,
+				60DE88F318F85BD3000F3234 /* SocketIOJSONSerialization.h */,
+				60DE88F418F85BD3000F3234 /* SocketIOJSONSerialization.m */,
+				60DE88F518F85BD3000F3234 /* SocketIOPacket.h */,
+				60DE88F618F85BD3000F3234 /* SocketIOPacket.m */,
+				60DE88F718F85BD3000F3234 /* SocketIOTransport.h */,
+				60DE88F818F85BD3000F3234 /* SocketIOTransportWebsocket.h */,
+				60DE88F918F85BD3000F3234 /* SocketIOTransportWebsocket.m */,
+				60DE88FA18F85BD3000F3234 /* SocketIOTransportXHR.h */,
+				60DE88FB18F85BD3000F3234 /* SocketIOTransportXHR.m */,
+			);
+			path = "socket-io";
+			sourceTree = "<group>";
+		};
+		60DE88FC18F85BD3000F3234 /* socket-rocket */ = {
+			isa = PBXGroup;
+			children = (
+				60DE88FD18F85BD3000F3234 /* base64.c */,
+				60DE88FE18F85BD3000F3234 /* base64.h */,
+				60DE88FF18F85BD3000F3234 /* NSData+SRB64Additions.h */,
+				60DE890018F85BD3000F3234 /* NSData+SRB64Additions.m */,
+				60DE890118F85BD3000F3234 /* SocketRocket-Prefix.pch */,
+				60DE890218F85BD3000F3234 /* SRWebSocket.h */,
+				60DE890318F85BD3000F3234 /* SRWebSocket.m */,
+			);
+			path = "socket-rocket";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		60DE890C18F85BE2000F3234 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60DE890D18F85BF3000F3234 /* SocketIO.h in Headers */,
+				60DE890E18F85BF3000F3234 /* SocketIOJSONSerialization.h in Headers */,
+				60DE890F18F85BF3000F3234 /* SocketIOPacket.h in Headers */,
+				60DE891018F85BF3000F3234 /* SocketIOTransport.h in Headers */,
+				60DE891118F85BF3000F3234 /* SocketIOTransportWebsocket.h in Headers */,
+				60DE891218F85BF3000F3234 /* SocketIOTransportXHR.h in Headers */,
+				60DE891318F85BF3000F3234 /* base64.h in Headers */,
+				60DE891418F85BF3000F3234 /* NSData+SRB64Additions.h in Headers */,
+				60DE891518F85BF3000F3234 /* SRWebSocket.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		60DE88C418F85B2A000F3234 /* socketio */ = {
@@ -153,6 +256,8 @@
 				60DE88C118F85B2A000F3234 /* Sources */,
 				60DE88C218F85B2A000F3234 /* Frameworks */,
 				60DE88C318F85B2A000F3234 /* CopyFiles */,
+				60DE890C18F85BE2000F3234 /* Headers */,
+				60DE891618F85BFA000F3234 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -204,6 +309,7 @@
 			targets = (
 				60DE88C418F85B2A000F3234 /* socketio */,
 				60DE88D418F85B2A000F3234 /* socketioTests */,
+				60DE892D18F85F51000F3234 /* BuildSocketio */,
 			);
 		};
 /* End PBXProject section */
@@ -219,12 +325,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		60DE891618F85BFA000F3234 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n\n# Pre Build Stuff\nrm -rf \"${BUILD_DIR}/${PRODUCT_NAME}\"\nmkdir -p \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILD_DIR}/${PRODUCT_NAME}/Headers\"\n\n# End Pre Build Stuff\n";
+		};
+		60DE893118F85F65000F3234 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Make an output folder for this target\nOUTPUT_FOLDER=${BUILD_DIR}/${PROJECT_NAME}\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${OUTPUT_FOLDER}/${SF_EXECUTABLE_PATH}\"\n\nrm -rf \"${SRCROOT}/Distribution/\"\nmkdir -p \"${SRCROOT}/Distribution/${PROJECT_NAME}\"\ncp -R \"${OUTPUT_FOLDER}/\" \"${SRCROOT}/Distribution/${PROJECT_NAME}/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60DE88C118F85B2A000F3234 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60DE88D018F85B2A000F3234 /* socketio.m in Sources */,
+				60DE890718F85BD3000F3234 /* SocketIOTransportWebsocket.m in Sources */,
+				60DE890A18F85BD3000F3234 /* NSData+SRB64Additions.m in Sources */,
+				60DE890418F85BD3000F3234 /* SocketIO.m in Sources */,
+				60DE890818F85BD3000F3234 /* SocketIOTransportXHR.m in Sources */,
+				60DE890B18F85BD3000F3234 /* SRWebSocket.m in Sources */,
+				60DE890518F85BD3000F3234 /* SocketIOJSONSerialization.m in Sources */,
+				60DE890918F85BD3000F3234 /* base64.c in Sources */,
+				60DE890618F85BD3000F3234 /* SocketIOPacket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +385,11 @@
 			isa = PBXTargetDependency;
 			target = 60DE88C418F85B2A000F3234 /* socketio */;
 			targetProxy = 60DE88DB18F85B2A000F3234 /* PBXContainerItemProxy */;
+		};
+		60DE893318F85F8E000F3234 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60DE88C418F85B2A000F3234 /* socketio */;
+			targetProxy = 60DE893218F85F8E000F3234 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -290,7 +437,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -321,6 +468,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -329,24 +477,31 @@
 		60DE88E918F85B2A000F3234 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/socketio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socketio/socketio-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = Headers;
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		60DE88EA18F85B2A000F3234 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/socketio.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socketio/socketio-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = Headers;
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Release;
 		};
@@ -386,6 +541,22 @@
 			};
 			name = Release;
 		};
+		60DE892F18F85F51000F3234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		60DE893018F85F51000F3234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -405,6 +576,7 @@
 				60DE88EA18F85B2A000F3234 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60DE88EB18F85B2A000F3234 /* Build configuration list for PBXNativeTarget "socketioTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +585,16 @@
 				60DE88ED18F85B2A000F3234 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60DE892E18F85F51000F3234 /* Build configuration list for PBXAggregateTarget "BuildSocketio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60DE892F18F85F51000F3234 /* Debug */,
+				60DE893018F85F51000F3234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
