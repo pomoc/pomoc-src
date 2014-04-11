@@ -65,14 +65,40 @@
 }
 
 - (void)downloadImage:(NSString *)filename withCompletion:(void(^)(UIImage *))block {
-    // Todo check filepath if file already exists
+    UIImage *cachedImage = [self retrieveFileFromCache:filename];
+    
+    if (cachedImage) {
+        block(cachedImage);
+        return;
+    }
+    
     NSString *filepath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
     
     S3GetObjectRequest *gor = [[S3GetObjectRequest alloc] initWithKey:filename withBucket:S3_BUCKET_NAME];
     gor.requestTag = filename;
-    reqBlocks[filepath] = block;
+    reqBlocks[filepath] = ^void (UIImage *image) {
+        [self saveFileToCache:image withFilename:filename];
+        block(image);
+    };
     
     [tm downloadFile:filepath bucket:S3_BUCKET_NAME key:filename];
+}
+
+- (void)saveFileToCache:(UIImage *)image withFilename:(NSString *)filename{
+    // TODO: Might want to choose with file conflicts
+    NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
+    NSData *imageData = [NSData dataWithData:UIImagePNGRepresentation(image)];
+    [imageData writeToFile:filePath atomically:YES];
+}
+
+- (UIImage *)retrieveFileFromCache:(NSString *)filename {
+    NSString *filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:filePath]){
+        return [UIImage imageWithContentsOfFile:filePath];
+    }
+    return nil;
 }
 
 - (NSString *)contentTypeForImageData:(UIImage *)image {
