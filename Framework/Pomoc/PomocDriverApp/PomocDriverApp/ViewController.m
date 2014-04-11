@@ -74,7 +74,10 @@
 
 - (IBAction)sendPressed:(UIButton *)button
 {
-    if ([self.textField.text isEqualToString:@"image"]) {
+    if ([self.textField.text isEqualToString:@"image_large"]) {
+        UIImage *image = [UIImage imageNamed:@"image_large"];
+        [self.conversation sendImageMessage:image];
+    } else if ([self.textField.text isEqualToString:@"image_small"]) {
         UIImage *image = [UIImage imageNamed:@"image_small"];
         [self.conversation sendImageMessage:image];
     } else {
@@ -94,21 +97,23 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    [self addMessage:chatMessage.message fromUser:chatMessage.userId];
+    [self addMessage:chatMessage fromUser:chatMessage.userId];
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
     // CHeck if the image message is right
     NSLog(@"Received image");
+    NSIndexPath *indexPath = [self addMessage:imageMessage fromUser:imageMessage.userId];
     [imageMessage retrieveImageWithCompletion:^(UIImage *image) {
         NSLog(@"Received image in completion");
+        [self.chatTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }];
 }
 
 #pragma mark - Adding Message
 
-- (void)addMessage:(NSString *)message fromUser:(NSString *)user
+- (NSIndexPath *)addMessage:(PMChatMessage *)message fromUser:(NSString *)user
 {
     // Add a new message, and also update the tableview with the new message
     [self.messages addObject:message];
@@ -118,9 +123,21 @@
     
     [self.chatTableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
     [self.chatTableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    return newIndexPath;
 }
 
 #pragma mark - TableViewDelegate/DataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PMChatMessage *chatMessage = self.messages[indexPath.row];
+    
+    if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
+        return 220;
+    }
+    return 50;
+}
 
 // Probably don't need to edit anything below
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -130,14 +147,40 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellId = @"Chat";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+    static NSString *chatCellId = @"ChatCell";
+    static NSString *imageCellId = @"ImageCell";
+    
+    PMChatMessage *chatMessage = self.messages[indexPath.row];
+    
+    UITableViewCell *cell;
+    if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:imageCellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imageCellId];
+        }
+        
+        // Clear the content view
+        [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
+        PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+        [imageView setBackgroundColor:[UIColor grayColor]];
+        [imageView setContentMode:UIViewContentModeScaleAspectFill];
+        [imageView setClipsToBounds:YES];
+        [cell.contentView addSubview:imageView];
+        
+        if (imageMessage.image) {
+            [imageView setImage:imageMessage.image];
+        }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:chatCellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
+        }
+        cell.textLabel.text = chatMessage.message;
+        cell.detailTextLabel.text = self.users[indexPath.row];
     }
     
-    cell.textLabel.text = self.messages[indexPath.row];
-    cell.detailTextLabel.text = self.users[indexPath.row];
     return cell;
 }
 

@@ -24,6 +24,7 @@
 		6068F33418E1E5CF005B87F4 /* PomocDriverAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6068F33318E1E5CF005B87F4 /* PomocDriverAppTests.m */; };
 		6091FD3318F7B192004928CD /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6091FD3218F7B192004928CD /* libPomocCore.a */; };
 		6091FD8218F7DE88004928CD /* image_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6091FD8118F7DE88004928CD /* image_small.png */; };
+		60DE886318F84CF1000F3234 /* image_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DE886218F84CF1000F3234 /* image_large.png */; };
 		60FC18CF18E1F02C00BF4C95 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FC18CE18E1F02C00BF4C95 /* Security.framework */; };
 		60FC18D118E1F03900BF4C95 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FC18D018E1F03900BF4C95 /* libicucore.dylib */; };
 		60FC18D318E1F03E00BF4C95 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FC18D218E1F03E00BF4C95 /* CFNetwork.framework */; };
@@ -71,6 +72,7 @@
 		6091FD3118F7B192004928CD /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		6091FD3218F7B192004928CD /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
 		6091FD8118F7DE88004928CD /* image_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_small.png; sourceTree = "<group>"; };
+		60DE886218F84CF1000F3234 /* image_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_large.png; sourceTree = "<group>"; };
 		60FC18CE18E1F02C00BF4C95 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60FC18D018E1F03900BF4C95 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		60FC18D218E1F03E00BF4C95 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -148,6 +150,7 @@
 				6068F31D18E1E5CF005B87F4 /* ViewController.h */,
 				6068F31E18E1E5CF005B87F4 /* ViewController.m */,
 				6091FD8118F7DE88004928CD /* image_small.png */,
+				60DE886218F84CF1000F3234 /* image_large.png */,
 				6068F32018E1E5CF005B87F4 /* Images.xcassets */,
 				6068F30C18E1E5CF005B87F4 /* Supporting Files */,
 			);
@@ -290,6 +293,7 @@
 				6068F31918E1E5CF005B87F4 /* Main_iPhone.storyboard in Resources */,
 				6068F31018E1E5CF005B87F4 /* InfoPlist.strings in Resources */,
 				6091FD8218F7DE88004928CD /* image_small.png in Resources */,
+				60DE886318F84CF1000F3234 /* image_large.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
