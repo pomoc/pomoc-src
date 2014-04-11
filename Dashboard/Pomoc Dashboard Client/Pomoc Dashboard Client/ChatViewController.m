@@ -534,38 +534,38 @@
 
 - (void)newConversationCreated:(NSString *)conversationId
 {
-    NSLog(@"new conversation!");
-    
-    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
-        
-        PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
-        [chatList addObject:chat];
-
-        [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            PMChatMessage *message = (PMChatMessage *)obj;
-            
-            if(idx == 0) {
-                chat.startedDate = message.timestamp;
-                chat.userId = message.userId;
-            }
-            
-            [chat.chatMessages addObject:message];
-        }];
-        
-        [_chatNavTable reloadData];
-    }];
+//    NSLog(@"new conversation!");
+//    
+//    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
+//        
+//        PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
+//        [chatList addObject:chat];
+//
+//        [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            
+//            PMChatMessage *message = (PMChatMessage *)obj;
+//            
+//            if(idx == 0) {
+//                chat.startedDate = message.timestamp;
+//                chat.userId = message.userId;
+//            }
+//            
+//            [chat.chatMessages addObject:message];
+//        }];
+//        
+//        [_chatNavTable reloadData];
+//    }];
 }
 
 - (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
 {
-    for (PomocChat *chat in chatList) {
-        if ([chat.conversationId isEqualToString:conversationId]) {
-            return chat;
-        }
-    }
-    
-    return nil;
+//    for (PomocChat *chat in chatList) {
+//        if ([chat.conversationId isEqualToString:conversationId]) {
+//            return chat;
+//        }
+//    }
+//    
+//    return nil;
 }
 
 #pragma mark - Upload View Controller Delegate
