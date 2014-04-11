@@ -11,8 +11,10 @@
 @interface PMUser : NSObject
 
 - (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken;
+- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken name:(NSString *)name;
 
 @property (nonatomic, strong, readonly) NSString *userId;
 @property (nonatomic, strong, readonly) NSString *appToken;
+@property (nonatomic, strong) NSString *name;
 
 @end
