@@ -102,7 +102,7 @@
     // CHeck if the image message is right
     NSLog(@"Received image");
     [imageMessage retrieveImageWithCompletion:^(UIImage *image) {
-        
+        NSLog(@"Received image in completion");
     }];
 }
 

@@ -75,14 +75,19 @@
     NSString *filepath = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
     
     S3GetObjectRequest *gor = [[S3GetObjectRequest alloc] initWithKey:filename withBucket:S3_BUCKET_NAME];
+    
     gor.requestTag = filename;
+    gor.targetFilePath = filepath;
     __weak PomocImage *weakSelf = self;
-    reqBlocks[filename] = ^void (UIImage *image) {
-        [weakSelf saveFileToCache:image withFilename:filename];
-        block(image);
+
+    reqBlocks[filename] = ^void (NSString *filename) {
+        // Saving to temp is automagically done by the transfermanager
+        // [weakSelf saveFileToCache:image withFilename:filename];
+        UIImage *downloadedImage = [weakSelf retrieveFileFromCache:filename];
+        block(downloadedImage);
     };
     
-    [tm downloadFile:filepath bucket:S3_BUCKET_NAME key:filename];
+    [tm download:gor];
 }
 
 - (void)saveFileToCache:(UIImage *)image withFilename:(NSString *)filename{
@@ -139,11 +144,16 @@
     NSLog(@"didSendData called: %ll - %ll / %ll", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
 }
 
-
 -(void)request:(AmazonServiceRequest *)request didCompleteWithResponse:(AmazonServiceResponse *)response {
-    NSLog(@"didCompleteWithResponse called: %@", response);
+    NSLog(@"didCompleteWithResponse response called\n: %@", response);
+    NSLog(@"didCompleteWithResponse request called\n: %@", request);
+    
     void(^block)(NSString *) = reqBlocks[request.requestTag];
-    block(request.requestTag);
+    if (block) {
+        block(request.requestTag);
+    } else {
+        // GG there is no response block
+    }
 }
 
 -(void)request:(AmazonServiceRequest *)request didFailWithError:(NSError *)error {
