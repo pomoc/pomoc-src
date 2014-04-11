@@ -11,7 +11,6 @@
 @interface PMUser ()
 
 @property (nonatomic, strong) NSString *appToken;
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *userId;
 

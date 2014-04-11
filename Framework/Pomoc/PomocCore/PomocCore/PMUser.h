@@ -16,5 +16,6 @@
 @property (nonatomic, strong, readonly) NSString *userId;
 @property (nonatomic, strong, readonly) NSString *appToken;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong, readonly) NSString *type;
 
 @end
