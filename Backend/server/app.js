@@ -169,18 +169,22 @@ io.sockets.on('connection', function(client) {
 
     // DISCONNECT
     client.on('disconnect', function() {
-        // On disconnect, remove userId from list of conversations
+        // Get list of conversations users is in
         db.client.smembers(userId + ':sub', function(err, conversations) {
             var multiRemove = db.client.multi();
+            // Remove them from the online list
             for (var i = 0; i < conversations.length; i++) {
                 multiRemove.srem(conversations[i] + ':online', userId);
             }
             // broadcast to conversations the new online participant list
             multiRemove.exec(function(err, replies) {
                 for (var j = 0; j < conversations.length; j++) {
+                    // For each conversation, get the list of participants online
                     db.client.smembers(conversations[j] + ':online', function(err, reply) { 
+                        // Broadcast that list onto the conversation's activity
+                        // channel to notify clients
                         client.broadcast.to(conversations[j] + ':activity').emit('activity', reply);
-                        console.log('disconnected from: ' + conversations[j]);
+                        console.log('Disconnected from: ' + conversations[j]);
                     });;
                 }
             });
