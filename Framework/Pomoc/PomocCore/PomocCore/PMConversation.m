@@ -20,6 +20,11 @@
     [PMCore sendTextMessage:message conversationId:self.conversationId];
 }
 
+- (void)sendImageMessage:(UIImage *)image
+{
+    [PMCore sendImageMessage:image conversationId:self.conversationId];
+}
+
 - (NSArray *)messages
 {
     return [self.allMessages copy];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PMMessageConstants.h"
 
-@class PMInternalMessage, PMChatMessage;
+@class PMInternalMessage, PMChatMessage, PMImageMessage;
 
 @interface PMMessage : NSObject
 
@@ -22,6 +22,7 @@
 + (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
                                 conversationId:(NSString *)conversationId;
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
++ (PMImageMessage *)imageMessageWithUrl:(NSString *)imageUrl conversationId:(NSString *)conversationId;
 
 + (PMChatMessage *)chatMessageFromJsonData:(NSDictionary *)data;
 

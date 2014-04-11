@@ -15,6 +15,7 @@
 #import "PMMessage.h"
 #import "PMInternalMessage.h"
 #import "PMChatMessage.h"
+#import "PMImageMessage.h"
 
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
@@ -87,6 +88,15 @@
     [core sendMessage:chatMessage withAcknowledge:nil];
 }
 
++ (void)sendImageMessage:(UIImage *)image conversationId:(NSString *)conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+    
+    // PMImage uploading here
+    // Inside completion: [core sendImageMessage:chatMessage withAcknowledge:nil];
+    // PMImageMessage *imageMessage = [PMMessage imageMessageWithURL:imageUrl conversationId:conversationId];
+}
+
 + (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
 {
     PMCore *core = [PMCore sharedInstance];
@@ -141,6 +151,8 @@
     if ([message isKindOfClass:[PMInternalMessage class]]) {
         [self.socket sendEvent:@"internalMessage" withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMChatMessage class]]) {
+        [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
+    } else if ([message isKindOfClass:[PMImageMessage class]]) {
         [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
     }
 }
