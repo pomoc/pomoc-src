@@ -14,6 +14,8 @@
 
 @property (nonatomic, weak) id<PMSupportDelegate> delegate;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *secretKey;
+@property (nonatomic, copy) void (^connectCallback)(BOOL connected);
 
 @end
 
@@ -32,8 +34,10 @@
 
 + (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey
 {
-    [PMCore initWithAppID:appId secretKey:secretKey];
+    [PMCore initWithAppID:appId];
     [PMCore setDelegate:[PMSupport sharedInstance]];
+    
+    [PMSupport sharedInstance].secretKey = secretKey;
 }
 
 + (void)loginAgentWithUserId:(NSString *)userId
@@ -105,6 +109,12 @@
     [PMCore startConversationWithCompletion:completion];
 }
 
++ (void)connectWithCallback:(void (^)(BOOL connected))callback
+{
+    [[PMSupport sharedInstance] setConnectCallback:callback];
+    [PMCore connect];
+}
+
 #pragma mark - PMCore delegate
 
 - (void)newConversationCreated:(PMConversation *)conversation
@@ -116,8 +126,9 @@
 
 - (void)hasConnected
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(hasConnected)]) {
-        [self.delegate hasConnected];
+    if (self.connectCallback) {
+        self.connectCallback(YES);
+        self.connectCallback = nil;
     }
 }
 

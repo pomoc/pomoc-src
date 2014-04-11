@@ -25,7 +25,6 @@
 @interface PMCore () <SocketIODelegate>
 
 @property (nonatomic, strong) NSString *appId;
-@property (nonatomic, strong) NSString *secretKey;
 
 @property (nonatomic, strong) NSString *userId;
 
@@ -49,15 +48,12 @@
     return sharedInstance;
 }
 
-+ (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey {
++ (void)initWithAppID:(NSString *)appId {
     PMCore *core = [PMCore sharedInstance];
     if (!core.appId) {
         core.appId = appId;
-        core.secretKey = secretKey;
         core.socket = [[SocketIO alloc] initWithDelegate:core];
         core.conversations = [NSMutableDictionary dictionary];
-        
-        [core connect];
     }
 }
 
@@ -121,6 +117,11 @@
 + (void)observeNewConversations
 {
     [[PMCore sharedInstance] observeNewConversations];
+}
+
++ (void)connect
+{
+    [[PMCore sharedInstance] connect];
 }
 
 - (void)connect
