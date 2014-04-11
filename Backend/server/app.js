@@ -156,8 +156,11 @@ io.sockets.on('connection', function(client) {
 
     });
 
+    // APPLICATION MESSAGES
+    client.on('applicationMessage', function(data) {
+    });
 
-    // REGULAR CHAT MESSGES
+    // REGULAR CHAT MESSAGES
     client.on('chatMessage', function(data) {
         data.timestamp = (new Date()).getTime();
         io.sockets.in(data.conversationId).emit('chatMessage', data);

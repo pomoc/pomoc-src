@@ -251,6 +251,8 @@
 		BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
 		BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
 		BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */; };
+		BDCBCB6118F8A11D00A394CE /* PMUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */; };
+		BDCBCB6218F8A11D00A394CE /* PMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB6018F8A11D00A394CE /* PMUserManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -501,6 +503,8 @@
 		BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserPublic.h; sourceTree = "<group>"; };
 		BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserPublic.m; sourceTree = "<group>"; };
 		BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserConstants.h; sourceTree = "<group>"; };
+		BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserManager.h; sourceTree = "<group>"; };
+		BDCBCB6018F8A11D00A394CE /* PMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,7 +584,6 @@
 				9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */,
 				9F2AE7CF18F7D0C40078D22A /* PMImageMessage.m */,
 				605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */,
-				BDCBCB3F18F784C100A394CE /* PMUser */,
 			);
 			name = PMMessage;
 			sourceTree = "<group>";
@@ -618,6 +621,8 @@
 		6068F2D018E1E40B005B87F4 /* PomocCore */ = {
 			isa = PBXGroup;
 			children = (
+				BDCBCB3F18F784C100A394CE /* PMUser */,
+				BDCBCB5E18F89D8700A394CE /* PMUserManager */,
 				60592AD018EE871D006D5DEC /* PMConversation */,
 				605B0C1518E2D60100EA6717 /* PMMessage */,
 				605B0BF018E278E800EA6717 /* PomocCore.h */,
@@ -888,6 +893,15 @@
 			name = PMUser;
 			sourceTree = "<group>";
 		};
+		BDCBCB5E18F89D8700A394CE /* PMUserManager */ = {
+			isa = PBXGroup;
+			children = (
+				BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */,
+				BDCBCB6018F8A11D00A394CE /* PMUserManager.m */,
+			);
+			name = PMUserManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -971,6 +985,7 @@
 				60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */,
 				9F2AEA0C18F7D4C50078D22A /* S3DeleteObjectRequest.h in Headers */,
 				9F2AE9FF18F7D4C50078D22A /* S3CreateBucketResponse.h in Headers */,
+				BDCBCB6118F8A11D00A394CE /* PMUserManager.h in Headers */,
 				9F2AE9F318F7D4C50078D22A /* S3CompleteMultipartUploadRequest.h in Headers */,
 				9F2AE9D118F7D4C50078D22A /* AmazonURLRequest.h in Headers */,
 				9F2AE9C218F7D4C50078D22A /* AmazonCredentialsProvider.h in Headers */,
@@ -1212,6 +1227,7 @@
 				60592AF418F12E58006D5DEC /* AFHTTPRequestOperation.m in Sources */,
 				60592B0118F12E58006D5DEC /* AFURLRequestSerialization.m in Sources */,
 				9F2AE7D118F7D0C40078D22A /* PMImageMessage.m in Sources */,
+				BDCBCB6218F8A11D00A394CE /* PMUserManager.m in Sources */,
 				60592AFF18F12E58006D5DEC /* AFURLConnectionOperation.m in Sources */,
 				BDCBCB4318F784E900A394CE /* PMUser.m in Sources */,
 				60592B0518F12E58006D5DEC /* AFURLSessionManager.m in Sources */,
