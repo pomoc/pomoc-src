@@ -45,8 +45,17 @@ io.sockets.on('connection', function(client) {
 
             // subscribes client to new chat
             client.join(conversationId);
+
+            // adds conversationId to app's list of conversation
+            db.client.sadd(data.appToken + ':conversations', conversationId);
+
+            // adds conversationId to user's list of conversations
             db.client.sadd(data.userId + ':sub', conversationId);
+
+            // adds userId to list of participants in conversation
             db.client.sadd(conversationId + ':party', data.userId);
+
+            // adds userId to list of online participants in conversation
             db.client.sadd(conversationId + ':online', data.userId);
 
             // client also joins the chat activity channel
@@ -59,7 +68,7 @@ io.sockets.on('connection', function(client) {
                 callback({success: true, conversationId: conversationId});
             }
 
-            // broadcast notification of new channel
+            // broadcast notification of new channel to app channel
             var key = data.appId + ':notification';
             client.broadcast.to(data.appId + ':notification').emit('newConversation', {conversationId: conversationId});
             console.log(data.appId + ' notified about: ' + conversationId);
@@ -123,7 +132,19 @@ io.sockets.on('connection', function(client) {
             // Get list of conversation ids
             db.client.smembers(data.userId + ":sub", function(err, reply) {
                 callback({success: true, conversationIds: reply});
-                console.log('conversationIds sent for + ', data.userId);
+                console.log('conversationIds sent for user:' + data.userId);
+            });
+        }
+
+
+        // Gets all conversations for an app
+        else if (data.type == 'getAppConversationList') {
+            console.log('getAppConversationList ' + data.appToken);
+
+            // Get list of conversation ids
+            db.client.smemebers(data.apptoken + ":conversations", function(err, reply) {
+                callback({success: true, conversationIds: reply});
+                console.log('conversationIds sent for app:' + data.appToken);
             });
         }
 
@@ -143,11 +164,11 @@ io.sockets.on('connection', function(client) {
         }
 
 
-        // Get list of agents/users for a given app
+        // Get list of agents for a given app
         // Doesn't include users
         else if (data.type == 'getAppUsers') {
             if (callback) {
-                db.client.smembers(data.appToke + ':users', function(err, reply) {
+                db.client.smembers(data.appToken + ':users', function(err, reply) {
                     callback({success: true, users: reply});
                 });
             }
@@ -159,6 +180,15 @@ io.sockets.on('connection', function(client) {
     // APPLICATION MESSAGES
     client.on('applicationMessage', function(data) {
         
+        if (data.code == 'handle') {
+            // Add agent to the list of agents handling the conversation
+            db.client.sadd(data.conversationId + ':handlers', data.userId);
+        }
+
+        else if(data.code == 'unhandle') {
+            db.client.srem(data.conversationId + ':handlers', data.userId);
+        }
+
     });
 
     // REGULAR CHAT MESSAGES
