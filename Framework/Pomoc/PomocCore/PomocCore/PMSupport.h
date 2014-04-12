@@ -25,6 +25,7 @@
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback;
 
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
++ (void)getAllConversations:(void(^)(NSArray *conversations))completion;
 + (void)setDelegate:(id<PMSupportDelegate>)delegate;
 
 @end
