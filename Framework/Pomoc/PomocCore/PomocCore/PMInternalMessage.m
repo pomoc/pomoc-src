@@ -28,6 +28,8 @@
             return @"observeConversationList";
         case PMInternalMessageCodeJoinConversation:
             return @"joinConversation";
+        case PMInternalMessageCodeGetAppConversationList:
+            return @"getAppConversationList";
     }
     return nil;
 }
