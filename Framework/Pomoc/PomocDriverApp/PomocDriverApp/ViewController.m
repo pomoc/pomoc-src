@@ -36,19 +36,19 @@
     [PMSupport setDelegate:self];
     
     // User 'login' code
+    /*
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connect];
     }];
+     */
     
-    /*
     // Agent 'login' code
     [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
         self.userId = userId;
         NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCallback:nil];
+        [PMSupport connectWithCompletion:nil];
     }];
-     */
 }
 
 - (void)didReceiveMemoryWarning
