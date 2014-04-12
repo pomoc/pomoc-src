@@ -16,6 +16,12 @@ typedef enum {
     PMInternalMessageCodeJoinConversation
 } PMInternalMessageCode;
 
+typedef enum {
+    PMApplicationMessageCodeHandle,
+    PMApplicationMessageCodeUnhandle,
+    PMApplicationMessageCodeReferHandler
+} PMApplicationMessageCode;
+
 #define MESSAGE_TIMESTAMP           @"timestamp"
 #define MESSAGE_CLASS               @"class"
 #define MESSAGE_MESSAGE             @"message"

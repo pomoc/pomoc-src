@@ -158,6 +158,7 @@ io.sockets.on('connection', function(client) {
 
     // APPLICATION MESSAGES
     client.on('applicationMessage', function(data) {
+        
     });
 
     // REGULAR CHAT MESSAGES

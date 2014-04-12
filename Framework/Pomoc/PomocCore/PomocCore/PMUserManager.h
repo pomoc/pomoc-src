@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class PMUser;
+
 @interface PMUserManager : NSObject
+
++ (PMUser *)getUserObjectFromUserId:(NSString *)userId;
 
 @end

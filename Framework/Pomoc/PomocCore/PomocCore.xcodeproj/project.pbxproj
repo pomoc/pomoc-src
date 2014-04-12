@@ -253,6 +253,8 @@
 		BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */; };
 		BDCBCB6118F8A11D00A394CE /* PMUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */; };
 		BDCBCB6218F8A11D00A394CE /* PMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB6018F8A11D00A394CE /* PMUserManager.m */; };
+		BDCBCBEC18F8C6F900A394CE /* PMApplicationMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCBEA18F8C6F900A394CE /* PMApplicationMessage.h */; };
+		BDCBCBED18F8C6F900A394CE /* PMApplicationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCBEB18F8C6F900A394CE /* PMApplicationMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -505,6 +507,8 @@
 		BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserConstants.h; sourceTree = "<group>"; };
 		BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserManager.h; sourceTree = "<group>"; };
 		BDCBCB6018F8A11D00A394CE /* PMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserManager.m; sourceTree = "<group>"; };
+		BDCBCBEA18F8C6F900A394CE /* PMApplicationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMApplicationMessage.h; sourceTree = "<group>"; };
+		BDCBCBEB18F8C6F900A394CE /* PMApplicationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMApplicationMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +581,8 @@
 			children = (
 				60FC18A418E1EB6500BF4C95 /* PMMessage.h */,
 				60FC18A518E1EB6500BF4C95 /* PMMessage.m */,
+				BDCBCBEA18F8C6F900A394CE /* PMApplicationMessage.h */,
+				BDCBCBEB18F8C6F900A394CE /* PMApplicationMessage.m */,
 				605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */,
 				605B0C1318E2CCE300EA6717 /* PMInternalMessage.m */,
 				605B0C1618E2DCFD00EA6717 /* PMChatMessage.h */,
@@ -937,6 +943,7 @@
 				605B0CAE18E32FEE00EA6717 /* PMInternalMessage.h in Headers */,
 				9F2AEA2218F7D4C50078D22A /* S3GetObjectRequest.h in Headers */,
 				60592B0418F12E58006D5DEC /* AFURLSessionManager.h in Headers */,
+				BDCBCBEC18F8C6F900A394CE /* PMApplicationMessage.h in Headers */,
 				9F2AEA0218F7D4C50078D22A /* S3DeleteBucketLifecycleConfigurationRequest.h in Headers */,
 				9F2AEA2D18F7D4C50078D22A /* S3ListMultipartUploadsRequest.h in Headers */,
 				9F2AE9CE18F7D4C50078D22A /* AmazonServiceResponse.h in Headers */,
@@ -1225,6 +1232,7 @@
 				60592AF818F12E58006D5DEC /* AFHTTPSessionManager.m in Sources */,
 				60592AFB18F12E58006D5DEC /* AFNetworkReachabilityManager.m in Sources */,
 				60592AF418F12E58006D5DEC /* AFHTTPRequestOperation.m in Sources */,
+				BDCBCBED18F8C6F900A394CE /* PMApplicationMessage.m in Sources */,
 				60592B0118F12E58006D5DEC /* AFURLRequestSerialization.m in Sources */,
 				9F2AE7D118F7D0C40078D22A /* PMImageMessage.m in Sources */,
 				BDCBCB6218F8A11D00A394CE /* PMUserManager.m in Sources */,
