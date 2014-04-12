@@ -10,7 +10,6 @@
 
 @interface PMUser ()
 
-@property (nonatomic, strong) NSString *appToken;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *userId;
 
@@ -18,24 +17,22 @@
 
 @implementation PMUser
 
-- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken type:(NSString *)type
+- (id)initWithUserID:(NSString *)userId type:(NSString *)type
 {
     self = [super init];
     if (self) {
         self.userId = userId;
-        self.appToken = appToken;
         self.type = type;
         self.name = userId;
     }
     return self;
 }
 
-- (id)initWithUserID:(NSString *)userId appToken:(NSString *)appToken type:(NSString *)type name:(NSString *)name
+- (id)initWithUserID:(NSString *)userId type:(NSString *)type name:(NSString *)name
 {
     self = [super init];
     if (self) {
         self.userId = userId;
-        self.appToken = appToken;
         self.type = type;
         self.name = name;
     }
@@ -47,7 +44,6 @@
     self = [super init];
     if (self) {
         self.userId = data[USER_USERID];
-        self.appToken = data[USER_APP_TOKEN];
         self.type = data[USER_TYPE];
         self.name = data[USER_NAME];
     }

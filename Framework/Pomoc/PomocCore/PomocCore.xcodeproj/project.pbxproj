@@ -244,12 +244,6 @@
 		BDCBCB4218F784E900A394CE /* PMUser.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4018F784E900A394CE /* PMUser.h */; };
 		BDCBCB4318F784E900A394CE /* PMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4118F784E900A394CE /* PMUser.m */; };
 		BDCBCB4418F784E900A394CE /* PMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4118F784E900A394CE /* PMUser.m */; };
-		BDCBCB4718F78EEB00A394CE /* PMUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */; };
-		BDCBCB4818F78EEB00A394CE /* PMUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */; };
-		BDCBCB4918F78EEB00A394CE /* PMUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */; };
-		BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */; };
-		BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
-		BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */; };
 		BDCBCB5118F7A8A700A394CE /* PMUserConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */; };
 		BDCBCB6118F8A11D00A394CE /* PMUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */; };
 		BDCBCB6218F8A11D00A394CE /* PMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCBCB6018F8A11D00A394CE /* PMUserManager.m */; };
@@ -500,10 +494,6 @@
 		9F2AE9BC18F7D4C50078D22A /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
 		BDCBCB4018F784E900A394CE /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
 		BDCBCB4118F784E900A394CE /* PMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUser.m; sourceTree = "<group>"; };
-		BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserAgent.h; sourceTree = "<group>"; };
-		BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserAgent.m; sourceTree = "<group>"; };
-		BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserPublic.h; sourceTree = "<group>"; };
-		BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserPublic.m; sourceTree = "<group>"; };
 		BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserConstants.h; sourceTree = "<group>"; };
 		BDCBCB5F18F8A11D00A394CE /* PMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUserManager.h; sourceTree = "<group>"; };
 		BDCBCB6018F8A11D00A394CE /* PMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUserManager.m; sourceTree = "<group>"; };
@@ -890,10 +880,6 @@
 			children = (
 				BDCBCB4018F784E900A394CE /* PMUser.h */,
 				BDCBCB4118F784E900A394CE /* PMUser.m */,
-				BDCBCB4A18F78F0800A394CE /* PMUserPublic.h */,
-				BDCBCB4B18F78F0800A394CE /* PMUserPublic.m */,
-				BDCBCB4518F78EEB00A394CE /* PMUserAgent.h */,
-				BDCBCB4618F78EEB00A394CE /* PMUserAgent.m */,
 				BDCBCB4F18F7A8A700A394CE /* PMUserConstants.h */,
 			);
 			name = PMUser;
@@ -1007,7 +993,6 @@
 				60807FCB18F8655F009B84D2 /* SRWebSocket.h in Headers */,
 				9F2AEA4318F7D4C50078D22A /* S3Response.h in Headers */,
 				9F2AE9E718F7D4C50078D22A /* S3AccessControlList.h in Headers */,
-				BDCBCB4C18F78F0800A394CE /* PMUserPublic.h in Headers */,
 				9F2AEA3018F7D4C50078D22A /* S3ListObjectsRequest.h in Headers */,
 				9F2AEA3A18F7D4C50078D22A /* S3MultipartUpload.h in Headers */,
 				9F2AEA1918F7D4C50078D22A /* S3GetBucketPolicyResponse.h in Headers */,
@@ -1050,7 +1035,6 @@
 				9F2AEA1A18F7D4C50078D22A /* S3GetBucketTaggingRequest.h in Headers */,
 				9F2AEA3718F7D4C50078D22A /* S3ListVersionsResponse.h in Headers */,
 				9F2AEA3118F7D4C50078D22A /* S3ListObjectsResponse.h in Headers */,
-				BDCBCB4718F78EEB00A394CE /* PMUserAgent.h in Headers */,
 				9F2AE9D618F7D4C50078D22A /* AWS_SBJsonStreamParserAccumulator.h in Headers */,
 				9F2AEA4118F7D4C50078D22A /* S3Region.h in Headers */,
 				9F2AEA0418F7D4C50078D22A /* S3DeleteBucketPolicyRequest.h in Headers */,
@@ -1243,8 +1227,6 @@
 				60592ADE18F12C6D006D5DEC /* PMSupport.m in Sources */,
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
-				BDCBCB4818F78EEB00A394CE /* PMUserAgent.m in Sources */,
-				BDCBCB4D18F78F0800A394CE /* PMUserPublic.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				60592AFD18F12E58006D5DEC /* AFSecurityPolicy.m in Sources */,
 				60592AF618F12E58006D5DEC /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1257,10 +1239,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDCBCB4E18F78F0800A394CE /* PMUserPublic.m in Sources */,
 				6068F2EB18E1E40B005B87F4 /* PomocCoreTests.m in Sources */,
 				BDCBCB4418F784E900A394CE /* PMUser.m in Sources */,
-				BDCBCB4918F78EEB00A394CE /* PMUserAgent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
