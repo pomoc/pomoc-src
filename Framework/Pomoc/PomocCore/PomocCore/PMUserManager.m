@@ -36,12 +36,12 @@
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
     if (!error) {
         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        user = [[PMUser alloc]initWithJsonData:jsonObject];
+        user = [[PMUser alloc] initWithJsonData:jsonObject];
     }
     return user;
 }
 
-+ (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *))completionBlock
++ (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *user))completionBlock
 {
     NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
@@ -50,7 +50,7 @@
         PMUser *user = nil;
         if (!error) {
             NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-            user = [[PMUser alloc]initWithJsonData:jsonObject];
+            user = [[PMUser alloc] initWithJsonData:jsonObject];
         }
         completionBlock(user);
     }];

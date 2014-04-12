@@ -7,6 +7,7 @@
 //
 
 #import "PMUser.h"
+#import "PMUserConstants.h"
 
 @interface PMUser ()
 

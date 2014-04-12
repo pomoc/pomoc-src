@@ -97,14 +97,14 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    [self addMessage:chatMessage fromUser:chatMessage.userId];
+    [self addMessage:chatMessage fromUser:chatMessage.user];
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
     // CHeck if the image message is right
     NSLog(@"Received image");
-    NSIndexPath *indexPath = [self addMessage:imageMessage fromUser:imageMessage.userId];
+    NSIndexPath *indexPath = [self addMessage:imageMessage fromUser:imageMessage.user];
     [imageMessage retrieveImageWithCompletion:^(UIImage *image) {
         NSLog(@"Received image in completion");
         [self.chatTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -113,7 +113,7 @@
 
 #pragma mark - Adding Message
 
-- (NSIndexPath *)addMessage:(PMChatMessage *)message fromUser:(NSString *)user
+- (NSIndexPath *)addMessage:(PMChatMessage *)message fromUser:(PMUser *)user
 {
     // Add a new message, and also update the tableview with the new message
     [self.messages addObject:message];
@@ -178,7 +178,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
         }
         cell.textLabel.text = chatMessage.message;
-        cell.detailTextLabel.text = self.users[indexPath.row];
+        cell.detailTextLabel.text = [self.users[indexPath.row] name];
     }
     
     return cell;

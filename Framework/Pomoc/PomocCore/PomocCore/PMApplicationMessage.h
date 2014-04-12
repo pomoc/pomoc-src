@@ -14,7 +14,6 @@
 @property (nonatomic, strong, readonly) NSString *conversationId;
 @property (nonatomic, strong, readonly) NSString *referalUserId;
 
-- (id)initWithMessageCode:(PMApplicationMessageCode)code;
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId;
 

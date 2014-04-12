@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PMUserConstants.h"
 
 @interface PMUser : NSObject
 

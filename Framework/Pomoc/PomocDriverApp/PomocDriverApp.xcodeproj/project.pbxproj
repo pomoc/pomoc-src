@@ -72,6 +72,7 @@
 		6091FD3118F7B192004928CD /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		6091FD3218F7B192004928CD /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPomocCore.a; sourceTree = "<group>"; };
 		6091FD8118F7DE88004928CD /* image_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_small.png; sourceTree = "<group>"; };
+		609DF3CA18F8FFF6004ACD98 /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
 		60DE886218F84CF1000F3234 /* image_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_large.png; sourceTree = "<group>"; };
 		60FC18CE18E1F02C00BF4C95 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		60FC18D018E1F03900BF4C95 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -208,6 +209,7 @@
 				6091FD2F18F7B192004928CD /* PMSupport.h */,
 				6091FD3018F7B192004928CD /* PomocCore.h */,
 				6091FD3118F7B192004928CD /* PomocSupport.h */,
+				609DF3CA18F8FFF6004ACD98 /* PMUser.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";

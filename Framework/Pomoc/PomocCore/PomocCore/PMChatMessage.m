@@ -7,12 +7,16 @@
 //
 
 #import "PMChatMessage.h"
+#import "PMChatMessage_Private.h"
+#import "PMUser.h"
+#import "PMUserManager.h"
 
 @interface PMChatMessage ()
 
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSString *conversationId;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) PMUser *user;
 
 @end
 
@@ -46,6 +50,16 @@
     jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
     
     return [NSDictionary dictionaryWithDictionary:jsonData];
+}
+
+- (void)resolveUserWithCompletion:(void (^)(PMUser *user))completion
+{
+    [PMUserManager getUserObjectFromUserId:self.userId completionBlock:^(PMUser *user) {
+        if (completion) {
+            self.user = user;
+            completion(user);
+        }
+    }];
 }
 
 @end

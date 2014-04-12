@@ -8,6 +8,8 @@
 
 #import "PMMessage.h"
 
+@class PMUser;
+
 @interface PMChatMessage : PMMessage
 
 - (id)initWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
@@ -15,6 +17,6 @@
 
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *conversationId;
-@property (nonatomic, strong, readonly) NSString *userId;
+@property (nonatomic, strong, readonly) PMUser *user;
 
 @end
