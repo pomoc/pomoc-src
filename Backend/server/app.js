@@ -185,8 +185,12 @@ io.sockets.on('connection', function(client) {
             db.client.sadd(data.conversationId + ':handlers', data.userId);
         }
 
-        else if(data.code == 'unhandle') {
+        else if (data.code == 'unhandle') {
             db.client.srem(data.conversationId + ':handlers', data.userId);
+        }
+
+        else if (data.code == 'referHandler') {
+            db.client.sadd(data.coversationId + ':handlers', data.referralUserId
         }
 
     });
