@@ -20,8 +20,16 @@
 
 + (NSDictionary *)navigationTitleDesign
 {
-    return @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica-Light" size:18.0f],
-             NSForegroundColorAttributeName: [UIColor whiteColor]};
+//    return @{NSFontAttributeName:
+//                 [UIFont fontWithName:@"Helvetica-Light" size:18.0f],
+//             NSForegroundColorAttributeName: [UIColor whiteColor]};
+//    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIFont fontWithName:@"Helvetica-Light" size:18.0f], NSFontAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    return textAttributes;
 }
 
 + (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize {

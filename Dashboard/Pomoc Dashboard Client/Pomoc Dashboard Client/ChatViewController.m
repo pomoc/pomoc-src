@@ -12,11 +12,12 @@
 #import "ChatMessageTextCell.h"
 
 #import "PomocCore.h"
+#import "PomocSupport.h"
 #import "PMChatMessage.h"
 #import "PMMessage.h"
 
 #import "PomocChat.h"
-#import "PomocImage.h"
+//#import "PomocImage.h"
 
 #import "UILabel+boldAndGray.h"
 
@@ -28,7 +29,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () <PMCoreDelegate, UINavigationControllerDelegate, AnnotateViewControllerDelegate> {
+@interface ChatViewController () <PMSupportDelegate, UINavigationControllerDelegate, AnnotateViewControllerDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -40,6 +41,7 @@
     NSInteger currentlySelectedChat;
     NSString *currentSelectedConvoId;
     
+    NSString *userId;
     NSString *userName;
     BOOL keyboardEditing;
     
@@ -47,7 +49,7 @@
     
     // For testing
     PomocChat *chat;
-    PomocImage *pmImage;
+   // PomocImage *pmImage;
 }
 
 @end
@@ -61,6 +63,18 @@
     
     userName = @"Steve";
     //[PMCore initWithAppID:@"anc" userId:userName delegate:self];
+    [PMSupport initWithAppID:@"anc" secretKey:@"mySecret"];
+    [PMSupport setDelegate:self];
+    
+    // Agent 'login' code
+    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId){
+        
+        userId = returnedUserId;
+        NSLog(@"------- USER ID IS %@", userId);
+        [PMSupport connectWithCompletion:^(BOOL connected){
+            NSLog(@"conncted!");
+        }];
+     }];
     
     //ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
@@ -78,7 +92,7 @@
     [leftBorder setFrame:CGRectMake(0, 0, 0.5, _chatInputView.frame.size.height)];
     [_chatInputView.layer addSublayer:leftBorder];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[Utility navigationTitleDesign]];
+    self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     
     chatList = [[NSMutableArray alloc] init];
     chatMessageList = [[NSMutableArray alloc] init];
@@ -347,9 +361,9 @@
     NSString *dateString = [Utility formatDateForTable:message.timestamp];
     
     //Setting visitor name
-    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
-    [cell.messageFrom boldAndBlackSubstring:message.userId];
-    
+//    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
+//    [cell.messageFrom boldAndBlackSubstring:message.userId];
+//    
     //setting the display text
     [cell.messageText setText: message.message];
     
@@ -371,14 +385,14 @@
 #pragma mark - Upload View Controller Delegate 
 - (void)pictureSelected:(UIImage *)image
 {
-    pmImage = [PomocImage sharedInstance];
+    //pmImage = [PomocImage sharedInstance];
     
     // Download from S3
     void (^downloadCompleted) (UIImage *) = ^void (UIImage *image) {
         NSLog(@"Image downloaded");
     };
     
-    [pmImage downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:downloadCompleted];
+    //[pmImage downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:downloadCompleted];
     
     //dismiss segue
     [uploadSegue dismissPopoverAnimated:YES];
@@ -394,7 +408,7 @@
         [_chatNavTable reloadData];
     };
     
-    [pmImage uploadImage:image withCompletion:uploadCompleted];
+    //[pmImage uploadImage:image withCompletion:uploadCompleted];
     
     //handling of photo
     NSLog(@"picture selected");
@@ -506,9 +520,30 @@
     [_chatNavTable reloadData];
 }
 
-#pragma mark - PMCore Delegate
-- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
+#pragma mark - NEW PomocDelegate
+
+- (void)newConversationCreated:(PMConversation *)conversation
 {
+    NSLog(@"New Channel created %@", conversation);
+    
+}
+
+
+- (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
+{
+    NSLog(@"recieved a chat message delegae called ");
+    
+}
+
+- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
+{
+    NSLog(@"recieved an image message delegae called ");
+    
+}
+
+#pragma mark - PMCore Delegate
+//- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
+//{
 //    NSLog(@"message delegae called ");
 //    
 //    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
@@ -533,10 +568,10 @@
 //            }
 //        //}
 //    }
-}
+//}
 
-- (void)newConversationCreated:(NSString *)conversationId
-{
+//- (void)newConversationCreated:(NSString *)conversationId
+//{
 //    NSLog(@"new conversation!");
 //    
 //    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
@@ -558,7 +593,7 @@
 //        
 //        [_chatNavTable reloadData];
 //    }];
-}
+//}
 
 //- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
 //{

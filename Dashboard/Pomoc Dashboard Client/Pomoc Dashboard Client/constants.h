@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
+//HOME VIEW CONTROLLER
+#define CHART_WIDTH 700
+#define CHART_HEIGHT 400
+
 //ANNOTATE VIEW CONTROLLER
 #define NUM_COLORS 20
 #define BUTTON_SIZE 51
