@@ -142,7 +142,7 @@ io.sockets.on('connection', function(client) {
             console.log('getAppConversationList ' + data.appId);
 
             // Get list of conversation ids
-            db.client.smemebers(data.appId + ":conversations", function(err, reply) {
+            db.client.smembers(data.appId + ":conversations", function(err, reply) {
                 callback({success: true, conversationIds: reply});
                 console.log('conversationIds sent for app:' + data.appId);
             });

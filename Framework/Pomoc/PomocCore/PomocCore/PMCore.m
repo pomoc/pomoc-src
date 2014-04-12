@@ -21,6 +21,8 @@
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
 
+#import "PomocConstants.h"
+
 #define MESSAGE_USER_ID   @"userId"
 #define MESSAGE_APP_ID    @"appId"
 
@@ -121,6 +123,50 @@
     }];
 }
 
++ (void)getAllConversations:(void(^)(NSArray *conversations))completion
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *allConversationMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeGetAppConversationList];
+    
+    [core sendMessage:allConversationMessage withAcknowledge:^(NSDictionary *jsonResponse) {
+        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+            
+            NSArray *conversationIds = jsonResponse[@"conversationIds"];
+            NSMutableArray *conversations = [NSMutableArray array];
+            for (NSString *conversationId in conversationIds) {
+                [conversations addObject:[[PMConversation alloc] initWithConversationId:conversationId]];
+            }
+            
+            [PMCore joinAllConversations:[conversations copy] completion:completion];
+        }
+    }];
+}
+
++ (void)joinAllConversations:(NSArray *)conversations completion:(void(^)(NSArray *conversations))completion
+{
+    [PMCore joinConversationsInQueue:[conversations mutableCopy] done:[NSMutableArray array] completion:completion];
+}
+
++ (void)joinConversationsInQueue:(NSMutableArray *)queue
+                            done:(NSMutableArray *)done
+                      completion:(void(^)(NSArray *conversations))completion
+{
+    if ([queue count] == 0) {
+        completion([done copy]);
+        return;
+    }
+    
+    PMConversation *conversation = queue[0];
+    
+    [conversation joinConversationWithCompletion:^(BOOL success) {
+        [queue removeObjectAtIndex:0];
+        if (success) {
+            [done addObject:conversation];
+        }
+        [PMCore joinConversationsInQueue:queue done:done completion:completion];
+    }];
+}
+
 + (void)setDelegate:(id<PMCoreDelegate>)delegate
 {
     [PMCore sharedInstance].delegate = delegate;
@@ -138,7 +184,7 @@
 
 - (void)connect
 {
-    [self.socket connectToHost:@"api.pomoc.im" onPort:3217];
+    [self.socket connectToHost:POMOC_URL onPort:POMOC_PORT];
 }
 
 - (void)observeNewConversations

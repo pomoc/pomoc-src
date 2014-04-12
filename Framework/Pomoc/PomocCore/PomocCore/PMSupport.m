@@ -9,6 +9,9 @@
 #import "PMSupport.h"
 #import "PMCore.h"
 #import "AFNetworking.h"
+#import "PomocConstants.h"
+#import "PMConversation+PMCore.h"
+#import "PMConversation_Private.h"
 
 @interface PMSupport () <PMCoreDelegate>
 
@@ -55,7 +58,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"userId": userId, @"password": password};
     
-    [manager POST:@"http://api.pomoc.im:3217/agentLogin" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    NSString *url = [NSString stringWithFormat:@"http://%@:%i/agentLogin", POMOC_URL, POMOC_PORT];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
             NSString *userId = responseObject[@"userId"];
             [PMCore setUserId:userId];
@@ -83,7 +87,7 @@
     NSDictionary *parameters = @{@"name": name};
    
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *postUrl = [NSString stringWithFormat:@"http://api.pomoc.im:3217/user/%@", userId];
+    NSString *postUrl = [NSString stringWithFormat:@"http://%@:%i/user/%@", POMOC_URL, POMOC_PORT, userId];
     
     [manager POST:postUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
@@ -97,6 +101,10 @@
             completion(nil);
         }
     }];
+}
++ (void)getAllConversations:(void(^)(NSArray *conversations))completion
+{
+    [PMCore getAllConversations:completion];
 }
 
 + (void)setDelegate:(id<PMSupportDelegate>)delegate
@@ -119,6 +127,7 @@
     [[PMSupport sharedInstance] setConnectCallback:callback];
     [PMCore connect];
 }
+                          
 
 #pragma mark - PMCore delegate
 

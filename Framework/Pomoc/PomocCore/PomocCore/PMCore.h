@@ -22,6 +22,7 @@
 
 + (void)initWithAppID:(NSString *)appId;
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
++ (void)getAllConversations:(void(^)(NSArray *conversations))completion;
 + (void)setDelegate:(id<PMCoreDelegate>)delegate;
 + (void)observeNewConversations;
 + (void)connect;

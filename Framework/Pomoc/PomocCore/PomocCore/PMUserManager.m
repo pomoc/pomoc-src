@@ -8,6 +8,7 @@
 
 #import "PMUserManager.h"
 #import "PMUser.h"
+#import "PomocConstants.h"
 
 @interface PMUserManager ()
 
@@ -87,7 +88,7 @@
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setHTTPMethod:@"GET"];
-    NSString *requestUrl = [NSString stringWithFormat:@"http://api.pomoc.im:3217/user/%@", userId];
+    NSString *requestUrl = [NSString stringWithFormat:@"http://%@:%i/user/%@", POMOC_URL, POMOC_PORT, userId];
     [request setURL:[NSURL URLWithString:requestUrl]];
     return request;
 }

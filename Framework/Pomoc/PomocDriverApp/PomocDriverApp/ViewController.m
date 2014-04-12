@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import "PomocSupport.h"
 
+/*
 @interface PMConversation (Hack)
 
 - (id)initWithConversationId:(NSString *)conversationId;
 - (void)joinConversationWithCompletion:(void(^)(BOOL success))completion;
 
 @end
+ */
 
 @interface ViewController () <PMSupportDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -43,16 +45,23 @@
     [PMSupport setDelegate:self];
     
     // User 'login' code
+    NSString *customer = @"customer";
+    [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+        [PMSupport connectWithCompletion:^(BOOL connected) {
+        }];
+    }];
     
+    /*
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
             PMConversation *conversation = [[PMConversation alloc] initWithConversationId:@"58773E9C-3D9B-4A9C-896A-4925F94AB515:anc:chat"];
             [conversation joinConversationWithCompletion:^(BOOL success) {
-                
+  
             }];
         }];
     }];
+     */
     
     // Agent 'login' code
     /*
@@ -60,6 +69,10 @@
         self.userId = userId;
         NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
+            // Get all conversations
+            [PMSupport getAllConversations:^(NSArray *conversations) {
+                
+            }];
         }];
     }];
      */

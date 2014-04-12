@@ -324,6 +324,7 @@
 		60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
 		60807FC118F8655F009B84D2 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		60807FC218F8655F009B84D2 /* libsocketio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsocketio.a; sourceTree = "<group>"; };
+		60829ABE18F940D9005E396B /* PomocConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocConstants.h; sourceTree = "<group>"; };
 		609DF3C918F8FD53004ACD98 /* PMChatMessage_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMChatMessage_Private.h; sourceTree = "<group>"; };
 		60FC18A418E1EB6500BF4C95 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
 		60FC18A518E1EB6500BF4C95 /* PMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessage.m; sourceTree = "<group>"; };
@@ -633,6 +634,7 @@
 				9F2AE7D218F7D3060078D22A /* PomocImage.h */,
 				9F2AE7D318F7D3060078D22A /* PomocImage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
+				60829ABE18F940D9005E396B /* PomocConstants.h */,
 			);
 			path = PomocCore;
 			sourceTree = "<group>";
