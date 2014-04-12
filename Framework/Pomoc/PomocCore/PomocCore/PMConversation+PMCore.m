@@ -21,6 +21,7 @@
     self = [super init];
     if (self) {
         self.conversationId = conversationId;
+        self.allMessages = [NSMutableArray array];
     }
     return self;
 }

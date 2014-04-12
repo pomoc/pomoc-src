@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "PomocSupport.h"
 
+
 @interface ViewController () <PMSupportDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
@@ -36,19 +37,27 @@
     [PMSupport setDelegate:self];
     
     // User 'login' code
-    /*
+    
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connect];
+
     }];
-     */
     
     // Agent 'login' code
+    /*
     [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
         self.userId = userId;
         NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCompletion:nil];
+        [PMSupport connectWithCompletion:^(BOOL connected) {
+            // To join a conversation
+            [conversation joinConversationWithCompletion:^(BOOL success) {
+                NSLog(@"success: %i", success);
+                NSLog(@"%@", conversation.messages);
+            }];
+        }];
     }];
+     */
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,6 +9,12 @@
 #import "PMUserManager.h"
 #import "PMUser.h"
 
+@interface PMUserManager ()
+
+@property (nonatomic, strong) NSMutableDictionary *userCache;
+
+@end
+
 @implementation PMUserManager
 
 // No cache right now, because users can change their name and there isn't a
@@ -26,8 +32,22 @@
     return sharedInstance;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.userCache = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
+
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId
 {
+    if ([PMUserManager sharedInstance].userCache[userId]) {
+        return [PMUserManager sharedInstance].userCache[userId];
+    }
+    
     NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
     NSHTTPURLResponse *responseCode = nil;
     NSError *error = nil;
@@ -43,6 +63,13 @@
 
 + (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *user))completionBlock
 {
+    if ([PMUserManager sharedInstance].userCache[userId]) {
+        if (completionBlock) {
+            completionBlock([PMUserManager sharedInstance].userCache[userId]);
+        }
+        return;
+    }
+    
     NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     
@@ -64,4 +91,5 @@
     [request setURL:[NSURL URLWithString:requestUrl]];
     return request;
 }
+
 @end

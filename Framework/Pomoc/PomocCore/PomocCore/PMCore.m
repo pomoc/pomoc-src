@@ -192,7 +192,9 @@
                 }
             }
             
-            [self.delegate newConversationCreated:conversation];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
+                [self.delegate newConversationCreated:conversation];
+            }
         }
     }
 }

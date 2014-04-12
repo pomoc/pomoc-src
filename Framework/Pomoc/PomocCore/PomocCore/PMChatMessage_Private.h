@@ -13,5 +13,6 @@
 @interface PMChatMessage ()
 
 - (void)resolveUserWithCompletion:(void(^)(PMUser *user))completion;
+- (void)resolveUser;
 
 @end

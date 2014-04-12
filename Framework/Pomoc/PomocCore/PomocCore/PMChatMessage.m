@@ -62,4 +62,9 @@
     }];
 }
 
+- (void)resolveUser
+{
+    self.user = [PMUserManager getUserObjectFromUserId:self.userId];
+}
+
 @end

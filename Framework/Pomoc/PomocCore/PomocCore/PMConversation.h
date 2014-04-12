@@ -27,6 +27,7 @@
 
 @property (nonatomic, weak) id<PMConversationDelegate> delegate;
 
+- (void)joinConversationWithCompletion:(void(^)(BOOL success))completion;
 - (void)sendTextMessage:(NSString *)message;
 - (void)sendImageMessage:(UIImage *)image;
 - (NSArray *)messages;
