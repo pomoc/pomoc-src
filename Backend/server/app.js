@@ -47,7 +47,7 @@ io.sockets.on('connection', function(client) {
             client.join(conversationId);
 
             // adds conversationId to app's list of conversation
-            db.client.sadd(data.appToken + ':conversations', conversationId);
+            db.client.sadd(data.appId + ':conversations', conversationId);
 
             // adds conversationId to user's list of conversations
             db.client.sadd(data.userId + ':sub', conversationId);
@@ -139,12 +139,12 @@ io.sockets.on('connection', function(client) {
 
         // Gets all conversations for an app
         else if (data.type == 'getAppConversationList') {
-            console.log('getAppConversationList ' + data.appToken);
+            console.log('getAppConversationList ' + data.appId);
 
             // Get list of conversation ids
-            db.client.smemebers(data.apptoken + ":conversations", function(err, reply) {
+            db.client.smemebers(data.appId + ":conversations", function(err, reply) {
                 callback({success: true, conversationIds: reply});
-                console.log('conversationIds sent for app:' + data.appToken);
+                console.log('conversationIds sent for app:' + data.appId);
             });
         }
 
@@ -168,7 +168,7 @@ io.sockets.on('connection', function(client) {
         // Doesn't include users
         else if (data.type == 'getAppUsers') {
             if (callback) {
-                db.client.smembers(data.appToken + ':users', function(err, reply) {
+                db.client.smembers(data.appId + ':users', function(err, reply) {
                     callback({success: true, users: reply});
                 });
             }
