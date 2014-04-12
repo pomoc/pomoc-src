@@ -28,19 +28,40 @@
 
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId
 {
+    NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
+    NSHTTPURLResponse *responseCode = nil;
+    NSError *error = nil;
+    PMUser *user = nil;
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+    if (!error) {
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        user = [[PMUser alloc]initWithJsonData:jsonObject];
+    }
+    return user;
+}
+
++ (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *))completionBlock
+{
+    NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responseCode, NSData *responseData, NSError *error){
+        PMUser *user = nil;
+        if (!error) {
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            user = [[PMUser alloc]initWithJsonData:jsonObject];
+        }
+        completionBlock(user);
+    }];
+}
+
++ (NSMutableURLRequest *)getRequestObject:(NSString *)userId
+{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setHTTPMethod:@"GET"];
     NSString *requestUrl = [NSString stringWithFormat:@"http://api.pomoc.im/user/%@", userId];
     [request setURL:[NSURL URLWithString:requestUrl]];
-    
-    NSHTTPURLResponse *responseCode = nil;
-    NSError *error = nil;
-    
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-    
-    PMUser *user = [[PMUser alloc]initWithJsonData:jsonObject];
-    return user;
+    return request;
 }
-
 @end
