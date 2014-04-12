@@ -60,7 +60,7 @@
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
     [request setHTTPMethod:@"GET"];
-    NSString *requestUrl = [NSString stringWithFormat:@"http://api.pomoc.im/user/%@", userId];
+    NSString *requestUrl = [NSString stringWithFormat:@"http://api.pomoc.im:3217/user/%@", userId];
     [request setURL:[NSURL URLWithString:requestUrl]];
     return request;
 }
