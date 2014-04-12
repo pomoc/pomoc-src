@@ -192,9 +192,13 @@
                 }
             }
             
-            if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
-                [self.delegate newConversationCreated:conversation];
-            }
+            [conversation joinConversationWithCompletion:^(BOOL success) {
+                if (success) {
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
+                        [self.delegate newConversationCreated:conversation];
+                    }
+                }
+            }];
         }
     }
 }

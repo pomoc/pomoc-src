@@ -25,7 +25,7 @@
         }
         
         [self resolveUserInMessages:messages completion:^(NSArray *messages) {
-            [self.allMessages addObjectsFromArray:messages];
+            self.allMessages = [messages mutableCopy];
             if (completion) {
                 completion(YES);
             }

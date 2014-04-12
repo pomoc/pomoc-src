@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "PomocSupport.h"
 
-
 @interface ViewController () <PMSupportDelegate, PMConversationDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
@@ -41,7 +40,6 @@
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connect];
-
     }];
     
     // Agent 'login' code
