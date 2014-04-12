@@ -9,12 +9,36 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PMConversation.h"
+#import "PMImageMessage.h"
+
+@protocol PomocChatDelegate
+
+- (void) hasUpdate: (NSMutableArray *)chatList;
+
+@end
+
+
+@protocol PomocHomeDelegate
+
+//future work
+
+//delegate for agent online/ offline
+//delegate for user online/ offline
+
+@end
 
 @interface DashBoardSingleton : NSObject
 
-@property (nonatomic, strong) NSString *appId;
++ (id)singleton;
 
-+ (id)sharedModel;
+- (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion;
 
+@property (nonatomic, strong) NSMutableArray *currentConversationList;
+
+@property (nonatomic) NSNumber *hehe;
+
+@property (nonatomic, assign) id  chatDelegate;
+@property (nonatomic, assign) id  homeDelegate;
 
 @end

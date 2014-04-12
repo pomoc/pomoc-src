@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc3" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
@@ -49,7 +49,7 @@
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
             [PMSupport getAllConversations:^(NSArray *conversations) {
-                
+                NSLog(@"logged in");
             }];
         }];
     }];

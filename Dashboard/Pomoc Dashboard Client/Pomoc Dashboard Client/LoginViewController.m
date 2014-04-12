@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "DashBoardSingleton.h"
 
 @interface LoginViewController ()
 
@@ -43,12 +44,25 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
+}f
 */
 
 - (IBAction)loginPressed:(id)sender {
     
-    [self performSegueWithIdentifier:@"login" sender:sender];
+    [self showActivityProgress];
+    
+    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+    [singleton loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(BOOL success) {
+        [self performSegueWithIdentifier:@"login" sender:sender];
+    }];
+    
+}
+
+- (void) showActivityProgress {
+    UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center=self.view.center;
+    [activityView startAnimating];
+    [self.view addSubview:activityView];
     
 }
 @end

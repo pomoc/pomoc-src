@@ -23,13 +23,15 @@
 
 #import "UIImageView+WebCache.h"
 
+#import "DashBoardSingleton.h"
+
 //testing
 #import "FakePMChatMessage.h"
 #import "FakePMImageMessage.h"
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () <PMSupportDelegate, UINavigationControllerDelegate, AnnotateViewControllerDelegate> {
+@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -38,8 +40,9 @@
     
     NSMutableArray *chatList;
     NSMutableArray *chatMessageList;
-    NSInteger currentlySelectedChat;
+    NSInteger currentlySelectedChatRow;
     NSString *currentSelectedConvoId;
+    PMConversation *currentlySelectedConvo;
     
     NSString *userId;
     NSString *userName;
@@ -61,29 +64,9 @@
     [super viewDidLoad];
     self.title = @"Messages";
     
-    userName = @"Steve";
-    //[PMCore initWithAppID:@"anc" userId:userName delegate:self];
-    [PMSupport initWithAppID:@"anc" secretKey:@"mySecret"];
-    [PMSupport setDelegate:self];
-    
-    // Agent 'login' code
-    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId){
-        
-        userId = returnedUserId;
-        NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCompletion:^(BOOL connected){
-            NSLog(@"conncted!");
-        }];
-     }];
-    
     //ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
     _chatNavTable.separatorColor = [UIColor clearColor];
-    
-    //storing the original position for moving them up when keyboard show
-    chatMessageOriginalFrame = _chatMessageTable.frame;
-    chatInputOriginalCenter = _chatInputView.center;
-    chatNavOriginalFrame = _chatNavTable.frame;
     
     //border
     _chatMessageTable.layer.borderWidth = 0.5;
@@ -94,32 +77,41 @@
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     
-    chatList = [[NSMutableArray alloc] init];
-    chatMessageList = [[NSMutableArray alloc] init];
-    
-    currentlySelectedChat = -1;
+    currentlySelectedChatRow = -1;
+    currentlySelectedConvo = nil;
     currentSelectedConvoId = @"";
     keyboardEditing = false;
     
     _pastAndInfoToolbar.clipsToBounds = true;
     
-    //testing
-    [self testCreateMock];
-}
-
-- (IBAction)viewAction:(id)sender
-{
-    NSLog(@"clicked view action");
+    chatList = [[NSMutableArray alloc] init];
+    chatMessageList = [[NSMutableArray alloc] init];
+    
+    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+    [singleton setChatDelegate:self];
+    chatList = singleton.currentConversationList;
+    [_chatNavTable reloadData];
+    
+    //storing the original position for moving them up when keyboard show
+    chatMessageOriginalFrame = _chatMessageTable.frame;
+    chatInputOriginalCenter = _chatInputView.center;
+    chatNavOriginalFrame = _chatNavTable.frame;
+    chatNavOriginalFrame.size.width = 280;
+    
 }
 
 - (IBAction)sendMessage:(id)sender {
     
-    NSLog(@"user sending message!");
     NSString *userInput = _userTextInput.text;
-    //[PMCore sendMessage:userInput conversationId:currentSelectedConvoId];
-    [_userTextInput setText:@""];
     
+    if ( [userInput length] > 0 ) {
+        NSLog(@"user sending message!");
+        [currentlySelectedConvo sendTextMessage:userInput];
+        [_userTextInput setText:@""];
+    }
 }
+
+#pragma mark - annotation related
 
 - (IBAction)annotateActionPressed:(id)sender {
     NSArray *subviews = [sender superview].subviews;
@@ -138,16 +130,23 @@
     }
 }
 
-- (void) testProtocol
+- (void)userCompleteAnnotation:(UIImage *)image
 {
-    NSLog(@"called test protocol");
+    NSLog(@"called user complete annotation !");
+    [currentlySelectedConvo sendImageMessage:image];
 }
 
-
-- (void)didReceiveMemoryWarning
+#pragma mark - Upload View Controller Delegate
+- (void)pictureSelected:(UIImage *)image
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"sending image");
+    dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(aQueue, ^{
+        [currentlySelectedConvo sendImageMessage:image];
+    });
+        
+    //handling of photo
+    NSLog(@"picture selected");
 }
 
 #pragma mark - UINavigationController methods
@@ -164,17 +163,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
+        NSLog(@"at number of rows in section for chat list");
+        NSLog(@"total convo == %lu",[chatList count]);
         return [chatList count];
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        
+        NSLog(@"at number of rows in section for messages ");
         if ([chatList count] == 0) {
+            NSLog(@"returning 0");
             return 0;
             
         } else {
+            NSLog(@"returning %lu", [chatMessageList count]);
+
             return [chatMessageList count];
         }
     }
-    
     return 0;
 }
 
@@ -187,18 +192,16 @@
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-        PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
-        id obj = [chat.chatMessages objectAtIndex:indexPath.row];
+        PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
+        id obj = [convo.messages objectAtIndex:indexPath.row];
         
-        if ([obj isKindOfClass:[FakePMChatMessage class]] ||
-            [obj isKindOfClass:[PMChatMessage class]]) {
-            
-            NSLog(@"is chat message");
-            return [self createChatMessageTableView:tableView atRow:row];
-            
-        } else if([obj isKindOfClass:[FakePMImageMessage class]]) {
+        if( [obj isKindOfClass:[PMImageMessage class]]) {
             NSLog(@"is picture message");
             return [self createChatImageTableView: tableView atRow:row];
+            
+        } else {
+            NSLog(@"is chat message");
+            return [self createChatMessageTableView:tableView atRow:row];
         }
     
     }
@@ -211,7 +214,7 @@
     //selecting one of the chat side nav
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         
-        currentlySelectedChat = indexPath.row;
+        currentlySelectedChatRow = indexPath.row;
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -221,10 +224,10 @@
         [self.navigationItem setTitle:visitorName];
         
         //setting the chat for chat table view
-        PomocChat *pomocchat = [chatList objectAtIndex:currentlySelectedChat];
-        chatMessageList = pomocchat.chatMessages;
-        
-        currentSelectedConvoId = pomocchat.conversationId;
+        PMConversation *pmConversation = [chatList objectAtIndex:currentlySelectedChatRow];
+        chatMessageList = [NSMutableArray arrayWithArray:pmConversation.messages];
+        currentSelectedConvoId = pmConversation.conversationId;
+        currentlySelectedConvo = pmConversation;
         
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
@@ -240,15 +243,16 @@
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-        PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
-        id obj = [chat.chatMessages objectAtIndex:indexPath.row];
+        PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+        id obj = [pmConvo.messages objectAtIndex:indexPath.row];
         
-        if ([obj isKindOfClass:[PMChatMessage class]] ||
-            [obj isKindOfClass:[FakePMChatMessage class]]) {
-        
+        if( [obj isKindOfClass:[PMImageMessage class]]) {
+            return 170;
+            
+        } else {
             PMChatMessage *message = [chat.chatMessages objectAtIndex:indexPath.row];
             NSString *text = message.message;
-        
+            
             //[[message.message sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15] boundingRectWithSize:CGSizeMake(695, 999)] ];
             UILabel *gettingSizeLabel = [[UILabel alloc] init];
             gettingSizeLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
@@ -256,12 +260,10 @@
             gettingSizeLabel.numberOfLines = 0;
             gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
             CGSize maximumLabelSize = CGSizeMake(695, 9999);
-        
+            
             CGSize expectedSize = [gettingSizeLabel sizeThatFits:maximumLabelSize];
-        
-            return expectedSize.height + 35;
-        } else {
-            return 170;
+            
+            return expectedSize.height + 40;
         }
     }
     
@@ -271,22 +273,29 @@
 #pragma mark - CHAT SIDE NAV
 - (UITableViewCell *) createChatNavTableView: (UITableView *) tableView atRow: (NSInteger)row
 {
+    NSLog(@"creating chat left side table view");
+    
     static NSString *cellIdentifier = @"ChatTitleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    PomocChat *chat = [chatList objectAtIndex:row];
+    PMConversation *pmConvo = [chatList objectAtIndex:row];
     
-    //Setting visitor name
-    UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
-    [visitorLabel setText:chat.userId];
-    
-    //setting the started date of chat
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
-    NSString *dateString = [dateFormatter stringFromDate:chat.startedDate];
-    
-    UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
-    [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
+    if ([pmConvo.messages count] > 0 ) {
+        NSLog(@"size of pm convo messages %lu",[pmConvo.messages count]);
+        PMChatMessage *firstMessage = [pmConvo.messages objectAtIndex:0];
+        
+        //Setting visitor name
+        UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
+        [visitorLabel setText:firstMessage.user.name];
+        
+        //setting the started date of chat
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
+        NSString *dateString = [dateFormatter stringFromDate:firstMessage.timestamp];
+        
+        UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
+        [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
+    }
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
@@ -298,13 +307,14 @@
 #pragma mark - CHAT MESSAGE
 -(UITableViewCell *) createChatImageTableView: (UITableView *)tableView atRow: (NSInteger)row
 {
-    PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
-    FakePMImageMessage *message = [chat.chatMessages objectAtIndex:row];
+    PMConversation *pmCovo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMImageMessage *message = [pmCovo.messages objectAtIndex:row];
     
-    return [self getChatImageCell :message tableView:tableView];
+    return [self getChatImageCell:message tableView:tableView ];
+    
 }
 
-- (UITableViewCell *)getChatImageCell :(FakePMImageMessage *)message tableView:(UITableView *)tableView
+- (UITableViewCell *)getChatImageCell :(PMImageMessage *)message tableView:(UITableView *)tableView
 {
     static NSString *cellIdentifier = @"ChatPictureCell";
     ChatMessagePictureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -317,31 +327,29 @@
     NSString *dateString = [Utility formatDateForTable:message.timestamp];
     
     //Setting visitor name
-    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
-    [cell.messageFrom boldAndBlackSubstring:message.userId];
+    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
+    [cell.messageFrom boldAndBlackSubstring:message.user.name];
     
-    //setting the display text
-    UIImage *image = [UIImage imageNamed:message.imageUrl];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    cell.imageView.clipsToBounds = YES;
-
     __weak typeof(UITableViewCell *) weakCell = cell;
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:@"http://28.media.tumblr.com/tumblr_lwdu1460fh1r7o3dfo1_500.jpg"]
-                    placeholderImage:image
-                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                        UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
-                        [weakCell.imageView setImage:scaled];
-                        
-                    }];
-    
+    //setting the display text
+    [message retrieveImageWithCompletion:^(UIImage *image) {
+        
+        NSLog(@"image retrieved");
+        weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        weakCell.imageView.clipsToBounds = YES;
+        UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
+        [weakCell.imageView setImage:scaled];
+        [weakCell setNeedsLayout];
+        
+    }];
     return cell;
 }
 
 - (UITableViewCell *) createChatMessageTableView: (UITableView *)tableView atRow: (NSInteger)row
 {
-    PomocChat *chat = [chatList objectAtIndex:currentlySelectedChat];
-    PMChatMessage *message = [chat.chatMessages objectAtIndex:row];
+    PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMChatMessage *message = [pmConvo.messages objectAtIndex:row];
     
     return [self getChatMessageCell:message tableView:tableView];
     
@@ -361,15 +369,24 @@
     NSString *dateString = [Utility formatDateForTable:message.timestamp];
     
     //Setting visitor name
-//    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
-//    [cell.messageFrom boldAndBlackSubstring:message.userId];
-//    
+    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
+    [cell.messageFrom boldAndBlackSubstring:message.user.name];
+
     //setting the display text
     [cell.messageText setText: message.message];
     
     
     return cell;
 }
+
+
+#pragma mark - updates [new convo or new mesages]
+- (void)hasUpdate:(NSMutableArray *)newChatList
+{
+    chatList = newChatList;
+    [_chatNavTable reloadData];
+}
+
 
 #pragma  mark - Preparation for Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -380,38 +397,6 @@
         child.delegate = self;
         uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
     }
-}
-
-#pragma mark - Upload View Controller Delegate 
-- (void)pictureSelected:(UIImage *)image
-{
-    //pmImage = [PomocImage sharedInstance];
-    
-    // Download from S3
-    void (^downloadCompleted) (UIImage *) = ^void (UIImage *image) {
-        NSLog(@"Image downloaded");
-    };
-    
-    //[pmImage downloadImage:@"2566E97B-58CD-4574-84EF-E28C631DF485" withCompletion:downloadCompleted];
-    
-    //dismiss segue
-    [uploadSegue dismissPopoverAnimated:YES];
-    
-    // Upload to S3
-    void (^uploadCompleted) (NSString *) = ^void(NSString *url) {
-        FakePMImageMessage *image1 = [[FakePMImageMessage alloc] init];
-        image1.userId = @"visitor";
-        image1.conversationId = @"1";
-        image1.imageUrl = url;
-        
-        [chat.chatMessages addObject:image1];
-        [_chatNavTable reloadData];
-    };
-    
-    //[pmImage uploadImage:image withCompletion:uploadCompleted];
-    
-    //handling of photo
-    NSLog(@"picture selected");
 }
 
 - (void) closePopOver
@@ -430,6 +415,7 @@
 
 - (void) scrollThingUp
 {
+    
     [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
@@ -439,6 +425,12 @@
     [self scrollChatContentToBottom];
     
     //change chat nav table height
+    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
+            chatNavOriginalFrame.size.height,
+          chatNavOriginalFrame.size.width);
+    NSLog(@"chat real  frame .height = %f and .wdith = %f",
+          _chatNavTable.frame.size.height,
+          _chatNavTable.frame.size.width);
     chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
     
@@ -475,142 +467,6 @@
     chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
 }
-#pragma mark - Testing
-- (void) testCreateMock
-{
-    //create some conversaiton
-    chat = [[PomocChat alloc] initWithConversation:@"1"];
-    [chatList addObject:chat];
 
-    chat.userId = @"Visitor";
-    chat.startedDate = [NSDate new];
-
-    //add some messages inside
-    FakePMChatMessage *message = [[FakePMChatMessage alloc] init];
-    message.message = @"0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789";
-    message.conversationId = @"1";
-    message.userId = @"visitor";
-    
-    FakePMChatMessage *message2 = [[FakePMChatMessage alloc] init];
-    message2.message = @"simi rans jiao? ";
-    message2.conversationId = @"1";
-    message2.userId = @"agent Chun Mun";
-    
-    FakePMChatMessage *message3 = [[FakePMChatMessage alloc] init];
-    message3.message = @"simi rans rans jiao? ";
-    message3.conversationId = @"1";
-    message3.userId = @"agent Steve";
-    
-    FakePMImageMessage *image1 = [[FakePMImageMessage alloc] init];
-    image1.userId = @"visitor";
-    image1.conversationId = @"1";
-    image1.imageUrl = @"testImage.png";
-    
-    FakePMChatMessage *message4 = [[FakePMChatMessage alloc] init];
-    message4.message = @"simi rans rans rans jiao? ";
-    message4.conversationId = @"1";
-    message4.userId = @"Agent BangHui";
-    
-    [chat.chatMessages addObject:message];
-    [chat.chatMessages addObject:message2];
-    [chat.chatMessages addObject:message3];
-    [chat.chatMessages addObject:image1];
-    [chat.chatMessages addObject:message4];
-    
-    [_chatNavTable reloadData];
-}
-
-#pragma mark - NEW PomocDelegate
-
-- (void)newConversationCreated:(PMConversation *)conversation
-{
-    NSLog(@"New Channel created %@", conversation);
-    
-}
-
-
-- (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
-{
-    NSLog(@"recieved a chat message delegae called ");
-    
-}
-
-- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
-{
-    NSLog(@"recieved an image message delegae called ");
-    
-}
-
-#pragma mark - PMCore Delegate
-//- (void)didReceiveMessage:(PMMessage *)pomocMessage conversationId:(NSString *)conversationId
-//{
-//    NSLog(@"message delegae called ");
-//    
-//    if ([pomocMessage isKindOfClass:[PMChatMessage class]]) {
-//        
-//        PMChatMessage *chatMessage = (PMChatMessage *)pomocMessage;
-//        
-//        //if (![chatMessage.userId isEqualToString:userName]) {
-//            
-//            PomocChat *chatMessageConv = [self getPomocChatGivenConversationId:conversationId];
-//            [chatMessageConv.chatMessages addObject:chatMessage];
-//            
-//            //check if current chat being displayed is where the new chat message comign in
-//            if (currentlySelectedChat != -1) {
-//                
-//                PomocChat *currentChat = chatList[currentlySelectedChat];
-//                
-//                if (currentChat == chatMessageConv) {
-//                    [_chatMessageTable reloadData];
-//                    [self scrollChatContentToBottom];
-//                    
-//                }
-//            }
-//        //}
-//    }
-//}
-
-//- (void)newConversationCreated:(NSString *)conversationId
-//{
-//    NSLog(@"new conversation!");
-//    
-//    [PMCore joinConversation:conversationId completion:^(NSArray *messages) {
-//        
-//        PomocChat *chat = [[PomocChat alloc] initWithConversation:conversationId];
-//        [chatList addObject:chat];
-//
-//        [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            
-//            PMChatMessage *message = (PMChatMessage *)obj;
-//            
-//            if(idx == 0) {
-//                chat.startedDate = message.timestamp;
-//                chat.userId = message.userId;
-//            }
-//            
-//            [chat.chatMessages addObject:message];
-//        }];
-//        
-//        [_chatNavTable reloadData];
-//    }];
-//}
-
-//- (PomocChat *) getPomocChatGivenConversationId: (NSString *)conversationId
-//{
-////    for (PomocChat *chat in chatList) {
-////        if ([chat.conversationId isEqualToString:conversationId]) {
-////            return chat;
-////        }
-////    }
-////    
-////    return nil;
-//}
-
-#pragma mark - Upload View Controller Delegate
-- (void)userCompleteAnnotation:(UIImage *)image
-{
-    NSLog(@"called user complete annotation !");
-    
-}
 
 @end

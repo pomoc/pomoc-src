@@ -89,15 +89,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="18" sectionFooterHeight="22" id="0ll-Sw-Dj7">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="773"/>
+                                <rect key="frame" x="0.0" y="0.0" width="282" height="773"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTitleCell" rowHeight="66" id="X7x-ep-nVq">
-                                        <rect key="frame" x="0.0" y="82" width="280" height="66"/>
+                                        <rect key="frame" x="0.0" y="82" width="282" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X7x-ep-nVq" id="bXA-tO-Jqc">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="282" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cet-xZ-RfR">
@@ -213,6 +213,9 @@
                                                         </button>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                                </accessibility>
                                                 <connections>
                                                     <outlet property="messageFrom" destination="p6d-iE-Vdu" id="97c-wf-txW"/>
                                                     <outlet property="messagePicture" destination="KHS-1W-Yv9" id="enz-rc-scP"/>
