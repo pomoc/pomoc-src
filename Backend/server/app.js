@@ -105,7 +105,7 @@ io.sockets.on('connection', function(client) {
             }
         }
 
-        // Initial ping announces online presence
+        // Ping announces online presence
         else if (data.type == 'ping') {
             console.log('ping ' + data.userId);
             userId = data.userId;
