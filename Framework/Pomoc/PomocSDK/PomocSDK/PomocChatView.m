@@ -29,7 +29,6 @@
 @property (nonatomic, strong) PMConversation *conversation;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
-@property (nonatomic, strong) NSString *userId;
 
 @property (nonatomic) CGFloat originalHeight;
 
@@ -50,14 +49,10 @@
         
         self.messages = [@[] mutableCopy];
         self.users = [@[] mutableCopy];
-        self.userId = nil;
         
-        [PMSupport registerUserWithName:@"customer" completion:^(NSString *userId) {
-            self.userId = userId;
-            [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
-                self.conversation = conversation;
-                self.conversation.delegate = self;
-            }];
+        [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
+            self.conversation = conversation;
+            self.conversation.delegate = self;
         }];
 
         
@@ -171,7 +166,7 @@
 {
     // Add a new message, and also update the tableview with the new message
     [self.messages addObject:message];
-    [self.users addObject:message.userId];
+    [self.users addObject:message.user];
     
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.messages.count-1 inSection:0];
     
@@ -288,7 +283,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
         }
         cell.textLabel.text = chatMessage.message;
-        cell.detailTextLabel.text = self.users[indexPath.row];
+        cell.detailTextLabel.text = [self.users[indexPath.row] name];
     }
     
     return cell;
