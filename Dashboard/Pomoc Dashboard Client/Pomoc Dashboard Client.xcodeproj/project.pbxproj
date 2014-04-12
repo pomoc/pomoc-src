@@ -53,6 +53,7 @@
 		AA9BDCFE18F9380100EF6EEC /* JBChartInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCFD18F9380000EF6EEC /* JBChartInformationView.m */; };
 		AA9BDD0118F93A9900EF6EEC /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */; };
 		AA9BDD1318F94C9C00EF6EEC /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BDD1218F94C9B00EF6EEC /* libPomocCore.a */; };
+		AA9BDD1718F9A4C800EF6EEC /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDD1618F9A4C800EF6EEC /* JBLineChartFooterView.m */; };
 		AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */; };
 		AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */; };
 		AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */; };
@@ -184,6 +185,8 @@
 		AA9BDD1018F94C9B00EF6EEC /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		AA9BDD1118F94C9B00EF6EEC /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		AA9BDD1218F94C9B00EF6EEC /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
+		AA9BDD1518F9A4C800EF6EEC /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
+		AA9BDD1618F9A4C800EF6EEC /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoViewController.h; path = ../ContactInfoViewController.h; sourceTree = "<group>"; };
 		AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoViewController.m; path = ../ContactInfoViewController.m; sourceTree = "<group>"; };
 		AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastChatViewController.h; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 		AA9BDCF018F91E1100EF6EEC /* JBChartView */ = {
 			isa = PBXGroup;
 			children = (
+				AA9BDD1518F9A4C800EF6EEC /* JBLineChartFooterView.h */,
+				AA9BDD1618F9A4C800EF6EEC /* JBLineChartFooterView.m */,
 				AA9BDCFF18F93A9900EF6EEC /* JBChartTooltipView.h */,
 				AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */,
 				AA9BDCFC18F9380000EF6EEC /* JBChartInformationView.h */,
@@ -674,6 +679,7 @@
 				AA9BDCF818F91E1100EF6EEC /* JBBarChartView.m in Sources */,
 				AA4649F718E814D100A607E0 /* SDWebImageCompat.m in Sources */,
 				AA4649FA18E814D100A607E0 /* SDWebImageDownloaderOperation.m in Sources */,
+				AA9BDD1718F9A4C800EF6EEC /* JBLineChartFooterView.m in Sources */,
 				AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
 				AA9BDCFB18F91E1100EF6EEC /* JBLineChartView.m in Sources */,

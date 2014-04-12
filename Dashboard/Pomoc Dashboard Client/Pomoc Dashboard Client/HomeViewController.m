@@ -10,14 +10,16 @@
 #import "JBLineChartView.h"
 #import "JBChartView.h"
 #import "JBChartTooltipView.h"
+#import "JBLineChartFooterView.h"
+
+CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
+CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 
 @interface HomeViewController () <JBLineChartViewDataSource, JBLineChartViewDelegate>
 
 @property (nonatomic, strong) JBLineChartView *lineChartView;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
 @property (nonatomic, assign) BOOL tooltipVisible;
-
-
 @end
 
 @implementation HomeViewController
@@ -34,16 +36,22 @@
     _lineChartView = [[JBLineChartView alloc] init];
     _lineChartView.delegate = self;
     _lineChartView.dataSource = self;
-    [_chartView addSubview:_lineChartView];
+    _lineChartView.frame = CGRectMake(0, 0, 700,  350);
 
-    NSLog(@"width == %f ",_chartView.frame.size.width);
-    NSLog(@"height == %f ",_chartView.frame.size.height);
+    JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5) - 130, self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
     
-    _lineChartView.frame = CGRectMake(0, 0, 800,  300);
+//    JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(100,100,100,100)];
     
+    footerView.backgroundColor = [UIColor clearColor];
+    footerView.leftLabel.text = @"24/03/2014";
+    footerView.rightLabel.text = @"24/04/2014";
+    footerView.sectionCount = 10;
+    
+    [_chartView addSubview:_lineChartView];
+    [_chartView addSubview: footerView];
     [_lineChartView reloadData];
     
-    _lineChartView.userInteractionEnabled = YES;
+    //_lineChartView.userInteractionEnabled = YES;
     UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture:)];
     [_chartView addGestureRecognizer:swipeRecognizer];
     
@@ -53,16 +61,16 @@
 {
     NSLog(@"detected a swipe");
 }
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    return YES;
+//}
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,17 +79,27 @@
 }
 
 #pragma  mark - Line chart settings 
-- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
-{
-    return 1; // width of line in chart
-}
-
-
+//- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
+//{
+//    return 1; // width of line in chart
+//}
+//
+//
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex;
 {
     return true;
 }
 
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [Utility colorFromHexString:@"#1abc9c"]; // color of line in chart
+}
+
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [Utility colorFromHexString:@"#1abc9c"]; // color of selected line
+}
 
 #pragma mark - Settings for the dots of the graph
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex
@@ -91,8 +109,9 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForLineAtLineIndex:(NSUInteger)lineIndex;
 {
-    return 5;
+    return 10;
 }
+
 #pragma mark - chart view data source
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
 {
@@ -106,16 +125,21 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return horizontalIndex;
+    double blah = horizontalIndex;
+    if (blah == 0) {
+         return 0;
+        
+    } else {
+        return (CGFloat)log2(blah);
+        
+    }
+    
 }
 
 #pragma mark - Touch point settings
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
     // Update view
-    //NSLog(@"did seelct line at index!");
-    //NSLog(@"horizontal index = %luu",(unsigned long)horizontalIndex);
-    
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
     [self.tooltipView setText:@"tool tip text!"];
 }
@@ -131,25 +155,24 @@
 
 - (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated atTouchPoint:(CGPoint)touchPoint
 {
-    //NSLog(@"inside tooltip visible");
     _tooltipVisible = tooltipVisible;
     
     JBChartView *chartView = _lineChartView;
     
     if (!self.tooltipView)
     {
-        //NSLog(@"not tooltip  view");
         self.tooltipView = [[JBChartTooltipView alloc] init];
         self.tooltipView.alpha = 0.0;
         [self.chartView addSubview:self.tooltipView];
     }
     
-    //NSLog(@"dispatching blocking");
     dispatch_block_t adjustTooltipPosition = ^{
         
         CGPoint originalTouchPoint = [self.view convertPoint:touchPoint fromView:chartView];
+        
         CGPoint convertedTouchPoint = originalTouchPoint; // modified
         JBChartView *chartView = _lineChartView;
+        
         if (chartView)
         {
             CGFloat minChartX = (chartView.frame.origin.x + ceil(self.tooltipView.frame.size.width * 0.5));
@@ -162,6 +185,7 @@
             {
                 convertedTouchPoint.x = maxChartX;
             }
+            
             self.tooltipView.frame = CGRectMake(convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5), CGRectGetMaxY(chartView.headerView.frame), self.tooltipView.frame.size.width, self.tooltipView.frame.size.height);
            
         }

@@ -16,4 +16,6 @@
 
 + (NSString *)formatDateForTable :(NSDate *)dateToFormat;
 
++ (UIColor *)colorFromHexString:(NSString *)hexString;
+
 @end

@@ -13,8 +13,8 @@
 
 // Numerics
 CGFloat static const kJBChartTooltipViewCornerRadius = 5.0;
-CGFloat const kJBChartTooltipViewDefaultWidth = 50.0f;
-CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
+CGFloat const kJBChartTooltipViewDefaultWidth = 100.0f;
+CGFloat const kJBChartTooltipViewDefaultHeight = 30.0f;
 
 @interface JBChartTooltipView ()
 
@@ -26,14 +26,25 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
 
 #pragma mark - Alloc/Init
 #define kJBColorTooltipColor [UIColor colorWithWhite:1.0 alpha:0.9]
-#define kJBFontTooltipText [UIFont fontWithName:@"HelveticaNeue-Bold" size:14]
+#define kJBFontTooltipText [UIFont fontWithName:@"Helvetica-Light" size:30]
 #define kJBColorTooltipTextColor UIColorFromHex(0x313131)
+
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+//[self colorFromHexString:@"#199980]
 
 - (id)init
 {
     self = [super initWithFrame:CGRectMake(0, 0, kJBChartTooltipViewDefaultWidth, kJBChartTooltipViewDefaultHeight)];
     if (self)
     {
+        
         self.backgroundColor = kJBColorTooltipColor;
         self.layer.cornerRadius = kJBChartTooltipViewCornerRadius;
         
@@ -45,6 +56,7 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
         _textLabel.numberOfLines = 1;
         _textLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_textLabel];
+        
     }
     return self;
 }
