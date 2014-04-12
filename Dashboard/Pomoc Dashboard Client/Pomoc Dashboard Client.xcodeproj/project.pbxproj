@@ -51,6 +51,8 @@
 		AA9BDCF918F91E1100EF6EEC /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF418F91E1100EF6EEC /* JBChartView.m */; };
 		AA9BDCFA18F91E1100EF6EEC /* JBChartView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = AA9BDCF518F91E1100EF6EEC /* JBChartView.podspec */; };
 		AA9BDCFB18F91E1100EF6EEC /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF718F91E1100EF6EEC /* JBLineChartView.m */; };
+		AA9BDCFE18F9380100EF6EEC /* JBChartInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCFD18F9380000EF6EEC /* JBChartInformationView.m */; };
+		AA9BDD0118F93A9900EF6EEC /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */; };
 		AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */; };
 		AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */; };
 		AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */; };
@@ -177,6 +179,10 @@
 		AA9BDCF518F91E1100EF6EEC /* JBChartView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JBChartView.podspec; sourceTree = "<group>"; };
 		AA9BDCF618F91E1100EF6EEC /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
 		AA9BDCF718F91E1100EF6EEC /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		AA9BDCFC18F9380000EF6EEC /* JBChartInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartInformationView.h; sourceTree = "<group>"; };
+		AA9BDCFD18F9380000EF6EEC /* JBChartInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartInformationView.m; sourceTree = "<group>"; };
+		AA9BDCFF18F93A9900EF6EEC /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
+		AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
 		AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoViewController.h; path = ../ContactInfoViewController.h; sourceTree = "<group>"; };
 		AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoViewController.m; path = ../ContactInfoViewController.m; sourceTree = "<group>"; };
 		AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastChatViewController.h; sourceTree = "<group>"; };
@@ -444,6 +450,10 @@
 		AA9BDCF018F91E1100EF6EEC /* JBChartView */ = {
 			isa = PBXGroup;
 			children = (
+				AA9BDCFF18F93A9900EF6EEC /* JBChartTooltipView.h */,
+				AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */,
+				AA9BDCFC18F9380000EF6EEC /* JBChartInformationView.h */,
+				AA9BDCFD18F9380000EF6EEC /* JBChartInformationView.m */,
 				AA9BDCF118F91E1100EF6EEC /* JBBarChartView.h */,
 				AA9BDCF218F91E1100EF6EEC /* JBBarChartView.m */,
 				AA9BDCF318F91E1100EF6EEC /* JBChartView.h */,
@@ -646,6 +656,7 @@
 			files = (
 				AA4649F818E814D100A607E0 /* SDWebImageDecoder.m in Sources */,
 				AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */,
+				AA9BDD0118F93A9900EF6EEC /* JBChartTooltipView.m in Sources */,
 				AA4649FB18E814D100A607E0 /* SDWebImageManager.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
 				AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */,
@@ -656,6 +667,7 @@
 				AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
 				AA9BDCFB18F91E1100EF6EEC /* JBLineChartView.m in Sources */,
+				AA9BDCFE18F9380100EF6EEC /* JBChartInformationView.m in Sources */,
 				AA4649D518E80FF800A607E0 /* FakePMImageMessage.m in Sources */,
 				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
 				AA464A0118E814D100A607E0 /* UIImageView+WebCache.m in Sources */,

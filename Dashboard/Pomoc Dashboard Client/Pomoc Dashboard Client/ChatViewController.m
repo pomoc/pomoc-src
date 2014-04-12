@@ -92,7 +92,7 @@
     [leftBorder setFrame:CGRectMake(0, 0, 0.5, _chatInputView.frame.size.height)];
     [_chatInputView.layer addSublayer:leftBorder];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:[Utility navigationTitleDesign]];
+    self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     
     chatList = [[NSMutableArray alloc] init];
     chatMessageList = [[NSMutableArray alloc] init];
@@ -361,9 +361,9 @@
     NSString *dateString = [Utility formatDateForTable:message.timestamp];
     
     //Setting visitor name
-    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
-    [cell.messageFrom boldAndBlackSubstring:message.userId];
-    
+//    [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.userId, dateString]];
+//    [cell.messageFrom boldAndBlackSubstring:message.userId];
+//    
     //setting the display text
     [cell.messageText setText: message.message];
     
