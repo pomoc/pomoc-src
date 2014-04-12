@@ -48,11 +48,6 @@
         self.userId = userId;
         NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
-            // To join a conversation
-            [conversation joinConversationWithCompletion:^(BOOL success) {
-                NSLog(@"success: %i", success);
-                NSLog(@"%@", conversation.messages);
-            }];
         }];
     }];
      */

@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSString *conversationId;
 @property (nonatomic, strong) NSMutableArray *allMessages;
 
+- (void)joinConversationWithCompletion:(void(^)(BOOL success))completion;
+
 @end
