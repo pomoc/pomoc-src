@@ -9,7 +9,7 @@
 #ifndef PomocCore_PomocConstants_h
 #define PomocCore_PomocConstants_h
 
-#define LOCAL_SERVER
+//#define LOCAL_SERVER
 
 #ifdef LOCAL_SERVER
 #define POMOC_URL   @"localhost"

@@ -48,10 +48,13 @@
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
+            [PMSupport getAllConversations:^(NSArray *conversations) {
+                
+            }];
         }];
     }];
     
-    /*
+    /* Testing join conversation hackily
     NSString *customer = @"customer";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
