@@ -13,5 +13,6 @@
 @interface PMUserManager : NSObject
 
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId;
++ (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *))completionBlock;
 
 @end
