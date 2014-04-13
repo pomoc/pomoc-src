@@ -197,9 +197,12 @@ io.sockets.on('connection', function(client) {
             // Add agent to the list of agents handling the conversation
             multi.sadd(data.conversationId + ':handlers', data.userId);
             multi.smembers(data.conversationId + ':handlers');
+            multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 client.broadcast.to(data.conversationId + ':activity').emit('activity',
                     {type: 'handlers', users: replies[1]});
+                sendSystemMessage(data.conversationId, 
+                    replies[2].name + ' has started handling the issue');
             });
         }
 
@@ -209,9 +212,12 @@ io.sockets.on('connection', function(client) {
             // Remove agent from list of agents handling the conversation
             multi.srem(data.conversationId + ':handlers', data.userId);
             multi.smembers(data.conversationId + ':handlers');
+            multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 client.broadcast.to(data.conversationId + ':activity').emit('activity',
                     {type: 'handlers', users: replies[1]});
+                sendSystemMessage(data.conversationId,
+                    replies[2].name + ' has stopped handling the issue');
             });
         }
 
@@ -221,6 +227,8 @@ io.sockets.on('connection', function(client) {
             // Add referred agent to list of agents handling the conersation
             multi.sadd(data.conversationId + ':handlers', data.userId);
             multi.smembers(data.conversationId + ':handlers', data.userId);
+            multi.hgetall(data.userId + ':account');
+            multi.hgetall(data.refereeUserId + ':account');
             multi.exec(function(err, replies) {
                 client.broadcast.to(data.conversationId + ':activity').emit('activity',
                     {
@@ -230,6 +238,8 @@ io.sockets.on('connection', function(client) {
                         conversationId: data.conversationId, 
                         users:replies[1]
                     });
+                sendSystemMessage(data.conversationId,
+                    replies[2].name + ' has referred issue to ' + replies[3].name);
             });
         }
 
