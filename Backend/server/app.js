@@ -21,8 +21,8 @@ var server = app.listen(process.env.PORT || settings.PORT || 3217, function() {
 });
 
 var io = socket_io.listen(server, {
-  'debug': settings.debug,
-  'destroy upgrade' : false
+    'debug': settings.debug,
+    'destroy upgrade' : false
 });
 
 // Load all HTTP routes
@@ -36,6 +36,18 @@ console.log('server running');
 io.sockets.on('connection', function(client) {
 
     var userId;
+
+    // sends a system chat message to the conversation of choice
+    function sendSystemMessage(conversationId, message) {
+        data = {};
+        data.userId = "SYSTEM";
+        data.message = message;
+        data.conversationId = conversationId;
+        data.timestamp = (new Date()).getTime();
+
+        io.sockets.in(conversationId).emit('chatMessage', data);
+        db.client.zadd(conversationId, data.timestamp, JSON.stringify(data));
+    }
 
     // INTERNAL MESSAGES
     client.on('internalMessage', function(data, callback) {
@@ -118,7 +130,7 @@ io.sockets.on('connection', function(client) {
                     client.join(conversationId + ':activity');
                     db.client.smembers(conversationId + ':online', function(err, reply) {
                         // Broadcasts list of online user for each conversation
-                        client.broadcast.to(conversationId + ':activity').emit('activity', reply);
+                        client.broadcast.to(conversationId + ':activity').emit('activity', {type: 'online', users:reply});
                     });
                 });
             });
@@ -151,7 +163,7 @@ io.sockets.on('connection', function(client) {
 
         // Get conversation log
         else if (data.type == 'getConversationLog') {
-             if (callback) {
+            if (callback) {
                 var timestamp = (new Date()).getTime();
                 db.client.zrange([data.conversationId, 0, timestamp], function(err, reply) {
                     reply = reply.map(function(message) {
@@ -179,18 +191,59 @@ io.sockets.on('connection', function(client) {
 
     // APPLICATION MESSAGES
     client.on('applicationMessage', function(data) {
-        
+
         if (data.code == 'handle') {
+            var multi = db.client.multi();
             // Add agent to the list of agents handling the conversation
-            db.client.sadd(data.conversationId + ':handlers', data.userId);
+            multi.sadd(data.conversationId + ':handlers', data.userId);
+            multi.smembers(data.conversationId + ':handlers');
+            multi.exec(function(err, replies) {
+                client.broadcast.to(data.conversationId + ':activity').emit('activity',
+                    {type: 'handlers', users: replies[1]});
+            });
         }
 
         else if (data.code == 'unhandle') {
             db.client.srem(data.conversationId + ':handlers', data.userId);
+            var multi = db.client.multi();
+            // Remove agent from list of agents handling the conversation
+            multi.srem(data.conversationId + ':handlers', data.userId);
+            multi.smembers(data.conversationId + ':handlers');
+            multi.exec(function(err, replies) {
+                client.broadcast.to(data.conversationId + ':activity').emit('activity',
+                    {type: 'handlers', users: replies[1]});
+            });
         }
 
         else if (data.code == 'referHandler') {
-            db.client.sadd(data.coversationId + ':handlers', data.referralUserId
+            db.client.sadd(data.coversationId + ':handlers', data.refereeUserId);
+            var multi = db.client.multi();
+            // Add referred agent to list of agents handling the conersation
+            multi.sadd(data.conversationId + ':handlers', data.userId);
+            multi.smembers(data.conversationId + ':handlers', data.userId);
+            multi.exec(function(err, replies) {
+                client.broadcast.to(data.conversationId + ':activity').emit('activity',
+                    {
+                        type: 'referral', 
+                        refereeUserId: data.referralUserId, 
+                        referrerUserId: data.userId, 
+                        conversationId: data.conversationId, 
+                        users:replies[1]
+                    });
+            });
+        }
+
+        else if (data.code == 'getHandlers') {
+            db.client.smembers(data.conversationId + ':handlers', function(err, reply) {
+                if (callback) {
+                    if (!err) {
+                        callback({success: true, handlers: reply});
+                    }
+                    else {
+                        callback({success: false, error: err});
+                    }
+                }
+            });
         }
 
     });

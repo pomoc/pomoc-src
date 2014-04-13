@@ -12,12 +12,12 @@
 
 @property (nonatomic, readonly) PMApplicationMessageCode code;
 @property (nonatomic, strong, readonly) NSString *conversationId;
-@property (nonatomic, strong, readonly) NSString *referralUserId;
+@property (nonatomic, strong, readonly) NSString *refereeUserId;
 
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId;
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId
-           referralUserId:(NSString *)userId;
+           refereeUserId:(NSString *)userId;
 
 @end
