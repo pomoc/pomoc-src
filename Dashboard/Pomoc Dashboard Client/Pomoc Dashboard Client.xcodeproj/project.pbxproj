@@ -78,6 +78,8 @@
 		AAC2A1EF18E55498008ACDBD /* AnnotateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EA18E55498008ACDBD /* AnnotateViewController.m */; };
 		AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */; };
 		AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC2A1EE18E55498008ACDBD /* AnnotationView.m */; };
+		AACA11D318FB7BC0005DB53B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D218FB7BC0005DB53B /* background.png */; };
+		AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D418FB7BF9005DB53B /* logo-v1.png */; };
 		AADE13FC18E5DD960042BF1A /* SoedarPMSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */; };
 /* End PBXBuildFile section */
 
@@ -222,6 +224,8 @@
 		AAC2A1EC18E55498008ACDBD /* AnnotationPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationPalette.m; sourceTree = "<group>"; };
 		AAC2A1ED18E55498008ACDBD /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
 		AAC2A1EE18E55498008ACDBD /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
+		AACA11D218FB7BC0005DB53B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		AACA11D418FB7BF9005DB53B /* logo-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v1.png"; sourceTree = "<group>"; };
 		AADE13FA18E5DD960042BF1A /* SoedarPMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoedarPMSupport.h; sourceTree = "<group>"; };
 		AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoedarPMSupport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +506,7 @@
 		AA9DC89018E1759500B4FDF7 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				AACA11D218FB7BC0005DB53B /* background.png */,
 				AA4649D118E80EEE00A607E0 /* testImage.png */,
 				AA9DC95E18E48F5C00B4FDF7 /* group-512.png */,
 				AA9DC95C18E48F4100B4FDF7 /* worker-512.png */,
@@ -511,6 +516,7 @@
 				AA9DC89D18E17FE500B4FDF7 /* logout-512.png */,
 				AA9DC89918E17F9F00B4FDF7 /* settings_filled-512.png */,
 				AA9DC89A18E17F9F00B4FDF7 /* settings-512.png */,
+				AACA11D418FB7BF9005DB53B /* logo-v1.png */,
 				AA9DC89518E17F7C00B4FDF7 /* speech_bubble_filled-512.png */,
 				AA9DC89618E17F7C00B4FDF7 /* speech_bubble-512.png */,
 				AA9DC89118E175AF00B4FDF7 /* sampleImage.png */,
@@ -641,6 +647,7 @@
 				AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */,
 				AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */,
 				AA9DC95D18E48F4100B4FDF7 /* worker-512.png in Resources */,
+				AACA11D318FB7BC0005DB53B /* background.png in Resources */,
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
@@ -648,6 +655,7 @@
 				AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */,
 				AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */,
 				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
+				AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */,
 				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
 				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,
 				AA9DC89B18E17F9F00B4FDF7 /* settings_filled-512.png in Resources */,
