@@ -21,6 +21,8 @@
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
 
+#import "PMUserManager.h"
+
 #import "PomocConstants.h"
 
 #define MESSAGE_USER_ID   @"userId"
@@ -227,7 +229,8 @@
         if (conversation) {
             [conversation addMessage:chatMessage];
         }
-    } else if ([packet.name isEqualToString:@"newConversation"]) {
+    }
+    else if ([packet.name isEqualToString:@"newConversation"]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
             
@@ -246,6 +249,24 @@
                     }
                 }
             }];
+        }
+    }
+    else if ([packet.name isEqualToString:@"onlineStatus"]) {
+        // This event provides a list of userIds that are online for a given conversationId
+        // Take the list of userIds and convert them into PMUser objects
+        // Pass that list to a delegate of some sort
+        NSArray *users = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
+            [self.delegate updateOnlineUsers:users];
+        }
+    }
+    else if ([packet.name isEqualToString:@"handlerStatus"]) {
+        // This event provides a list of userIds that are online for a given conversationId
+        // Take the list of userIds and convert them into PMUser objects
+        // Pass that list to a delegate of some sort
+        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:)]) {
+            [self.delegate updateHandlers:handlers];
         }
     }
 }
