@@ -103,7 +103,7 @@
         });
     }
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    return users;
+    return [users copy];
 }
 
 + (NSMutableURLRequest *)getRequestObject:(NSString *)userId
