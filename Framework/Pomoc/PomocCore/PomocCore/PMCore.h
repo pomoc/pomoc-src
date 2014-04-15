@@ -14,6 +14,8 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation;
 - (void)hasConnected;
+- (void)updateOnlineUsers:(NSArray *)users;
+- (void)updateHandlers:(NSArray *)handlers;
 
 @end
 
