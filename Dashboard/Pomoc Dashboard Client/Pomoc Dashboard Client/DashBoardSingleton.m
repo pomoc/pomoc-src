@@ -39,9 +39,8 @@
 {
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc20" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc55" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
-    
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
         
@@ -54,6 +53,7 @@
                 NSLog(@"all conversation.length == %lu",[conversations count]);
                 
                 for (PMConversation *convo in conversations) {
+                    
                     convo.delegate = self;
                     [_currentConversationList addObject:convo];
                     
@@ -73,7 +73,7 @@
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
     NSLog(@"dashboard singleton detected new chat");
-    [_chatDelegate hasUpdate:_currentConversationList];
+    [_chatDelegate hasNewConversation:_currentConversationList];
 }
 
 
@@ -85,7 +85,7 @@
             convo = conversation;
         }
     }
-    [_chatDelegate hasUpdate:_currentConversationList];
+    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
     
 }
 
@@ -97,7 +97,7 @@
             convo = conversation;
         }
     }
-    [_chatDelegate hasUpdate:_currentConversationList];
+    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
     
 }
 

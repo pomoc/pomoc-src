@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc20" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc55" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code

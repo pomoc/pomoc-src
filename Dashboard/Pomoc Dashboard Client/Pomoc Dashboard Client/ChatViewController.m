@@ -159,21 +159,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
-        NSLog(@"at number of rows in section for chat list");
-        NSLog(@"total convo == %lu",[chatList count]);
         return [chatList count];
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
         NSLog(@"at number of rows in section for messages ");
         if ([chatList count] == 0) {
-            NSLog(@"returning 0");
             return 0;
             
         } else {
-            NSLog(@"returning %lu", [chatMessageList count]);
-
-            return [chatMessageList count];
+            NSLog(@"returning %lu", [currentlySelectedConvo.messages count]);
+            return [currentlySelectedConvo.messages count];
         }
     }
     return 0;
@@ -192,11 +188,9 @@
         id obj = [convo.messages objectAtIndex:indexPath.row];
         
         if( [obj isKindOfClass:[PMImageMessage class]]) {
-            NSLog(@"is picture message");
             return [self createChatImageTableView: tableView atRow:row];
             
         } else {
-            NSLog(@"is chat message");
             return [self createChatMessageTableView:tableView atRow:row];
         }
     
@@ -379,12 +373,25 @@
 }
 
 #pragma mark - updates [new convo or new mesages]
-- (void)hasUpdate:(NSMutableArray *)newChatList
+- (void)hasNewConversation: (NSMutableArray *)newChatList
 {
     chatList = newChatList;
     [_chatNavTable reloadData];
 }
 
+- (void) hasNewMessage: (NSMutableArray *)newChatList conversation: (PMConversation *)conversation;
+{
+    NSLog(@"called chat VC has new message");
+    chatList = newChatList;
+    
+    NSLog(@"current convo id == %@, convo id == %@", currentlySelectedConvo.conversationId, conversation.conversationId);
+    
+    if ([currentlySelectedConvo.conversationId isEqualToString:conversation.conversationId]) {
+        NSLog(@"yes equal!");
+        [_chatMessageTable reloadData];
+    }
+    
+}
 
 #pragma  mark - Preparation for Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

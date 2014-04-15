@@ -14,7 +14,9 @@
 
 @protocol PomocChatDelegate
 
-- (void) hasUpdate: (NSMutableArray *)chatList;
+- (void) hasNewConversation: (NSMutableArray *)chatList;
+
+- (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
 
 @end
 
