@@ -18,6 +18,7 @@
 @property (nonatomic, weak) id<PMSupportDelegate> delegate;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *secretKey;
+@property (nonatomic) BOOL isAgent;
 @property (nonatomic, copy) void (^connectCallback)(BOOL connected);
 
 @end
@@ -64,6 +65,7 @@
             NSString *userId = responseObject[@"userId"];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
+            [PMSupport sharedInstance].isAgent = YES;
             completion(userId);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -94,6 +96,7 @@
             NSString *userId = responseObject[@"userId"];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
+            [PMSupport sharedInstance].isAgent = NO;
             completion(userId);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -124,7 +127,17 @@
 
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback
 {
-    [[PMSupport sharedInstance] setConnectCallback:callback];
+    [[PMSupport sharedInstance] setConnectCallback:^(BOOL connected) {
+        if (connected) {
+            if ([PMSupport sharedInstance].isAgent) {
+                [PMCore observeNewConversations];
+            }
+        }
+        
+        if (callback) {
+            callback(connected);
+        }
+    }];
     [PMCore connect];
 }
                           

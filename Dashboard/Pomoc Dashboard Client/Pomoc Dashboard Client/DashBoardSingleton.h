@@ -14,7 +14,9 @@
 
 @protocol PomocChatDelegate
 
-- (void) hasUpdate: (NSMutableArray *)chatList;
+- (void) hasNewConversation: (NSMutableArray *)chatList;
+
+- (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
 
 @end
 
@@ -35,8 +37,6 @@
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion;
 
 @property (nonatomic, strong) NSMutableArray *currentConversationList;
-
-@property (nonatomic) NSNumber *hehe;
 
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;

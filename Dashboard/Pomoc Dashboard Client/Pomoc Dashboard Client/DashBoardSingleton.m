@@ -18,7 +18,6 @@
 + (id)singleton {
     
     static DashBoardSingleton *sharedMyModel = nil;
-    
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -28,12 +27,19 @@
     return sharedMyModel;
 }
 
+
+- (id)init {
+    if (self = [super init]) {
+    }
+    return self;
+}
+
+
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion
 {
-    
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc3" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc55" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -43,12 +49,14 @@
             
             // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
-                [_currentConversationList addObjectsFromArray:conversations];
-                //NSLog(@"all conversation");
-                //NSLog(@"all conversation.length == %lu",[conversations count]);
-                //NSLog(@"own array length == %lu", [_currentConversationList count]);
+                
+                NSLog(@"all conversation.length == %lu",[conversations count]);
+                
                 for (PMConversation *convo in conversations) {
-                    //NSLog(@"number of messages %lu", [convo.messages count]);
+                    
+                    convo.delegate = self;
+                    [_currentConversationList addObject:convo];
+                    
                 }
                 completion(TRUE);
             }];
@@ -62,34 +70,34 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    conversation.delegate = self;
     [_currentConversationList addObject:conversation];
-    [_chatDelegate hasUpdate:_currentConversationList];
+    NSLog(@"dashboard singleton detected new chat");
+    [_chatDelegate hasNewConversation:_currentConversationList];
 }
 
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    
-    NSLog(@"recieved a chat message delegae called ");
+    NSLog(@"recieved new chat");
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
         }
     }
-    [_chatDelegate hasUpdate:_currentConversationList];
+    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
     
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
-    
     NSLog(@"recieved an image message delegae called ");
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
         }
     }
-    [_chatDelegate hasUpdate:_currentConversationList];
+    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
     
 }
 
