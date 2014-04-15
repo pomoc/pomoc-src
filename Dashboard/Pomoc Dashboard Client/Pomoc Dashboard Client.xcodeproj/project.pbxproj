@@ -77,8 +77,7 @@
 		AACA11D318FB7BC0005DB53B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D218FB7BC0005DB53B /* background.png */; };
 		AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D418FB7BF9005DB53B /* logo-v1.png */; };
 		AACA11DB18FB8DAF005DB53B /* ReferTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */; };
-		AACA11F918FCEC76005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA11F818FCEC76005DB53B /* libPomocCore.a */; };
-		AADE13FC18E5DD960042BF1A /* SoedarPMSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */; };
+		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,21 +206,19 @@
 		AACA11D418FB7BF9005DB53B /* logo-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v1.png"; sourceTree = "<group>"; };
 		AACA11D918FB8DAF005DB53B /* ReferTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferTableViewController.h; sourceTree = "<group>"; };
 		AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferTableViewController.m; sourceTree = "<group>"; };
-		AACA11EC18FCEC76005DB53B /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
-		AACA11ED18FCEC76005DB53B /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
-		AACA11EE18FCEC76005DB53B /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AACA11EF18FCEC76005DB53B /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
-		AACA11F018FCEC76005DB53B /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
-		AACA11F118FCEC76005DB53B /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
-		AACA11F218FCEC76005DB53B /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
-		AACA11F318FCEC76005DB53B /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
-		AACA11F418FCEC76005DB53B /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
-		AACA11F518FCEC76005DB53B /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
-		AACA11F618FCEC76005DB53B /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
-		AACA11F718FCEC76005DB53B /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
-		AACA11F818FCEC76005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
-		AADE13FA18E5DD960042BF1A /* SoedarPMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoedarPMSupport.h; sourceTree = "<group>"; };
-		AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoedarPMSupport.m; sourceTree = "<group>"; };
+		AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		AACA11FC18FCFFF6005DB53B /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
+		AACA11FD18FCFFF6005DB53B /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
+		AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
+		AACA120018FCFFF6005DB53B /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		AACA120118FCFFF6005DB53B /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		AACA120218FCFFF6005DB53B /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
+		AACA120318FCFFF6005DB53B /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
+		AACA120418FCFFF6005DB53B /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
+		AACA120518FCFFF7005DB53B /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		AACA120618FCFFF7005DB53B /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
+		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +229,7 @@
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
-				AACA11F918FCEC76005DB53B /* libPomocCore.a in Frameworks */,
+				AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */,
 				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
 				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
 			);
@@ -512,21 +509,21 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		AACA11EB18FCEC76005DB53B /* Headers */ = {
+		AACA11FA18FCFFF6005DB53B /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				AACA11EC18FCEC76005DB53B /* PMChatMessage.h */,
-				AACA11ED18FCEC76005DB53B /* PMConversation.h */,
-				AACA11EE18FCEC76005DB53B /* PMCore.h */,
-				AACA11EF18FCEC76005DB53B /* PMCoreDelegate.h */,
-				AACA11F018FCEC76005DB53B /* PMImageMessage.h */,
-				AACA11F118FCEC76005DB53B /* PMInternalMessage.h */,
-				AACA11F218FCEC76005DB53B /* PMMessage.h */,
-				AACA11F318FCEC76005DB53B /* PMMessageConstants.h */,
-				AACA11F418FCEC76005DB53B /* PMSupport.h */,
-				AACA11F518FCEC76005DB53B /* PMUser.h */,
-				AACA11F618FCEC76005DB53B /* PomocCore.h */,
-				AACA11F718FCEC76005DB53B /* PomocSupport.h */,
+				AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */,
+				AACA11FC18FCFFF6005DB53B /* PMConversation.h */,
+				AACA11FD18FCFFF6005DB53B /* PMCore.h */,
+				AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */,
+				AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */,
+				AACA120018FCFFF6005DB53B /* PMInternalMessage.h */,
+				AACA120118FCFFF6005DB53B /* PMMessage.h */,
+				AACA120218FCFFF6005DB53B /* PMMessageConstants.h */,
+				AACA120318FCFFF6005DB53B /* PMSupport.h */,
+				AACA120418FCFFF6005DB53B /* PMUser.h */,
+				AACA120518FCFFF7005DB53B /* PomocCore.h */,
+				AACA120618FCFFF7005DB53B /* PomocSupport.h */,
 			);
 			name = Headers;
 			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
@@ -535,10 +532,8 @@
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
 			isa = PBXGroup;
 			children = (
-				AACA11EB18FCEC76005DB53B /* Headers */,
-				AACA11F818FCEC76005DB53B /* libPomocCore.a */,
-				AADE13FA18E5DD960042BF1A /* SoedarPMSupport.h */,
-				AADE13FB18E5DD960042BF1A /* SoedarPMSupport.m */,
+				AACA11FA18FCFFF6005DB53B /* Headers */,
+				AACA120718FCFFF7005DB53B /* libPomocCore.a */,
 			);
 			name = PMCore;
 			sourceTree = "<group>";
@@ -676,7 +671,6 @@
 				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
 				AA464A0118E814D100A607E0 /* UIImageView+WebCache.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
-				AADE13FC18E5DD960042BF1A /* SoedarPMSupport.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
 				AA4649FE18E814D100A607E0 /* UIImage+GIF.m in Sources */,
 				AA4649FF18E814D100A607E0 /* UIImage+MultiFormat.m in Sources */,

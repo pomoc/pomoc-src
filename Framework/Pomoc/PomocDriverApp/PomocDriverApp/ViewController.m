@@ -41,11 +41,11 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc12" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc20" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
-    #ifdef __i386__
+#ifdef __i386__
         NSString *customer = @"customer";
         [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
             [PMSupport connectWithCompletion:^(BOOL connected) {

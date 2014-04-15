@@ -39,38 +39,30 @@
 {
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc3" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc20" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    NSString *customer = @"customer";
-    [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+    
+    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
+        
+        //NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
+            
+            // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
-                NSLog(@"logged in");
+                
+                NSLog(@"all conversation.length == %lu",[conversations count]);
+                
+                for (PMConversation *convo in conversations) {
+                    convo.delegate = self;
+                    [_currentConversationList addObject:convo];
+                    
+                }
+                completion(TRUE);
             }];
+            
         }];
     }];
-    
-    
-//    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
-//        
-//        //NSLog(@"------- USER ID IS %@", userId);
-//        [PMSupport connectWithCompletion:^(BOOL connected) {
-//            
-//            // Get all conversations
-//            [PMSupport getAllConversations:^(NSArray *conversations) {
-//                [_currentConversationList addObjectsFromArray:conversations];
-//                //NSLog(@"all conversation");
-//                NSLog(@"all conversation.length == %lu",[conversations count]);
-//                //NSLog(@"own array length == %lu", [_currentConversationList count]);
-//                for (PMConversation *convo in conversations) {
-//                    //NSLog(@"number of messages %lu", [convo.messages count]);
-//                }
-//                completion(TRUE);
-//            }];
-//            
-//        }];
-//    }];
 
 }
 
@@ -78,6 +70,7 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    conversation.delegate = self;
     [_currentConversationList addObject:conversation];
     NSLog(@"dashboard singleton detected new chat");
     [_chatDelegate hasUpdate:_currentConversationList];
