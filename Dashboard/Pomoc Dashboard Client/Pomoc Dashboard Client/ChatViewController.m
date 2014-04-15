@@ -22,10 +22,6 @@
 
 #import "DashBoardSingleton.h"
 
-//testing
-#import "FakePMChatMessage.h"
-#import "FakePMImageMessage.h"
-
 #import "AnnotateViewController.h"
 
 @interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate> {

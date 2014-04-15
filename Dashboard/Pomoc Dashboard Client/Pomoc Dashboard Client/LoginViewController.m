@@ -46,7 +46,7 @@
 
 - (void) test {
     
-    [PMSupport initWithAppID:@"anc4" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc12" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {

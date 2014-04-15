@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc4" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc12" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
@@ -89,10 +89,15 @@
 
 - (IBAction)startConversationPressed:(UIButton *)button
 {
+    
+    NSMutableArray *currentConversationList = [[NSMutableArray alloc] init];
+    
     [button setEnabled:NO];
     [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
         self.conversation = conversation;
-        //self.conversation.delegate = self;
+        self.conversation.delegate = self;
+        //conversation.delegate = self;
+        [currentConversationList addObject:conversation];
         conversation.delegate = self;
         [self.sendButton setHidden:NO];
         [self.textField setHidden:NO];
