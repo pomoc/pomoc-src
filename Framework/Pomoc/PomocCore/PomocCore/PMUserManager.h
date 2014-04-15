@@ -14,5 +14,6 @@
 
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId;
 + (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *user))completionBlock;
++ (NSArray *)getUserObjectsFromUserIds:(NSArray *)userIds;
 
 @end
