@@ -284,9 +284,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="JAK-o3-fPz">
-                                        <rect key="frame" x="55" y="-5" width="172" height="44"/>
+                                        <rect key="frame" x="5" y="-5" width="222" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
+                                            <barButtonItem title="Join" id="qJ6-zH-6jl"/>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Bv6-5X-aDG"/>
+                                            <barButtonItem title="Invite" style="plain" id="OJA-3N-MhU">
+                                                <connections>
+                                                    <segue destination="z9Q-sW-j4L" kind="popover" popoverAnchorBarButtonItem="OJA-3N-MhU" id="OFf-lo-Ay4">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="G07-VU-Fwa"/>
                                             <barButtonItem title="Info" id="Ngi-NJ-foP">
                                                 <connections>
@@ -308,6 +317,7 @@
                         <outlet property="chatNavTable" destination="0ll-Sw-Dj7" id="M9u-Jp-GxC"/>
                         <outlet property="chatView" destination="snB-9T-lqP" id="nyG-gf-U46"/>
                         <outlet property="pastAndInfoToolbar" destination="JAK-o3-fPz" id="ck5-sm-TiX"/>
+                        <outlet property="toolBarView" destination="pOQ-7E-QQN" id="tsH-3g-jFo"/>
                         <outlet property="userTextInput" destination="AAP-qz-ks3" id="pnT-a5-VnJ"/>
                     </connections>
                 </viewController>
@@ -438,6 +448,39 @@
             </objects>
             <point key="canvasLocation" x="-1584" y="-2025"/>
         </scene>
+        <!--Refer Table View Controller-->
+        <scene sceneID="N4y-kn-ug9">
+            <objects>
+                <tableViewController id="z9Q-sW-j4L" customClass="ReferTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xPy-PC-1rO">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="337"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="pDH-2h-ALL">
+                                <rect key="frame" x="0.0" y="22" width="250" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pDH-2h-ALL" id="hVQ-hY-B58">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z9Q-sW-j4L" id="WpS-0X-qQx"/>
+                            <outlet property="delegate" destination="z9Q-sW-j4L" id="K1e-RA-bqg"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="100"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="337"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2sc-l9-ukg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-256" y="-1594"/>
+        </scene>
         <!--Contact Info View Controller-->
         <scene sceneID="ujZ-Kr-c4J">
             <objects>
@@ -459,7 +502,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iS7-CS-UQD">
-                                <rect key="frame" x="7" y="58" width="209" height="24"/>
+                                <rect key="frame" x="0.0" y="52" width="209" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="highlightedColor"/>
@@ -510,7 +553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ld-Uk-sYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-332" y="-1286"/>
+            <point key="canvasLocation" x="-256" y="-1141"/>
         </scene>
         <!--Past Chat View Controller-->
         <scene sceneID="5MR-5X-FqL">

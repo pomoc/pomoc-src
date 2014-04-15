@@ -16,9 +16,6 @@
 #import "PMChatMessage.h"
 #import "PMMessage.h"
 
-#import "PomocChat.h"
-//#import "PomocImage.h"
-
 #import "UILabel+boldAndGray.h"
 
 #import "UIImageView+WebCache.h"
@@ -49,10 +46,6 @@
     BOOL keyboardEditing;
     
     UIPopoverController *uploadSegue;
-    
-    // For testing
-    PomocChat *chat;
-   // PomocImage *pmImage;
 }
 
 @end
@@ -98,6 +91,7 @@
     chatNavOriginalFrame = _chatNavTable.frame;
     chatNavOriginalFrame.size.width = 280;
     
+    _toolBarView.hidden = TRUE;
 }
 
 - (IBAction)sendMessage:(id)sender {
@@ -109,6 +103,12 @@
         [currentlySelectedConvo sendTextMessage:userInput];
         [_userTextInput setText:@""];
     }
+}
+
+#pragma mark - Action button
+- (IBAction)viewAction:(id)sender
+{
+    
 }
 
 #pragma mark - annotation related
@@ -214,6 +214,8 @@
     //selecting one of the chat side nav
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         
+        _toolBarView.hidden = FALSE;
+        
         currentlySelectedChatRow = indexPath.row;
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -250,7 +252,8 @@
             return 170;
             
         } else {
-            PMChatMessage *message = [chat.chatMessages objectAtIndex:indexPath.row];
+            
+            PMChatMessage *message = [pmConvo.messages objectAtIndex:indexPath.row];
             NSString *text = message.message;
             
             //[[message.message sizeWithFont:[UIFont fontWithName:@"Helvetica" size:15] boundingRectWithSize:CGSizeMake(695, 999)] ];
@@ -378,7 +381,6 @@
     
     return cell;
 }
-
 
 #pragma mark - updates [new convo or new mesages]
 - (void)hasUpdate:(NSMutableArray *)newChatList

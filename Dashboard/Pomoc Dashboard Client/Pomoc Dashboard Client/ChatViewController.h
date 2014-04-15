@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
+//Toolbar that contains info/action
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+
 //Main
 - (IBAction)viewAction:(id)sender;
 

@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc3" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc4" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
@@ -67,18 +67,16 @@
      */
     
     // Agent 'login' code
-    /*
-    [PMSupport loginAgentWithUserId:@"testuser" password:@"testpassword" completion:^(NSString *userId) {
-        self.userId = userId;
-        NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCompletion:^(BOOL connected) {
-            // Get all conversations
-            [PMSupport getAllConversations:^(NSArray *conversations) {
-                
-            }];
-        }];
-    }];
-     */
+//    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *userId) {
+//        self.userId = userId;
+//        NSLog(@"------- USER ID IS %@", userId);
+//        [PMSupport connectWithCompletion:^(BOOL connected) {
+//            // Get all conversations
+//            [PMSupport getAllConversations:^(NSArray *conversations) {
+//                
+//            }];
+//        }];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,7 +92,8 @@
     [button setEnabled:NO];
     [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
         self.conversation = conversation;
-        self.conversation.delegate = self;
+        //self.conversation.delegate = self;
+        conversation.delegate = self;
         [self.sendButton setHidden:NO];
         [self.textField setHidden:NO];
         [self.chatTableView setHidden:NO];
@@ -127,6 +126,7 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
+    NSLog(@"did rec msg");
     [self addMessage:chatMessage fromUser:chatMessage.user];
 }
 

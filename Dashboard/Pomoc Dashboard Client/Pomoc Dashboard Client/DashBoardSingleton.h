@@ -36,8 +36,6 @@
 
 @property (nonatomic, strong) NSMutableArray *currentConversationList;
 
-@property (nonatomic) NSNumber *hehe;
-
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;
 

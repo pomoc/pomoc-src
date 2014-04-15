@@ -8,8 +8,9 @@
 
 #import "LoginViewController.h"
 #import "DashBoardSingleton.h"
+#import "PomocSupport.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <PMSupportDelegate, PMConversationDelegate>
 
 @end
 
@@ -33,12 +34,52 @@
 - (IBAction)loginPressed:(id)sender {
     
     [self showActivityProgress];
+//    
+//    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+//    [singleton loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(BOOL success) {
+//    }];
+//
+//    [self performSegueWithIdentifier:@"login" sender:sender];
+//    
+    [self test];
+}
+
+- (void) test {
     
-    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
-    [singleton loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(BOOL success) {
+    [PMSupport initWithAppID:@"anc4" secretKey:@"mySecret"];
+    [PMSupport setDelegate:self];
+    
+    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
+        //NSLog(@"------- USER ID IS %@", userId);
+        [PMSupport connectWithCompletion:^(BOOL connected) {
+            NSLog(@"connected");
+            [PMSupport getAllConversations:^(NSArray *conversations) {
+                for (PMConversation *convo in conversations) {
+                    NSLog(@"convo going through ..");
+                    convo.delegate = self;
+                }
+                NSLog(@"all conversation.length == %lu",[conversations count]);
+            }];
+        }];
     }];
-    
-    [self performSegueWithIdentifier:@"login" sender:sender];
+}
+
+- (void)newConversationCreated:(PMConversation *)conversation
+{
+    NSLog(@"New Channel created %@", conversation);
+    conversation.delegate = self;
+}
+
+#pragma mark - PMConversation Delegate
+- (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
+{
+    NSLog(@"did rec msg");
+}
+
+- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
+{
+    // CHeck if the image message is right
+    NSLog(@"Received image");
 }
 
 - (void) showActivityProgress {
