@@ -162,6 +162,9 @@
         [queue removeObjectAtIndex:0];
         if (success) {
             [done addObject:conversation];
+            @synchronized([PMCore sharedInstance].conversations) {
+                [PMCore sharedInstance].conversations[conversation.conversationId] = conversation;
+            }
         }
         [PMCore joinConversationsInQueue:queue done:done completion:completion];
     }];
