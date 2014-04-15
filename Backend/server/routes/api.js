@@ -21,7 +21,7 @@ module.exports = function(app, db, crypto) {
                     "appToken", req.body.appToken,
                     "appSecret", req.body.appSecret,
                     "type", "admin"
-                );
+                    );
                 res.statusCode = 200;
                 response = {success: true};
                 // Add user to app's list of users/agents
@@ -45,11 +45,11 @@ module.exports = function(app, db, crypto) {
                 if (password == credentials.password) {
                     var response = {
                         success: true,
-                        userId: credentials.userId,
-                        name: credentials.name,
-                        type: credentials.type,
-                        appToken: credentials.appToken,
-                        appSecret: credentials.appSecret
+            userId: credentials.userId,
+            name: credentials.name,
+            type: credentials.type,
+            appToken: credentials.appToken,
+            appSecret: credentials.appSecret
                     }
                     res.statusCode = 200;
                     res.send(response);
@@ -59,7 +59,7 @@ module.exports = function(app, db, crypto) {
             // No such user exist or wrong password
             var response = {success: false, error: 'wrong username/password'};
             res.statusCode = 400
-            res.send(response);
+                res.send(response);
         });
     });
 
@@ -70,42 +70,42 @@ module.exports = function(app, db, crypto) {
         res.statusCode = 400
 
         var appHash = crypto.createHash('sha1');
-        appHash.write(req.body.userId);
-        var appToken = appHash.digest('hex');
-        var appKey = appToken + ":app";
-        db.client.smembers(appKey, function(err, reply) {
-            var response = {success: false, error: "app already registered"};
-            if (reply.length == 0) {
-                // Generate appToken and appSecret
-                // trivial app_token omg bbq
-                var userKey = req.body.userId + ':account';
-                var salt = Date.now();
-                var appSecret = salt + appToken;
-                var hash = crypto.createHash('sha1');
-                hash.write(req.body.password + salt);
-                var password = hash.digest('hex');
+    appHash.write(req.body.userId);
+    var appToken = appHash.digest('hex');
+    var appKey = appToken + ":app";
+    db.client.smembers(appKey, function(err, reply) {
+        var response = {success: false, error: "app already registered"};
+        if (reply.length == 0) {
+            // Generate appToken and appSecret
+            // trivial app_token omg bbq
+            var userKey = req.body.userId + ':account';
+            var salt = Date.now();
+            var appSecret = salt + appToken;
+            var hash = crypto.createHash('sha1');
+            hash.write(req.body.password + salt);
+            var password = hash.digest('hex');
 
-                // Store super user data
-                // TODO: check if user already exists, currently doesnt bother
-                db.client.hmset(userKey,
-                    "name", req.body.userId,
-                    "userId", req.body.userId,
-                    "password", password,
-                    "salt", salt,
-                    "appToken", appToken,
-                    "appSecret", appSecret,
-                    "type", "super"
+            // Store super user data
+            // TODO: check if user already exists, currently doesnt bother
+            db.client.hmset(userKey,
+                "name", req.body.userId,
+                "userId", req.body.userId,
+                "password", password,
+                "salt", salt,
+                "appToken", appToken,
+                "appSecret", appSecret,
+                "type", "super"
                 );
 
-                // Create app user list
-                db.client.sadd(appKey, userKey); 
+            // Create app user list
+            db.client.sadd(appKey, userKey); 
 
-                // Return appToken and appSecret
-                res.statusCode = 200;
-                response = {success:true, appToken:appToken, appSecret:appSecret};
-            }
-            res.send(response);
-        });
+            // Return appToken and appSecret
+            res.statusCode = 200;
+            response = {success:true, appToken:appToken, appSecret:appSecret};
+        }
+        res.send(response);
+    });
     });
 
     app.get('/user/:userId', function(req, res) {
@@ -130,7 +130,7 @@ module.exports = function(app, db, crypto) {
                     }
                     res.send(result);
                 });
-        });
+            });
     });
 
 

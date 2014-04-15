@@ -12,7 +12,7 @@
 
 @property (nonatomic) PMApplicationMessageCode code;
 @property (nonatomic) NSString *conversationId;
-@property (nonatomic) NSString *referalUserId;
+@property (nonatomic) NSString *refereeUserId;
 
 @end
 
@@ -44,13 +44,13 @@
 
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId
-            referalUserId:(NSString *)userId
+            refereeUserId:(NSString *)userId
 {
     self = [super init];
     if (self) {
         self.code = code;
         self.conversationId = conversationId;
-        self.referalUserId = userId;
+        self.refereeUserId = userId;
     }
     return self;
 }
