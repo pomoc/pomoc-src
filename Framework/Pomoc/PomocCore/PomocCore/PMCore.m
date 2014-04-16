@@ -257,20 +257,31 @@
     else if ([packet.name isEqualToString:@"onlineStatus"]) {
         // This event provides a list of userIds that are online for a given conversationId
         // Take the list of userIds and convert them into PMUser objects
-        // Pass that list to a delegate of some sort
-        NSArray *users = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON];
+        NSArray *users = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON[@"users"]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
             [self.delegate updateOnlineUsers:users];
         }
     }
     else if ([packet.name isEqualToString:@"handlerStatus"]) {
-        // This event provides a list of userIds that are online for a given conversationId
+        // This event provides a list of userIds that are handling a given conversationId
         // Take the list of userIds and convert them into PMUser objects
-        // Pass that list to a delegate of some sort
-        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON];
+        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON[@"users"]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:)]) {
             [self.delegate updateHandlers:handlers];
         }
+    }
+    else if ([packet.name isEqualToString:@"referHandler"]) {
+        // This event provides a list of userIds that are handling a given conversationId
+        // It also contains the referrer's and the referee's userId
+        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON[@"users"]];
+        
+        PMUser *referrerUserId = [PMUserManager getUserObjectFromUserId:packet.dataAsJSON[@"referrerUserId"]];
+        PMUser *refereeUserId = [PMUserManager getUserObjectFromUserId:packet.dataAsJSON[@"refereeUserId"]];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(referHandler:)]) {
+            [self.delegate referHandler:handlers referrer:referrerUserId referee:refereeUserId];
+        }
+        
     }
 }
 

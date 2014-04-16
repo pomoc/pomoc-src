@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PMCore, PMConversation;
+@class PMCore, PMConversation, PMUser;
 
 @protocol PMCoreDelegate <NSObject>
 
@@ -16,6 +16,7 @@
 - (void)hasConnected;
 - (void)updateOnlineUsers:(NSArray *)users;
 - (void)updateHandlers:(NSArray *)handlers;
+- (void)referHandler:(NSArray *)handlers referrer:(PMUser *)referrer referee:(PMUser *)referee;
 
 @end
 
