@@ -78,6 +78,8 @@
 		AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D418FB7BF9005DB53B /* logo-v1.png */; };
 		AACA11DB18FB8DAF005DB53B /* ReferTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */; };
 		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
+		AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AACA120918FD9ABA005DB53B /* background2.jpg */; };
+		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +221,8 @@
 		AACA120518FCFFF7005DB53B /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		AACA120618FCFFF7005DB53B /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
+		AACA120918FD9ABA005DB53B /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
+		AACA120B18FD9D01005DB53B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +469,8 @@
 		AA9DC89018E1759500B4FDF7 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				AACA120B18FD9D01005DB53B /* background2.png */,
+				AACA120918FD9ABA005DB53B /* background2.jpg */,
 				AACA11D218FB7BC0005DB53B /* background.png */,
 				AA4649D118E80EEE00A607E0 /* testImage.png */,
 				AA9DC95E18E48F5C00B4FDF7 /* group-512.png */,
@@ -633,7 +639,9 @@
 				AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */,
 				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
 				AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */,
+				AACA120C18FD9D01005DB53B /* background2.png in Resources */,
 				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
+				AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */,
 				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,
 				AA9DC89B18E17F9F00B4FDF7 /* settings_filled-512.png in Resources */,
 			);

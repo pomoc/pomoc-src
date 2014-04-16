@@ -13,7 +13,7 @@
 #import "JBLineChartFooterView.h"
 
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
-CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
+CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
 @interface HomeViewController () <JBLineChartViewDataSource, JBLineChartViewDelegate>
 
@@ -28,7 +28,8 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"loaded home view controller");
+ 
+    [self setBackgroundImage];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Home";
@@ -36,9 +37,9 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     _lineChartView = [[JBLineChartView alloc] init];
     _lineChartView.delegate = self;
     _lineChartView.dataSource = self;
-    _lineChartView.frame = CGRectMake(0, 0, 700,  350);
+    _lineChartView.frame = CGRectMake(0, 0, 450,  350);
 
-    JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5) - 130, self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
+    JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5) - 130, self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2) - 300, kJBLineChartViewControllerChartFooterHeight)];
     
 //    JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(100,100,100,100)];
     
@@ -55,6 +56,21 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture:)];
     [_chartView addGestureRecognizer:swipeRecognizer];
     
+}
+
+- (void) setBackgroundImage
+{
+//    UIImage *backgroundImage = [UIImage imageNamed:@"background2.png"];
+//    
+//    _backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
+//
+//    CGFloat gameViewHeight = self.view.frame.size.height;
+//    CGFloat gameViewWidth = self.view.frame.size.width;
+//    
+//    background.frame = CGRectMake(0, 0, 1024, 768);
+//    background.opaque = TRUE;
+//    
+//    [self.view addSubview:background];
 }
 
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer

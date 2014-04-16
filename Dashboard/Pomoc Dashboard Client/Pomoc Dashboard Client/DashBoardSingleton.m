@@ -39,7 +39,7 @@
 {
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc55" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc63" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -83,6 +83,7 @@
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
+            convo.delegate = self;
         }
     }
     [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
