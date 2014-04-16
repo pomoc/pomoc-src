@@ -3,43 +3,57 @@
 - Redis server
 - Node
 
-## Schema
-Keys | Values| Description
---- | --- | ---
-`<channelId>:chat` | `[{username:xxx, channel:yyy, message:ddd, timestamp:ttt, type:{chat, subscribe, unsubscribe}}, ...]` | ordered set of messages scored by timestamp
-`<channelId>:party` | `{mun, soe, ste, ban, ...}`| set of users subscribed to the channel
-`<username>:sub` | `{channel1, channel2, channel3, ...}`| set of channels user is subscribed to
-`<appId>:notification` | `{channel1, channel2, channel3, ...}`| app channel where support staff receive notifications
+## Messages
+There are 3 types of messages
+### internalMessage
+--------------------
+#### newConversation
+Creates a new conversation. conversationId gets created and sent back to user.
+Agents of the application receive a message on event `newConversation`
+containing the conversationId of the newly created conversation.
 
-### Message Format
-`{
-    message: xxx,
-    type: ttt,
-    timestamp: qqq,
-    username: uuu,
-    channel: ccc
-}`
+#### observeConversationList
+Subscribes to the app's channel that will broadcast notifications of new
+conversations
 
-## Flow
-### New chat
-- User initiates chat
-- User gets subscribed to chat
-- Server creates chatId and sends it back to user through ACK packet
-- App's support staff gets notified about new channel through app's
-  notification channel
-- After receiving notification, a subscription message from the support's staff
-  client app is sent to the server
-- Server subscribes staff to the new channel
+#### joinConversation
+Joins a conversation. Upon doing so, users' online presence will be announced
+to all the other parties in the conversation on the event `onlineStatus`. A
+reply containing a **log of previous messages** for that conversation will be
+sent back.
 
-### Resubscribing to existing channel
-- Support's staff client app does a http get call to `get_chat/<username>` to
-  get all previous messages in chat channel
-- After which, the client app would send a subscription message to subscribe to
-  the chat channel
-- Server subscribes staff to channel
+#### getConversationList
+Returns a list of conversationIds that the user is a participant of.
 
-### Unsubscribing from a channel
-- Unsubscription message sent to server
-- Server unsubscribes staff from channel
-- Staff will not receive new messages from channel unless he/she subscribes
-  back to the channel
+#### getAppConversationList
+Returns a list of conversationIds for the app.
+
+#### getConversationLog
+Returns the messages for the given conversationId.
+
+#### getAppUsers
+Returns the userIds of all the agents for the app.
+
+### chatMessage
+---------------
+broadcasts to the conversationId channel whatever is received.
+
+### applicationMessage
+--------------------
+#### handle
+Adds the agent to the list of handlers for the given conversationId. 
+Broadcasts the new list of handlers on the event `handlerStatus` to all
+participants in given conversationId.
+
+#### unhandle
+Removes the agent from the list of handlers for the given conversationId.
+Broadcasts the new list of handlers on the event `handlerStatus` to all
+participants in given conversationId.
+
+#### referHandler
+Adds the referred agent to the list of handlers for the given conversationId.
+Broadcasts the new list of handlers on event `handlerStatus` to all
+participants in given conversationId.
+
+#### getHandlers
+Returns a list of handlers' userId for the given conversationId.

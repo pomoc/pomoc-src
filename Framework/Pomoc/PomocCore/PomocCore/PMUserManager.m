@@ -84,6 +84,28 @@
     }];
 }
 
+// Synchronous method to get list of PMUser objects
++ (NSArray *)getUserObjectsFromUserIds:(NSArray *)userIds
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_queue_t joinQueue = dispatch_queue_create("joinQueue", NULL);
+    dispatch_group_t group = dispatch_group_create();
+    
+    NSMutableArray *users = [NSMutableArray array];
+    
+    for (NSString * userId in userIds) {
+        dispatch_group_async(group, queue, ^(void) {
+            PMUser *user = [PMUserManager getUserObjectFromUserId:userId];
+            
+            dispatch_sync(joinQueue, ^(void) {
+                [users addObject:user];
+            });
+        });
+    }
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    return [users copy];
+}
+
 + (NSMutableURLRequest *)getRequestObject:(NSString *)userId
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
