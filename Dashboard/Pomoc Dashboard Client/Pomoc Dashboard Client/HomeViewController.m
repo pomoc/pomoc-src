@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "DashBoardSingleton.h"
 #import "JBLineChartView.h"
 #import "JBChartView.h"
 #import "JBChartTooltipView.h"
@@ -15,7 +16,7 @@
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
-@interface HomeViewController () <JBLineChartViewDataSource, JBLineChartViewDelegate>
+@interface HomeViewController () <PomocHomeDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate>
 
 @property (nonatomic, strong) JBLineChartView *lineChartView;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
@@ -30,6 +31,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     // Do any additional setup after loading the view.
  
     [self setBackgroundImage];
+    
+    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+    [singleton setHomeDelegate:self];
+    
+    //TODO ask dashboard singleton for number of convo current, users online etc
+    [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]]];
+    [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]]];
+    [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]]];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Home";
@@ -238,5 +247,26 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [self setTooltipVisible:tooltipVisible animated:animated atTouchPoint:CGPointZero];
 }
 
+#pragma mark - Pomoc delegate
+- (void) agentTotalNumberChange: (NSUInteger)agentNumber
+{
+    [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)agentNumber]];
+}
+
+- (void) userTotalNumberChange: (NSUInteger)userNumber
+{
+    [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)userNumber]];
+}
+
+- (void) totalConversationChanged: (NSUInteger)totalConversation
+{
+    NSLog(@"home delegate called!");
+    NSLog(@"total conversation == %lu", totalConversation);
+    //[_totalConversationLabel setText:@"hehe"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
+    });
+    
+}
 
 @end

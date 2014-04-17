@@ -13,9 +13,12 @@
 @protocol PMSupportDelegate <NSObject>
 
 - (void)newConversationCreated:(PMConversation *)conversation;
+
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
+
 // Delegate method for users online - app
 - (void)updateOnlineUsers:(NSArray *)users;
+
 // Delegate method for users online - in a conversation
 - (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId;
 
@@ -28,14 +31,17 @@
 + (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(NSString *userId))completion;
 + (void)connect;
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback;
+
 // Conversations
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
 + (void)getAllConversations:(void(^)(NSArray *conversations))completion;
+
 // Handling
 + (void)handleConversation:(NSString *)conversationId;
 + (void)unhandleConversation:(NSString *)conversationId;
 + (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId;
 + (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
+
 // Online
 + (void)pingApp;
 + (void)pingConversation:(NSString *)conversationId;

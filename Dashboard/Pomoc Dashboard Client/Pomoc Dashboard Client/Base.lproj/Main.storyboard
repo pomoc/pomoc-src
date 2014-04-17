@@ -463,8 +463,12 @@
                     <navigationItem key="navigationItem" id="YoB-RW-kp7"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="agentOnlineLabel" destination="xjY-bE-EHs" id="Evq-pg-rZP"/>
                         <outlet property="backgroundImageView" destination="hTa-l7-DYw" id="ELQ-Pq-v9t"/>
                         <outlet property="chartView" destination="V6j-i0-kUz" id="PfH-Aa-yU6"/>
+                        <outlet property="totalConversationLabel" destination="h8l-C6-9v5" id="Cpe-6S-wWh"/>
+                        <outlet property="unattendedConversationLabel" destination="cOT-bs-uxq" id="b1j-ub-plm"/>
+                        <outlet property="userOnlineLabel" destination="e5P-qZ-bbW" id="f3b-yO-qel"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AND-L7-dqI" userLabel="First Responder" sceneMemberID="firstResponder"/>

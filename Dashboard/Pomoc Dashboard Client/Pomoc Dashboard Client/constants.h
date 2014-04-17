@@ -39,3 +39,11 @@
 #define CHAT_MESSAGE_CELL_NAME 1
 #define CHAT_MESSAGE_TEXT 2
 #define CHAT_MESSAGE_DATE 3
+
+//PM Constant
+#define USER_USERID                 @"userId"
+#define USER_NAME                   @"name"
+#define USER_TYPE                   @"type"
+
+#define USER_TYPE_AGENT             @"agent"
+#define USER_TYPE_PUBLIC            @"public"

@@ -12,5 +12,9 @@
 @property (weak, nonatomic) IBOutlet UIView *chartView;
 @property (weak, nonatomic) IBOutlet UIView *toolTipView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userOnlineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *agentOnlineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalConversationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unattendedConversationLabel;
 
 @end
