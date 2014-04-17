@@ -205,10 +205,10 @@
     [core sendMessage:unhandleMessage withAcknowledge:nil];
 }
 
-+ (void)referHandlerConversation:(NSString *)conversationId userId:(NSString *)userId
++ (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId
 {
     PMCore *core = [PMCore sharedInstance];
-    PMMessage *referHandlerMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeReferHandler conversationId:conversationId refereeUserId:userId];
+    PMMessage *referHandlerMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeReferHandler conversationId:conversationId refereeUserId:refereeUserId];
     [core sendMessage:referHandlerMessage withAcknowledge:nil];
 }
 
@@ -224,20 +224,19 @@
     }];
 }
 
-
-/*
-+ (void)getOnlineUsers
++ (void)pingApp
 {
     PMCore *core = [PMCore sharedInstance];
-    PMMessage *onlineUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePing];
-    [core sendMessage:onlineUsersMessage withAcknowledge:nil];
+    PMMessage *onlineAppUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingConversation];
+    [core sendMessage:onlineAppUsersMessage withAcknowledge:nil];
 }
 
-+ (void)getOnlineUsersForConversation:conversationId
++ (void)pingConversation:(NSString *)conversationId
 {
     PMCore *core = [PMCore sharedInstance];
+    PMMessage *onlineConversationUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingConversation conversationId:conversationId];
+    [core sendMessage:onlineConversationUsersMessage withAcknowledge:nil];
 }
- */
 
 - (void)connect
 {

@@ -15,7 +15,8 @@ typedef enum {
     PMInternalMessageCodeObserveConversationList,
     PMInternalMessageCodeJoinConversation,
     PMInternalMessageCodeGetAppConversationList,
-    PMInternalMessageCodePing
+    PMInternalMessageCodePingApp,
+    PMInternalMessageCodePingConversation
 } PMInternalMessageCode;
 
 typedef enum {

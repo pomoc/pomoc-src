@@ -29,6 +29,10 @@
 + (void)setDelegate:(id<PMCoreDelegate>)delegate;
 + (void)observeNewConversations;
 + (void)connect;
++ (void)handleConversation:(NSString *)conversationId;
++ (void)unhandleConversation:(NSString *)conversationId;
++ (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId;
+
 
 #pragma mark - Temp methods
 + (void)setUserId:(NSString *)userId;

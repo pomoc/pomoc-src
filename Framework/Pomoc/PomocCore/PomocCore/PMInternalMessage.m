@@ -30,8 +30,10 @@
             return @"joinConversation";
         case PMInternalMessageCodeGetAppConversationList:
             return @"getAppConversationList";
-        case PMInternalMessageCodePing:
-            return @"ping";
+        case PMInternalMessageCodePingApp:
+            return @"pingApp";
+        case PMInternalMessageCodePingConversation:
+            return @"pingConversation";
     }
     return nil;
 }
