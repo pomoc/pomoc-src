@@ -211,10 +211,10 @@ io.sockets.on('connection', function(client) {
     client.on('applicationMessage', function(data, callback) {  
         console.log("HERE"); 
         console.log('data '+ data);
-        console.log(data.code);
+        console.log(data.type);
         // Handle conversation.
         // Broadcast new handlers list
-        if (data.code == 'handle') {
+        if (data.type == 'handle') {
             console.log("HANDLING MESSAGE");
             var multi = db.client.multi();
             // Add agent to the list of agents handling the conversation
@@ -231,7 +231,7 @@ io.sockets.on('connection', function(client) {
 
         // Unhandle conversation
         // Broadcast new handlers list
-        else if (data.code == 'unhandle') {
+        else if (data.type == 'unhandle') {
             db.client.srem(data.conversationId + ':handlers', data.userId);
             var multi = db.client.multi();
             // Remove agent from list of agents handling the conversation
@@ -248,7 +248,7 @@ io.sockets.on('connection', function(client) {
 
         // Refer handler
         // Broadcast new handlers list
-        else if (data.code == 'referHandler') {
+        else if (data.type == 'referHandler') {
             db.client.sadd(data.coversationId + ':handlers', data.refereeUserId);
             var multi = db.client.multi();
             // Add referred agent to list of agents handling the conersation
@@ -270,7 +270,7 @@ io.sockets.on('connection', function(client) {
             });
         }
 
-        else if (data.code == 'getHandlers') {
+        else if (data.type == 'getHandlers') {
             db.client.smembers(data.conversationId + ':handlers', function(err, reply) {
                 if (callback) {
                     if (!err) {
