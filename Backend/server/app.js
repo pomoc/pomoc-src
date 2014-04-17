@@ -68,7 +68,7 @@ io.sockets.on('connection', function(client) {
             else {
                 message.type = 'app';
             }
-
+            console.log("PINGING OUT TO " + channel)
             io.sockets.in(channel).emit('onlineStatus', message);
         });
     }
