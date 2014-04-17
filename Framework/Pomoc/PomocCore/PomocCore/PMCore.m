@@ -227,7 +227,7 @@
 + (void)pingApp
 {
     PMCore *core = [PMCore sharedInstance];
-    PMMessage *onlineAppUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingConversation];
+    PMMessage *onlineAppUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingApp];
     [core sendMessage:onlineAppUsersMessage withAcknowledge:nil];
 }
 
