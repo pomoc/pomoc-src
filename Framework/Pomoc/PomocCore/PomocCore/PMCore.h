@@ -35,7 +35,7 @@
 + (void)handleConversation:(NSString *)conversationId;
 + (void)unhandleConversation:(NSString *)conversationId;
 + (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId;
-+ (void)getHandlersForConversation:(NSString *)conversationId completion:(void (^)(NSArray *conversations))completion;
++ (void)getHandlersForConversation:(NSString *)conversationId completion:(void (^)(NSArray *handlers))completion;
 + (void)pingApp;
 + (void)pingConversation:(NSString *)conversationId;
 

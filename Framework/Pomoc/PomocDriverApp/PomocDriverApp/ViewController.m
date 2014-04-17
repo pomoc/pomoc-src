@@ -54,6 +54,7 @@
 
                     // Handling test
                     [PMSupport handleConversation:@"test:anc63:chat"];
+                    [PMSupport getHandlersForConversation:@"test:anc63:chat" completion:^(NSArray *conver)]
                     // Referral test
                 
                 }];

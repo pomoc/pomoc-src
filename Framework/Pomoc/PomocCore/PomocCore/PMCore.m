@@ -211,7 +211,7 @@
     [core sendMessage:referHandlerMessage withAcknowledge:nil];
 }
 
-+ (void)getHandlersForConversation:(NSString *)conversationId completion:(void(^)(NSArray *conversations))completion
++ (void)getHandlersForConversation:(NSString *)conversationId completion:(void(^)(NSArray *handlers))completion
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *getHandlersMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeGetHandlers conversationId:conversationId];

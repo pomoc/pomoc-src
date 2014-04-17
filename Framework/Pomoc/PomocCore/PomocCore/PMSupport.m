@@ -150,7 +150,7 @@
     [PMCore referHandlerConversation:conversationId refereeUserId:refereeUserId];
 }
 
-+ (void)getHandlersForConversation:(NSString *)conversationId completion:(void (^)(NSArray *conversations))completion
++ (void)getHandlersForConversation:(NSString *)conversationId completion:(void (^)(NSArray *handlers))completion
 {
     [PMCore getHandlersForConversation:conversationId completion:completion];
 }
