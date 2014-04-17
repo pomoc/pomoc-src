@@ -55,14 +55,21 @@ io.sockets.on('connection', function(client) {
     }
 
     // ping - announce online presence to app or conversation
-    function ping(userId, channel, key) {
-        console.log('ping ' + userId);
-        
+    function ping(userId, channel, key, conversationId) {
         var multi = db.client.multi();
         multi.sadd(key, userId);
         multi.smembers(key);
         multi.exec(function(err, replies) {
-            io.sockets.in(channel).emit('onlineStatus', {type:'online', users:replies[1]});
+            var message = {users:replies[1]};
+            if (conversationId) {
+                message.conversationId = conversationId;
+                message.type = 'conversation';
+            }
+            else {
+                message.type = 'app';
+            }
+
+            io.sockets.in(channel).emit('onlineStatus', message);
         });
     }
 
@@ -147,7 +154,7 @@ io.sockets.on('connection', function(client) {
         
         // pingConversation announces online presence to conversation users
         else if (data.type == 'pingConversation') {
-            ping(data.userId, data.conversationId, data.conversationId + ':online');
+            ping(data.userId, data.conversationId, data.conversationId + ':online', data.conversationId);
         }
 
 
@@ -300,14 +307,14 @@ io.sockets.on('connection', function(client) {
             multiRemove.exec(function(err, replies) {    
                 // announce new list of online users for app
                 db.client.smembers(appId + ':online', function(err, reply) {
-                    io.sockets.in(appId + ':notification').emit('onlineStatus', {users:reply});
+                    io.sockets.in(appId + ':notification').emit('onlineStatus', {type:'app', users:reply});
                 });
 
                 // announce new list of online users for each converation that
                 // user was in
                 for (var j = 0; j < conversations.length; j++) {
                     db.client.smembers(conversations[j] + ':online', function(err, reply) { 
-                        io.sockets.in(conversations[j]).emit('onlineStatus', {users:reply});
+                        io.sockets.in(conversations[j]).emit('onlineStatus', {type:'conversation', users:reply, conversationId:conversations[j]});
                         console.log('Disconnected from: ' + conversations[j]);
                     });
                 }
