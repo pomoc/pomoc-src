@@ -40,6 +40,7 @@ console.log('server running');
 io.sockets.on('connection', function(client) {
 
     var userId;
+    var appId;
 
     // sends a system chat message to the conversation of choice
     function sendSystemMessage(conversationId, message) {
@@ -53,15 +54,15 @@ io.sockets.on('connection', function(client) {
         db.client.zadd(conversationId, data.timestamp, JSON.stringify(data));
     }
 
-    // ping - announce online presence 
-    function ping(userId, conversationId) {
+    // ping - announce online presence to app or conversation
+    function ping(userId, channel, key) {
         console.log('ping ' + userId);
         
         var multi = db.client.multi();
-        multi.sadd(conversationId + ':online', userId);
-        multi.smembers(conversationId + ':online');
+        multi.sadd(key, userId);
+        multi.smembers(key);
         multi.exec(function(err, replies) {
-            io.sockets.in(conversationId).emit('activity', {type:'online', users:replies[1]});
+            io.sockets.in(channel).emit('onlineStatus', {type:'online', users:replies[1]});
         });
     }
 
@@ -136,21 +137,19 @@ io.sockets.on('connection', function(client) {
             }
         }
 
-        // Ping announces online presence to all conversations that the user is
-        // a participant of
-        else if (data.type == 'ping') {
-            console.log('ping ' + data.userId);
-
+        // pingApp announces online presence to app users
+        else if (data.type == 'pingApp') {
             // Sets userId
             userId = data.userId;
-
-            // ping - announce online presence to all conversations user are in
-            db.client.smembers(data.userId + ":sub", function(err, reply) {
-                reply.map(function(conversationId) {
-                    ping(data.userId, conversationId);
-                });
-            });
+            appId = data.appId;
+            ping(data.userId, data.appId + ':notification', data.appId + ':online');
         }
+        
+        // pingConversation announces online presence to conversation users
+        else if (data.type == 'pingConversation') {
+            ping(data.userId, data.conversationId, data.conversationId + ':online');
+        }
+
 
         // Gets all conversation user is in
         else if (data.type == 'getConversationList') {
@@ -212,7 +211,7 @@ io.sockets.on('connection', function(client) {
             multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
-                io.sockets.in(data.conversationId + ':activity').emit('activity',
+                io.sockets.in(data.conversationId).emit('handlerStatus',
                     {type: 'handlers', users: replies[1]});
                 sendSystemMessage(data.conversationId, 
                     replies[2].name + ' has started handling the issue');
@@ -229,7 +228,7 @@ io.sockets.on('connection', function(client) {
             multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
-                io.sockets.in(data.conversationId + ':activity').emit('activity',
+                io.sockets.in(data.conversationId).emit('handlerStatus',
                     {type: 'handlers', users: replies[1]});
                 sendSystemMessage(data.conversationId,
                     replies[2].name + ' has stopped handling the issue');
@@ -247,7 +246,7 @@ io.sockets.on('connection', function(client) {
             multi.hgetall(data.userId + ':account');
             multi.hgetall(data.refereeUserId + ':account');
             multi.exec(function(err, replies) {
-                io.sockets.in(data.conversationId + ':activity').emit('activity',
+                io.sockets.in(data.conversationId).emit('handlerStatus',
                     {
                         type: 'referral', 
                     refereeUserId: data.referralUserId, 
@@ -291,21 +290,26 @@ io.sockets.on('connection', function(client) {
         // Get list of conversations users is in
         db.client.smembers(userId + ':sub', function(err, conversations) {
             var multiRemove = db.client.multi();
-            // Remove them from the online list
+            // Remove user from the online user list for each convo user is in
             for (var i = 0; i < conversations.length; i++) {
                 multiRemove.srem(conversations[i] + ':online', userId);
             }
-            // broadcast to conversations the new online participant list
-            multiRemove.exec(function(err, replies) {
+            // Remove user from the online 
+            multiRemove.srem(appId + ':online', userId);
+
+            multiRemove.exec(function(err, replies) {    
+                // announce new list of online users for app
+                db.client.smembers(appId + ':online', function(err, reply) {
+                    io.sockets.in(appId + ':notification').emit('onlineStatus', {users:reply});
+                });
+
+                // announce new list of online users for each converation that
+                // user was in
                 for (var j = 0; j < conversations.length; j++) {
-                    // For each conversation, get the list of participants online
                     db.client.smembers(conversations[j] + ':online', function(err, reply) { 
-                        // Broadcast that list onto the conversation's activity
-                        // channel to notify clients
-                        client.broadcast.to(conversations[j] + ':activity').emit('activity', 
-                            {type: 'online', users:reply});
+                        io.sockets.in(conversations[j]).emit('onlineStatus', {users:reply});
                         console.log('Disconnected from: ' + conversations[j]);
-                    });;
+                    });
                 }
             });
         });
