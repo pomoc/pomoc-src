@@ -208,8 +208,8 @@ io.sockets.on('connection', function(client) {
 
 
     // APPLICATION MESSAGES
-    client.on('applicationMessage', function(data, callback) {
-        
+    client.on('applicationMessage', function(data, callback) {  
+        console.log("HERE"); 
         // Handle conversation.
         // Broadcast new handlers list
         if (data.code == 'handle') {
