@@ -213,6 +213,7 @@ io.sockets.on('connection', function(client) {
         // Handle conversation.
         // Broadcast new handlers list
         if (data.code == 'handle') {
+            console.log("HANDLING MESSAGE");
             var multi = db.client.multi();
             // Add agent to the list of agents handling the conversation
             multi.sadd(data.conversationId + ':handlers', data.userId);
