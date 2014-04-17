@@ -158,7 +158,6 @@
 
 + (void)pingApp
 {
-    NSLog(@"called ping convo");
     [PMCore pingApp];
 }
 
@@ -208,7 +207,7 @@
     }
 }
 
-- (void)updateOnlineUser:(NSArray *)users
+- (void)updateOnlineUsers:(NSArray *)users
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
         [self.delegate updateOnlineUsers:users];

@@ -308,33 +308,33 @@
         }
     }
     else if ([packet.name isEqualToString:@"onlineStatus"]) {
-        NSArray *users = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON[@"users"]];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
-            if ([packet.dataAsJSON[@"type"] isEqualToString:@"conversation"]) {
-                [self.delegate updateOnlineUsers:users conversationId:packet.dataAsJSON[@"conversationId"]];
+        NSArray *users = [PMUserManager getUserObjectsFromUserIds:data[@"users"]];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:conversationId:)]) {
+            if ([data[@"type"] isEqualToString:@"conversation"]) {
+                [self.delegate updateOnlineUsers:users conversationId:data[@"conversationId"]];
             }
         }
-        if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:conversationId:)]) {
-            if ([packet.dataAsJSON[@"type"] isEqualToString:@"app"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
+            if ([data[@"type"] isEqualToString:@"app"]) {
                 [self.delegate updateOnlineUsers:users];
             }
         }
     }
     else if ([packet.name isEqualToString:@"handlerStatus"]) {
-        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:packet.dataAsJSON[@"users"]];
+        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:data[@"users"]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:referrer:referee:)]) {
-            if ([packet.dataAsJSON[@"type"] isEqualToString:@"handlers"]) {
+            if ([data[@"type"] isEqualToString:@"handlers"]) {
                 [self.delegate updateHandlers:handlers
-                               conversationId:packet.dataAsJSON[@"conversationId"]
+                               conversationId:data[@"conversationId"]
                                      referrer:nil
                                       referee:nil];
             }
-            else if ([packet.dataAsJSON[@"type"] isEqualToString:@"referral"]) {
-                PMUser *referrer = [PMUserManager getUserObjectFromUserId:packet.dataAsJSON[@"referrerUserId"]];
-                PMUser *referee = [PMUserManager getUserObjectFromUserId:packet.dataAsJSON[@"refereeUserId"]];
+            else if ([data[@"type"] isEqualToString:@"referral"]) {
+                PMUser *referrer = [PMUserManager getUserObjectFromUserId:data[@"referrerUserId"]];
+                PMUser *referee = [PMUserManager getUserObjectFromUserId:data[@"refereeUserId"]];
                 
                 [self.delegate updateHandlers:handlers
-                               conversationId:packet.dataAsJSON[@"conversationId"]
+                               conversationId:data[@"conversationId"]
                                      referrer:referrer
                                       referee:referee];
             }
