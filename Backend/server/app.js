@@ -209,9 +209,6 @@ io.sockets.on('connection', function(client) {
 
     // APPLICATION MESSAGES
     client.on('applicationMessage', function(data, callback) {  
-        console.log("HERE"); 
-        console.log('data '+ data);
-        console.log(data.type);
         // Handle conversation.
         // Broadcast new handlers list
         if (data.type == 'handle') {
@@ -223,7 +220,7 @@ io.sockets.on('connection', function(client) {
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
-                    {type: 'handlers', users: replies[1]});
+                    {type: 'handlers', users: replies[1]}, conversationId: data.conversationId);
                 sendSystemMessage(data.conversationId, 
                     replies[2].name + ' has started handling the issue');
             });
@@ -240,7 +237,7 @@ io.sockets.on('connection', function(client) {
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
-                    {type: 'handlers', users: replies[1]});
+                    {type: 'handlers', users: replies[1]}, conversationId: data.conversationId);
                 sendSystemMessage(data.conversationId,
                     replies[2].name + ' has stopped handling the issue');
             });
