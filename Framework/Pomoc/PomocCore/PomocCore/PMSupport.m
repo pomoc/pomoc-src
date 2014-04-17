@@ -206,4 +206,11 @@
     }
 }
 
+- (void)updateOnlineUser:(NSArray *)users
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
+        [self.delegate updateOnlineUsers:users];
+    }
+}
+
 @end
