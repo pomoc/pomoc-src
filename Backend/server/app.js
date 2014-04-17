@@ -212,7 +212,6 @@ io.sockets.on('connection', function(client) {
         // Handle conversation.
         // Broadcast new handlers list
         if (data.type == 'handle') {
-            console.log("HANDLING MESSAGE");
             var multi = db.client.multi();
             // Add agent to the list of agents handling the conversation
             multi.sadd(data.conversationId + ':handlers', data.userId);
@@ -220,7 +219,7 @@ io.sockets.on('connection', function(client) {
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
-                    {type: 'handlers', users: replies[1]}, conversationId: data.conversationId);
+                    {type: 'handlers', users: replies[1], conversationId: data.conversationId});
                 sendSystemMessage(data.conversationId, 
                     replies[2].name + ' has started handling the issue');
             });
@@ -237,7 +236,7 @@ io.sockets.on('connection', function(client) {
             multi.hgetall(data.userId + ':account');
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
-                    {type: 'handlers', users: replies[1]}, conversationId: data.conversationId);
+                    {type: 'handlers', users: replies[1], conversationId: data.conversationId});
                 sendSystemMessage(data.conversationId,
                     replies[2].name + ' has stopped handling the issue');
             });
