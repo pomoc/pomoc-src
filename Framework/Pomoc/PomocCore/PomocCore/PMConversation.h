@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class PMConversation, PMMessage, PMInternalMessage, PMChatMessage, PMImageMessage;
+@class PMConversation, PMMessage, PMInternalMessage, PMChatMessage, PMImageMessage, PMUser;
 
 @protocol PMConversationDelegate <NSObject>
 
@@ -18,6 +18,10 @@
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveInternalMessage:(PMInternalMessage *)internalMessage;
+
+// TODO
+- (void)didReceiveHandlerUpdate:(PMConversation *)conversation isReferral:(BOOL)isReferral
+                       referrer:(PMUser *)referrer referee:(PMUser *)referee;
 
 @end
 
@@ -30,5 +34,10 @@
 - (void)sendTextMessage:(NSString *)message;
 - (void)sendImageMessage:(UIImage *)image;
 - (NSArray *)messages;
+
+// TODO
+- (void)handleConversation;
+- (void)unhandleConversation;
+- (void)referHandlerUser:(PMUser *)user;
 
 @end

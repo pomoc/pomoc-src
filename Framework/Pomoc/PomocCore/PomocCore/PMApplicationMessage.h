@@ -7,8 +7,9 @@
 //
 
 #import <PomocCore/PomocCore.h>
+#import "PMMessage.h"
 
-@interface PMApplicationMessage : PMMessage
+@interface PMApplicationMessage : PMMessage;
 
 @property (nonatomic, readonly) PMApplicationMessageCode code;
 @property (nonatomic, strong, readonly) NSString *conversationId;

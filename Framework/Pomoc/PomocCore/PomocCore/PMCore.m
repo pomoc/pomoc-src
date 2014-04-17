@@ -14,6 +14,7 @@
 
 #import "PMMessage.h"
 #import "PMInternalMessage.h"
+#import "PMApplicationMessage.h"
 #import "PMChatMessage.h"
 #import "PMImageMessage.h"
 #import "PomocImage.h"
@@ -121,6 +122,9 @@
             }
             
             completion([NSArray arrayWithArray:messages]);
+            
+            // Announce online status
+            // Request for list of handlers
         }
     }];
 }
@@ -187,6 +191,54 @@
     [[PMCore sharedInstance] connect];
 }
 
++ (void)handleConversation:(NSString *)conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *handleMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeHandle conversationId:conversationId];
+    [core sendMessage:handleMessage withAcknowledge:nil];
+}
+
++ (void)unhandleConversation:(NSString *)conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *unhandleMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeUnhandle conversationId:conversationId];
+    [core sendMessage:unhandleMessage withAcknowledge:nil];
+}
+
++ (void)referHandlerConversation:(NSString *)conversationId userId:(NSString *)userId
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *referHandlerMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeReferHandler conversationId:conversationId refereeUserId:userId];
+    [core sendMessage:referHandlerMessage withAcknowledge:nil];
+}
+
++ (void)getHandlersConversation:(NSString *)conversationId completion:(void(^)(NSArray *conversations))completion
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *getHandlersMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeGetHandlers conversationId:conversationId];
+    [core sendMessage:getHandlersMessage withAcknowledge:^(NSDictionary *jsonResponse) {
+        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+            NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:jsonResponse[@"handlers"]];
+            completion(handlers);
+        }
+    }];
+}
+
+
+/*
++ (void)getOnlineUsers
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *onlineUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePing];
+    [core sendMessage:onlineUsersMessage withAcknowledge:nil];
+}
+
++ (void)getOnlineUsersForConversation:conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+}
+ */
+
 - (void)connect
 {
     [self.socket connectToHost:POMOC_URL onPort:POMOC_PORT];
@@ -207,6 +259,8 @@
         [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMImageMessage class]]) {
         [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
+    } else if ([message isKindOfClass:[PMApplicationMessage class]]) {
+        [self.socket sendEvent:@"applicationMessage" withData:jsonData andAcknowledge:function];
     }
 }
 

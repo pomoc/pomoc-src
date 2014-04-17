@@ -9,6 +9,7 @@
 #import "PMMessage.h"
 
 #import "PMInternalMessage.h"
+#import "PMApplicationMessage.h"
 #import "PMChatMessage.h"
 #import "PMImageMessage.h"
 
@@ -29,6 +30,19 @@
                                 conversationId:(NSString *)conversationId
 {
     return [[PMInternalMessage alloc] initWithMessageCode:code conversationId:conversationId];
+}
+
++ (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
+                                      conversationId:(NSString *)conversationId
+{
+    return [[PMApplicationMessage alloc] initWithMessageCode:code conversationId:conversationId];
+}
+
++ (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
+                                      conversationId:(NSString *)converstionId
+                                       refereeUserId:(NSString *)refereeUserId
+{
+    return [[PMApplicationMessage alloc] initWithMessageCode:code conversationId:converstionId refereeUserId:refereeUserId];
 }
 
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId

@@ -27,6 +27,8 @@
             return @"unhandle";
         case PMApplicationMessageCodeReferHandler:
             return @"referHandler";
+        case PMApplicationMessageCodeGetHandlers:
+            return @"getHandlers";
     }
     return nil;
 }

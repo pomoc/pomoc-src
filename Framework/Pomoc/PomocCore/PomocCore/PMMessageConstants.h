@@ -14,13 +14,15 @@ typedef enum {
     PMInternalMessageCodeNewConversation,
     PMInternalMessageCodeObserveConversationList,
     PMInternalMessageCodeJoinConversation,
-    PMInternalMessageCodeGetAppConversationList
+    PMInternalMessageCodeGetAppConversationList,
+    PMInternalMessageCodePing
 } PMInternalMessageCode;
 
 typedef enum {
     PMApplicationMessageCodeHandle,
     PMApplicationMessageCodeUnhandle,
-    PMApplicationMessageCodeReferHandler
+    PMApplicationMessageCodeReferHandler,
+    PMApplicationMessageCodeGetHandlers
 } PMApplicationMessageCode;
 
 #define MESSAGE_TIMESTAMP           @"timestamp"
