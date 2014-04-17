@@ -110,11 +110,6 @@
     [PMCore getAllConversations:completion];
 }
 
-+ (void)setDelegate:(id<PMSupportDelegate>)delegate
-{
-    [PMSupport sharedInstance].delegate = delegate;
-}
-
 + (void)startConversationWithCompletion:(void (^)(PMConversation *))completion
 {
     [PMCore startConversationWithCompletion:completion];
@@ -140,7 +135,43 @@
     }];
     [PMCore connect];
 }
-                          
+
++ (void)handleConversation:(NSString *)conversationId
+{
+    [PMCore handleConversation:conversationId];
+}
+
++ (void)unhandleConversation:(NSString *)conversationId
+{
+    [PMCore unhandleConversation:conversationId];
+}
+
++ (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId
+{
+    [PMCore referHandlerConversation:conversationId refereeUserId:refereeUserId];
+}
+
++ (void)getHandlersForConversation:(NSString *)conversationId completion:(void (^)(NSArray *conversations))completion
+{
+    [PMCore getHandlersForConversation:conversationId completion:completion];
+}
+
++ (void)pingApp
+{
+    [PMCore pingApp];
+}
+
++ (void)pingConversation:(NSString *)conversationId
+{
+    [PMCore pingConversation:conversationId];
+}
+
++ (void)setDelegate:(id<PMSupportDelegate>)delegate
+{
+    [PMSupport sharedInstance].delegate = delegate;
+}
+
+
 
 #pragma mark - PMCore delegate
 
@@ -158,5 +189,6 @@
         self.connectCallback = nil;
     }
 }
+
 
 @end

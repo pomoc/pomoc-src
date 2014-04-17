@@ -26,6 +26,12 @@
 
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;
 + (void)getAllConversations:(void(^)(NSArray *conversations))completion;
++ (void)handleConversation:(NSString *)conversationId;
++ (void)unhandleConversation:(NSString *)conversationId;
++ (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId;
++ (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
++ (void)pingApp;
++ (void)pingConversation:(NSString *)conversationId;
 + (void)setDelegate:(id<PMSupportDelegate>)delegate;
 
 @end
