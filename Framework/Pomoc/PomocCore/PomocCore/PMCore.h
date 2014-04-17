@@ -14,9 +14,11 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation;
 - (void)hasConnected;
+// Online status
 - (void)updateOnlineUsers:(NSArray *)users;
-- (void)updateHandlers:(NSArray *)handlers;
-- (void)referHandler:(NSArray *)handlers referrer:(PMUser *)referrer referee:(PMUser *)referee;
+- (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId;
+// Handler status
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 
 @end
 

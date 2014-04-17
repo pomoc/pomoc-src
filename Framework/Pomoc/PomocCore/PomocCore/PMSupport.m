@@ -190,5 +190,20 @@
     }
 }
 
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:referrer:referee:)])
+    {
+        [self.delegate updateHandlers:handlers conversationId:conversationId
+                             referrer:referrer referee:referee];
+    }
+}
+
+- (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:conversationId:)]) {
+        [self.delegate updateOnlineUsers:users conversationId:conversationId];
+    }
+}
 
 @end
