@@ -296,6 +296,7 @@ io.sockets.on('connection', function(client) {
 
     // DISCONNECT
     client.on('disconnect', function() {
+        console.log(userId + " disconnected");
         // Get list of conversations users is in
         db.client.smembers(userId + ':sub', function(err, conversations) {
             var multiRemove = db.client.multi();
