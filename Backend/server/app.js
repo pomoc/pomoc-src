@@ -147,6 +147,7 @@ io.sockets.on('connection', function(client) {
         // pingApp announces online presence to app users
         else if (data.type == 'pingApp') {
             // Sets userId
+            console.log('PINGAPP');
             userId = data.userId;
             appId = data.appId;
             ping(data.userId, data.appId + ':notification', data.appId + ':online');
