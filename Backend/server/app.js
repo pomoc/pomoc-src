@@ -210,6 +210,8 @@ io.sockets.on('connection', function(client) {
     // APPLICATION MESSAGES
     client.on('applicationMessage', function(data, callback) {  
         console.log("HERE"); 
+        console.log('data '+ data);
+        console.log(data.code);
         // Handle conversation.
         // Broadcast new handlers list
         if (data.code == 'handle') {
