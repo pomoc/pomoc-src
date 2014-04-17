@@ -18,6 +18,7 @@
 - (void)updateOnlineUsers:(NSArray *)users;
 - (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId;
 // Handler status
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId;
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 
 @end

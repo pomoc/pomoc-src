@@ -51,7 +51,6 @@
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
     });
-    
     return sharedInstance;
 }
 
@@ -324,10 +323,7 @@
         NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:data[@"users"]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:referrer:referee:)]) {
             if ([data[@"type"] isEqualToString:@"handlers"]) {
-                [self.delegate updateHandlers:handlers
-                               conversationId:data[@"conversationId"]
-                                     referrer:nil
-                                      referee:nil];
+                [self.delegate updateHandlers:handlers conversationId:data[@"conversationId"]];
             }
             else if ([data[@"type"] isEqualToString:@"referral"]) {
                 PMUser *referrer = [PMUserManager getUserObjectFromUserId:data[@"referrerUserId"]];

@@ -32,7 +32,6 @@
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
     });
-    
     return sharedInstance;
 }
 
@@ -189,6 +188,14 @@
         self.connectCallback(YES);
         self.connectCallback = nil;
     }
+}
+
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:)]) {
+        [self.delegate updateHandlers:handlers conversationId:conversationId];
+    }
+    
 }
 
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee

@@ -51,6 +51,11 @@
             [PMSupport connectWithCompletion:^(BOOL connected) {
                 [PMSupport getAllConversations:^(NSArray *conversations) {
                     NSLog(@"logged in");
+
+                    // Handling test
+                    [PMSupport handleConversation:@"test:anc63:chat"];
+                    // Referral test
+                
                 }];
             }];
         }];
@@ -66,6 +71,7 @@
             }];
         }];
 #endif
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,6 +120,23 @@
 - (void)newConversationCreated:(PMConversation *)conversation
 {
     NSLog(@"New Channel created %@", conversation);
+}
+
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee
+{
+    NSLog(@"referHandler");
+    NSLog(@"hanlders: %@", handlers);
+    NSLog(@"conversationId: %@", conversationId);
+    NSLog(@"referrer: %@", referrer);
+    NSLog(@"referee: %@", referee);
+    
+}
+
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
+{
+    NSLog(@"updateHandlers");
+    NSLog(@"hanlders: %@", handlers);
+    NSLog(@"conversationId: %@", conversationId);
 }
 
 #pragma mark - PMConversation Delegate

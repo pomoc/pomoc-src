@@ -51,4 +51,8 @@
     return self;
 }
 
+- (NSString *)description
+{
+    return self.userId;
+}
 @end

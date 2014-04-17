@@ -14,11 +14,12 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation;
 
+// Delegate method for handlers
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId;
+// Delegate method for referral of handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
-
 // Delegate method for users online - app
 - (void)updateOnlineUsers:(NSArray *)users;
-
 // Delegate method for users online - in a conversation
 - (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId;
 
