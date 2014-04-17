@@ -119,7 +119,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zp7-pl-xsX">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zp7-pl-xsX">
                                                     <rect key="frame" x="175" y="5" width="47" height="59"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -287,7 +287,11 @@
                                         <rect key="frame" x="5" y="-5" width="222" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
-                                            <barButtonItem title="Join" id="qJ6-zH-6jl"/>
+                                            <barButtonItem title="Join" id="qJ6-zH-6jl">
+                                                <connections>
+                                                    <action selector="handleActionPressed:" destination="QxH-3e-iTU" id="alP-76-XuO"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Bv6-5X-aDG"/>
                                             <barButtonItem title="Invite" style="plain" id="OJA-3N-MhU">
                                                 <connections>
@@ -316,6 +320,7 @@
                         <outlet property="chatMessageTable" destination="DyA-PS-qDp" id="f3Z-zx-DO4"/>
                         <outlet property="chatNavTable" destination="0ll-Sw-Dj7" id="M9u-Jp-GxC"/>
                         <outlet property="chatView" destination="snB-9T-lqP" id="nyG-gf-U46"/>
+                        <outlet property="handleActionLabel" destination="qJ6-zH-6jl" id="X0F-BT-6oD"/>
                         <outlet property="pastAndInfoToolbar" destination="JAK-o3-fPz" id="ck5-sm-TiX"/>
                         <outlet property="toolBarView" destination="pOQ-7E-QQN" id="tsH-3g-jFo"/>
                         <outlet property="userTextInput" destination="AAP-qz-ks3" id="pnT-a5-VnJ"/>

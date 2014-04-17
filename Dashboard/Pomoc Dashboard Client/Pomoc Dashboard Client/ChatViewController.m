@@ -41,6 +41,8 @@
     NSString *userName;
     BOOL keyboardEditing;
     
+    DashBoardSingleton *singleton;
+    
     UIPopoverController *uploadSegue;
 }
 
@@ -76,7 +78,7 @@
     chatList = [[NSMutableArray alloc] init];
     chatMessageList = [[NSMutableArray alloc] init];
     
-    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+    singleton = [DashBoardSingleton singleton];
     [singleton setChatDelegate:self];
     chatList = singleton.currentConversationList;
     [_chatNavTable reloadData];
@@ -99,6 +101,9 @@
         [currentlySelectedConvo sendTextMessage:userInput];
         [_userTextInput setText:@""];
     }
+}
+
+- (IBAction)handleActionPressed:(id)sender {
 }
 
 #pragma mark - Action button
@@ -221,6 +226,8 @@
         currentSelectedConvoId = pmConversation.conversationId;
         currentlySelectedConvo = pmConversation;
         
+        
+        
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
     }
@@ -292,7 +299,21 @@
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
-    [agentLabel setText:[NSString stringWithFormat: @"2"]];
+    
+    [singleton getHandlersForConversation:pmConvo.conversationId completion:^(NSArray *conversations) {
+        
+        NSUInteger total = 0;
+        for (PMUser *user in conversations){
+            if ([user.type isEqualToString:USER_TYPE_AGENT]) {
+                total++;
+            }
+        }
+        
+        NSLog(@"getting list of handlers returned == %lu",total);
+        [agentLabel setText:[NSString stringWithFormat: @"%lu", total]];
+    }];
+    
+    
     
     return cell;
 }

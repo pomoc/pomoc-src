@@ -158,11 +158,13 @@
 
 + (void)pingApp
 {
+    NSLog(@"called ping convo");
     [PMCore pingApp];
 }
 
 + (void)pingConversation:(NSString *)conversationId
 {
+
     [PMCore pingConversation:conversationId];
 }
 

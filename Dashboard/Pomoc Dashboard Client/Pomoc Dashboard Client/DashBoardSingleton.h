@@ -41,9 +41,13 @@
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion;
 
 //For home page to get number of conversation with 0 agents and total conversation
-- (NSUInteger)numberOfUnattendedConversation;
+- (void)numberOfUnattendedConversation:(void (^)(NSInteger totalConvo))completion;
 - (NSUInteger)numberOfConversation;
 
+//Handling convo
+- (void)handleConversation:(NSString *)conversationId;
+- (void)unhandleConversation:(NSString *)conversationId;
+- (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
 
 @property (nonatomic, strong) NSMutableArray *currentConversationList;
 

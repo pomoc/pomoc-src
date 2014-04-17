@@ -21,9 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
-//Toolbar that contains info/action
-@property (weak, nonatomic) IBOutlet UIView *toolBarView;
-
 //Main
 - (IBAction)viewAction:(id)sender;
 
@@ -33,7 +30,17 @@
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
 
+
+//Toolbar that contains info/action
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+
+//Handling unhandling
+- (IBAction)handleActionPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *handleActionLabel;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 
+//
 
 @end

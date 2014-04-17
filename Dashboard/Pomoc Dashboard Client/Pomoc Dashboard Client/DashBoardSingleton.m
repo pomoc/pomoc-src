@@ -64,7 +64,11 @@
                     
                 }
                 completion(TRUE);
-                [_homeDelegate totalConversationChanged:[conversations count]];
+                
+                if ([_homeDelegate respondsToSelector:@selector(totalConversationChanged:)]) {
+                    [_homeDelegate totalConversationChanged:[conversations count]];
+                }
+                
             }];
             
         }];
@@ -100,6 +104,37 @@
 {
     return [_currentConversationList count];
 }
+
+#pragma mark - handling convo
+- (void)handleConversation:(NSString *)conversationId
+{
+    [PMSupport handleConversation:conversationId];
+}
+
+- (void)unhandleConversation:(NSString *)conversationId
+{
+    [PMSupport unhandleConversation:conversationId];
+}
+
+- (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion
+{
+    NSLog(@"called line 121 get handler for convo with convo id ==%@", conversationId);
+    
+    [PMSupport getHandlersForConversation:conversationId completion:^(NSArray *conversations){
+        
+        NSUInteger total = 0;
+        for (PMUser *user in conversations){
+            if ([user.type isEqualToString:USER_TYPE_AGENT]) {
+                total++;
+            }
+        }
+        
+        NSLog(@"called in line 122 of singleton with conversation user == %lu", total);
+        completion(conversations);
+    }];
+    
+}
+
 
 #pragma mark - Pocmoc Support Delegate
 
