@@ -81,6 +81,13 @@
     singleton = [DashBoardSingleton singleton];
     [singleton setChatDelegate:self];
     chatList = singleton.currentConversationList;
+    
+    for (PMConversation *convo in chatList) {
+       
+        NSLog(@"@convo message == %lu", [convo.messages count]);
+    
+    }
+    
     [_chatNavTable reloadData];
     
     //storing the original position for moving them up when keyboard show
@@ -296,22 +303,35 @@
     
     PMConversation *pmConvo = [chatList objectAtIndex:row];
     
-    if ([pmConvo.messages count] > 0 ) {
-        NSLog(@"size of pm convo messages %lu",[pmConvo.messages count]);
-        PMChatMessage *firstMessage = [pmConvo.messages objectAtIndex:0];
-        
-        //Setting visitor name
-        UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
-        [visitorLabel setText:firstMessage.user.name];
-        
-        //setting the started date of chat
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
-        NSString *dateString = [dateFormatter stringFromDate:firstMessage.timestamp];
-        
-        UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
-        [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
-    }
+    //Setting visitor name
+    UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
+    [visitorLabel setText:pmConvo.creator.name];
+
+    //setting the started date of chat
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
+    NSString *dateString = [dateFormatter stringFromDate:pmConvo.createDate];
+    
+    UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
+    [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at", dateString]];
+    
+//    
+//    if ([pmConvo.messages count] > 0 ) {
+//        NSLog(@"size of pm convo messages %lu",[pmConvo.messages count]);
+//        PMChatMessage *firstMessage = [pmConvo.messages objectAtIndex:0];
+//        
+//        //Setting visitor name
+//        UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
+//        [visitorLabel setText:firstMessage.user.name];
+//        
+//        //setting the started date of chat
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
+//        NSString *dateString = [dateFormatter stringFromDate:firstMessage.timestamp];
+//        
+//        UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
+//        [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
+//    }
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
