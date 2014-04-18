@@ -257,7 +257,7 @@ io.sockets.on('connection', function(client) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
                     {
                         type: 'referral', 
-                    refereeUserId: data.referralUserId, 
+                    refereeUserId: data.refereeUserId, 
                     referrerUserId: data.userId, 
                     conversationId: data.conversationId, 
                     users:replies[1]
