@@ -318,6 +318,7 @@ io.sockets.on('connection', function(client) {
         db.client.smembers(userId + ':sub', function(err, conversations) {
             console.log('conversations: ' + conversations);
             conversations = conversations.map(function(conversation) {
+                console.log("here" + conversation);
                 return JSON.parse(conversation);
             });
             var multiRemove = db.client.multi();
