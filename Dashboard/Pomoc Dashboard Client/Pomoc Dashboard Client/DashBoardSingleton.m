@@ -64,19 +64,19 @@
                 NSLog(@"all conversation.length == %lu",[conversations count]);
                 
                 for (PMConversation *convo in conversations) {
-                    
-                    NSLog(@"@convo message == %lu", [convo.messages count]);
-                    
                     convo.delegate = self;
                     [_currentConversationList addObject:convo];
-                    
                 }
-                completion(TRUE);
                 
                 if ([self isHomeDelegateAlive]) {
                     [_homeDelegate totalConversationChanged:[conversations count]];
                 }
                 
+                if ([self isChatDelegateAlive]) {
+                   [_chatDelegate updateChatList:_currentConversationList ];
+                }
+                
+                completion(TRUE);
                 
             }];
             
@@ -196,7 +196,9 @@
     [_currentConversationList addObject:conversation];
     NSLog(@"dashboard singleton detected new chat");
     
-    [_chatDelegate hasNewConversation:_currentConversationList];
+    if ([self isChatDelegateAlive]) {
+        [_chatDelegate hasNewConversation:_currentConversationList];
+    }
 }
 
 - (void)updateOnlineUsers:(NSArray *)users
@@ -256,8 +258,9 @@
             convo.delegate = self;
         }
     }
-    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
-    
+    if ([self isChatDelegateAlive]) {
+        [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
+    }
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
@@ -268,8 +271,9 @@
             convo = conversation;
         }
     }
-    [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
-    
+    if ([self isChatDelegateAlive]) {
+        [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
+    }
 }
 
 // Delegate method for handlers
@@ -286,8 +290,9 @@
         }
     }];
     
-    [_chatDelegate handlerUpdate:_currentConversationList];
-    
+    if ([self isChatDelegateAlive]) {
+        [_chatDelegate handlerUpdate:_currentConversationList];
+    }
 }
 
 // Delegate method for referral of handlers
@@ -306,6 +311,13 @@
 - (BOOL)isHomeDelegateAlive
 {
     if (_homeDelegate == nil)
+        return FALSE;
+    return TRUE;
+}
+
+- (BOOL)isChatDelegateAlive
+{
+    if (_chatDelegate == nil)
         return FALSE;
     return TRUE;
 }

@@ -18,6 +18,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
 @interface HomeViewController () <PomocHomeDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate> {
     DashBoardSingleton *singleton;
+    UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, strong) JBLineChartView *lineChartView;
@@ -39,9 +40,13 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]]];
     [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]]];
     [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]]];
+    
+    //show spinner
+    [self showLoading];
     [singleton numberOfUnattendedConversation:^(NSUInteger total){
         NSLog(@"singleton replied total == %lu",total);
         [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",total]];
+        [spinner stopAnimating];
     }];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
@@ -70,7 +75,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [_chartView addGestureRecognizer:swipeRecognizer];
     
 }
-
+- (void)showLoading
+{
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = _unattendedConversationLabel.center;
+    [self.view addSubview:spinner];
+    [self.view bringSubviewToFront:spinner];
+    [spinner startAnimating];
+}
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer
 {
     NSLog(@"detected a swipe");

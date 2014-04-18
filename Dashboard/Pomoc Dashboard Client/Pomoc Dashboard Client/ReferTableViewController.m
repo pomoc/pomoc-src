@@ -36,8 +36,13 @@
     
     option = [[NSMutableArray alloc] init];
     
-    __block NSArray *agentList;
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = self.view.center;
+    [self.view addSubview:spinner];
+    [self.view bringSubviewToFront:spinner];
+    [spinner startAnimating];
     
+    __block NSArray *agentList;
     [singleton getPossibleRefer:_currentConvo completion:^(NSArray *users){
         
         agentList = users;

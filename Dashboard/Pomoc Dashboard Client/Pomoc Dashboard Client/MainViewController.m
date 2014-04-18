@@ -20,11 +20,16 @@
     NSLog(@"inside main view controller view did load");
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [self setUpPanels];
 }
 
 - (void) setUpPanels {
+    
+    NSLog(@"setting up panel");
     
     self.bounceOnCenterPanelChange = false;
     

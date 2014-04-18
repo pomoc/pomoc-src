@@ -435,6 +435,12 @@
     [_chatNavTable reloadData];
 }
 
+- (void) updateChatList: (NSMutableArray *)newChatList
+{
+    chatList = newChatList;
+    [_chatNavTable reloadData];
+}
+
 - (void) hasNewMessage: (NSMutableArray *)newChatList conversation: (PMConversation *)conversation;
 {
     NSLog(@"called chat VC has new message");
