@@ -29,8 +29,6 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
- 
-    [self setBackgroundImage];
     
     DashBoardSingleton *singleton = [DashBoardSingleton singleton];
     [singleton setHomeDelegate:self];
@@ -39,6 +37,10 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]]];
     [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]]];
     [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]]];
+    [singleton numberOfUnattendedConversation:^(NSUInteger total){
+        NSLog(@"singleton replied total == %lu",total);
+        [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",total]];
+    }];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Home";
@@ -67,35 +69,10 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     
 }
 
-- (void) setBackgroundImage
-{
-//    UIImage *backgroundImage = [UIImage imageNamed:@"background2.png"];
-//    
-//    _backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
-//
-//    CGFloat gameViewHeight = self.view.frame.size.height;
-//    CGFloat gameViewWidth = self.view.frame.size.width;
-//    
-//    background.frame = CGRectMake(0, 0, 1024, 768);
-//    background.opaque = TRUE;
-//    
-//    [self.view addSubview:background];
-}
-
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer
 {
     NSLog(@"detected a swipe");
 }
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    return YES;
-//}
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-//{
-//    return YES;
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -260,9 +237,6 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
 - (void) totalConversationChanged: (NSUInteger)totalConversation
 {
-    NSLog(@"home delegate called!");
-    NSLog(@"total conversation == %lu", totalConversation);
-    //[_totalConversationLabel setText:@"hehe"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
     });

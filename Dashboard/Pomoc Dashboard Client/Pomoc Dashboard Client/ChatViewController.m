@@ -105,11 +105,14 @@
 
 - (IBAction)handleActionPressed:(id)sender {
     
+    NSLog(@"hande button pressed");
+    
     if ([[_handleActionLabel title] isEqualToString: @"Handle"]) {
         [singleton handleConversation:currentSelectedConvoId];
-        
+        [_handleActionLabel setTitle:@"Unhandle"];
     } else {
         [singleton unhandleConversation:currentSelectedConvoId];
+        [_handleActionLabel setTitle:@"Handle"];
     }
     
 }
@@ -234,9 +237,9 @@
         [singleton isHandlerForConversation:currentSelectedConvoId completion:^(BOOL isHandler){
             
             if (isHandler) {
-                [_handleActionLabel setTitle:@"Handle"];
-            } else {
                 [_handleActionLabel setTitle:@"Unhandle"];
+            } else {
+                [_handleActionLabel setTitle:@"Handle"];
             }
             
         }];
@@ -312,7 +315,6 @@
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
-    
     [singleton getHandlersForConversation:pmConvo.conversationId completion:^(NSArray *conversations) {
         
         NSUInteger total = 0;
@@ -424,7 +426,12 @@
         NSLog(@"yes equal!");
         [_chatMessageTable reloadData];
     }
-    
+}
+
+- (void) handlerUpdate: (NSMutableArray *)newChatList
+{
+    chatList = newChatList;
+    [_chatNavTable reloadData];
 }
 
 #pragma  mark - Preparation for Segue

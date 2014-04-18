@@ -37,10 +37,10 @@
     
     DashBoardSingleton *singleton = [DashBoardSingleton singleton];
     [singleton loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(BOOL success) {
+        [self performSegueWithIdentifier:@"login" sender:sender];
     }];
 
-    [self performSegueWithIdentifier:@"login" sender:sender];
-
+    
 }
 //
 //- (void) test {

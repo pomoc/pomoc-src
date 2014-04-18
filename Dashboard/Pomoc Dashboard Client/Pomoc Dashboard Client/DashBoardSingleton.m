@@ -10,7 +10,8 @@
 #import "PomocSupport.h"
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
-   __block NSString *selfUserId;
+    __block NSString *selfUserId;
+    __block NSUInteger totalUnattendedConversation;
 }
 
 @end
@@ -41,9 +42,10 @@
 
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion
 {
+    NSLog(@"logging in");
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc79" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc141" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -83,23 +85,34 @@
 
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 {
-    __block NSUInteger total = 0;
+    __block NSUInteger totalAttended = 0;
     __block NSUInteger totalConversationIterated = 0;
+    
+    NSLog(@"number of unattended called, current convo list == %lu",[_currentConversationList count]);
+    
+    if ([_currentConversationList count] == 0) {
+        totalUnattendedConversation = 0;
+        completion(0);
+    }
     
     for (PMConversation *convo in _currentConversationList) {
         
         [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+             NSLog(@"handlers called");
             
+            //check among the users in the convo, if there are someone inside
             for (PMUser *user in users) {
-                if ([user.type isEqualToString:USER_TYPE_AGENT]){
-                    total++;
+                NSLog(@"user.type == %@",user.type);
+                if (![user.type isEqualToString:USER_TYPE_PUBLIC]){
+                    totalAttended++;
                     break;
                 }
             }
             
             totalConversationIterated ++;
             if (totalConversationIterated == [_currentConversationList count]) {
-                completion(total);
+                totalUnattendedConversation = totalConversationIterated - totalAttended;
+                completion(totalUnattendedConversation);
             }
             
         }];
@@ -115,6 +128,7 @@
 #pragma mark - handling convo
 - (void)handleConversation:(NSString *)conversationId
 {
+    NSLog(@"handling conversation pressed");
     [PMSupport handleConversation:conversationId];
 }
 
@@ -176,9 +190,14 @@
     }
     
     if (currentAgentCount != [_currentAgentList count]) {
-        [_homeDelegate agentTotalNumberChange:[_currentAgentList count]];
+        if ([_homeDelegate respondsToSelector:@selector(agentTotalNumberChange:)]) {
+            [_homeDelegate agentTotalNumberChange:[_currentAgentList count]];
+        }
     } else {
-        [_homeDelegate userTotalNumberChange:[_currentUserList count]];
+        if ([_homeDelegate respondsToSelector:@selector(userTotalNumberChange:)]) {
+            [_homeDelegate userTotalNumberChange:[_currentUserList count]];
+        }
+        
     }
 }
 
@@ -225,11 +244,28 @@
     
 }
 
-- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee
+// Delegate method for handlers
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
 {
+    //checking if current unattended conversation list changed
+    __block NSUInteger temp = totalUnattendedConversation;
+    [self numberOfUnattendedConversation:^(NSUInteger total){
+       
+        if (temp != total){
+            if ([_homeDelegate respondsToSelector:@selector(totalUnattendedConversationChanged:)]) {
+                [_homeDelegate totalUnattendedConversationChanged:temp];
+            }
+        }
+    }];
     
-    NSLog(@"new handler for a convo!!");
+    [_chatDelegate handlerUpdate:_currentConversationList];
+    
+}
 
+// Delegate method for referral of handlers
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
+{
+    NSLog(@"hehe referred");
 }
 
 

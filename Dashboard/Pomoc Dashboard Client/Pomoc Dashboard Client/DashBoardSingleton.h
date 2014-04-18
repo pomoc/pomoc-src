@@ -16,18 +16,17 @@
 
 - (void) hasNewConversation: (NSMutableArray *)chatList;
 - (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
-
+- (void) handlerUpdate: (NSMutableArray *)chatList;
 
 @end
 
 
 @protocol PomocHomeDelegate
 
-//future work
-
 - (void) agentTotalNumberChange: (NSUInteger)agentNumber;
 - (void) userTotalNumberChange: (NSUInteger)userNumber;
 - (void) totalConversationChanged: (NSUInteger)totalConversation;
+- (void) totalUnattendedConversationChanged: (NSUInteger)totalUnattended;
 
 //delegate for agent online/ offline
 //delegate for user online/ offline
