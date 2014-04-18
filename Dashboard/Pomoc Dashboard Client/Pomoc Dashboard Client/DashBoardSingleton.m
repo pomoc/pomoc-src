@@ -9,7 +9,9 @@
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
 
-@interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>
+@interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
+   __block NSString *selfUserId;
+}
 
 @end
 
@@ -46,6 +48,8 @@
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
         
+        selfUserId = returnedUserId;
+        
         //NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
             
@@ -65,8 +69,10 @@
                 }
                 completion(TRUE);
                 
-                if ([_homeDelegate respondsToSelector:@selector(totalConversationChanged:)]) {
-                    [_homeDelegate totalConversationChanged:[conversations count]];
+                if (_homeDelegate) {
+                    if ([_homeDelegate respondsToSelector:@selector(totalConversationChanged:)]) {
+                        [_homeDelegate totalConversationChanged:[conversations count]];
+                    }
                 }
                 
             }];
@@ -75,10 +81,11 @@
     }];
 }
 
-- (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion
+- (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 {
     __block NSUInteger total = 0;
     __block NSUInteger totalConversationIterated = 0;
+    
     for (PMConversation *convo in _currentConversationList) {
         
         [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
@@ -124,7 +131,7 @@
         
         NSUInteger total = 0;
         for (PMUser *user in conversations){
-            if ([user.type isEqualToString:USER_TYPE_AGENT]) {
+            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
                 total++;
             }
         }
@@ -156,10 +163,11 @@
     [_currentUserList removeAllObjects];
     
     for (PMUser *user in users) {
-        if([user.type isEqualToString:USER_TYPE_AGENT]) {
-            [_currentAgentList addObject:user];
-        } else {
+        NSLog(@"user.type == %@",user.type);
+        if([user.type isEqualToString:USER_TYPE_PUBLIC]) {
             [_currentUserList addObject:user];
+        } else {
+            [_currentAgentList addObject:user];
         }
     }
     
@@ -168,6 +176,22 @@
     } else {
         [_homeDelegate userTotalNumberChange:[_currentUserList count]];
     }
+}
+
+- (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion
+{
+    [self getHandlersForConversation:conversationId completion:^(NSArray * users){
+       
+        BOOL found = false;
+        for (PMUser *user in users) {
+            if ([user.userId isEqualToString:selfUserId]) {
+                found = true;
+                break;
+            }
+        }
+        completion(found);
+        
+    }];
 }
 
 #pragma mark - Pomoc Conversation delegates
@@ -197,10 +221,13 @@
     
 }
 
-- (void) didReceiveHandlerUpdate:(PMConversation *)conversation isReferral:(BOOL)isReferral referrer:(PMUser *)referrer referee:(PMUser *)referee
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee
 {
-    NSLog(@"conversation recieved handler update!");
+    
+    NSLog(@"new handler for a convo!!");
+
 }
+
 
 
 @end
