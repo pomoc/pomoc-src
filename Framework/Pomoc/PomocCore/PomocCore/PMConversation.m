@@ -18,7 +18,10 @@
 
 - (void)joinConversationWithCompletion:(void (^)(BOOL))completion
 {
-    [PMCore joinConversation:self.conversationId completion:^(NSArray *messages) {
+    [PMCore joinConversation:self.conversationId
+               creatorUserId:self.creator.userId
+                  createDate:self.createDate
+                  completion:^(NSArray *messages) {
         if (messages.count == 0) {
             completion(YES);
             return;

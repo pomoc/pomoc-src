@@ -21,6 +21,11 @@
 + (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code;
 + (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
                                 conversationId:(NSString *)conversationId;
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
+                                conversationId:(NSString *)conversationId
+                                 creatorUserId:(NSString *)creatorUserId
+                                    createDate:(NSDate *)createDate;
+
 + (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
                                       conversationId:(NSString *)conversationId;
 + (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code

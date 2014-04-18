@@ -32,6 +32,14 @@
     return [[PMInternalMessage alloc] initWithMessageCode:code conversationId:conversationId];
 }
 
++ (PMInternalMessage *)internalMessageWithCode:(PMInternalMessageCode)code
+                                conversationId:(NSString *)conversationId
+                                 creatorUserId:(NSString *)creatorUserId
+                                    createDate:(NSDate *)createDate
+{
+    return [[PMInternalMessage alloc] initWithMessageCode:code conversationId:conversationId creatorUserId:creatorUserId createDate:createDate];
+}
+
 + (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
                                       conversationId:(NSString *)conversationId
 {
