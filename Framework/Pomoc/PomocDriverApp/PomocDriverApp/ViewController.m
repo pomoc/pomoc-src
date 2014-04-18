@@ -41,29 +41,29 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc63" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc79" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
 #ifdef __i386__
-        NSString *customer = @"customer";
+        NSString *customer = @"customer22";
         [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
             [PMSupport connectWithCompletion:^(BOOL connected) {
                 [PMSupport getAllConversations:^(NSArray *conversations) {
                     NSLog(@"logged in");
 
-                    NSString *testConversationId = @"test:anc63:chat";
-                    // Handling test
-                    [PMSupport handleConversation:testConversationId];
-                    [PMSupport unhandleConversation:testConversationId];
-                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
-                        NSLog(@"getHandlersForConversation: %@", handlers);
-                    }];
-                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
-                    
+//                    NSString *testConversationId = @"test:anc63:chat";
+//                    // Handling test
+//                    [PMSupport handleConversation:testConversationId];
+//                    [PMSupport unhandleConversation:testConversationId];
+//                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
+//                        NSLog(@"getHandlersForConversation: %@", handlers);
+//                    }];
+//                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+//                    
                     // Online test
                     [PMSupport pingApp];
-                    [PMSupport pingConversation:testConversationId];
+                    //[PMSupport pingConversation:testConversationId];
                 }];
             }];
         }];

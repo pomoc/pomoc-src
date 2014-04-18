@@ -43,7 +43,7 @@
 {
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc63" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc79" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -130,10 +130,14 @@
     [PMSupport getHandlersForConversation:conversationId completion:^(NSArray *conversations){
         
         NSUInteger total = 0;
+
         for (PMUser *user in conversations){
-            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
-                total++;
-            }
+            NSLog(@"user type== %@", user.type);
+            NSLog(@"user type== %@", user.userId);
+            NSLog(@"user type== %@", user.name);
+//            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
+//                total++;
+//            }
         }
         
         NSLog(@"called in line 122 of singleton with conversation user == %lu", total);
