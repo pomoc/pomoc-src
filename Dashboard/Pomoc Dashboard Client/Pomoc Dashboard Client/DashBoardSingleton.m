@@ -45,7 +45,7 @@
     NSLog(@"logging in");
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc160" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -73,16 +73,41 @@
                 }
                 completion(TRUE);
                 
-                if (_homeDelegate) {
-                    if ([_homeDelegate respondsToSelector:@selector(totalConversationChanged:)]) {
-                        [_homeDelegate totalConversationChanged:[conversations count]];
-                    }
+                if ([self isHomeDelegateAlive]) {
+                    [_homeDelegate totalConversationChanged:[conversations count]];
                 }
+                
                 
             }];
             
         }];
     }];
+}
+
+- (void)getPossibleRefer: (PMConversation *) convo completion:(void (^)(NSArray *user))completion;
+{
+    NSMutableSet *listOfAgent = [[NSMutableSet alloc] initWithArray:_currentAgentList];
+    
+    for (PMUser *user in [listOfAgent allObjects]) {
+        if ([user.userId isEqualToString:selfUserId]) {
+            [listOfAgent removeObject:user];
+            break;
+        }
+    }
+    
+    [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+       
+        for (PMUser *user in users) {
+            [listOfAgent removeObject:user];
+        }
+        
+        completion([listOfAgent allObjects]);
+    }];
+}
+
+- (void)refer: (PMConversation *)convo referee:(PMUser *)user
+{
+    [PMSupport referHandlerConversation:convo.conversationId refereeUserId:user.userId];
 }
 
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
@@ -193,11 +218,11 @@
     }
     
     if (currentAgentCount != [_currentAgentList count]) {
-        if ([_homeDelegate respondsToSelector:@selector(agentTotalNumberChange:)]) {
+        if ([self isHomeDelegateAlive]) {
             [_homeDelegate agentTotalNumberChange:[_currentAgentList count]];
         }
     } else {
-        if ([_homeDelegate respondsToSelector:@selector(userTotalNumberChange:)]) {
+        if ([self isHomeDelegateAlive]) {
             [_homeDelegate userTotalNumberChange:[_currentUserList count]];
         }
         
@@ -255,7 +280,7 @@
     [self numberOfUnattendedConversation:^(NSUInteger total){
        
         if (temp != total){
-            if ([_homeDelegate respondsToSelector:@selector(totalUnattendedConversationChanged:)]) {
+            if ([self isHomeDelegateAlive]) {
                 [_homeDelegate totalUnattendedConversationChanged:temp];
             }
         }
@@ -269,9 +294,20 @@
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
     NSLog(@"hehe referred");
+    NSLog(@"referrer id user name = %@", referrer.name);
+    NSLog(@"referee id user name = %@", referee.name);
+    
+    if ([referee.userId isEqualToString: selfUserId]) {
+        [PMSupport handleConversation:conversationId];
+    }
 }
 
 // check
-
+- (BOOL)isHomeDelegateAlive
+{
+    if (_homeDelegate == nil)
+        return FALSE;
+    return TRUE;
+}
 
 @end

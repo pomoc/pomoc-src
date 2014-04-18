@@ -7,9 +7,12 @@
 //
 
 #import "ReferTableViewController.h"
+#import "DashBoardSingleton.h"
+#import "PomocSupport.h"
 
 @interface ReferTableViewController () {
-    NSArray *option;
+    NSMutableArray *option;
+    DashBoardSingleton *singleton;
 }
 
 @end
@@ -29,7 +32,24 @@
 {
     [super viewDidLoad];
     NSLog(@"came inside action VC");
-    option = @[@"Tim", @"Ali", @"Baba"];
+    singleton = [DashBoardSingleton singleton];
+    
+    option = [[NSMutableArray alloc] init];
+    
+    __block NSArray *agentList;
+    
+    [singleton getPossibleRefer:_currentConvo completion:^(NSArray *users){
+        
+        agentList = users;
+        for (PMUser *user in agentList) {
+            [option addObject: user];
+        }
+        
+        [self.tableView reloadData];
+        
+    }];
+    
+    //option = @[@"Tim", @"Ali", @"Baba"];
 }
 
 #pragma mark - Table view data source
@@ -46,7 +66,8 @@
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    cell.textLabel.text = [option objectAtIndex:indexPath.row];
+    PMUser *user = [option objectAtIndex:indexPath.row];
+    cell.textLabel.text = user.name;
     
     return cell;
 }
@@ -56,6 +77,10 @@
 {
     NSLog(@"selected row == %lu",indexPath.row);
     
+    PMUser *selectedUser = [option objectAtIndex:indexPath.row];
+    NSLog(@"selected user name == %@",selectedUser.name);
+    
+    [singleton refer:_currentConvo referee:selectedUser];
 }
 
 @end

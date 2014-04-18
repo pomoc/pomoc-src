@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMSupport.h"
 
 @interface ReferTableViewController : UITableViewController
+
+
+@property (nonatomic, strong) PMConversation *currentConvo;
 
 @end

@@ -41,45 +41,57 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc155" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
-    
-    // User 'login' code
-#ifdef __i386__
-        NSString *customer = @"customer22";
-        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
-            [PMSupport connectWithCompletion:^(BOOL connected) {
-                [PMSupport getAllConversations:^(NSArray *conversations) {
-                    NSLog(@"logged in");
-
-//                    NSString *testConversationId = @"test:anc63:chat";
-//                    // Handling test
-//                    [PMSupport handleConversation:testConversationId];
-//                    [PMSupport unhandleConversation:testConversationId];
-//                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
-//                        NSLog(@"getHandlersForConversation: %@", handlers);
-//                    }];
-//                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+//    
+//    // User 'login' code
+//#ifdef __i386__
+//        NSString *customer = @"customer22";
+//        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+//            [PMSupport connectWithCompletion:^(BOOL connected) {
+//                [PMSupport getAllConversations:^(NSArray *conversations) {
+//                    NSLog(@"logged in");
+//
+////                    NSString *testConversationId = @"test:anc63:chat";
+////                    // Handling test
+////                    [PMSupport handleConversation:testConversationId];
+////                    [PMSupport unhandleConversation:testConversationId];
+////                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
+////                        NSLog(@"getHandlersForConversation: %@", handlers);
+////                    }];
+////                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+////                    
+//                    // Online test
+//                    [PMSupport pingApp];
+//                    //[PMSupport pingConversation:testConversationId];
+//                }];
+//            }];
+//        }];
+//#else
+//        [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
+//            self.userId = userId;
+//            NSLog(@"------- USER ID IS %@", userId);
+//            [PMSupport connectWithCompletion:^(BOOL connected) {
+//                // Get all conversations
+//                [PMSupport getAllConversations:^(NSArray *conversations) {
 //                    
-                    // Online test
-                    [PMSupport pingApp];
-                    //[PMSupport pingConversation:testConversationId];
-                }];
+//                }];
+//            }];
+//        }];
+//#endif
+//
+    [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
+        self.userId = userId;
+        NSLog(@"------- USER ID IS %@", userId);
+        [PMSupport connectWithCompletion:^(BOOL connected) {
+            // Get all conversations
+            [PMSupport getAllConversations:^(NSArray *conversations) {
+                
             }];
+            [PMSupport pingApp];
         }];
-#else
-        [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-            self.userId = userId;
-            NSLog(@"------- USER ID IS %@", userId);
-            [PMSupport connectWithCompletion:^(BOOL connected) {
-                // Get all conversations
-                [PMSupport getAllConversations:^(NSArray *conversations) {
-                    
-                }];
-            }];
-        }];
-#endif
-
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning

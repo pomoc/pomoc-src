@@ -42,5 +42,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 
 //
+- (void) deallocDelegate;
 
 @end

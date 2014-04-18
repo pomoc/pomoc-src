@@ -17,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalConversationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unattendedConversationLabel;
 
+- (void) deallocDelegate; 
+
 @end

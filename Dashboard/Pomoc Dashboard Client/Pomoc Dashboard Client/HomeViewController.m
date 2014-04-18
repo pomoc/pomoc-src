@@ -16,7 +16,9 @@
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
-@interface HomeViewController () <PomocHomeDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate>
+@interface HomeViewController () <PomocHomeDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate> {
+    DashBoardSingleton *singleton;
+}
 
 @property (nonatomic, strong) JBLineChartView *lineChartView;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
@@ -30,7 +32,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
+    singleton = [DashBoardSingleton singleton];
     [singleton setHomeDelegate:self];
     
     //TODO ask dashboard singleton for number of convo current, users online etc
@@ -241,6 +243,12 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
         [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
     });
     
+}
+
+- (void) deallocDelegate
+{
+    NSLog(@"inside dealloc delegate of home vc");
+    [singleton setHomeDelegate:nil];
 }
 
 @end

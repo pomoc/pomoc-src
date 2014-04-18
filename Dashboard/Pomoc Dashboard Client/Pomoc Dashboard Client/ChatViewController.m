@@ -11,6 +11,8 @@
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
 
+#import "ReferTableViewController.h"
+
 #import "PomocCore.h"
 #import "PomocSupport.h"
 #import "PMChatMessage.h"
@@ -52,6 +54,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"hehhe");
     [super viewDidLoad];
     self.title = @"Messages";
     
@@ -182,13 +185,10 @@
         return [chatList count];
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        
-        NSLog(@"at number of rows in section for messages ");
         if ([chatList count] == 0) {
             return 0;
             
         } else {
-            NSLog(@"returning %lu", [currentlySelectedConvo.messages count]);
             return [currentlySelectedConvo.messages count];
         }
     }
@@ -458,10 +458,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"uploadPicture"]) {
-        
         UploadViewController *child = [segue destinationViewController];
         child.delegate = self;
         uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        
+    } else if ([[segue identifier] isEqualToString:@"referAgents"]) {
+        
+        ReferTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentConvo:currentlySelectedConvo];
+        
     }
 }
 
@@ -534,5 +539,10 @@
     _chatNavTable.frame = chatNavOriginalFrame;
 }
 
+- (void) deallocDelegate
+{
+    NSLog(@"inside dealloc delegate of chat vc");
+    singleton.chatDelegate = nil;
+}
 
 @end

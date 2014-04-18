@@ -13,6 +13,7 @@
 
 //Importing all the different views that the navigation bar will be showing
 #import "MainViewController.h"
+#import "HomeViewController.h"
 #import "ChatViewController.h"
 
 #define HOME 0
@@ -28,7 +29,7 @@
     NSArray *dataArray;
     NSArray *settingArray;
     NSArray *sectionHeading;
-    
+    NSUInteger selected;
 }
 
 @end
@@ -48,19 +49,14 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [_tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+    
+    selected = HOME;
 }
 
 - (IBAction)Chat:(id)sender
 {
     self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -144,14 +140,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [self deallocDelegate];
     switch (indexPath.row) {
         case HOME:
             NSLog(@"selected home");
+            selected = HOME;
             self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"];
             break;
         case CHAT:
             NSLog(@"Selected chat");
+            selected = CHAT;
             self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
             break;
         default:
@@ -159,54 +157,25 @@
     }
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) deallocDelegate {
+    
+    HomeViewController *homeVc;
+    ChatViewController *chatVc;
+    
+    UINavigationController *navController = (UINavigationController *) self.sidePanelController.centerPanel;
+    
+    switch(selected) {
+        case HOME:
+            homeVc = (HomeViewController *) [[navController viewControllers] objectAtIndex:0];
+            [homeVc deallocDelegate];
+            break;
+        case CHAT:
+            chatVc = (ChatViewController *) [[navController viewControllers] objectAtIndex:0];
+            [chatVc deallocDelegate];
+            break;
+        default:
+            break;
+    }
 }
-*/
 
 @end
