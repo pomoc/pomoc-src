@@ -54,16 +54,11 @@
 
                     // Handling test
                     [PMSupport handleConversation:@"test:anc63:chat"];
-                    NSLog(@"step 1");
                     [PMSupport unhandleConversation:@"test:anc63:chat"];
-                    NSLog(@"step 2");
                     [PMSupport getHandlersForConversation:@"test:anc63:chat" completion:^(NSArray *handlers) {
                         NSLog(@"getHandlersForConversation: %@", handlers);
                     }];
-                    NSLog(@"step 3");
                     [PMSupport referHandlerConversation:@"test:anc63:chat" refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
-                    NSLog(@"step 4");
-                
                 }];
             }];
         }];
