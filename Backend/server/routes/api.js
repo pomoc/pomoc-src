@@ -94,7 +94,7 @@ module.exports = function(app, db, crypto) {
                 "salt", salt,
                 "appToken", appToken,
                 "appSecret", appSecret,
-                "type", "super"
+                "type", "agent"
                 );
 
             // Create app user list

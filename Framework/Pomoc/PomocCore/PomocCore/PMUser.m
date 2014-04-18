@@ -45,7 +45,12 @@
     self = [super init];
     if (self) {
         self.userId = data[USER_USERID];
-        self.type = data[USER_TYPE];
+        if ([self.type isEqual:NULL]) {
+            self.type = USER_TYPE_PUBLIC;
+        }
+        else {
+            self.type = data[USER_TYPE];
+        }
         self.name = data[USER_NAME];
     }
     return self;
