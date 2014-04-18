@@ -249,9 +249,10 @@ io.sockets.on('connection', function(client) {
             var multi = db.client.multi();
             // Add referred agent to list of agents handling the conersation
             multi.sadd(data.conversationId + ':handlers', data.userId);
-            multi.smembers(data.conversationId + ':handlers', data.userId);
+            multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.hgetall(data.refereeUserId + ':account');
+            
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
                     {
