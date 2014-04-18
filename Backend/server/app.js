@@ -338,6 +338,7 @@ io.sockets.on('connection', function(client) {
                 // announce new list of online users for each converation that
                 // user was in
                 for (var j = 0; j < conversations.length; j++) {
+                    console.log("OPOPOPOPO" + conversations);
                     db.client.smembers(conversations[j]["conversationId"] + ':online', function(err, reply) { 
                         io.sockets.in(conversations[j]["conversationId"]).emit('onlineStatus', {type:'conversation', users:reply, conversationId:conversations[j]});
                         console.log('Disconnected from: ' + conversations[j]["conversationId"]);
