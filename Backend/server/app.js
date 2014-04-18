@@ -298,6 +298,7 @@ io.sockets.on('connection', function(client) {
         console.log(userId + " disconnected");
         // Get list of conversations users is in
         db.client.smembers(userId + ':sub', function(err, conversations) {
+            console.log('conversations: ' + conversations);
             var multiRemove = db.client.multi();
             // Remove user from the online user list for each convo user is in
             for (var i = 0; i < conversations.length; i++) {
