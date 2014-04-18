@@ -28,6 +28,7 @@
 @interface PMConversation : NSObject
 
 @property (nonatomic, strong, readonly) NSString *conversationId;
+@property (nonatomic, strong, readonly) NSString *creatorUserId;
 
 @property (nonatomic, weak) id<PMConversationDelegate> delegate;
 

@@ -45,8 +45,7 @@
     self = [super init];
     if (self) {
         self.userId = data[USER_USERID];
-        NSLog(@"user class %@", [self.type class]);
-        if (self.type == NULL) {
+        if (data[USER_TYPE] == NULL) {
             self.type = USER_TYPE_PUBLIC;
         }
         else {
