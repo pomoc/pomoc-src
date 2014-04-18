@@ -76,7 +76,10 @@
     [core sendMessage:initMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
             NSString *conversationId = jsonResponse[@"conversationId"];
-            PMConversation *conversation = [[PMConversation alloc] initWithConversationId:conversationId];
+            NSString *creatorUserId = jsonResponse[@"creatorUserId"];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[jsonResponse[@"createDate"] doubleValue]];
+            PMConversation *conversation = [[PMConversation alloc] initWithConversationId:conversationId
+                                            creatorUserId:creatorUserId createDate:createDate];
             
             @synchronized(core.conversations) {
                 core.conversations[conversationId] = conversation;
@@ -102,11 +105,16 @@
     }];
 }
 
-+ (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion
++ (void)joinConversation:(NSString *)conversationId
+           creatorUserId:(NSString *)creatorUserId
+              createDate:(NSDate *)createDate
+              completion:(void (^)(NSArray *messages))completion
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeJoinConversation
-                                                    conversationId:conversationId];
+                                                    conversationId:conversationId
+                                                     creatorUserId:creatorUserId
+                                                        createDate:createDate];
     
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
@@ -134,10 +142,13 @@
     [core sendMessage:allConversationMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
             
-            NSArray *conversationIds = jsonResponse[@"conversationIds"];
+            NSArray *conversationObjects = jsonResponse[@"conversationIds"];
             NSMutableArray *conversations = [NSMutableArray array];
-            for (NSString *conversationId in conversationIds) {
-                [conversations addObject:[[PMConversation alloc] initWithConversationId:conversationId]];
+            for (NSDictionary *conversation in conversationObjects) {
+                NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[conversation[@"createDate"] doubleValue]];
+                [conversations addObject:[[PMConversation alloc] initWithConversationId:conversation[@"conversationId"]
+                                                                          creatorUserId:conversation[@"creatorUserId"]
+                                                                             createDate:createDate]];
             }
             
             [PMCore joinAllConversations:[conversations copy] completion:completion];
@@ -287,11 +298,14 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
             NSString *creatorUserId = data[@"userId"];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[@"createDate"] doubleValue]];
+            
+            NSLog(@"createDate %@", createDate);
             
             
             PMConversation *conversation = self.conversations[conversationId];
             if (!conversation) {
-                conversation = [[PMConversation alloc] initWithConversationId:conversationId];
+                conversation = [[PMConversation alloc] initWithConversationId:conversationId creatorUserId:creatorUserId createDate:createDate];
                 @synchronized(self.conversations) {
                     self.conversations[conversationId] = conversation;
                 }

@@ -28,17 +28,13 @@
 @interface PMConversation : NSObject
 
 @property (nonatomic, strong, readonly) NSString *conversationId;
-@property (nonatomic, strong, readonly) NSString *creatorUserId;
+@property (nonatomic, strong, readonly) PMUser *creator;
+@property (nonatomic, strong, readonly) NSDate *createDate;
 
 @property (nonatomic, weak) id<PMConversationDelegate> delegate;
 
 - (void)sendTextMessage:(NSString *)message;
 - (void)sendImageMessage:(UIImage *)image;
 - (NSArray *)messages;
-
-// TODO
-- (void)handleConversation;
-- (void)unhandleConversation;
-- (void)referHandlerUser:(PMUser *)user;
 
 @end

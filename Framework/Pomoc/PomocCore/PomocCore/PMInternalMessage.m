@@ -12,6 +12,8 @@
 
 @property (nonatomic) PMInternalMessageCode code;
 @property (nonatomic) NSString *conversationId;
+@property (nonatomic) NSString *creatorUserId;
+@property (nonatomic) NSDate *createDate;
 
 @end
 
@@ -58,6 +60,21 @@
     return self;
 }
 
+- (id)initWithMessageCode:(PMInternalMessageCode)code
+           conversationId:(NSString *)conversationId
+            creatorUserId:(NSString *)creatorUserId
+               createDate:(NSDate *)createDate
+{
+    self = [super init];
+    if (self) {
+        self.code = code;
+        self.conversationId = conversationId;
+        self.creatorUserId = creatorUserId;
+        self.createDate = createDate;
+    }
+    return self;
+}
+
 - (NSDictionary *)jsonObject
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
@@ -66,6 +83,12 @@
     
     if (self.conversationId) {
         jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
+    }
+    if (self.createDate) {
+        jsonData[MESSAGE_CREATE_DATE] = [NSNumber numberWithDouble:[self.createDate timeIntervalSince1970]];
+    }
+    if (self.creatorUserId) {
+        jsonData[MESSAGE_CREATOR_USERID] = self.creatorUserId;
     }
     
     return [NSDictionary dictionaryWithDictionary:jsonData];

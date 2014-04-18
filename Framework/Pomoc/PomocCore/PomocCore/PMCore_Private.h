@@ -11,7 +11,10 @@
 @interface PMCore ()
 
 + (void)sendTextMessage:(NSString *)message conversationId:(NSString *)conversationId;
-+ (void)joinConversation:(NSString *)conversationId completion:(void (^)(NSArray *messages))completion;
++ (void)joinConversation:(NSString *)conversationId
+           creatorUserId:(NSString *)creatorUserId
+              createDate:(NSDate *)createDate
+              completion:(void (^)(NSArray *messages))completion;
 + (void)sendImageMessage:(UIImage *)image conversationId:(NSString *)conversationId;
 
 @end

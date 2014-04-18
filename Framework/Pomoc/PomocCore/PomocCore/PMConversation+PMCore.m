@@ -13,14 +13,16 @@
 #import "PMImageMessage.h"
 #import "PMChatMessage_Private.h"
 #import "PMInternalMessage.h"
+#import "PMUserManager.h"
 
 @implementation PMConversation (PMCore)
 
-- (id)initWithConversationId:(NSString *)conversationId
+- (id)initWithConversationId:(NSString *)conversationId creatorUserId:(NSString *)creatorUserId createDate:(NSDate *)createDate
 {
     self = [super init];
     if (self) {
         self.conversationId = conversationId;
+        self.creator = [PMUserManager getUserObjectFromUserId:creatorUserId];
         self.allMessages = [NSMutableArray array];
     }
     return self;

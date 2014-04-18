@@ -33,5 +33,7 @@ typedef enum {
 #define MESSAGE_REFEREE_USERID      @"refereeUserId"
 #define MESSAGE_TYPE                @"type"
 #define MESSAGE_USER_ID             @"userId"
+#define MESSAGE_CREATE_DATE         @"createDate"
+#define MESSAGE_CREATOR_USERID     @"creatorUserId"
 
 #endif

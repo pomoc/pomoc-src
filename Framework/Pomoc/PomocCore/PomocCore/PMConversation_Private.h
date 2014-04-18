@@ -11,6 +11,8 @@
 @interface PMConversation ()
 
 @property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) PMUser *creator;
+@property (nonatomic, strong) NSDate *createDate;
 @property (nonatomic, strong) NSMutableArray *allMessages;
 
 - (void)joinConversationWithCompletion:(void(^)(BOOL success))completion;
