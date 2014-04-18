@@ -16,7 +16,7 @@
 #define POMOC_PORT  3217
 
 #else
-#define POMOC_URL   @"localhost"
+#define POMOC_URL   @"api.pomoc.im"
 #define POMOC_PORT  3217
 #endif
 
