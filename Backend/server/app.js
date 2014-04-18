@@ -106,7 +106,7 @@ io.sockets.on('connection', function(client) {
 
             // broadcast notification of new channel to app channel
             var key = data.appId + ':notification';
-            client.broadcast.to(data.appId + ':notification').emit('newConversation', {conversationId: conversationId});
+            client.broadcast.to(data.appId + ':notification').emit('newConversation', {conversationId: conversationId, timestamp:(new Date()).getTime()});
             console.log(data.appId + ' notified about: ' + conversationId);
         }
 
