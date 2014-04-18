@@ -45,7 +45,7 @@
     self = [super init];
     if (self) {
         self.userId = data[USER_USERID];
-        if (data[USER_TYPE] == NULL) {
+        if ([data[USER_TYPE] isEqual:[NSNull null]]) {
             self.type = USER_TYPE_PUBLIC;
         }
         else {

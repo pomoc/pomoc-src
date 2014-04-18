@@ -286,6 +286,8 @@
     else if ([packet.name isEqualToString:@"newConversation"]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
+            NSString *creatorUserId = data[@"userId"];
+            
             
             PMConversation *conversation = self.conversations[conversationId];
             if (!conversation) {
