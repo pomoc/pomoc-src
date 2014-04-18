@@ -66,6 +66,9 @@
     if (self.conversationId) {
         jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
     }
+    if (self.refereeUserId) {
+        jsonData[MESSAGE_REFEREE_USERID] = self.refereeUserId;
+    }
     
     return [NSDictionary dictionaryWithDictionary:jsonData];
 }

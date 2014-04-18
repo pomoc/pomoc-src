@@ -30,6 +30,7 @@ typedef enum {
 #define MESSAGE_CLASS               @"class"
 #define MESSAGE_MESSAGE             @"message"
 #define MESSAGE_CONVERSATION_ID     @"conversationId"
+#define MESSAGE_REFEREE_USERID      @"refereeUserId"
 #define MESSAGE_TYPE                @"type"
 #define MESSAGE_USER_ID             @"userId"
 
