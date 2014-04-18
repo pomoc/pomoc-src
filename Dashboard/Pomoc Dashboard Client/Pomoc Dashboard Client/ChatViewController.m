@@ -104,6 +104,14 @@
 }
 
 - (IBAction)handleActionPressed:(id)sender {
+    
+    if ([[_handleActionLabel title] isEqualToString: @"Handle"]) {
+        [singleton handleConversation:currentSelectedConvoId];
+        
+    } else {
+        [singleton unhandleConversation:currentSelectedConvoId];
+    }
+    
 }
 
 #pragma mark - Action button
@@ -145,9 +153,6 @@
     dispatch_async(aQueue, ^{
         [currentlySelectedConvo sendImageMessage:image];
     });
-        
-    //handling of photo
-    NSLog(@"picture selected");
 }
 
 #pragma mark - UINavigationController methods
@@ -226,7 +231,15 @@
         currentSelectedConvoId = pmConversation.conversationId;
         currentlySelectedConvo = pmConversation;
         
-        
+        [singleton isHandlerForConversation:currentSelectedConvoId completion:^(BOOL isHandler){
+            
+            if (isHandler) {
+                [_handleActionLabel setTitle:@"Handle"];
+            } else {
+                [_handleActionLabel setTitle:@"Unhandle"];
+            }
+            
+        }];
         
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
