@@ -96,10 +96,11 @@
     for (NSString * userId in userIds) {
         dispatch_group_async(group, queue, ^(void) {
             PMUser *user = [PMUserManager getUserObjectFromUserId:userId];
-            
-            dispatch_sync(joinQueue, ^(void) {
-                [users addObject:user];
-            });
+            if (user) {
+                dispatch_sync(joinQueue, ^(void) {
+                    [users addObject:user];
+                });
+            }
         });
     }
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);

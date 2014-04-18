@@ -61,6 +61,7 @@ io.sockets.on('connection', function(client) {
         multi.smembers(key);
         multi.exec(function(err, replies) {
             var message = {users:replies[1]};
+            console.log(message);
             if (conversationId) {
                 message.conversationId = conversationId;
                 message.type = 'conversation';
@@ -150,6 +151,7 @@ io.sockets.on('connection', function(client) {
             console.log('PINGAPP');
             userId = data.userId;
             appId = data.appId;
+            client.join(data.appId + ':notification');
             ping(data.userId, data.appId + ':notification', data.appId + ':online');
         }
         

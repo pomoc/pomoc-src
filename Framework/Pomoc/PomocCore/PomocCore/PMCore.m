@@ -122,8 +122,6 @@
             
             completion([NSArray arrayWithArray:messages]);
             
-            // Announce online status
-            // Request for list of handlers
         }
     }];
 }
