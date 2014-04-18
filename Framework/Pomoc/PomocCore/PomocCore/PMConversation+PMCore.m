@@ -23,6 +23,7 @@
     if (self) {
         self.conversationId = conversationId;
         self.creator = [PMUserManager getUserObjectFromUserId:creatorUserId];
+        self.createDate = createDate;
         self.allMessages = [NSMutableArray array];
     }
     return self;
