@@ -69,7 +69,7 @@ io.sockets.on('connection', function(client) {
             else {
                 message.type = 'app';
             }
-            console.log("PINGING OUT TO " + channel)
+        console.log("PINGING OUT TO " + channel)
             io.sockets.in(channel).emit('onlineStatus', message);
         });
     }
@@ -83,8 +83,8 @@ io.sockets.on('connection', function(client) {
             var conversationId = data.userId + ':' + data.appId + ':chat';
             var payload = {
                 conversationId: conversationId,
-                creatorUserId: data.userId,
-                createDate: data.timestamp
+    creatorUserId: data.userId,
+    createDate: data.timestamp
             };
 
             // subscribes client to new chat
@@ -165,7 +165,7 @@ io.sockets.on('connection', function(client) {
             client.join(data.appId + ':notification');
             ping(data.userId, data.appId + ':notification', data.appId + ':online');
         }
-        
+
         // pingConversation announces online presence to conversation users
         else if (data.type == 'pingConversation') {
             ping(data.userId, data.conversationId, data.conversationId + ':online', data.conversationId);
@@ -260,8 +260,8 @@ io.sockets.on('connection', function(client) {
             });
         }
 
-        // Refer handler
-        // Broadcast new handlers list
+    // Refer handler
+    // Broadcast new handlers list
         else if (data.type == 'referHandler') {
             db.client.sadd(data.coversationId + ':handlers', data.refereeUserId);
             var multi = db.client.multi();
@@ -270,7 +270,7 @@ io.sockets.on('connection', function(client) {
             multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.hgetall(data.refereeUserId + ':account');
-            
+
             multi.exec(function(err, replies) {
                 io.sockets.in(data.conversationId).emit('handlerStatus',
                     {
@@ -338,11 +338,12 @@ io.sockets.on('connection', function(client) {
                 // announce new list of online users for each converation that
                 // user was in
                 for (var j = 0; j < conversations.length; j++) {
-                    console.log("OPOPOPOPO" + conversations);
-                    db.client.smembers(conversations[j]["conversationId"] + ':online', function(err, reply) { 
-                        io.sockets.in(conversations[j]["conversationId"]).emit('onlineStatus', {type:'conversation', users:reply, conversationId:conversations[j]});
-                        console.log('Disconnected from: ' + conversations[j]["conversationId"]);
-                    });
+                    (function(x) {
+                        db.client.smembers(conversations[x]["conversationId"] + ':online', function(err, reply) { 
+                            io.sockets.in(conversations[x]["conversationId"]).emit('onlineStatus', {type:'conversation', users:reply, conversationId:conversations[x]});
+                            console.log('Disconnected from: ' + conversations[x]["conversationId"]);
+                        });
+                    })(j);
                 }
             });
         });
