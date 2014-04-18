@@ -134,7 +134,7 @@ io.sockets.on('connection', function(client) {
             };
 
             // add conversationId to user's list of conversations
-            db.client.sadd(data.userId + ':sub', payload);
+            db.client.sadd(data.userId + ':sub', JSON.stringify(payload));
 
             // add userId to list of participants in conversation
             db.client.sadd(data.conversationId + ':party', data.userId);
