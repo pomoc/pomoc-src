@@ -68,24 +68,4 @@
     });
 }
 
-// TODO
-- (NSArray *)handlers
-{
-    return nil;
-}
-
-- (void)handleConversation
-{
-    
-}
-
-- (void)unhandleConversation
-{
-    
-}
-
-- (void)referHandlerUser:(PMUser *)user
-{
-    
-}
 @end
