@@ -46,7 +46,7 @@
 - (void) showActivityProgress {
     
     UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityView.center=self.view.center;
+    activityView.center = CGPointMake(self.view.center.x, self.view.center.y - 80);
     [activityView startAnimating];
     [self.view addSubview:activityView];
     
