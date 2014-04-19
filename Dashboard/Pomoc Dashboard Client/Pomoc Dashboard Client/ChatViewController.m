@@ -26,7 +26,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate> {
+@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate, ReferDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -46,6 +46,9 @@
     DashBoardSingleton *singleton;
     
     UIPopoverController *uploadSegue;
+    UIPopoverController *referSegue;
+    
+    __block NSArray *referList;
 }
 
 @end
@@ -460,18 +463,45 @@
     [_chatNavTable reloadData];
 }
 
+- (void) referred: (NSString *)convoId
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Chat Referred" message: @"You've been referred to a new chat conversation! " delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (IBAction)inviteActionPressed:(id)sender
+{
+    [singleton getPossibleRefer:currentlySelectedConvo completion:^(NSArray *users){
+        
+        referList = users;
+        [self performSegueWithIdentifier:@"referAgents" sender:self];
+        
+    }];
+}
+
 #pragma  mark - Preparation for Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"uploadPicture"]) {
         UploadViewController *child = [segue destinationViewController];
         child.delegate = self;
+        
         uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        
         
     } else if ([[segue identifier] isEqualToString:@"referAgents"]) {
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
         ReferTableViewController *vc = [segue destinationViewController];
         [vc setCurrentConvo:currentlySelectedConvo];
+        [vc setReferList:referList];
+        [vc setDelegate:self];
+        
+        referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        
+        CGFloat height = [referList count] * 44;
+        referSegue.popoverContentSize = CGSizeMake(250, height);
         
     }
 }
@@ -481,6 +511,10 @@
     [uploadSegue dismissPopoverAnimated:YES];
 }
 
+-(void) closeReferPopOver
+{
+    [referSegue dismissPopoverAnimated:YES];
+}
 
 #pragma  mark - Textfield editing delegate
 

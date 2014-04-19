@@ -18,6 +18,7 @@
 - (void) hasNewConversation: (NSMutableArray *)chatList;
 - (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
 - (void) handlerUpdate: (NSMutableArray *)chatList;
+- (void) referred: (NSString *)convoId;
 
 @end
 

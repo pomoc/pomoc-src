@@ -107,8 +107,10 @@
 
 - (void)refer: (PMConversation *)convo referee:(PMUser *)user
 {
+    NSLog(@"came inside here to refer convo id =%@ and userid = %@ and user name = %@",convo.conversationId, user.userId, user.name);
     [PMSupport referHandlerConversation:convo.conversationId refereeUserId:user.userId];
 }
+
 
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 {
@@ -299,10 +301,14 @@
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
     NSLog(@"hehe referred");
-    NSLog(@"referrer id user name = %@", referrer.name);
-    NSLog(@"referee id user name = %@", referee.name);
+    NSLog(@"referrer id user name = %@", referrer.userId);
     
     if ([referee.userId isEqualToString: selfUserId]) {
+        
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate referred:conversationId];
+        }
+        
         [PMSupport handleConversation:conversationId];
     }
 }

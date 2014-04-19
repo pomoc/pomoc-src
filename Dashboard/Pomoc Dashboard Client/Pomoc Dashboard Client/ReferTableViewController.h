@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "PMSupport.h"
 
+@class ReferTableViewController;
+@protocol ReferDelegate
+
+- (void)closeReferPopOver;
+
+@end
+
+
 @interface ReferTableViewController : UITableViewController
 
-
 @property (nonatomic, strong) PMConversation *currentConvo;
+@property (nonatomic, strong) NSArray *referList;
+@property (nonatomic, assign) id  delegate;
 
 @end

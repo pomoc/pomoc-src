@@ -295,9 +295,7 @@
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Bv6-5X-aDG"/>
                                             <barButtonItem title="Invite" style="plain" id="OJA-3N-MhU">
                                                 <connections>
-                                                    <segue destination="z9Q-sW-j4L" kind="popover" identifier="referAgents" popoverAnchorBarButtonItem="OJA-3N-MhU" id="OFf-lo-Ay4">
-                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                    </segue>
+                                                    <action selector="inviteActionPressed:" destination="QxH-3e-iTU" id="EK2-R7-zhf"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="G07-VU-Fwa"/>
@@ -321,9 +319,13 @@
                         <outlet property="chatNavTable" destination="0ll-Sw-Dj7" id="M9u-Jp-GxC"/>
                         <outlet property="chatView" destination="snB-9T-lqP" id="nyG-gf-U46"/>
                         <outlet property="handleActionLabel" destination="qJ6-zH-6jl" id="X0F-BT-6oD"/>
+                        <outlet property="inviteBarButton" destination="OJA-3N-MhU" id="cRH-zR-29g"/>
                         <outlet property="pastAndInfoToolbar" destination="JAK-o3-fPz" id="ck5-sm-TiX"/>
                         <outlet property="toolBarView" destination="pOQ-7E-QQN" id="tsH-3g-jFo"/>
                         <outlet property="userTextInput" destination="AAP-qz-ks3" id="pnT-a5-VnJ"/>
+                        <segue destination="z9Q-sW-j4L" kind="popover" identifier="referAgents" popoverAnchorBarButtonItem="OJA-3N-MhU" id="v27-Er-qvV">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og2-lc-I3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,14 +511,12 @@
                             <outlet property="delegate" destination="z9Q-sW-j4L" id="K1e-RA-bqg"/>
                         </connections>
                     </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="100"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="250" height="337"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sc-l9-ukg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-256" y="-1594"/>
+            <point key="canvasLocation" x="-322" y="-2030"/>
         </scene>
         <!--Contact Info View Controller-->
         <scene sceneID="ujZ-Kr-c4J">
