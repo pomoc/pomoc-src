@@ -8,6 +8,8 @@
 
 #import "LineChartView.h"
 #import "JBLineChartView.h"
+#import "JBChartTooltipView.h"
+#import "JBChartTooltipTipView.h"
 
 // Color palette koped from https://kuler.adobe.com/retro-air-color-theme-3745716/
 
@@ -19,7 +21,11 @@
 
 @interface LineChartView() <JBLineChartViewDataSource, JBLineChartViewDelegate> {
     JBLineChartView *lineChartView;
-    NSMutableDictionary *data;
+    NSMutableArray *chartData;
+    
+    // Tool tip
+    JBChartTooltipView *tooltipView;
+    JBChartTooltipTipView *tooltipTipView;
 }
 @end
 
@@ -30,15 +36,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        lineChartView = [[JBLineChartView alloc] init];
-        lineChartView.frame = self.frame;
-        lineChartView.delegate = self;
-        lineChartView.dataSource = self;
-        lineChartView.backgroundColor = COLOR_WHITE;
+        chartData = [[NSMutableArray alloc] init];
         
-        data = [[NSMutableDictionary alloc] init];
-        
-        [self initializeChart];
+        [self initializeChart:frame];
         [self showChart];
     }
     return self;
@@ -53,21 +53,33 @@
 // Note Y values have to be >= 0 or the whole thing will complain
 - (void)addDataX:(NSArray *)x_vals withY:(NSArray *)y_vals
 {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     for (int i=0; i < [x_vals count]; i++) {
         [data setObject:y_vals[i] forKey:x_vals[i]];
     }
+    [chartData addObject:data];
     [lineChartView reloadData];
 }
 
 - (void)addData:(NSDictionary *)newData {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     [data addEntriesFromDictionary:newData];
+    [chartData addObject:data];
     [lineChartView reloadData];
-    [self showChart];
 }
 
-- (void)initializeChart
+- (void)initializeChart:(CGRect)frame
 {
+    lineChartView = [[JBLineChartView alloc] init];
+    lineChartView.frame = self.frame;
+    lineChartView.delegate = self;
+    lineChartView.dataSource = self;
+    lineChartView.backgroundColor = COLOR_WHITE;
     [self addSubview:lineChartView];
+ 
+    tooltipView = [[JBChartTooltipView alloc] init];
+    tooltipView.alpha = 0;
+    [self addSubview:tooltipView];
 }
 
 - (void)hideChart
@@ -84,17 +96,21 @@
 
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
 {
-    return 1;
+    return [chartData count];
 }
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
-    return [data count];
+    return [chartData[lineIndex] count];
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return [[data objectForKey:[NSNumber numberWithInteger:horizontalIndex]] floatValue];
+    NSMutableArray *keys= [NSMutableArray arrayWithArray:[chartData[lineIndex] allKeys]];
+    [keys sortUsingSelector:@selector(compare:)];
+    
+    NSNumber *idx = keys[horizontalIndex];
+    return [[chartData[lineIndex] objectForKey:idx] floatValue];
 }
 
 # pragma mark - JBLineChart optional delegate methods for LINE
@@ -151,13 +167,12 @@
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    CGFloat color = (CGFloat)horizontalIndex / [data count];
-    return [UIColor colorWithRed:color green:1/color blue:color alpha:1.0];
+    return COLOR_RED;
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return [UIColor yellowColor];
+    return COLOR_BLACK;
 }
 
 # pragma mark - JBLineChart optional delegate methods for GESTURES
@@ -165,11 +180,68 @@
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
     // Update view
+    
+    NSMutableArray *keys= [NSMutableArray arrayWithArray:[chartData[lineIndex] allKeys]];
+    [keys sortUsingSelector:@selector(compare:)];
+
+    NSNumber *idx = keys[horizontalIndex];
+    NSNumber *valueNumber = [chartData[lineIndex] objectForKey:idx];
+    
+    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
+    [tooltipView setText:[[valueNumber stringValue] uppercaseString]];
 }
+
 
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {
     // Update view
+    tooltipView.alpha = 0;
+}
+
+- (void)setTooltipVisible:(BOOL)isVisible animated:(BOOL)isAnimated atTouchPoint:(CGPoint)touchPoint
+{
+    
+    dispatch_block_t adjustTooltipPosition = ^{
+        CGPoint originalTouchPoint = [self convertPoint:touchPoint fromView:self];
+        CGPoint convertedTouchPoint = originalTouchPoint; // modified
+        
+        // Clamp x values
+        CGFloat minChartX = self.frame.origin.x + ceil(tooltipView.frame.size.width * 0.5);
+        CGFloat maxChartX = self.frame.origin.x + self.frame.size.width - ceil(tooltipView.frame.size.width * 0.5);
+        convertedTouchPoint.x = MAX(convertedTouchPoint.x, minChartX);
+        convertedTouchPoint.x = MIN(convertedTouchPoint.x, maxChartX);
+        
+        tooltipView.frame = CGRectMake(convertedTouchPoint.x - ceil(tooltipView.frame.size.width * 0.5), self.frame.size.height * 0.5, tooltipView.frame.size.width, tooltipView.frame.size.height);
+        
+        CGFloat minTipX = self.frame.origin.x + tooltipTipView.frame.size.width;
+        originalTouchPoint.x = MAX(originalTouchPoint.x, minTipX);
+        
+        CGFloat maxTipX = self.frame.origin.x + self.frame.size.width - tooltipTipView.frame.size.width;
+        originalTouchPoint.x = MIN(originalTouchPoint.x, maxTipX);
+        
+        tooltipTipView.frame = CGRectMake(originalTouchPoint.x - ceil(tooltipTipView.frame.size.width * 0.5), CGRectGetMaxY(tooltipView.frame), tooltipTipView.frame.size.width, tooltipTipView.frame.size.height);
+    };
+    
+    dispatch_block_t adjustTooltipVisibility = ^{
+        tooltipView.alpha = isVisible ? 1.0 : 0.0;
+        tooltipTipView.alpha = isVisible ? 1.0 : 0.0;
+	};
+    
+    if (isVisible) {
+        adjustTooltipPosition();
+    }
+    
+    if (isAnimated) {
+        [UIView animateWithDuration:0.2 animations:^{
+            adjustTooltipVisibility();
+        } completion:^(BOOL finished) {
+            if (!isVisible) {
+                adjustTooltipPosition();
+            }
+        }];
+    } else {
+        adjustTooltipVisibility();
+    }
 }
 
 

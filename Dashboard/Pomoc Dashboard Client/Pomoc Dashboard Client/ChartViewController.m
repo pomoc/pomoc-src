@@ -75,13 +75,13 @@
 {
     fakeData = [[NSMutableDictionary alloc] init];
     float last = 0.0;
+    int startTime = [[NSDate date] timeIntervalSince1970];
     
     for (int i=0; i<howmany; i++) {
         last = last + (rand() % 11 - 4);
         last = MAX(last, 0.0);
-        [fakeData setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:i]];
+        [fakeData setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i]];
     }
-    
 }
 
 # pragma mark - Chart initializations
