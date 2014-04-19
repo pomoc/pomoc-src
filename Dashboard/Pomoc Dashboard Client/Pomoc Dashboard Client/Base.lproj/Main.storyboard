@@ -223,6 +223,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="messageBigPicture" destination="y7J-CP-vWH" id="Ds7-i6-BrV"/>
+                                                    <outlet property="messageFrom" destination="p6d-iE-Vdu" id="ner-8I-wdQ"/>
                                                     <outlet property="messagePicture" destination="KHS-1W-Yv9" id="enz-rc-scP"/>
                                                 </connections>
                                             </tableViewCell>

@@ -41,71 +41,71 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    //[PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
-//    
-//    // User 'login' code
-//#ifdef __i386__
-//        NSString *customer = @"customer22";
-//        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
-//            [PMSupport connectWithCompletion:^(BOOL connected) {
-//                [PMSupport getAllConversations:^(NSArray *conversations) {
-//                    NSLog(@"logged in");
-//
-////                    NSString *testConversationId = @"test:anc63:chat";
-////                    // Handling test
-////                    [PMSupport handleConversation:testConversationId];
-////                    [PMSupport unhandleConversation:testConversationId];
-////                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
-////                        NSLog(@"getHandlersForConversation: %@", handlers);
-////                    }];
-////                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
-////                    
-//                    // Online test
-//                    [PMSupport pingApp];
-//                    //[PMSupport pingConversation:testConversationId];
-//                }];
-//            }];
-//        }];
-//#else
-//        [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-//            self.userId = userId;
-//            NSLog(@"------- USER ID IS %@", userId);
-//            [PMSupport connectWithCompletion:^(BOOL connected) {
-//                // Get all conversations
-//                [PMSupport getAllConversations:^(NSArray *conversations) {
+    
+    // User 'login' code
+#ifdef __i386__
+        NSString *customer = @"customer25";
+        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+            [PMSupport connectWithCompletion:^(BOOL connected) {
+                [PMSupport getAllConversations:^(NSArray *conversations) {
+                    NSLog(@"logged in");
+
+//                    NSString *testConversationId = @"test:anc63:chat";
+//                    // Handling test
+//                    [PMSupport handleConversation:testConversationId];
+//                    [PMSupport unhandleConversation:testConversationId];
+//                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
+//                        NSLog(@"getHandlersForConversation: %@", handlers);
+//                    }];
+//                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
 //                    
-//                }];
-//            }];
-//        }];
-//#endif
-//
-    [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-        if (userId) {
+                    // Online test
+                    [PMSupport pingApp];
+                    //[PMSupport pingConversation:testConversationId];
+                }];
+            }];
+        }];
+#else
+        [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
             self.userId = userId;
             NSLog(@"------- USER ID IS %@", userId);
             [PMSupport connectWithCompletion:^(BOOL connected) {
-                NSLog(@"Connected: %i", connected);
-                [PMSupport pingApp];
-                //[PMSupport disconnect];
-                /*
-                [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
-                    NSLog(@"User Id is %@", userId);
-                    [PMSupport connectWithCompletion:^(BOOL connected) {
-                        NSLog(@"Im am connected: %i", connected);
-                        // Get all conversations
-                        [PMSupport getAllConversations:^(NSArray *conversations) {
-                            
-                        }];
-                        [PMSupport pingApp];
-                    }];
+                // Get all conversations
+                [PMSupport getAllConversations:^(NSArray *conversations) {
+                    
                 }];
-                 */
             }];
-        } else {
-            NSLog(@"failed");
-        }
-    }];
+        }];
+#endif
+
+//    [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
+//        if (userId) {
+//            self.userId = userId;
+//            NSLog(@"------- USER ID IS %@", userId);
+//            [PMSupport connectWithCompletion:^(BOOL connected) {
+//                NSLog(@"Connected: %i", connected);
+//                [PMSupport pingApp];
+//                //[PMSupport disconnect];
+//                /*
+//                [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
+//                    NSLog(@"User Id is %@", userId);
+//                    [PMSupport connectWithCompletion:^(BOOL connected) {
+//                        NSLog(@"Im am connected: %i", connected);
+//                        // Get all conversations
+//                        [PMSupport getAllConversations:^(NSArray *conversations) {
+//                            
+//                        }];
+//                        [PMSupport pingApp];
+//                    }];
+//                }];
+//                 */
+//            }];
+//        } else {
+//            NSLog(@"failed");
+//        }
+//    }];
     
 }
 

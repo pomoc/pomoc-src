@@ -115,7 +115,7 @@
 }
      
 - (void) splitChatIntoGroups {
-    
+    NSLog(@"came inside split");
     [unhandledChatList removeAllObjects];
     [handlingChatList removeAllObjects];
     [otherChatList removeAllObjects];
@@ -143,6 +143,24 @@
             
         }
     }
+    
+    NSArray *sortedArray;
+    
+    sortedArray = [unhandledChatList sortedArrayUsingComparator:^NSComparisonResult(id first, id second) {
+        
+        PMConversation *a = first;
+        PMConversation *b = second;
+
+        PMMessage *aLastMessage = [a.messages lastObject];
+        PMMessage *bLastMessage = [b.messages lastObject];
+        
+        NSDate *aDate = aLastMessage.timestamp;
+        NSDate *bDate = bLastMessage.timestamp;
+        
+        return [aDate compare:bDate];
+    }];
+    
+    unhandledChatList = [[NSMutableArray alloc] initWithArray:sortedArray];
     
 }
 
@@ -428,7 +446,7 @@
             pmConvo = [otherChatList objectAtIndex:row];
             break;
     }
-
+    
     //Setting visitor name
     UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
     [visitorLabel setText:pmConvo.creator.name];
@@ -440,6 +458,7 @@
     
     UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
     [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at", dateString]];
+    
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
@@ -455,8 +474,6 @@
         NSLog(@"getting list of handlers returned == %lu",total);
         [agentLabel setText:[NSString stringWithFormat: @"%lu", total]];
     }];
-    
-    
     
     return cell;
 }
@@ -486,7 +503,6 @@
     //Setting visitor name
     [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
     [cell.messageFrom boldAndBlackSubstring:message.user.name];
-    
     
     __weak typeof(ChatMessagePictureCell *) weakCell = cell;
     
@@ -559,6 +575,9 @@
 {
     NSLog(@"called chat VC has new message");
     chatList = newChatList;
+    
+    [self splitChatIntoGroups];
+    [_chatNavTable reloadData];
     
     NSLog(@"current convo id == %@, convo id == %@", currentlySelectedConvo.conversationId, conversation.conversationId);
     

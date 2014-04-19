@@ -45,10 +45,10 @@
     //NSLog(@"logging in");
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
+    //[PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"5" password:@"5" completion:^(NSString *returnedUserId) {
         
         //NSLog(@"returned userId == %@", returnedUserId);
         _selfUserId = returnedUserId;
@@ -202,19 +202,14 @@
 
 - (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion
 {
-   //NSLog(@"called line 121 get handler for convo with convo id ==%@", conversationId);
+    NSLog(@"called line 121 get handler for convo with convo id ==%@", conversationId);
     
     [PMSupport getHandlersForConversation:conversationId completion:^(NSArray *conversations){
         
         NSUInteger total = 0;
         
-        for (PMUser *user in conversations){
-            //NSLog(@"user type== %@", user.type);
-            //NSLog(@"user type== %@", user.userId);
-            //NSLog(@"user type== %@", user.name);
-//            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
-//                total++;
-//            }
+        if (conversations == nil) {
+            NSLog(@"is handler array == nil");
         }
         
         NSLog(@"called in line 122 of singleton with conversation user == %lu", total);
