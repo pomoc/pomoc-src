@@ -20,6 +20,9 @@
 #define HOME 0
 #define CHAT 1
 #define SETTING 0
+
+#define SETTING_SELECTION 3
+#define LOGOUT_SELECTION 3
 #define GROUP_CHAT 2
 #define AGENTS 3
 #define LOGOUT 1
@@ -156,7 +159,17 @@
                 self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"groupChatNavigationController"];
             default:
                 break;
-    }
+        }
+    } else if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case SETTING:
+                selected = SETTING_SELECTION;
+                self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsNavigationController"];
+                break;
+            case LOGOUT:
+                [self performSegueWithIdentifier:@"logout" sender:self];
+                break;
+        }
     }
 }
 

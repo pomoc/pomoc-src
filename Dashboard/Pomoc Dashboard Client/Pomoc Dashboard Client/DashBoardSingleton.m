@@ -50,6 +50,7 @@
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
         
+        NSLog(@"returned userId == %@", returnedUserId);
         _selfUserId = returnedUserId;
         
         //NSLog(@"------- USER ID IS %@", userId);
