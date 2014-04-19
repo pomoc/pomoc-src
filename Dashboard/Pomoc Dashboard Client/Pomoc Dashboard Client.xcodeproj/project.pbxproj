@@ -87,6 +87,7 @@
 		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
 		AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AACA120918FD9ABA005DB53B /* background2.jpg */; };
 		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
+		AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CE81902381D003D9241 /* GroupChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,8 @@
 		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AACA120918FD9ABA005DB53B /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
 		AACA120B18FD9D01005DB53B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		AAD17CE71902381D003D9241 /* GroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GroupChatViewController.h; path = ../GroupChatViewController.h; sourceTree = "<group>"; };
+		AAD17CE81902381D003D9241 /* GroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GroupChatViewController.m; path = ../GroupChatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +368,8 @@
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
+				AAD17CE71902381D003D9241 /* GroupChatViewController.h */,
+				AAD17CE81902381D003D9241 /* GroupChatViewController.m */,
 				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */,
@@ -704,6 +709,7 @@
 				AA4649FB18E814D100A607E0 /* SDWebImageManager.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
 				AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */,
+				AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */,
 				AA9BDCF818F91E1100EF6EEC /* JBBarChartView.m in Sources */,
 				AA4649F718E814D100A607E0 /* SDWebImageCompat.m in Sources */,
 				AA4649FA18E814D100A607E0 /* SDWebImageDownloaderOperation.m in Sources */,

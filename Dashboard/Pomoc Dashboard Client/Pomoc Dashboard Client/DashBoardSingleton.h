@@ -22,6 +22,12 @@
 
 @end
 
+@protocol PomocGroupDelegate
+
+- (void) agentListUpdated: (NSMutableArray *)agentList;
+
+@end
+
 
 @protocol PomocHomeDelegate
 
@@ -63,5 +69,6 @@
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;
 @property (nonatomic, assign) id  referDelegate;
+@property (nonatomic, assign) id  groupChatDelegate;
 
 @end

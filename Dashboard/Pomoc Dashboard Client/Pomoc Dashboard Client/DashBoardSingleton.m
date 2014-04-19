@@ -225,6 +225,11 @@
         if ([self isHomeDelegateAlive]) {
             [_homeDelegate agentTotalNumberChange:[_currentAgentList count]];
         }
+        
+        if ([self isGroupChatDelegateAlive]) {
+            [_groupChatDelegate agentListUpdated:_currentAgentList];
+        }
+        
     } else {
         if ([self isHomeDelegateAlive]) {
             [_homeDelegate userTotalNumberChange:[_currentUserList count]];
@@ -324,6 +329,13 @@
 - (BOOL)isChatDelegateAlive
 {
     if (_chatDelegate == nil)
+        return FALSE;
+    return TRUE;
+}
+
+- (BOOL)isGroupChatDelegateAlive
+{
+    if(_groupChatDelegate == nil)
         return FALSE;
     return TRUE;
 }

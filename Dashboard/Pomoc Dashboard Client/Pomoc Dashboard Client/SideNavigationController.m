@@ -15,11 +15,12 @@
 #import "MainViewController.h"
 #import "HomeViewController.h"
 #import "ChatViewController.h"
+#import "GroupChatViewController.h"
 
 #define HOME 0
 #define CHAT 1
 #define SETTING 0
-#define VISITORS 2
+#define GROUP_CHAT 2
 #define AGENTS 3
 #define LOGOUT 1
 #define LOGO_WIDTH 20
@@ -41,7 +42,7 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"VISITORS", @"AGENTS", nil];
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"AGENTS CHAT", nil];
     settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
     sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
 
@@ -92,14 +93,10 @@
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-512.png"]
                                               toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
 
-         } else if(indexPath.row == VISITORS) {
+         } else if(indexPath.row == GROUP_CHAT) {
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-512.png"]
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-         } else if (indexPath.row == AGENTS) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"worker-512.png"]
-                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
          }
-         
          
      } else {
          
@@ -141,19 +138,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self deallocDelegate];
-    switch (indexPath.row) {
-        case HOME:
-            NSLog(@"selected home");
-            selected = HOME;
-            self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"];
-            break;
-        case CHAT:
-            NSLog(@"Selected chat");
-            selected = CHAT;
-            self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
-            break;
-        default:
-            break;
+    if (indexPath.section == 0){
+        
+        switch (indexPath.row) {
+            case HOME:
+                NSLog(@"selected home");
+                selected = HOME;
+                self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"];
+                break;
+            case CHAT:
+                NSLog(@"Selected chat");
+                selected = CHAT;
+                self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
+                break;
+            case GROUP_CHAT:
+                selected = GROUP_CHAT;
+                self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"groupChatNavigationController"];
+            default:
+                break;
+    }
     }
 }
 
@@ -161,7 +164,8 @@
     
     HomeViewController *homeVc;
     ChatViewController *chatVc;
-    
+    GroupChatViewController *groupVc;
+
     UINavigationController *navController = (UINavigationController *) self.sidePanelController.centerPanel;
     
     switch(selected) {
@@ -173,6 +177,9 @@
             chatVc = (ChatViewController *) [[navController viewControllers] objectAtIndex:0];
             [chatVc deallocDelegate];
             break;
+        case GROUP_CHAT:
+            groupVc = (GroupChatViewController *)  [[navController viewControllers] objectAtIndex:0];
+            [groupVc deallocDelegate];
         default:
             break;
     }
