@@ -174,7 +174,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OvQ-yx-4ha">
-                                                            <rect key="frame" x="10" y="22" width="695" height="29"/>
+                                                            <rect key="frame" x="10" y="20" width="695" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="15"/>
                                                             <nil key="highlightedColor"/>
@@ -194,15 +194,20 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aaJ-dM-i0o">
-                                                            <rect key="frame" x="138" y="56" width="77" height="30"/>
+                                                            <rect key="frame" x="138" y="36" width="100" height="113"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="EditImage">
+                                                                <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="annotateActionPressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="WRt-vQ-GuM"/>
                                                             </connections>
                                                         </button>
+                                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="y7J-CP-vWH">
+                                                            <rect key="frame" x="611" y="8" width="120" height="120"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                         <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KHS-1W-Yv9">
                                                             <rect key="frame" x="10" y="36" width="120" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -214,23 +219,10 @@
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6aK-oW-7FO">
-                                                            <rect key="frame" x="138" y="30" width="77" height="30"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="View">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="viewPicturePressed:" destination="2hy-kf-t0X" eventType="touchUpInside" id="Clf-fQ-ynI"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
                                                 </tableViewCellContentView>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                                </accessibility>
                                                 <connections>
-                                                    <outlet property="messageFrom" destination="p6d-iE-Vdu" id="97c-wf-txW"/>
+                                                    <outlet property="messageBigPicture" destination="y7J-CP-vWH" id="Ds7-i6-BrV"/>
                                                     <outlet property="messagePicture" destination="KHS-1W-Yv9" id="enz-rc-scP"/>
                                                 </connections>
                                             </tableViewCell>

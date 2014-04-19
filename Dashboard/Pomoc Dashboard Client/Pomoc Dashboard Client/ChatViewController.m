@@ -180,14 +180,19 @@
 #pragma mark - annotation related
 
 - (IBAction)annotateActionPressed:(id)sender {
+    
     NSArray *subviews = [sender superview].subviews;
     UIImageView *imv;
+    NSLog(@"sub views count == %lu",[subviews count]);
     for (int i=0; i<[subviews count]; i++) {
         if ([subviews[i] isKindOfClass:[UIImageView class]] &&
             ((UIImageView *)subviews[i]).image) {
+            NSLog(@"met criteria!");
             imv = subviews[i];
+            break;
         }
     }
+    
     if (imv) {
         UIImage *picture = imv.image;
         AnnotateViewController *annotateVC = [[AnnotateViewController alloc] initWithImage:picture];
@@ -482,7 +487,8 @@
     [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
     [cell.messageFrom boldAndBlackSubstring:message.user.name];
     
-    __weak typeof(UITableViewCell *) weakCell = cell;
+    
+    __weak typeof(ChatMessagePictureCell *) weakCell = cell;
     
     //setting the display text
     [message retrieveImageWithCompletion:^(UIImage *image) {
@@ -492,6 +498,9 @@
         weakCell.imageView.clipsToBounds = YES;
         UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
         [weakCell.imageView setImage:scaled];
+        
+        [weakCell.messageBigPicture setImage:image];
+        weakCell.messageBigPicture.hidden = true;
         [weakCell setNeedsLayout];
         
     }];
