@@ -55,6 +55,7 @@
     UIPopoverController *referSegue;
     
     __block NSArray *referList;
+    
 }
 
 @end
@@ -77,6 +78,7 @@
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
     [leftBorder setFrame:CGRectMake(0, 0, 0.5, _chatInputView.frame.size.height)];
     [_chatInputView.layer addSublayer:leftBorder];
+    _chatInputView.hidden = TRUE;
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     
@@ -145,7 +147,7 @@
 }
 
 - (IBAction)sendMessage:(id)sender {
-    
+
     NSString *userInput = _userTextInput.text;
     
     if ( [userInput length] > 0 ) {
@@ -307,6 +309,7 @@
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         
         _toolBarView.hidden = FALSE;
+        _chatInputView.hidden = FALSE;
         
         currentlySelectedChatRow = indexPath.row;
         
@@ -553,6 +556,7 @@
     if ([currentlySelectedConvo.conversationId isEqualToString:conversation.conversationId]) {
         NSLog(@"yes equal!");
         [_chatMessageTable reloadData];
+        [self scrollChatContentToBottom];
     }
 }
 
@@ -583,9 +587,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"uploadPicture"]) {
+        
+        [self.view endEditing:YES];
+        
         UploadViewController *child = [segue destinationViewController];
         child.delegate = self;
-        
+
         uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
         
         
@@ -624,6 +631,11 @@
     [self scrollThingUp];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self sendMessage:self];
+    return YES;
+}
+
 - (void) scrollThingUp
 {
     
@@ -632,7 +644,7 @@
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    /* keyboard is visible, move views */
+    
     [self scrollChatContentToBottom];
     
     //change chat nav table height
