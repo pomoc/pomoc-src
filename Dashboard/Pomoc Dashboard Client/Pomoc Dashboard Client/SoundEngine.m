@@ -80,12 +80,16 @@
 
 - (void) playNewConversation
 {
-    [self playSoundOfFile:@"chat" :@"mp3"];
+    if ([self conversationSound]) {
+        [self playSoundOfFile:@"chat" :@"mp3"];
+    }
 }
 
 - (void) playNewMessage
 {
-    [self playSoundOfFile:@"message" :@"mp3"];
+    if ([self messsageSound]) {
+        [self playSoundOfFile:@"message" :@"mp3"];
+    }
 }
 
 @end

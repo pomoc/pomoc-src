@@ -8,9 +8,9 @@
 
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
+#import "SoundEngine.h"
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
-    //__block NSString *selfUserId;
     __block NSUInteger totalUnattendedConversation;
 }
 
@@ -45,7 +45,7 @@
     NSLog(@"logging in");
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
@@ -232,6 +232,9 @@
     [_currentConversationList addObject:conversation];
     NSLog(@"dashboard singleton detected new chat");
     
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewConversation];
+    
     if ([self isChatDelegateAlive]) {
         [_chatDelegate hasNewConversation:_currentConversationList];
     }
@@ -293,6 +296,10 @@
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
     NSLog(@"recieved new chat");
+    
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewMessage];
+    
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
@@ -306,6 +313,10 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
+    
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewMessage];
+    
     NSLog(@"recieved an image message delegae called ");
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {

@@ -86,6 +86,7 @@
             NSLog(@"------- USER ID IS %@", userId);
             [PMSupport connectWithCompletion:^(BOOL connected) {
                 NSLog(@"Connected: %i", connected);
+                [PMSupport pingApp];
                 //[PMSupport disconnect];
                 /*
                 [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
