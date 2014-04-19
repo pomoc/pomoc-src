@@ -34,6 +34,12 @@
     CGRect chatNavOriginalFrame;
     
     NSMutableArray *chatList;
+    
+    //New way of 3 type of chat list
+    NSMutableArray *unhandledChatList;
+    NSMutableArray *handlingChatList;
+    NSMutableArray *otherChatList;
+    
     NSMutableArray *chatMessageList;
     NSInteger currentlySelectedChatRow;
     NSString *currentSelectedConvoId;
@@ -88,11 +94,12 @@
     [singleton setChatDelegate:self];
     chatList = singleton.currentConversationList;
     
-    for (PMConversation *convo in chatList) {
-       
-        NSLog(@"@convo message == %lu", [convo.messages count]);
+    //NEW FILTER
+    unhandledChatList = [[NSMutableArray alloc] init];
+    handlingChatList = [[NSMutableArray alloc] init];
+    otherChatList = [[NSMutableArray alloc] init];
     
-    }
+    [self splitChatIntoGroups];
     
     [_chatNavTable reloadData];
     
@@ -103,6 +110,16 @@
     chatNavOriginalFrame.size.width = 280;
     
     _toolBarView.hidden = TRUE;
+}
+     
+- (void) splitChatIntoGroups {
+    
+    for (PMConversation *convo in chatList) {
+        
+        
+        
+    }
+    
 }
 
 - (IBAction)sendMessage:(id)sender {
@@ -182,6 +199,33 @@
 }
 
 #pragma mark - Navigation Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+        return 3;
+    }
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+    
+        switch(section) {
+            case 0:
+                return @"unhandled chats";
+                break;
+            case 1:
+                return @"chats you are handling";
+                break;
+            case 2:
+                return @"Other chats";
+                break;
+        }
+    
+    }
+    return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
@@ -203,6 +247,7 @@
 {
     NSInteger row = indexPath.row;
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
+        
         return [self createChatNavTableView:tableView atRow:row];
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {

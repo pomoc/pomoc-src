@@ -10,7 +10,7 @@
 #import "PomocSupport.h"
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
-    __block NSString *selfUserId;
+    //__block NSString *selfUserId;
     __block NSUInteger totalUnattendedConversation;
 }
 
@@ -50,7 +50,7 @@
     
     [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
         
-        selfUserId = returnedUserId;
+        _selfUserId = returnedUserId;
         
         //NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
@@ -89,7 +89,7 @@
     NSMutableSet *listOfAgent = [[NSMutableSet alloc] initWithArray:_currentAgentList];
     
     for (PMUser *user in [listOfAgent allObjects]) {
-        if ([user.userId isEqualToString:selfUserId]) {
+        if ([user.userId isEqualToString:_selfUserId]) {
             [listOfAgent removeObject:user];
             break;
         }
@@ -244,7 +244,7 @@
        
         BOOL found = false;
         for (PMUser *user in users) {
-            if ([user.userId isEqualToString:selfUserId]) {
+            if ([user.userId isEqualToString:_selfUserId]) {
                 found = true;
                 break;
             }
@@ -308,7 +308,7 @@
     NSLog(@"hehe referred");
     NSLog(@"referrer id user name = %@", referrer.userId);
     
-    if ([referee.userId isEqualToString: selfUserId]) {
+    if ([referee.userId isEqualToString: _selfUserId]) {
         
         if ([self isChatDelegateAlive]) {
             [_chatDelegate referred:conversationId];
