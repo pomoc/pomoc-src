@@ -89,6 +89,9 @@
 		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
 		AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CE81902381D003D9241 /* GroupChatViewController.m */; };
 		AAD17CEC19027DB0003D9241 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEB19027DB0003D9241 /* SettingsViewController.m */; };
+		AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEE1902A245003D9241 /* SoundEngine.m */; };
+		AAD17CF31902A427003D9241 /* chat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF11902A427003D9241 /* chat.mp3 */; };
+		AAD17CF41902A427003D9241 /* message.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF21902A427003D9241 /* message.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +246,10 @@
 		AAD17CE81902381D003D9241 /* GroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GroupChatViewController.m; path = ../GroupChatViewController.m; sourceTree = "<group>"; };
 		AAD17CEA19027DB0003D9241 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AAD17CEB19027DB0003D9241 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AAD17CED1902A245003D9241 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		AAD17CEE1902A245003D9241 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
+		AAD17CF11902A427003D9241 /* chat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chat.mp3; sourceTree = "<group>"; };
+		AAD17CF21902A427003D9241 /* message.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = message.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,8 +368,11 @@
 		AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
 			isa = PBXGroup;
 			children = (
+				AAD17CF01902A41B003D9241 /* Sounds */,
 				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
+				AAD17CED1902A245003D9241 /* SoundEngine.h */,
+				AAD17CEE1902A245003D9241 /* SoundEngine.m */,
 				AAD17CEA19027DB0003D9241 /* SettingsViewController.h */,
 				AAD17CEB19027DB0003D9241 /* SettingsViewController.m */,
 				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
@@ -574,6 +584,15 @@
 			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
 			sourceTree = "<group>";
 		};
+		AAD17CF01902A41B003D9241 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AAD17CF11902A427003D9241 /* chat.mp3 */,
+				AAD17CF21902A427003D9241 /* message.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +694,8 @@
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
 				AA6958FE1900E4C800E28EBE /* 40x40.png in Resources */,
+				AAD17CF31902A427003D9241 /* chat.mp3 in Resources */,
+				AAD17CF41902A427003D9241 /* message.mp3 in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
 				AA6959021900E4C800E28EBE /* 152x152.png in Resources */,
 				AA9BDCFA18F91E1100EF6EEC /* JBChartView.podspec in Resources */,
@@ -727,6 +748,7 @@
 				AA464A0118E814D100A607E0 /* UIImageView+WebCache.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */,
 				AA4649FE18E814D100A607E0 /* UIImage+GIF.m in Sources */,
 				AA4649FF18E814D100A607E0 /* UIImage+MultiFormat.m in Sources */,
 				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
