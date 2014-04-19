@@ -37,7 +37,11 @@
     [self setLeftPanel:sideNav];
     [self setLeftGapPercentage:0.25];
 
+    [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"chartNavigationController"]];
+    // TODO Change back
+    /*
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"]];
+     */
 }
 
 

@@ -15,12 +15,14 @@
 #import "MainViewController.h"
 #import "HomeViewController.h"
 #import "ChatViewController.h"
+#import "ChartViewController.h"
 
 #define HOME 0
 #define CHAT 1
 #define SETTING 0
 #define VISITORS 2
 #define AGENTS 3
+#define CHARTS 4
 #define LOGOUT 1
 #define LOGO_WIDTH 20
 
@@ -41,7 +43,7 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"VISITORS", @"AGENTS", nil];
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"VISITORS", @"AGENTS", @"CHARTS", nil];
     settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
     sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
 
@@ -77,6 +79,7 @@
 
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
  {
+     
      static NSString *cellIdentifier = @"Cell";
      UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
@@ -97,6 +100,9 @@
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
          } else if (indexPath.row == AGENTS) {
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"worker-512.png"]
+                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+         } else if (indexPath.row == CHARTS) {
+             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-512.png"]
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
          }
          
@@ -152,6 +158,11 @@
             selected = CHAT;
             self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
             break;
+        case CHARTS:
+            NSLog(@"Selected charts");
+            selected = CHARTS;
+            self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chartNavigationController"];
+            break;
         default:
             break;
     }
@@ -161,6 +172,7 @@
     
     HomeViewController *homeVc;
     ChatViewController *chatVc;
+    ChartViewController *chartVc;
     
     UINavigationController *navController = (UINavigationController *) self.sidePanelController.centerPanel;
     
@@ -173,6 +185,9 @@
             chatVc = (ChatViewController *) [[navController viewControllers] objectAtIndex:0];
             [chatVc deallocDelegate];
             break;
+        case CHARTS:
+            chartVc = (ChartViewController *) [[navController viewControllers] objectAtIndex:0];
+            [chartVc deallocDelegate];
         default:
             break;
     }

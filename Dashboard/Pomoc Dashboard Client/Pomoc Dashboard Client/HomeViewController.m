@@ -95,12 +95,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 }
 
 #pragma  mark - Line chart settings 
+
 //- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
 //{
 //    return 1; // width of line in chart
 //}
 //
 //
+
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex;
 {
     return true;

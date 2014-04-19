@@ -87,6 +87,8 @@
 		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
 		AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AACA120918FD9ABA005DB53B /* background2.jpg */; };
 		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
+		C3150BCB190234900018521F /* LineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3150BCA190234900018521F /* LineChartView.m */; };
+		C3D2E02419024B69003BE763 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D2E02319024B69003BE763 /* ChartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +239,10 @@
 		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AACA120918FD9ABA005DB53B /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
 		AACA120B18FD9D01005DB53B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		C3150BC9190234900018521F /* LineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartView.h; sourceTree = "<group>"; };
+		C3150BCA190234900018521F /* LineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartView.m; sourceTree = "<group>"; };
+		C3D2E02219024B69003BE763 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		C3D2E02319024B69003BE763 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +371,9 @@
 				AA5204F118D80B3F00D78156 /* MainViewController.m */,
 				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
+				C3D2E02219024B69003BE763 /* ChartViewController.h */,
+				C3D2E02319024B69003BE763 /* ChartViewController.m */,
+				C3150BC81902346C0018521F /* ChartMVC */,
 				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */,
@@ -573,6 +582,15 @@
 			name = PMCore;
 			sourceTree = "<group>";
 		};
+		C3150BC81902346C0018521F /* ChartMVC */ = {
+			isa = PBXGroup;
+			children = (
+				C3150BC9190234900018521F /* LineChartView.h */,
+				C3150BCA190234900018521F /* LineChartView.m */,
+			);
+			name = ChartMVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -715,6 +733,7 @@
 				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
 				AA464A0118E814D100A607E0 /* UIImageView+WebCache.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
+				C3150BCB190234900018521F /* LineChartView.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
 				AA4649FE18E814D100A607E0 /* UIImage+GIF.m in Sources */,
 				AA4649FF18E814D100A607E0 /* UIImage+MultiFormat.m in Sources */,
@@ -737,6 +756,7 @@
 				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
 				AA4649F618E814D100A607E0 /* SDImageCache.m in Sources */,
 				AA464A0418E8257400A607E0 /* UploadViewController.m in Sources */,
+				C3D2E02419024B69003BE763 /* ChartViewController.m in Sources */,
 				AA9DC92D18E44FCE00B4FDF7 /* ChatMessagePictureCell.m in Sources */,
 				AA9DC92E18E44FCE00B4FDF7 /* ChatMessageTextCell.m in Sources */,
 			);
