@@ -32,6 +32,7 @@
 + (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(NSString *userId))completion;
 + (void)connect;
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback;
++ (void)disconnect;
 
 // Conversations
 + (void)startConversationWithCompletion:(void (^)(PMConversation *conversation))completion;

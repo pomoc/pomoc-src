@@ -230,7 +230,6 @@
 		AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
 		AACA11FC18FCFFF6005DB53B /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
 		AACA11FD18FCFFF6005DB53B /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
 		AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
 		AACA120018FCFFF6005DB53B /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
 		AACA120118FCFFF6005DB53B /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
@@ -570,7 +569,6 @@
 				AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */,
 				AACA11FC18FCFFF6005DB53B /* PMConversation.h */,
 				AACA11FD18FCFFF6005DB53B /* PMCore.h */,
-				AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */,
 				AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */,
 				AACA120018FCFFF6005DB53B /* PMInternalMessage.h */,
 				AACA120118FCFFF6005DB53B /* PMMessage.h */,

@@ -17,6 +17,7 @@
 
 @property (nonatomic, weak) id<PMSupportDelegate> delegate;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *appToken;
 @property (nonatomic, strong) NSString *secretKey;
 @property (nonatomic) BOOL isAgent;
 @property (nonatomic, copy) void (^connectCallback)(BOOL connected);
@@ -37,9 +38,7 @@
 
 + (void)initWithAppID:(NSString *)appId secretKey:(NSString *)secretKey
 {
-    [PMCore initWithAppID:appId];
-    [PMCore setDelegate:[PMSupport sharedInstance]];
-    
+    [PMSupport sharedInstance].appToken = appId;
     [PMSupport sharedInstance].secretKey = secretKey;
 }
 
@@ -55,6 +54,7 @@
         }
     }
     
+    [PMCore setDelegate:[PMSupport sharedInstance]];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"userId": userId, @"password": password};
     
@@ -62,6 +62,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
             NSString *userId = responseObject[@"userId"];
+            [PMCore initWithAppID:responseObject[@"appToken"]];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
             [PMSupport sharedInstance].isAgent = YES;
@@ -84,8 +85,11 @@
         }
     }
     
+    
+    [PMCore setDelegate:[PMSupport sharedInstance]];
+    [PMCore initWithAppID:[PMSupport sharedInstance].appToken];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"name": name};
+    NSDictionary *parameters = @{@"name": name, @"appToken": [PMSupport sharedInstance].appToken};
    
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString *postUrl = [NSString stringWithFormat:@"http://%@:%i/user/%@", POMOC_URL, POMOC_PORT, userId];
@@ -117,6 +121,13 @@
 + (void)connect
 {
     [PMSupport connectWithCompletion:nil];
+}
+
++ (void)disconnect
+{
+    [PMCore disconnect];
+    [PMSupport sharedInstance].userId = nil;
+    [PMSupport sharedInstance].connectCallback = nil;
 }
 
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback

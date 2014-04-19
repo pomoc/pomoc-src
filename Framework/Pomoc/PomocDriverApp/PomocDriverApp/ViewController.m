@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
+    //[PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
 //    
 //    // User 'login' code
@@ -81,15 +81,29 @@
 //#endif
 //
     [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-        self.userId = userId;
-        NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCompletion:^(BOOL connected) {
-            // Get all conversations
-            [PMSupport getAllConversations:^(NSArray *conversations) {
-                
+        if (userId) {
+            self.userId = userId;
+            NSLog(@"------- USER ID IS %@", userId);
+            [PMSupport connectWithCompletion:^(BOOL connected) {
+                NSLog(@"Connected: %i", connected);
+                //[PMSupport disconnect];
+                /*
+                [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
+                    NSLog(@"User Id is %@", userId);
+                    [PMSupport connectWithCompletion:^(BOOL connected) {
+                        NSLog(@"Im am connected: %i", connected);
+                        // Get all conversations
+                        [PMSupport getAllConversations:^(NSArray *conversations) {
+                            
+                        }];
+                        [PMSupport pingApp];
+                    }];
+                }];
+                 */
             }];
-            [PMSupport pingApp];
-        }];
+        } else {
+            NSLog(@"failed");
+        }
     }];
     
 }

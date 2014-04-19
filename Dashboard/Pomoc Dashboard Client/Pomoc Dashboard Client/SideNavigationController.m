@@ -16,6 +16,7 @@
 #import "HomeViewController.h"
 #import "ChatViewController.h"
 #import "GroupChatViewController.h"
+#import "PMSupport.h"
 
 #define HOME 0
 #define CHAT 1
@@ -167,6 +168,7 @@
                 self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsNavigationController"];
                 break;
             case LOGOUT:
+                [PMSupport disconnect];
                 [self performSegueWithIdentifier:@"logout" sender:self];
                 break;
         }
