@@ -13,6 +13,7 @@
 @interface ReferTableViewController () {
     NSMutableArray *option;
     DashBoardSingleton *singleton;
+    BOOL empty;
 }
 
 @end
@@ -31,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    empty = FALSE;
     singleton = [DashBoardSingleton singleton];
 }
 
@@ -39,7 +41,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_referList count];
+    if ([_referList count] == 0){
+        empty = TRUE;
+        return 10;
+    } else {
+        return [_referList count];
+    }
 }
 
 
@@ -48,8 +55,13 @@
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    PMUser *user = [_referList objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.name;
+    if (empty) {
+        cell.textLabel.text = @"No avail agents to invite";
+        
+    } else {
+        PMUser *user = [_referList objectAtIndex:indexPath.row];
+        cell.textLabel.text = user.name;
+    }
     
     return cell;
 }
@@ -59,10 +71,12 @@
 {
     NSLog(@"selected row == %lu",indexPath.row);
     
-    PMUser *selectedUser = [_referList objectAtIndex:indexPath.row];
-    NSLog(@"selected user name == %@",selectedUser.name);
-    
-    [singleton refer:_currentConvo referee:selectedUser];
+    if (!empty) {
+        PMUser *selectedUser = [_referList objectAtIndex:indexPath.row];
+        NSLog(@"selected user name == %@",selectedUser.name);
+        
+        [singleton refer:_currentConvo referee:selectedUser];
+    }
     
     [_delegate closeReferPopOver];
 }

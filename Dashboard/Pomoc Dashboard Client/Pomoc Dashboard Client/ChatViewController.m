@@ -635,8 +635,12 @@
         
         referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
         
-        CGFloat height = [referList count] * 44;
-        referSegue.popoverContentSize = CGSizeMake(250, height);
+        if ([referList count] == 0) {
+            referSegue.popoverContentSize = CGSizeMake(250, 44);
+        } else {
+            CGFloat height = [referList count] * 44;
+            referSegue.popoverContentSize = CGSizeMake(250, height);
+        }
         
     }
 }
