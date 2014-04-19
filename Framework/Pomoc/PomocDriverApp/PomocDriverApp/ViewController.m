@@ -41,7 +41,7 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
+    //[PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
 //    
 //    // User 'login' code
@@ -85,7 +85,9 @@
             self.userId = userId;
             NSLog(@"------- USER ID IS %@", userId);
             [PMSupport connectWithCompletion:^(BOOL connected) {
-                [PMSupport disconnect];
+                NSLog(@"Connected: %i", connected);
+                //[PMSupport disconnect];
+                /*
                 [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
                     NSLog(@"User Id is %@", userId);
                     [PMSupport connectWithCompletion:^(BOOL connected) {
@@ -97,6 +99,7 @@
                         [PMSupport pingApp];
                     }];
                 }];
+                 */
             }];
         } else {
             NSLog(@"failed");
