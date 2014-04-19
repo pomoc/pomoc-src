@@ -11,5 +11,6 @@
 @interface LoginViewController : UIViewController
 
 - (IBAction)loginPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
 @end

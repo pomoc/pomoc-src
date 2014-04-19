@@ -44,11 +44,13 @@
 }
 
 - (void) showActivityProgress {
+    
     UIActivityIndicatorView *activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityView.center=self.view.center;
     [activityView startAnimating];
     [self.view addSubview:activityView];
     
+    [_loadingLabel setText:@"Logging in..."];
     
 }
 @end
