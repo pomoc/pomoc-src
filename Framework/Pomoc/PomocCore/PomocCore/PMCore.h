@@ -32,6 +32,7 @@
 + (void)setDelegate:(id<PMCoreDelegate>)delegate;
 + (void)observeNewConversations;
 + (void)connect;
++ (void)disconnect;
 + (void)handleConversation:(NSString *)conversationId;
 + (void)unhandleConversation:(NSString *)conversationId;
 + (void)referHandlerConversation:(NSString *)conversationId refereeUserId:(NSString *)refereeUserId;

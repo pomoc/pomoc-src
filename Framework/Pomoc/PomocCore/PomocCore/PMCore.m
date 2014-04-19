@@ -199,6 +199,11 @@
     [[PMCore sharedInstance] connect];
 }
 
++ (void)disconnect
+{
+    [[PMCore sharedInstance] disconnect];
+}
+
 + (void)handleConversation:(NSString *)conversationId
 {
     PMCore *core = [PMCore sharedInstance];
@@ -249,6 +254,13 @@
 - (void)connect
 {
     [self.socket connectToHost:POMOC_URL onPort:POMOC_PORT];
+}
+
+- (void)disconnect
+{
+    [self.socket disconnect];
+    self.socket = [[SocketIO alloc] initWithDelegate:self];
+    self.userId = nil;
 }
 
 - (void)observeNewConversations

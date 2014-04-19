@@ -81,15 +81,26 @@
 //#endif
 //
     [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-        self.userId = userId;
-        NSLog(@"------- USER ID IS %@", userId);
-        [PMSupport connectWithCompletion:^(BOOL connected) {
-            // Get all conversations
-            [PMSupport getAllConversations:^(NSArray *conversations) {
-                
+        if (userId) {
+            self.userId = userId;
+            NSLog(@"------- USER ID IS %@", userId);
+            [PMSupport connectWithCompletion:^(BOOL connected) {
+                [PMSupport disconnect];
+                [PMSupport registerUserWithName:@"hello" completion:^(NSString *userId) {
+                    NSLog(@"User Id is %@", userId);
+                    [PMSupport connectWithCompletion:^(BOOL connected) {
+                        NSLog(@"Im am connected: %i", connected);
+                        // Get all conversations
+                        [PMSupport getAllConversations:^(NSArray *conversations) {
+                            
+                        }];
+                        [PMSupport pingApp];
+                    }];
+                }];
             }];
-            [PMSupport pingApp];
-        }];
+        } else {
+            NSLog(@"failed");
+        }
     }];
     
 }

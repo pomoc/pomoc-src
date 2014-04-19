@@ -119,6 +119,13 @@
     [PMSupport connectWithCompletion:nil];
 }
 
++ (void)disconnect
+{
+    [PMCore disconnect];
+    [PMSupport sharedInstance].userId = nil;
+    [PMSupport sharedInstance].connectCallback = nil;
+}
+
 + (void)connectWithCompletion:(void (^)(BOOL connected))callback
 {
     [[PMSupport sharedInstance] setConnectCallback:^(BOOL connected) {
