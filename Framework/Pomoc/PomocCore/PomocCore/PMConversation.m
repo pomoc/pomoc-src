@@ -21,12 +21,13 @@
     [PMCore joinConversation:self.conversationId
                creatorUserId:self.creator.userId
                   createDate:self.createDate
-                  completion:^(NSArray *messages) {
+                  completion:^(NSArray *messages, NSArray *notes) {
+        self.allNotes = [notes mutableCopy];
         if (messages.count == 0) {
             completion(YES);
             return;
         }
-        
+    
         [self resolveUserInMessages:messages completion:^(NSArray *messages) {
             self.allMessages = [messages mutableCopy];
             if (completion) {
@@ -41,6 +42,11 @@
     [PMCore sendTextMessage:message conversationId:self.conversationId];
 }
 
+- (void)sendNote:(NSString *)note
+{
+    [PMCore sendNote:note conversationId:self.conversationId];
+}
+
 - (void)sendImageMessage:(UIImage *)image
 {
     [PMCore sendImageMessage:image conversationId:self.conversationId];
@@ -49,6 +55,11 @@
 - (NSArray *)messages
 {
     return [self.allMessages copy];
+}
+
+- (NSArray *)notes
+{
+    return [self.allNotes copy];
 }
 
 - (void)resolveUserInMessages:(NSArray *)messages completion:(void(^)(NSArray *messages))completion

@@ -13,6 +13,7 @@
 @property (nonatomic) PMApplicationMessageCode code;
 @property (nonatomic) NSString *conversationId;
 @property (nonatomic) NSString *refereeUserId;
+@property (nonatomic) NSDictionary *appData;
 
 @end
 
@@ -29,6 +30,8 @@
             return @"referHandler";
         case PMApplicationMessageCodeGetHandlers:
             return @"getHandlers";
+        case PMApplicationMessageCodeAddNote:
+            return @"addNotes";
     }
     return nil;
 }
@@ -57,6 +60,15 @@
     return self;
 }
 
+- (id)initWithMessageCode:(PMApplicationMessageCode)code conversationId:(NSString *)conversationId appData:(NSDictionary *)appData
+{
+    self = [self initWithMessageCode:code conversationId:conversationId];
+    if (self) {
+        self.appData = appData;
+    }
+    return self;
+}
+
 - (NSDictionary *)jsonObject
 {
     NSMutableDictionary *jsonData = [[super jsonObject] mutableCopy];
@@ -68,6 +80,10 @@
     }
     if (self.refereeUserId) {
         jsonData[MESSAGE_REFEREE_USERID] = self.refereeUserId;
+    }
+    
+    if (self.appData) {
+        jsonData[MESSAGE_APP_DATA] = self.appData;
     }
     
     return [NSDictionary dictionaryWithDictionary:jsonData];

@@ -19,6 +19,8 @@
 #import "PMImageMessage.h"
 #import "PomocImage.h"
 
+#import "PMNote.h"
+
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
 
@@ -105,10 +107,19 @@
     }];
 }
 
++ (void)sendNote:(NSString *)note conversationId:(NSString *)conversationId
+{
+    NSDictionary *appData = @{@"note": note};
+    
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *noteMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeAddNote conversationId:conversationId appData:appData];
+    [core sendMessage:noteMessage withAcknowledge:nil];
+}
+
 + (void)joinConversation:(NSString *)conversationId
            creatorUserId:(NSString *)creatorUserId
               createDate:(NSDate *)createDate
-              completion:(void (^)(NSArray *messages))completion
+              completion:(void (^)(NSArray *messages, NSArray *notes))completion
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeJoinConversation
@@ -119,6 +130,8 @@
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
             NSMutableArray *messages = [NSMutableArray array];
+            NSMutableArray *notes = [NSMutableArray array];
+            
             for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
                 // TODO: Generalize this
                 if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]] ||
@@ -128,7 +141,12 @@
                 }
             }
             
-            completion([NSArray arrayWithArray:messages]);
+            for (NSDictionary *noteData in jsonResponse[@"notes"]) {
+                PMNote *note = [[PMNote alloc] initWithJsonData:noteData];
+                [notes addObject:note];
+            }
+            
+            completion([NSArray arrayWithArray:messages], [NSArray arrayWithArray:notes]);
             
         }
     }];
@@ -304,6 +322,15 @@
         PMConversation *conversation = self.conversations[chatMessage.conversationId];
         if (conversation) {
             [conversation addMessage:chatMessage];
+        }
+    }
+    else if ([packet.name isEqualToString:@"newNote"]) {
+        NSString *conversationId = data[@"conversationId"];
+        
+        PMConversation *conversation = self.conversations[conversationId];
+        if (conversation) {
+            PMNote *note = [[PMNote alloc] initWithJsonData:data[@"note"]];
+            [conversation addNote:note];
         }
     }
     else if ([packet.name isEqualToString:@"newConversation"]) {
