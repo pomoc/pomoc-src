@@ -48,7 +48,7 @@
     //[PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"22" password:@"22" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"steve2" password:@"1" completion:^(NSString *returnedUserId) {
         
         //NSLog(@"returned userId == %@", returnedUserId);
         _selfUserId = returnedUserId;

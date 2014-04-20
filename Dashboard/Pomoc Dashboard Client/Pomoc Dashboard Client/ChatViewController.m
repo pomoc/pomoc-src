@@ -130,6 +130,7 @@
             BOOL selfHandled = FALSE;
             
             for (PMUser *handler in convo.handlers) {
+
                 if ([handler.userId isEqualToString: singleton.selfUserId]) {
                     selfHandled = true;
                 }
@@ -466,7 +467,7 @@
         
         NSUInteger total = 0;
         for (PMUser *user in conversations){
-            if ([user.type isEqualToString:USER_TYPE_AGENT]) {
+            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
                 total++;
             }
         }
