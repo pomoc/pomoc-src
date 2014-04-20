@@ -47,7 +47,7 @@
                                             forKey:@"conversationSound"];
 }
 
-- (void)toggleMessageSoundOn:(BOOL)value {
+- (void)toggleMessageSound:(BOOL)value {
     [[NSUserDefaults standardUserDefaults] setBool:value
                                             forKey:@"messageSound"];
 }
