@@ -26,7 +26,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate> {
+@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate, ReferDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -34,6 +34,12 @@
     CGRect chatNavOriginalFrame;
     
     NSMutableArray *chatList;
+    
+    //New way of 3 type of chat list
+    NSMutableArray *unhandledChatList;
+    NSMutableArray *handlingChatList;
+    NSMutableArray *otherChatList;
+    
     NSMutableArray *chatMessageList;
     NSInteger currentlySelectedChatRow;
     NSString *currentSelectedConvoId;
@@ -46,6 +52,10 @@
     DashBoardSingleton *singleton;
     
     UIPopoverController *uploadSegue;
+    UIPopoverController *referSegue;
+    
+    __block NSArray *referList;
+    
 }
 
 @end
@@ -68,6 +78,7 @@
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
     [leftBorder setFrame:CGRectMake(0, 0, 0.5, _chatInputView.frame.size.height)];
     [_chatInputView.layer addSublayer:leftBorder];
+    _chatInputView.hidden = TRUE;
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     
@@ -85,11 +96,12 @@
     [singleton setChatDelegate:self];
     chatList = singleton.currentConversationList;
     
-    for (PMConversation *convo in chatList) {
-       
-        NSLog(@"@convo message == %lu", [convo.messages count]);
+    //NEW FILTER
+    unhandledChatList = [[NSMutableArray alloc] init];
+    handlingChatList = [[NSMutableArray alloc] init];
+    otherChatList = [[NSMutableArray alloc] init];
     
-    }
+    [self splitChatIntoGroups];
     
     [_chatNavTable reloadData];
     
@@ -101,9 +113,59 @@
     
     _toolBarView.hidden = TRUE;
 }
+     
+- (void) splitChatIntoGroups {
+    NSLog(@"came inside split");
+    [unhandledChatList removeAllObjects];
+    [handlingChatList removeAllObjects];
+    [otherChatList removeAllObjects];
+    
+    for (PMConversation *convo in chatList) {
+        
+        if ([convo.handlers count] == 0) {
+            [unhandledChatList addObject:convo];
+        
+        } else {
+            
+            BOOL selfHandled = FALSE;
+            
+            for (PMUser *handler in convo.handlers) {
+                if ([handler.userId isEqualToString: singleton.selfUserId]) {
+                    selfHandled = true;
+                }
+            }
+            
+            if (selfHandled) {
+                [handlingChatList addObject:convo];
+            } else {
+                [otherChatList addObject:convo];
+            }
+            
+        }
+    }
+    
+    NSArray *sortedArray;
+    
+    sortedArray = [unhandledChatList sortedArrayUsingComparator:^NSComparisonResult(id first, id second) {
+        
+        PMConversation *a = first;
+        PMConversation *b = second;
+
+        PMMessage *aLastMessage = [a.messages lastObject];
+        PMMessage *bLastMessage = [b.messages lastObject];
+        
+        NSDate *aDate = aLastMessage.timestamp;
+        NSDate *bDate = bLastMessage.timestamp;
+        
+        return [aDate compare:bDate];
+    }];
+    
+    unhandledChatList = [[NSMutableArray alloc] initWithArray:sortedArray];
+    
+}
 
 - (IBAction)sendMessage:(id)sender {
-    
+
     NSString *userInput = _userTextInput.text;
     
     if ( [userInput length] > 0 ) {
@@ -136,14 +198,19 @@
 #pragma mark - annotation related
 
 - (IBAction)annotateActionPressed:(id)sender {
+    
     NSArray *subviews = [sender superview].subviews;
     UIImageView *imv;
+    NSLog(@"sub views count == %lu",[subviews count]);
     for (int i=0; i<[subviews count]; i++) {
         if ([subviews[i] isKindOfClass:[UIImageView class]] &&
             ((UIImageView *)subviews[i]).image) {
+            NSLog(@"met criteria!");
             imv = subviews[i];
+            break;
         }
     }
+    
     if (imv) {
         UIImage *picture = imv.image;
         AnnotateViewController *annotateVC = [[AnnotateViewController alloc] initWithImage:picture];
@@ -179,10 +246,49 @@
 }
 
 #pragma mark - Navigation Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+        return 3;
+    }
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+    
+        switch(section) {
+            case UNHANDLED_CHAT:
+                return @"unhandled chats";
+                break;
+            case HANDLING_CHAT:
+                return @"chats you are handling";
+                break;
+            case OTHER_CHAT:
+                return @"Other chats";
+                break;
+        }
+    
+    }
+    return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
-        return [chatList count];
+        //return [chatList count];
+        
+        switch(section) {
+            case UNHANDLED_CHAT:
+                return [unhandledChatList count];
+                break;
+            case HANDLING_CHAT:
+                return [handlingChatList count];
+                break;
+            case OTHER_CHAT:
+                return [otherChatList count];
+                break;
+        }
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         if ([chatList count] == 0) {
@@ -200,7 +306,8 @@
 {
     NSInteger row = indexPath.row;
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
-        return [self createChatNavTableView:tableView atRow:row];
+        
+        return [self createChatNavTableView:tableView atRow:row type:indexPath.section];
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
@@ -225,6 +332,7 @@
     if([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         
         _toolBarView.hidden = FALSE;
+        _chatInputView.hidden = FALSE;
         
         currentlySelectedChatRow = indexPath.row;
         
@@ -256,6 +364,31 @@
     }
     
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    switch(section) {
+        case UNHANDLED_CHAT:
+            if ([unhandledChatList count] ==0) {
+                return 0;
+            }
+            return 20;
+            break;
+        case HANDLING_CHAT:
+            if ([handlingChatList count] ==0) {
+                return 0;
+            }
+            return 20;
+            break;
+        case OTHER_CHAT:
+            if ([otherChatList count] ==0) {
+                return 0;
+            }
+            return 20;
+            break;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -294,14 +427,25 @@
 }
 
 #pragma mark - CHAT SIDE NAV
-- (UITableViewCell *) createChatNavTableView: (UITableView *) tableView atRow: (NSInteger)row
+- (UITableViewCell *) createChatNavTableView: (UITableView *) tableView atRow: (NSInteger)row type:(NSInteger) type
 {
     NSLog(@"creating chat left side table view");
     
     static NSString *cellIdentifier = @"ChatTitleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    PMConversation *pmConvo = [chatList objectAtIndex:row];
+    PMConversation *pmConvo;
+    switch (type) {
+        case UNHANDLED_CHAT:
+            pmConvo = [unhandledChatList objectAtIndex:row];
+            break;
+        case HANDLING_CHAT:
+            pmConvo = [handlingChatList objectAtIndex:row];
+            break;
+        case OTHER_CHAT:
+            pmConvo = [otherChatList objectAtIndex:row];
+            break;
+    }
     
     //Setting visitor name
     UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
@@ -315,23 +459,6 @@
     UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
     [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at", dateString]];
     
-//    
-//    if ([pmConvo.messages count] > 0 ) {
-//        NSLog(@"size of pm convo messages %lu",[pmConvo.messages count]);
-//        PMChatMessage *firstMessage = [pmConvo.messages objectAtIndex:0];
-//        
-//        //Setting visitor name
-//        UILabel *visitorLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_NAME];
-//        [visitorLabel setText:firstMessage.user.name];
-//        
-//        //setting the started date of chat
-//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
-//        NSString *dateString = [dateFormatter stringFromDate:firstMessage.timestamp];
-//        
-//        UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
-//        [startedLabel setText:[NSString stringWithFormat:@"%@ %@",@"Started at",dateString]];
-//    }
     
     //setting number of agents
     UILabel *agentLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_AGENT_NO];
@@ -347,8 +474,6 @@
         NSLog(@"getting list of handlers returned == %lu",total);
         [agentLabel setText:[NSString stringWithFormat: @"%lu", total]];
     }];
-    
-    
     
     return cell;
 }
@@ -379,7 +504,7 @@
     [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
     [cell.messageFrom boldAndBlackSubstring:message.user.name];
     
-    __weak typeof(UITableViewCell *) weakCell = cell;
+    __weak typeof(ChatMessagePictureCell *) weakCell = cell;
     
     //setting the display text
     [message retrieveImageWithCompletion:^(UIImage *image) {
@@ -389,6 +514,9 @@
         weakCell.imageView.clipsToBounds = YES;
         UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
         [weakCell.imageView setImage:scaled];
+        
+        [weakCell.messageBigPicture setImage:image];
+        weakCell.messageBigPicture.hidden = true;
         [weakCell setNeedsLayout];
         
     }];
@@ -432,12 +560,14 @@
 - (void)hasNewConversation: (NSMutableArray *)newChatList
 {
     chatList = newChatList;
+    [self splitChatIntoGroups];
     [_chatNavTable reloadData];
 }
 
 - (void) updateChatList: (NSMutableArray *)newChatList
 {
     chatList = newChatList;
+    [self splitChatIntoGroups];
     [_chatNavTable reloadData];
 }
 
@@ -446,32 +576,71 @@
     NSLog(@"called chat VC has new message");
     chatList = newChatList;
     
+    [self splitChatIntoGroups];
+    [_chatNavTable reloadData];
+    
     NSLog(@"current convo id == %@, convo id == %@", currentlySelectedConvo.conversationId, conversation.conversationId);
     
     if ([currentlySelectedConvo.conversationId isEqualToString:conversation.conversationId]) {
         NSLog(@"yes equal!");
         [_chatMessageTable reloadData];
+        [self scrollChatContentToBottom];
     }
 }
 
 - (void) handlerUpdate: (NSMutableArray *)newChatList
 {
     chatList = newChatList;
+    [self splitChatIntoGroups];
     [_chatNavTable reloadData];
+}
+
+- (void) referred: (NSString *)convoId
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Chat Referred" message: @"You've been referred to a new chat conversation! " delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (IBAction)inviteActionPressed:(id)sender
+{
+    [singleton getPossibleRefer:currentlySelectedConvo completion:^(NSArray *users){
+        
+        referList = users;
+        [self performSegueWithIdentifier:@"referAgents" sender:self];
+        
+    }];
 }
 
 #pragma  mark - Preparation for Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"uploadPicture"]) {
+        
+        [self.view endEditing:YES];
+        
         UploadViewController *child = [segue destinationViewController];
         child.delegate = self;
+
         uploadSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        
         
     } else if ([[segue identifier] isEqualToString:@"referAgents"]) {
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
         ReferTableViewController *vc = [segue destinationViewController];
         [vc setCurrentConvo:currentlySelectedConvo];
+        [vc setReferList:referList];
+        [vc setDelegate:self];
+        
+        referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+        
+        if ([referList count] == 0) {
+            referSegue.popoverContentSize = CGSizeMake(250, 44);
+        } else {
+            CGFloat height = [referList count] * 44;
+            referSegue.popoverContentSize = CGSizeMake(250, height);
+        }
         
     }
 }
@@ -481,6 +650,10 @@
     [uploadSegue dismissPopoverAnimated:YES];
 }
 
+-(void) closeReferPopOver
+{
+    [referSegue dismissPopoverAnimated:YES];
+}
 
 #pragma  mark - Textfield editing delegate
 
@@ -488,6 +661,11 @@
 {
     keyboardEditing = true;
     [self scrollThingUp];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self sendMessage:self];
+    return YES;
 }
 
 - (void) scrollThingUp
@@ -498,7 +676,7 @@
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    /* keyboard is visible, move views */
+    
     [self scrollChatContentToBottom];
     
     //change chat nav table height
@@ -535,7 +713,6 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     keyboardEditing = false;
-    NSLog(@"called end editing");
     _chatInputView.center = chatInputOriginalCenter;
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
@@ -547,7 +724,6 @@
 
 - (void) deallocDelegate
 {
-    NSLog(@"inside dealloc delegate of chat vc");
     singleton.chatDelegate = nil;
 }
 

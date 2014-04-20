@@ -11,5 +11,7 @@
 @interface ContactInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *notesTableView;
+@property (weak, nonatomic) IBOutlet UITextField *inputText;
+- (IBAction)addNotesPressed:(id)sender;
 
 @end

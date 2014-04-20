@@ -30,7 +30,7 @@
 @property (nonatomic, strong, readonly) NSString *conversationId;
 @property (nonatomic, strong, readonly) PMUser *creator;
 @property (nonatomic, strong, readonly) NSDate *createDate;
-
+@property (nonatomic, strong) NSMutableArray *handlers;
 @property (nonatomic, weak) id<PMConversationDelegate> delegate;
 
 - (void)sendTextMessage:(NSString *)message;

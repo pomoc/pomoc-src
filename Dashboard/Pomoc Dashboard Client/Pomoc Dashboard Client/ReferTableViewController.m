@@ -13,6 +13,7 @@
 @interface ReferTableViewController () {
     NSMutableArray *option;
     DashBoardSingleton *singleton;
+    BOOL empty;
 }
 
 @end
@@ -31,30 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"came inside action VC");
+    empty = FALSE;
     singleton = [DashBoardSingleton singleton];
-    
-    option = [[NSMutableArray alloc] init];
-    
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = self.view.center;
-    [self.view addSubview:spinner];
-    [self.view bringSubviewToFront:spinner];
-    [spinner startAnimating];
-    
-    __block NSArray *agentList;
-    [singleton getPossibleRefer:_currentConvo completion:^(NSArray *users){
-        
-        agentList = users;
-        for (PMUser *user in agentList) {
-            [option addObject: user];
-        }
-        
-        [self.tableView reloadData];
-        
-    }];
-    
-    //option = @[@"Tim", @"Ali", @"Baba"];
 }
 
 #pragma mark - Table view data source
@@ -62,7 +41,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [option count];
+    if ([_referList count] == 0){
+        empty = TRUE;
+        return 10;
+    } else {
+        return [_referList count];
+    }
 }
 
 
@@ -71,8 +55,13 @@
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    PMUser *user = [option objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.name;
+    if (empty) {
+        cell.textLabel.text = @"No avail agents to invite";
+        
+    } else {
+        PMUser *user = [_referList objectAtIndex:indexPath.row];
+        cell.textLabel.text = user.name;
+    }
     
     return cell;
 }
@@ -82,10 +71,14 @@
 {
     NSLog(@"selected row == %lu",indexPath.row);
     
-    PMUser *selectedUser = [option objectAtIndex:indexPath.row];
-    NSLog(@"selected user name == %@",selectedUser.name);
+    if (!empty) {
+        PMUser *selectedUser = [_referList objectAtIndex:indexPath.row];
+        NSLog(@"selected user name == %@",selectedUser.name);
+        
+        [singleton refer:_currentConvo referee:selectedUser];
+    }
     
-    [singleton refer:_currentConvo referee:selectedUser];
+    [_delegate closeReferPopOver];
 }
 
 @end

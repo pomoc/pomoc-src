@@ -8,9 +8,9 @@
 
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
+#import "SoundEngine.h"
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
-    __block NSString *selfUserId;
     __block NSUInteger totalUnattendedConversation;
 }
 
@@ -42,15 +42,16 @@
 
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion
 {
-    NSLog(@"logging in");
+    //NSLog(@"logging in");
     _currentConversationList = [[NSMutableArray alloc] init];
     
-    [PMSupport initWithAppID:@"anc163" secretKey:@"mySecret"];
+    //[PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"steveng.1988@gmail.com" password:@"hehe" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"5" password:@"5" completion:^(NSString *returnedUserId) {
         
-        selfUserId = returnedUserId;
+        //NSLog(@"returned userId == %@", returnedUserId);
+        _selfUserId = returnedUserId;
         
         //NSLog(@"------- USER ID IS %@", userId);
         [PMSupport connectWithCompletion:^(BOOL connected) {
@@ -61,9 +62,17 @@
             // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
                 
-                NSLog(@"all conversation.length == %lu",[conversations count]);
+                
+                //NSLog(@"all conversation.length == %lu",[conversations count]);
                 
                 for (PMConversation *convo in conversations) {
+                    
+                    //getting handlers
+                    [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+                        convo.handlers = [[NSMutableArray alloc] initWithArray:users];
+                    }];
+                    
+                    //setting delegates
                     convo.delegate = self;
                     [_currentConversationList addObject:convo];
                 }
@@ -89,33 +98,48 @@
     NSMutableSet *listOfAgent = [[NSMutableSet alloc] initWithArray:_currentAgentList];
     
     for (PMUser *user in [listOfAgent allObjects]) {
-        if ([user.userId isEqualToString:selfUserId]) {
+        if ([user.userId isEqualToString:_selfUserId]) {
             [listOfAgent removeObject:user];
             break;
         }
     }
     
-    [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
-       
-        for (PMUser *user in users) {
-            [listOfAgent removeObject:user];
+    for (PMConversation *conversation in _currentConversationList) {
+        
+        if ([conversation.conversationId isEqualToString:convo.conversationId]) {
+            for (PMUser *user in conversation.handlers) {
+                [listOfAgent removeObject:user];
+            }
+            
+            completion([listOfAgent allObjects]);
+            break;
         }
         
-        completion([listOfAgent allObjects]);
-    }];
+    }
+    
+//    [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+//       
+//        for (PMUser *user in users) {
+//            [listOfAgent removeObject:user];
+//        }
+//        
+//        completion([listOfAgent allObjects]);
+//    }];
 }
 
 - (void)refer: (PMConversation *)convo referee:(PMUser *)user
 {
+    //NSLog(@"came inside here to refer convo id =%@ and userid = %@ and user name = %@",convo.conversationId, user.userId, user.name);
     [PMSupport referHandlerConversation:convo.conversationId refereeUserId:user.userId];
 }
 
+
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 {
-    __block NSUInteger totalAttended = 0;
-    __block NSUInteger totalConversationIterated = 0;
+    NSUInteger totalAttended = 0;
+    NSUInteger totalConversationIterated = 0;
     
-    NSLog(@"number of unattended called, current convo list == %lu",[_currentConversationList count]);
+    //NSLog(@"number of unattended called, current convo list == %lu",[_currentConversationList count]);
     
     if ([_currentConversationList count] == 0) {
         totalUnattendedConversation = 0;
@@ -124,27 +148,39 @@
     
     for (PMConversation *convo in _currentConversationList) {
         
-        [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
-             NSLog(@"handlers called");
-            
-            //check among the users in the convo, if there are someone inside
-            for (PMUser *user in users) {
-                NSLog(@"user.type == %@",user.type);
-                if (![user.type isEqualToString:USER_TYPE_PUBLIC]){
-                    totalAttended++;
-                    break;
-                }
+        for (PMUser *user in convo.handlers) {
+            //NSLog(@"user.type == %@",user.type);
+            if (![user.type isEqualToString:USER_TYPE_PUBLIC]){
+                totalAttended++;
+                break;
             }
-            
-            totalConversationIterated ++;
-            if (totalConversationIterated == [_currentConversationList count]) {
-                totalUnattendedConversation = totalConversationIterated - totalAttended;
-                completion(totalUnattendedConversation);
-            }
-            
-        }];
-        
+        }
     }
+    
+    totalUnattendedConversation = [_currentConversationList count] - totalAttended;
+    completion(totalUnattendedConversation);
+        
+//        [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+//             NSLog(@"handlers called");
+//            
+//            //check among the users in the convo, if there are someone inside
+//            for (PMUser *user in users) {
+//                NSLog(@"user.type == %@",user.type);
+//                if (![user.type isEqualToString:USER_TYPE_PUBLIC]){
+//                    totalAttended++;
+//                    break;
+//                }
+//            }
+//            
+//            totalConversationIterated ++;
+//            if (totalConversationIterated == [_currentConversationList count]) {
+//                totalUnattendedConversation = totalConversationIterated - totalAttended;
+//                completion(totalUnattendedConversation);
+//            }
+//            
+//        }];
+        
+//    }
 }
 
 - (NSUInteger)numberOfConversation
@@ -155,7 +191,7 @@
 #pragma mark - handling convo
 - (void)handleConversation:(NSString *)conversationId
 {
-    NSLog(@"handling conversation pressed");
+    //NSLog(@"handling conversation pressed");
     [PMSupport handleConversation:conversationId];
 }
 
@@ -171,14 +207,9 @@
     [PMSupport getHandlersForConversation:conversationId completion:^(NSArray *conversations){
         
         NSUInteger total = 0;
-
-        for (PMUser *user in conversations){
-            NSLog(@"user type== %@", user.type);
-            NSLog(@"user type== %@", user.userId);
-            NSLog(@"user type== %@", user.name);
-//            if (![user.type isEqualToString:USER_TYPE_PUBLIC]) {
-//                total++;
-//            }
+        
+        if (conversations == nil) {
+            NSLog(@"is handler array == nil");
         }
         
         NSLog(@"called in line 122 of singleton with conversation user == %lu", total);
@@ -194,7 +225,10 @@
 {
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
-    NSLog(@"dashboard singleton detected new chat");
+    //NSLog(@"dashboard singleton detected new chat");
+    
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewConversation];
     
     if ([self isChatDelegateAlive]) {
         [_chatDelegate hasNewConversation:_currentConversationList];
@@ -203,7 +237,7 @@
 
 - (void)updateOnlineUsers:(NSArray *)users
 {
-    NSLog(@"delegate of update online users called");
+    //NSLog(@"delegate of update online users called");
     
     NSUInteger currentAgentCount = [_currentAgentList count];
     
@@ -223,6 +257,11 @@
         if ([self isHomeDelegateAlive]) {
             [_homeDelegate agentTotalNumberChange:[_currentAgentList count]];
         }
+        
+        if ([self isGroupChatDelegateAlive]) {
+            [_groupChatDelegate agentListUpdated:_currentAgentList];
+        }
+        
     } else {
         if ([self isHomeDelegateAlive]) {
             [_homeDelegate userTotalNumberChange:[_currentUserList count]];
@@ -237,7 +276,7 @@
        
         BOOL found = false;
         for (PMUser *user in users) {
-            if ([user.userId isEqualToString:selfUserId]) {
+            if ([user.userId isEqualToString:_selfUserId]) {
                 found = true;
                 break;
             }
@@ -251,7 +290,11 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    NSLog(@"recieved new chat");
+    //NSLog(@"recieved new chat");
+    
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewMessage];
+    
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
@@ -265,7 +308,11 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
-    NSLog(@"recieved an image message delegae called ");
+    
+    SoundEngine *engine = [SoundEngine singleton];
+    [engine playNewMessage];
+    
+    //NSLog(@"recieved an image message delegae called ");
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
@@ -279,8 +326,16 @@
 // Delegate method for handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
 {
+    //replacing current handlers
+    for (PMConversation *convo in _currentConversationList) {
+        if ([convo.conversationId isEqualToString:conversationId]) {
+            convo.handlers = (NSMutableArray *)handlers;
+        }
+    }
+
     //checking if current unattended conversation list changed
     __block NSUInteger temp = totalUnattendedConversation;
+    
     [self numberOfUnattendedConversation:^(NSUInteger total){
        
         if (temp != total){
@@ -298,11 +353,15 @@
 // Delegate method for referral of handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
-    NSLog(@"hehe referred");
-    NSLog(@"referrer id user name = %@", referrer.name);
-    NSLog(@"referee id user name = %@", referee.name);
+    //NSLog(@"hehe referred");
+    //NSLog(@"referrer id user name = %@", referrer.userId);
     
-    if ([referee.userId isEqualToString: selfUserId]) {
+    if ([referee.userId isEqualToString: _selfUserId]) {
+        
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate referred:conversationId];
+        }
+        
         [PMSupport handleConversation:conversationId];
     }
 }
@@ -318,6 +377,13 @@
 - (BOOL)isChatDelegateAlive
 {
     if (_chatDelegate == nil)
+        return FALSE;
+    return TRUE;
+}
+
+- (BOOL)isGroupChatDelegateAlive
+{
+    if(_groupChatDelegate == nil)
         return FALSE;
     return TRUE;
 }

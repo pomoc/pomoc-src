@@ -30,6 +30,9 @@
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
 
+//convo related
+- (IBAction)inviteActionPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *inviteBarButton;
 
 //Toolbar that contains info/action
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;

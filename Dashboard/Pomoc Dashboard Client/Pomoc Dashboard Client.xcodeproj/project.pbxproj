@@ -90,6 +90,11 @@
 		C3150BCB190234900018521F /* LineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3150BCA190234900018521F /* LineChartView.m */; };
 		C37D90F019028A1F001F8EB4 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */; };
 		C3D2E02419024B69003BE763 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D2E02319024B69003BE763 /* ChartViewController.m */; };
+		AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CE81902381D003D9241 /* GroupChatViewController.m */; };
+		AAD17CEC19027DB0003D9241 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEB19027DB0003D9241 /* SettingsViewController.m */; };
+		AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEE1902A245003D9241 /* SoundEngine.m */; };
+		AAD17CF31902A427003D9241 /* chat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF11902A427003D9241 /* chat.mp3 */; };
+		AAD17CF41902A427003D9241 /* message.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF21902A427003D9241 /* message.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,7 +233,6 @@
 		AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
 		AACA11FC18FCFFF6005DB53B /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
 		AACA11FD18FCFFF6005DB53B /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
 		AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
 		AACA120018FCFFF6005DB53B /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
 		AACA120118FCFFF6005DB53B /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
@@ -246,6 +250,14 @@
 		C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBChartTooltipTipView.m; path = Classes/JBChartTooltipTipView.m; sourceTree = "<group>"; };
 		C3D2E02219024B69003BE763 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
 		C3D2E02319024B69003BE763 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		AAD17CE71902381D003D9241 /* GroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GroupChatViewController.h; path = ../GroupChatViewController.h; sourceTree = "<group>"; };
+		AAD17CE81902381D003D9241 /* GroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GroupChatViewController.m; path = ../GroupChatViewController.m; sourceTree = "<group>"; };
+		AAD17CEA19027DB0003D9241 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AAD17CEB19027DB0003D9241 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AAD17CED1902A245003D9241 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		AAD17CEE1902A245003D9241 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
+		AAD17CF11902A427003D9241 /* chat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chat.mp3; sourceTree = "<group>"; };
+		AAD17CF21902A427003D9241 /* message.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = message.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,8 +376,13 @@
 		AA5204B318D7EF2C00D78156 /* Pomoc Dashboard Client */ = {
 			isa = PBXGroup;
 			children = (
+				AAD17CF01902A41B003D9241 /* Sounds */,
 				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
+				AAD17CED1902A245003D9241 /* SoundEngine.h */,
+				AAD17CEE1902A245003D9241 /* SoundEngine.m */,
+				AAD17CEA19027DB0003D9241 /* SettingsViewController.h */,
+				AAD17CEB19027DB0003D9241 /* SettingsViewController.m */,
 				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
 				AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */,
 				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
@@ -377,6 +394,8 @@
 				C3D2E02219024B69003BE763 /* ChartViewController.h */,
 				C3D2E02319024B69003BE763 /* ChartViewController.m */,
 				C3150BC81902346C0018521F /* ChartMVC */,
+				AAD17CE71902381D003D9241 /* GroupChatViewController.h */,
+				AAD17CE81902381D003D9241 /* GroupChatViewController.m */,
 				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */,
@@ -560,7 +579,6 @@
 				AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */,
 				AACA11FC18FCFFF6005DB53B /* PMConversation.h */,
 				AACA11FD18FCFFF6005DB53B /* PMCore.h */,
-				AACA11FE18FCFFF6005DB53B /* PMCoreDelegate.h */,
 				AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */,
 				AACA120018FCFFF6005DB53B /* PMInternalMessage.h */,
 				AACA120118FCFFF6005DB53B /* PMMessage.h */,
@@ -572,6 +590,15 @@
 			);
 			name = Headers;
 			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
+			sourceTree = "<group>";
+		};
+		AAD17CF01902A41B003D9241 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				AAD17CF11902A427003D9241 /* chat.mp3 */,
+				AAD17CF21902A427003D9241 /* message.mp3 */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
@@ -688,6 +715,8 @@
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
 				AA6958FE1900E4C800E28EBE /* 40x40.png in Resources */,
+				AAD17CF31902A427003D9241 /* chat.mp3 in Resources */,
+				AAD17CF41902A427003D9241 /* message.mp3 in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
 				AA6959021900E4C800E28EBE /* 152x152.png in Resources */,
 				AA9BDCFA18F91E1100EF6EEC /* JBChartView.podspec in Resources */,
@@ -727,6 +756,7 @@
 				AA4649FB18E814D100A607E0 /* SDWebImageManager.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
 				AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */,
+				AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */,
 				AA9BDCF818F91E1100EF6EEC /* JBBarChartView.m in Sources */,
 				AA4649F718E814D100A607E0 /* SDWebImageCompat.m in Sources */,
 				AA4649FA18E814D100A607E0 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -740,6 +770,7 @@
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				C3150BCB190234900018521F /* LineChartView.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */,
 				AA4649FE18E814D100A607E0 /* UIImage+GIF.m in Sources */,
 				AA4649FF18E814D100A607E0 /* UIImage+MultiFormat.m in Sources */,
 				AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */,
@@ -758,6 +789,7 @@
 				AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */,
 				AA4649F518E814D100A607E0 /* NSData+ImageContentType.m in Sources */,
 				AA9BDCF918F91E1100EF6EEC /* JBChartView.m in Sources */,
+				AAD17CEC19027DB0003D9241 /* SettingsViewController.m in Sources */,
 				AA5204BA18D7EF2C00D78156 /* main.m in Sources */,
 				AA5204FE18D8109A00D78156 /* HomeViewController.m in Sources */,
 				AA4649F618E814D100A607E0 /* SDImageCache.m in Sources */,

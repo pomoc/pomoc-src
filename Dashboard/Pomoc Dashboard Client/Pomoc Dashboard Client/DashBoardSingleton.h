@@ -18,6 +18,13 @@
 - (void) hasNewConversation: (NSMutableArray *)chatList;
 - (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
 - (void) handlerUpdate: (NSMutableArray *)chatList;
+- (void) referred: (NSString *)convoId;
+
+@end
+
+@protocol PomocGroupDelegate
+
+- (void) agentListUpdated: (NSMutableArray *)agentList;
 
 @end
 
@@ -55,12 +62,12 @@
 - (void)refer: (PMConversation *)convo referee:(PMUser *)user;
 
 @property (nonatomic, strong) NSMutableArray *currentConversationList;
-
+@property (nonatomic, strong) NSString *selfUserId;
 @property (nonatomic, strong) NSMutableArray *currentAgentList;
 @property (nonatomic, strong) NSMutableArray *currentUserList;
 
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;
-@property (nonatomic, assign) id  referDelegate;
+@property (nonatomic, assign) id  groupChatDelegate;
 
 @end
