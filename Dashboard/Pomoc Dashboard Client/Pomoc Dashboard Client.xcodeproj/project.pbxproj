@@ -900,13 +900,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/chunmun/Downloads/aws-ios-sdk-1.7.1",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Vendor,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
@@ -915,18 +909,6 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Vendor/AWSS3.framework,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -941,13 +923,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/chunmun/Downloads/aws-ios-sdk-1.7.1",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Vendor,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pomoc Dashboard Client/Pomoc Dashboard Client-Prefix.pch";
 				INFOPLIST_FILE = "Pomoc Dashboard Client/Pomoc Dashboard Client-Info.plist";
@@ -956,19 +932,6 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					"../../Framework/Pomoc/PomocCore/Distribution/**",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Vendor/AWSS3.framework,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

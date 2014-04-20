@@ -69,7 +69,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row == %lu",indexPath.row);
+    NSLog(@"selected row == %lu",(long)indexPath.row);
     
     if (!empty) {
         PMUser *selectedUser = [_referList objectAtIndex:indexPath.row];

@@ -201,7 +201,7 @@
     
     NSArray *subviews = [sender superview].subviews;
     UIImageView *imv;
-    NSLog(@"sub views count == %lu",[subviews count]);
+    NSLog(@"sub views count == %lu", (unsigned long)[subviews count]);
     for (int i=0; i<[subviews count]; i++) {
         if ([subviews[i] isKindOfClass:[UIImageView class]] &&
             ((UIImageView *)subviews[i]).image) {
@@ -471,8 +471,8 @@
             }
         }
         
-        NSLog(@"getting list of handlers returned == %lu",total);
-        [agentLabel setText:[NSString stringWithFormat: @"%lu", total]];
+        NSLog(@"getting list of handlers returned == %lu",(unsigned long)total);
+        [agentLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)total]];
     }];
     
     return cell;
