@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LineChartViewDelegate
+- (void)didSelectPointAtKey:(NSNumber *)key value:(NSNumber *)value;
+- (void)didUnselectPoint;
+@end
+
 @interface LineChartView : UIView
+@property (weak, nonatomic) id<LineChartViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame;
 

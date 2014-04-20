@@ -9,6 +9,7 @@
 #import "ChartViewController.h"
 #import "DashBoardSingleton.h"
 #import "LineChartView.h"
+#import "Chartlet.h"
 
 @interface ChartViewController () {
     DashBoardSingleton *singleton;
@@ -16,13 +17,16 @@
     
     NSMutableDictionary *fakeData;
     LineChartView *timeChart;
+    
+    NSMutableDictionary *chartlets;
+    NSMutableArray *chartArray;
 }
 
 @end
 
 # pragma mark - UIViewControllerDelegate methods
 
-@implementation ChartViewController
+@implementation ChartViewController 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +45,8 @@
     [singleton setHomeDelegate:self];
     [self initFakeData:100];
     [self initTimeChart];
+    
+    self.numArea.delegate = self;
    
     //show spinner
     [self showLoading];
@@ -52,10 +58,12 @@
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Charts";
     
+    [self.numArea registerClass:[Chartlet class] forCellWithReuseIdentifier:@"chartlet"];
 }
 
 // Update the god-damn frames here so that the right size is used
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [timeChart uploadFrame:self.chartArea.frame animated:NO];
 }
 
@@ -82,17 +90,22 @@
         last = MAX(last, 0.0);
         [fakeData setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i]];
     }
+    chartArray = [[NSMutableArray alloc] initWithArray:@[@"Agents"]];
+    chartlets = [[NSMutableDictionary alloc] init];
+    [chartlets setObject:@"10" forKey:@"Agents"];
 }
 
 # pragma mark - Chart initializations
 - (void)initTimeChart
 {
     timeChart = [[LineChartView alloc] initWithFrame:self.chartArea.frame];
+    timeChart.delegate = self;
     
     [timeChart addData:fakeData];
     
     [self.chartArea addSubview:timeChart];
     [timeChart showChart];
+    [self.numArea reloadData];
 }
 
 # pragma mark - Utility methods
@@ -108,7 +121,7 @@
     [spinner startAnimating];
 }
 
-#pragma mark - Pomoc delegate
+# pragma mark - Pomoc delegate
 
 - (void) agentTotalNumberChange: (NSUInteger)agentNumber
 {
@@ -120,6 +133,58 @@
 
 - (void) totalConversationChanged: (NSUInteger)totalConversation
 {
+}
+
+# pragma mark - Chartlets
+
+# pragma mark - UICollectionView datasource methods
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [chartlets count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Chartlet *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"chartlet" forIndexPath:indexPath];
+    
+    NSString *key = chartArray[indexPath.row];
+    [cell setTitleText:key];
+    [cell setNumberText:[chartlets objectForKey:key]];
+    return cell;
+}
+
+# pragma mark - UICollectionView delegate methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: Select Item
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: Deselect item
+}
+
+# pragma mark - LineChartView delegate methods
+- (void)didSelectPointAtKey:(NSNumber *)key value:(NSNumber *)value
+{
+    // Update agents
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    Chartlet *cell = (Chartlet *)[self.numArea cellForItemAtIndexPath:indexPath];
+    [cell setNumberText:[value stringValue]];
+}
+
+- (void)didUnselectPoint
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    Chartlet *cell = (Chartlet *)[self.numArea cellForItemAtIndexPath:indexPath];
+    [cell setNumberText:@"0"];
 }
 
 /*

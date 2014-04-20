@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Chartlet : UIView
+@interface Chartlet : UICollectionViewCell
 
 @property (weak, nonatomic) NSString *titleText;
 @property (weak, nonatomic) NSString *numberText;

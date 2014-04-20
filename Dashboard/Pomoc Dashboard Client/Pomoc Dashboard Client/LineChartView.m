@@ -70,12 +70,21 @@
 
 - (void)initializeChart:(CGRect)frame
 {
+    float xAxis_height = 20;
+    CGRect f = self.frame;
+    CGRect chartFrame = CGRectMake(f.origin.x, f.origin.y, f.size.width, f.size.height - xAxis_height);
+    CGRect xAxisFrame = CGRectMake(f.size.height - xAxis_height + f.origin.x, f.origin.y, f.size.width,xAxis_height);
+    
     lineChartView = [[JBLineChartView alloc] init];
-    lineChartView.frame = self.frame;
+    lineChartView.frame = chartFrame;
     lineChartView.delegate = self;
     lineChartView.dataSource = self;
-    lineChartView.backgroundColor = COLOR_WHITE;
+    lineChartView.backgroundColor = [UIColor whiteColor];
     [self addSubview:lineChartView];
+    
+    UIView *xAxis = [[UIView alloc] initWithFrame:xAxisFrame];
+    xAxis.backgroundColor = [UIColor greenColor];
+    [self addSubview:xAxis];
  
     tooltipView = [[JBChartTooltipView alloc] init];
     tooltipView.alpha = 0;
@@ -180,15 +189,22 @@
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
     // Update view
-    
     NSMutableArray *keys= [NSMutableArray arrayWithArray:[chartData[lineIndex] allKeys]];
     [keys sortUsingSelector:@selector(compare:)];
 
     NSNumber *idx = keys[horizontalIndex];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[idx doubleValue]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd HH:mm"];
+    
+    NSString *dateString = [formatter stringFromDate:date];
+    
     NSNumber *valueNumber = [chartData[lineIndex] objectForKey:idx];
     
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [tooltipView setText:[[valueNumber stringValue] uppercaseString]];
+    [tooltipView setText:[dateString uppercaseString]];
+    
+    [self.delegate didSelectPointAtKey:idx value:valueNumber];
 }
 
 
@@ -196,6 +212,7 @@
 {
     // Update view
     tooltipView.alpha = 0;
+    [self.delegate didUnselectPoint];
 }
 
 - (void)setTooltipVisible:(BOOL)isVisible animated:(BOOL)isAnimated atTouchPoint:(CGPoint)touchPoint

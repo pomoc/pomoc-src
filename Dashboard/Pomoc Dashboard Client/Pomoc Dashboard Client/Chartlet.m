@@ -8,8 +8,8 @@
 
 #import "Chartlet.h"
 @interface Chartlet () {
-    
-    
+    UILabel *titleLabel;
+    UILabel *numberLabel;
 }
 
 @end
@@ -22,25 +22,27 @@
     if (self) {
         // Initialization code
         [self initializeChartlet];
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
 
 - (void)setNumberText:(NSString *)numberText {
-    self.numberText = numberText;
-    [self setNeedsDisplay];
+    _numberText = numberText;
+    [numberLabel setText:numberText];
 }
 
 - (void)setTitleText:(NSString *)titleText {
-    self.titleText = titleText;
-    [self setNeedsDisplay];
+    _titleText = titleText;
+    [titleLabel setText:titleText];
 }
 
 - (void)initializeChartlet {
-    
-    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel = [[UILabel alloc] init];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
     [titleLabel setText:self.titleText];
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:titleLabel];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
                                                      attribute:NSLayoutAttributeWidth
                                                      relatedBy:NSLayoutRelationEqual
@@ -50,17 +52,26 @@
                                                       constant:0]];
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
-                                                     attribute:NSLayoutAttributeWidth
+                                                     attribute:NSLayoutAttributeCenterX
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
-                                                     attribute:NSLayoutAttributeWidth
-                                                    multiplier:0.5
+                                                     attribute:NSLayoutAttributeCenterX
+                                                    multiplier:1.0
                                                       constant:0]];
     
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:titleLabel
+                                                     attribute:NSLayoutAttributeCenterY
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeCenterY
+                                                    multiplier:0.25
+                                                      constant:0]];
     
-    UILabel *numberLabel = [[UILabel alloc] init];
+    numberLabel = [[UILabel alloc] init];
+    numberLabel.textAlignment = NSTextAlignmentCenter;
     [numberLabel setText:self.numberText];
     [numberLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:numberLabel];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:numberLabel
                                                      attribute:NSLayoutAttributeWidth
                                                      relatedBy:NSLayoutRelationEqual
@@ -75,6 +86,14 @@
                                                         toItem:self
                                                      attribute:NSLayoutAttributeCenterX
                                                     multiplier:1.0
+                                                      constant:0]];
+        
+     [self addConstraint:[NSLayoutConstraint constraintWithItem:numberLabel
+                                                     attribute:NSLayoutAttributeCenterY
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeCenterY
+                                                    multiplier:0.75
                                                       constant:0]];
 }
 

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LineChartView.h"
 
-@interface ChartViewController : UIViewController
+@interface ChartViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, LineChartViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *chartArea;
-@property (weak, nonatomic) IBOutletCollection(UIScrollView) UIView *numArea;
+@property (strong, nonatomic) IBOutlet UICollectionView *numArea;
+
 
 - (void) deallocDelegate;
 
