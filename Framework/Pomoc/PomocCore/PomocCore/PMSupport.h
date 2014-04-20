@@ -50,4 +50,7 @@
 
 + (void)setDelegate:(id<PMSupportDelegate>)delegate;
 
++ (PMConversation *)agentConversation;
+
+
 @end

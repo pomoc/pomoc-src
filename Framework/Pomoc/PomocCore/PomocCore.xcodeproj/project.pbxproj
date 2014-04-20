@@ -22,7 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		600EF15219039A42001F2E8F /* PMNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 600EF15019039A42001F2E8F /* PMNote.h */; };
+		600EF15219039A42001F2E8F /* PMNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 600EF15019039A42001F2E8F /* PMNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		600EF15319039A42001F2E8F /* PMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 600EF15119039A42001F2E8F /* PMNote.m */; };
 		60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592ACC18EE8715006D5DEC /* PMConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592ACD18EE8715006D5DEC /* PMConversation.m */; };
@@ -919,6 +919,7 @@
 				9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */,
 				9F2AE9D318F7D4C50078D22A /* AWS_SBJson.h in Headers */,
 				9F2AEA5318F7D4C50078D22A /* S3SetBucketVersioningConfigurationResponse.h in Headers */,
+				600EF15219039A42001F2E8F /* PMNote.h in Headers */,
 				9F2AEA5818F7D4C50078D22A /* S3UploadInputStream.h in Headers */,
 				9F2AEA1818F7D4C50078D22A /* S3GetBucketPolicyRequest.h in Headers */,
 				9F2AEA0118F7D4C50078D22A /* S3DeleteBucketCrossOriginResponse.h in Headers */,
@@ -1012,7 +1013,6 @@
 				9F2AEA0F18F7D4C50078D22A /* S3DeleteObjectsResponse.h in Headers */,
 				9F2AE9CD18F7D4C50078D22A /* AmazonServiceRequestConfig.h in Headers */,
 				9F2AEA4A18F7D4C50078D22A /* S3SetBucketCrossOriginRequest.h in Headers */,
-				600EF15219039A42001F2E8F /* PMNote.h in Headers */,
 				9F2AE9D518F7D4C50078D22A /* AWS_SBJsonStreamParser.h in Headers */,
 				60807FC918F8655F009B84D2 /* SocketIOTransportWebsocket.h in Headers */,
 				9F2AE9EF18F7D4C50078D22A /* S3BucketTaggingConfiguration.h in Headers */,

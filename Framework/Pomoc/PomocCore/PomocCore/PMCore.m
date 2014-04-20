@@ -269,6 +269,14 @@
     [core sendMessage:onlineConversationUsersMessage withAcknowledge:nil];
 }
 
++ (void)addConversation:(PMConversation *)conversation
+{
+    PMCore *core = [PMCore sharedInstance];
+    @synchronized(core.conversations) {
+        core.conversations[conversation.conversationId] = conversation;
+    }
+}
+
 - (void)connect
 {
     [self.socket connectToHost:POMOC_URL onPort:POMOC_PORT];
