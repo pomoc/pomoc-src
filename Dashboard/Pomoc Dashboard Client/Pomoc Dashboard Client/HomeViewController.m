@@ -251,6 +251,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
 - (void) totalConversationChanged: (NSUInteger)totalConversation
 {
+    NSLog(@"home view controller line 254 total conversation updated!");
     dispatch_async(dispatch_get_main_queue(), ^{
         [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
     });
@@ -266,5 +267,17 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     NSLog(@"inside dealloc delegate of home vc");
     [singleton setHomeDelegate:nil];
 }
+
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
 
 @end

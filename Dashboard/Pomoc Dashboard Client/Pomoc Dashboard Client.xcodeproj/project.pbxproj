@@ -61,7 +61,6 @@
 		AA9BDD0118F93A9900EF6EEC /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDD0018F93A9900EF6EEC /* JBChartTooltipView.m */; };
 		AA9BDD1718F9A4C800EF6EEC /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDD1618F9A4C800EF6EEC /* JBLineChartFooterView.m */; };
 		AA9DC87C18DF274A00B4FDF7 /* ContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */; };
-		AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */; };
 		AA9DC88318DF2F2C00B4FDF7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */; };
 		AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89118E175AF00B4FDF7 /* sampleImage.png */; };
 		AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9DC89318E17ED700B4FDF7 /* administrator-512.png */; };
@@ -196,8 +195,6 @@
 		AA9BDD1618F9A4C800EF6EEC /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoViewController.h; path = ../ContactInfoViewController.h; sourceTree = "<group>"; };
 		AA9DC87B18DF274A00B4FDF7 /* ContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoViewController.m; path = ../ContactInfoViewController.m; sourceTree = "<group>"; };
-		AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastChatViewController.h; sourceTree = "<group>"; };
-		AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastChatViewController.m; sourceTree = "<group>"; };
 		AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AA9DC89118E175AF00B4FDF7 /* sampleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampleImage.png; sourceTree = "<group>"; };
@@ -501,8 +498,6 @@
 			children = (
 				AA464A0218E8257400A607E0 /* UploadViewController.h */,
 				AA464A0318E8257400A607E0 /* UploadViewController.m */,
-				AA9DC87E18DF28FE00B4FDF7 /* PastChatViewController.h */,
-				AA9DC87F18DF28FE00B4FDF7 /* PastChatViewController.m */,
 				AA5204F918D80F2200D78156 /* ChatViewController.h */,
 				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
 				AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */,
@@ -769,7 +764,6 @@
 				AA5204FB18D80F2200D78156 /* ChatViewController.m in Sources */,
 				AA4649F918E814D100A607E0 /* SDWebImageDownloader.m in Sources */,
 				AA4649FD18E814D100A607E0 /* UIButton+WebCache.m in Sources */,
-				AA9DC88018DF28FE00B4FDF7 /* PastChatViewController.m in Sources */,
 				AA4649F518E814D100A607E0 /* NSData+ImageContentType.m in Sources */,
 				AA9BDCF918F91E1100EF6EEC /* JBChartView.m in Sources */,
 				AAD17CEC19027DB0003D9241 /* SettingsViewController.m in Sources */,

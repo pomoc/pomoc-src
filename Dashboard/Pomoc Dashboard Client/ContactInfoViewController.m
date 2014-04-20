@@ -52,4 +52,14 @@
 - (IBAction)addNotesPressed:(id)sender {
     
 }
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
 @end
