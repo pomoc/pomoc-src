@@ -41,11 +41,11 @@
     self.messages = [@[] mutableCopy];
     self.users = [@[] mutableCopy];
     
-    [PMSupport initWithAppID:@"ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
     // User 'login' code
-#ifdef __i386__
+#ifndef __i386__
+        [PMSupport initWithAppID:@"7ac02373884d8290a4a7c35f5ac2d86c52dbc1cb" secretKey:@"mySecret"];
         NSString *customer = @"customer25";
         [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
             [PMSupport connectWithCompletion:^(BOOL connected) {
@@ -145,7 +145,8 @@
         UIImage *image = [UIImage imageNamed:@"image_small"];
         [self.conversation sendImageMessage:image];
     } else {
-        [self.conversation sendTextMessage:self.textField.text];
+        //[self.conversation sendTextMessage:self.textField.text];
+        [self.conversation sendNote:self.textField.text];
     }
     self.textField.text = @"";
 }
@@ -204,6 +205,11 @@
         NSLog(@"Received image in completion");
         [self.chatTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }];
+}
+
+- (void)conversation:(PMConversation *)conversation didReceiveNote:(NSString *)notes
+{
+    NSLog(@"Received note: %@", notes);
 }
 
 #pragma mark - Adding Message

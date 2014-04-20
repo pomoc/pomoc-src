@@ -13,5 +13,6 @@
 
 - (id)initWithConversationId:(NSString *)conversationId creatorUserId:(NSString *)creatorUserId createDate:(NSDate *)createDate;
 - (void)addMessage:(PMMessage *)message;
+- (void)addNote:(PMNote *)note;
 
 @end

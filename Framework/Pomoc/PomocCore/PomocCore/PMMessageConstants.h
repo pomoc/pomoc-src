@@ -23,7 +23,9 @@ typedef enum {
     PMApplicationMessageCodeHandle,
     PMApplicationMessageCodeUnhandle,
     PMApplicationMessageCodeReferHandler,
-    PMApplicationMessageCodeGetHandlers
+    PMApplicationMessageCodeGetHandlers,
+    
+    PMApplicationMessageCodeAddNote
 } PMApplicationMessageCode;
 
 #define MESSAGE_TIMESTAMP           @"timestamp"
@@ -34,6 +36,7 @@ typedef enum {
 #define MESSAGE_TYPE                @"type"
 #define MESSAGE_USER_ID             @"userId"
 #define MESSAGE_CREATE_DATE         @"createDate"
-#define MESSAGE_CREATOR_USERID     @"creatorUserId"
+#define MESSAGE_CREATOR_USERID      @"creatorUserId"
+#define MESSAGE_APP_DATA            @"appData"
 
 #endif

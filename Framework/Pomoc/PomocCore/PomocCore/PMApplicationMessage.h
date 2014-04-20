@@ -14,11 +14,16 @@
 @property (nonatomic, readonly) PMApplicationMessageCode code;
 @property (nonatomic, strong, readonly) NSString *conversationId;
 @property (nonatomic, strong, readonly) NSString *refereeUserId;
+@property (nonatomic, strong, readonly) NSDictionary *appData;
 
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId;
 - (id)initWithMessageCode:(PMApplicationMessageCode)code
            conversationId:(NSString *)conversationId
            refereeUserId:(NSString *)userId;
+
+- (id)initWithMessageCode:(PMApplicationMessageCode)code
+           conversationId:(NSString *)conversationId
+                  appData:(NSDictionary *)appData;
 
 @end

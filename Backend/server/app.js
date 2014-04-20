@@ -126,6 +126,10 @@ io.sockets.on('connection', function(client) {
         // Observe existing conversation
         else if (data.type == 'joinConversation') {
             client.join(data.conversationId);
+
+            // Join the notes room
+            client.join('notes:' + data.conversationId);
+
             console.log('observing ' + data.conversationId);
             var payload = {
                 conversationId: conversationId,
@@ -150,8 +154,16 @@ io.sockets.on('connection', function(client) {
                     reply = reply.map(function(message) {
                         return JSON.parse(message);
                     });
-                    callback({success: true, messages: reply});
-                    console.log('old messages sent for ' + data.conversationId);
+
+                    db.client.zrange(['notes:' + data.conversationId, 0, timestamp], function(err, notes) {
+                        notes = notes.map(function(message) {
+                            return JSON.parse(message);
+                        });
+
+                        callback({success: true, messages: reply, notes: notes});
+                        console.log('old messages sent for ' + data.conversationId);
+                    })
+ 
                 });
             }
         }
@@ -298,6 +310,19 @@ io.sockets.on('connection', function(client) {
             });
         }
 
+        else if (data.type == 'addNotes') {
+            data.appData.timestamp = (new Date()).getTime();
+            db.client.zadd('notes:' + data.conversationId, data.appData.timestamp, JSON.stringify(data.appData), function(err, reply) {
+                io.sockets.in('notes:' + data.conversationId).emit('newNote', {type: 'notes', note: data.appData, conversationId: data.conversationId});
+                if (callback) {
+                    if (!err) {
+                        callback({success: true});
+                    } else {
+                        callback({success: false});
+                    }
+                }
+            });
+        }
     });
 
 
