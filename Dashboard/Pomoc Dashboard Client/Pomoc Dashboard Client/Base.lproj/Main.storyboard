@@ -379,88 +379,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GEf-oc-i8m">
-                                <rect key="frame" x="710" y="0.0" width="314" height="768"/>
+                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="18" sectionFooterHeight="22" id="uvb-nT-cFJ">
+                                <rect key="frame" x="743" y="-5" width="281" height="773"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8Y0-GU-ykg">
-                                        <rect key="frame" x="0.0" y="86" width="314" height="44"/>
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTitleCell" rowHeight="66" id="3SQ-wq-VmP">
+                                        <rect key="frame" x="0.0" y="82" width="281" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Y0-GU-ykg" id="5s6-ru-yTa">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3SQ-wq-VmP" id="WaL-Y2-bgc">
+                                            <rect key="frame" x="0.0" y="0.0" width="281" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="tQb-dx-6lY" id="N35-NO-G7f"/>
-                                    <outlet property="delegate" destination="tQb-dx-6lY" id="djE-R7-fO7"/>
+                                    <outlet property="dataSource" destination="tQb-dx-6lY" id="MIb-HN-7gx"/>
+                                    <outlet property="delegate" destination="tQb-dx-6lY" id="kmn-m7-fD8"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xGp-Rx-Ah3">
-                                <rect key="frame" x="0.0" y="62" width="710" height="671"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="Lrr-Am-Jtj" customClass="ChatMessageTextCell">
-                                        <rect key="frame" x="0.0" y="22" width="710" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lrr-Am-Jtj" id="WA4-A9-obE">
-                                            <rect key="frame" x="0.0" y="0.0" width="710" height="69"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visitor Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kep-Lh-gZ5">
-                                                    <rect key="frame" x="10" y="5" width="393" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pwv-CL-PZU">
-                                                    <rect key="frame" x="10" y="22" width="695" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="messageFrom" destination="kep-Lh-gZ5" id="eUq-oy-qDG"/>
-                                            <outlet property="messageText" destination="Pwv-CL-PZU" id="h6r-eC-EMD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="tQb-dx-6lY" id="f82-XL-vJw"/>
-                                    <outlet property="delegate" destination="tQb-dx-6lY" id="hL8-f7-oah"/>
-                                </connections>
-                            </tableView>
-                            <view contentMode="scaleToFill" id="bBZ-ai-08P">
-                                <rect key="frame" x="0.0" y="729" width="710" height="39"/>
+                            <view contentMode="scaleToFill" id="qVv-y8-lph">
+                                <rect key="frame" x="0.0" y="64" width="744" height="704"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Ggj-PE-yGm">
-                                        <rect key="frame" x="6" y="5" width="644" height="30"/>
+                                    <view contentMode="scaleToFill" id="lxj-NF-3rI">
+                                        <rect key="frame" x="0.0" y="644" width="751" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="u95-Ge-ach">
+                                                <rect key="frame" x="13" y="20" width="671" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="tQb-dx-6lY" id="nWN-ct-2FJ"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a3Q-2q-t96">
+                                                <rect key="frame" x="692" y="17" width="40" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="send_file-512.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendMessage:" destination="QxH-3e-iTU" eventType="touchUpInside" id="IdB-GF-0tS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="dBl-tu-2Z6">
+                                        <rect key="frame" x="0.0" y="0.0" width="751" height="646"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatMessageCell" rowHeight="70" id="yaj-CT-syJ" customClass="ChatMessageTextCell">
+                                                <rect key="frame" x="0.0" y="22" width="751" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yaj-CT-syJ" id="TCh-ur-NvI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="751" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visitor Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wLi-88-HKy">
+                                                            <rect key="frame" x="10" y="5" width="393" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dNW-Rn-8zE">
+                                                            <rect key="frame" x="10" y="20" width="695" height="29"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="messageFrom" destination="wLi-88-HKy" id="HjB-j9-OhW"/>
+                                                    <outlet property="messageText" destination="dNW-Rn-8zE" id="gAz-Zp-9AH"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                         <connections>
-                                            <outlet property="delegate" destination="tQb-dx-6lY" id="ItZ-Qw-jhF"/>
+                                            <outlet property="dataSource" destination="tQb-dx-6lY" id="W4z-9J-OWN"/>
+                                            <outlet property="delegate" destination="tQb-dx-6lY" id="6qS-0Z-fHV"/>
                                         </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rGB-nX-Hjk">
-                                        <rect key="frame" x="658" y="2" width="40" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="send_file-512.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendMessage:" destination="QxH-3e-iTU" eventType="touchUpInside" id="SjS-kK-lru"/>
-                                        </connections>
-                                    </button>
+                                    </tableView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -469,9 +475,9 @@
                     <navigationItem key="navigationItem" title="Group Chat" id="Pk2-E6-fIU"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="agentListChatView" destination="xGp-Rx-Ah3" id="1i6-ro-Zev"/>
-                        <outlet property="agentListNavBar" destination="GEf-oc-i8m" id="qY7-NY-0uE"/>
-                        <outlet property="keyboardInput" destination="bBZ-ai-08P" id="ZSd-iT-wqL"/>
+                        <outlet property="chatInputView" destination="lxj-NF-3rI" id="nXq-MI-eex"/>
+                        <outlet property="chatMessageTable" destination="dBl-tu-2Z6" id="V1x-Fc-2Yv"/>
+                        <outlet property="chatNavTable" destination="uvb-nT-cFJ" id="H4a-2A-cLr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ha-an-PWV" userLabel="First Responder" sceneMemberID="firstResponder"/>

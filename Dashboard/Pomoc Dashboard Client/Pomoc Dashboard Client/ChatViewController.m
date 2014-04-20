@@ -716,16 +716,16 @@
     
 }
 
-- (void) scrollChatMessageUp
-{
-    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
-    
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _chatMessageTable.frame = chatMessageOriginalFrame;
-    
-    /* keyboard is visible, move views */
-    [self scrollChatContentToBottom];
-}
+//- (void) scrollChatMessageUp
+//{
+//    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+//    
+//    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+//    _chatMessageTable.frame = chatMessageOriginalFrame;
+//    
+//    /* keyboard is visible, move views */
+//    [self scrollChatContentToBottom];
+//}
 
 - (void) scrollChatContentToBottom
 {

@@ -46,7 +46,7 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"steve2" password:@"1" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"999" password:@"999" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
         
@@ -59,7 +59,6 @@
             [PMSupport getAllConversations:^(NSArray *conversations) {
                 
                 for (PMConversation *convo in conversations) {
-                    
                     
                     //getting handlers
                     [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
@@ -170,6 +169,8 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    NSLog(@"new convo created");
+    
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
     

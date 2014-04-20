@@ -45,7 +45,7 @@
     
     // User 'login' code
 #ifndef __i386__
-        [PMSupport initWithAppID:@"7ac02373884d8290a4a7c35f5ac2d86c52dbc1cb" secretKey:@"mySecret"];
+        [PMSupport initWithAppID:@"afc97ea131fd7e2695a98ef34013608f97f34e1d" secretKey:@"mySecret"];
         NSString *customer = @"customer25";
         [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
             [PMSupport connectWithCompletion:^(BOOL connected) {
