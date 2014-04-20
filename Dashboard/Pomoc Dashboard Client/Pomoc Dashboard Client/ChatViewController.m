@@ -664,7 +664,6 @@
 }
 
 #pragma  mark - Textfield editing delegate
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     keyboardEditing = true;

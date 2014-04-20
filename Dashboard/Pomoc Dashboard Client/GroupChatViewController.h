@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupChatViewController : UIViewController
+@interface GroupChatViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *agentListChatView;
 @property (weak, nonatomic) IBOutlet UITableView *agentListNavBar;
+@property (weak, nonatomic) IBOutlet UIView *keyboardInput;
 - (void) deallocDelegate;
 
 @end
