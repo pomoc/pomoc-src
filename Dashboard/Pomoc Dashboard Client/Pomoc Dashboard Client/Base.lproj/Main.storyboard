@@ -323,7 +323,7 @@
                                             <barButtonItem systemItem="flexibleSpace" id="G07-VU-Fwa"/>
                                             <barButtonItem title="Notes" id="Ngi-NJ-foP">
                                                 <connections>
-                                                    <segue destination="mTl-jf-a1g" kind="popover" popoverAnchorBarButtonItem="Ngi-NJ-foP" id="geR-73-LGH">
+                                                    <segue destination="mTl-jf-a1g" kind="popover" identifier="addNote" popoverAnchorBarButtonItem="Ngi-NJ-foP" id="geR-73-LGH">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                     </segue>
                                                 </connections>
@@ -388,7 +388,7 @@
                                         <rect key="frame" x="0.0" y="86" width="314" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Y0-GU-ykg" id="5s6-ru-yTa">
-                                            <rect key="frame" x="0.0" y="0.0" width="313" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -652,19 +652,19 @@
             <objects>
                 <viewController id="mTl-jf-a1g" customClass="ContactInfoViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="top" id="wfS-c6-KUg">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="337"/>
+                        <rect key="frame" x="0.0" y="0.0" width="281" height="337"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" id="xbz-yC-3tS">
-                                <rect key="frame" x="7" y="20" width="223" height="259"/>
+                                <rect key="frame" x="7" y="20" width="264" height="259"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="30" id="TGg-eH-NqX">
-                                        <rect key="frame" x="0.0" y="22" width="223" height="30"/>
+                                        <rect key="frame" x="0.0" y="22" width="264" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGg-eH-NqX" id="KK8-uK-TcU">
-                                            <rect key="frame" x="0.0" y="0.0" width="223" height="29"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="264" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -675,18 +675,21 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="pnI-84-EFc">
-                                <rect key="frame" x="10" y="287" width="179" height="30"/>
+                                <rect key="frame" x="10" y="288" width="213" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Dz-dp-EJ5">
-                                <rect key="frame" x="197" y="287" width="30" height="30"/>
+                                <rect key="frame" x="231" y="288" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add">
-                                    <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.094117656349999995" green="0.70980393890000004" blue="0.94117653369999998" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addNotesPressed:" destination="mTl-jf-a1g" eventType="touchUpInside" id="NTf-wU-VL3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -695,8 +698,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="337"/>
+                    <size key="freeformSize" width="281" height="337"/>
                     <connections>
+                        <outlet property="inputText" destination="pnI-84-EFc" id="utf-nC-URH"/>
                         <outlet property="notesTableView" destination="xbz-yC-3tS" id="fMg-6a-t6h"/>
                     </connections>
                 </viewController>

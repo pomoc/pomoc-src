@@ -11,6 +11,7 @@
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
 
+#import "ContactInfoViewController.h"
 #import "ReferTableViewController.h"
 
 #import "PomocCore.h"
@@ -650,7 +651,24 @@
             referSegue.popoverContentSize = CGSizeMake(250, height);
         }
         
+    } else if ([[segue identifier] isEqualToString:@"addNote"]) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        ContactInfoViewController *vc = [segue destinationViewController];
+        vc.currentConversation = currentlySelectedConvo;
+        
+        referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+//        
+//        if ([currentlySelectedConvo.notes count] == 0) {
+//            referSegue.popoverContentSize = CGSizeMake(250, 44);
+//        } else {
+//            CGFloat height = [referList count] * 44;
+//            referSegue.popoverContentSize = CGSizeMake(250, height);
+//        }
+//        
     }
+    
 }
 
 - (void) closePopOver

@@ -7,8 +7,15 @@
 //
 
 #import "ContactInfoViewController.h"
+#import "DashBoardSingleton.h"
+#import "PomocSupport.h"
+#import "PMNote.h"
 
-@interface ContactInfoViewController ()
+@interface ContactInfoViewController () <PomocNoteDelegate>
+{
+    DashBoardSingleton *singleton;
+    NSArray *noteList;
+}
 
 @end
 
@@ -18,9 +25,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    singleton = [DashBoardSingleton singleton];
+    singleton.notesDelegate = self;
     
     //remove table view border
     _notesTableView.separatorColor = [UIColor clearColor];
+
+    noteList = _currentConversation.notes;
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,8 +45,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //return [dataArray count];
-    return 1;
+    return [noteList count];
 }
 
 
@@ -44,14 +54,38 @@
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    cell.textLabel.text = @"This guy is an ass!";
+    //update the UILabel's height based on text size
+    /*
+    _messageText.numberOfLines = 0;
+    
+    CGSize maximumLabelSize = CGSizeMake(_messageText.frame.size.width, 9999);
+    CGSize expectedSize = [_messageText sizeThatFits:maximumLabelSize];
+    
+    CGRect newFrame = _messageText.frame;
+    newFrame.size.height = expectedSize.height;
+    _messageText.frame = newFrame;
+    */
+    
+    PMNote *note = [noteList objectAtIndex:indexPath.row];
+    cell.textLabel.text = note.note;
     
     return cell;
 }
 
 - (IBAction)addNotesPressed:(id)sender {
-    
+    [_currentConversation sendNote:_inputText.text];
+    _inputText.text = @"";
 }
+
+#pragma mark - PomocRefer Delegate
+- (void) updateNoteList: (PMConversation *)convo;
+{
+    if ([convo.conversationId isEqualToString:_currentConversation.conversationId]) {
+        noteList = convo.notes;
+        [_notesTableView reloadData];
+    }
+}
+
 
 -(BOOL)shouldAutorotate
 {

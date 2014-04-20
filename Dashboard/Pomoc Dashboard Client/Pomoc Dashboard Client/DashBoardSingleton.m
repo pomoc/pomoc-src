@@ -60,6 +60,7 @@
                 
                 for (PMConversation *convo in conversations) {
                     
+                    
                     //getting handlers
                     [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
                         convo.handlers = [[NSMutableArray alloc] initWithArray:users];
@@ -237,6 +238,11 @@
 }
 
 #pragma mark - Pomoc Conversation delegates
+
+- (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes
+{
+    [_notesDelegate updateNoteList:conversation];
+}
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
