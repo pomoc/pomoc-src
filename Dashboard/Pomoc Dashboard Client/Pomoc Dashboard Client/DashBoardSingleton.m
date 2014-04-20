@@ -48,7 +48,7 @@
     //[PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"5" password:@"5" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"22" password:@"22" completion:^(NSString *returnedUserId) {
         
         //NSLog(@"returned userId == %@", returnedUserId);
         _selfUserId = returnedUserId;
@@ -61,7 +61,6 @@
             
             // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
-                
                 
                 //NSLog(@"all conversation.length == %lu",[conversations count]);
                 
