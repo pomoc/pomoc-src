@@ -236,16 +236,6 @@
     });
 }
 
-#pragma mark - UINavigationController methods
-- (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
--(BOOL)shouldAutorotate{
-    return YES;
-}
-
 #pragma mark - Navigation Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
@@ -744,5 +734,17 @@
 {
     singleton.chatDelegate = nil;
 }
+
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
 
 @end

@@ -268,4 +268,16 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [singleton setHomeDelegate:nil];
 }
 
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+
 @end

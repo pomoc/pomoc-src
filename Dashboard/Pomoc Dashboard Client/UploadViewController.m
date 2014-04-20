@@ -95,4 +95,16 @@
     //[self presentViewController:picker animated:YES];
     [self presentViewController:picker animated:YES completion:^(){}];
 }
+
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
 @end
