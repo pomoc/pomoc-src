@@ -87,14 +87,15 @@
 		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
 		AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AACA120918FD9ABA005DB53B /* background2.jpg */; };
 		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
-		C3150BCB190234900018521F /* LineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3150BCA190234900018521F /* LineChartView.m */; };
-		C37D90F019028A1F001F8EB4 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */; };
-		C3D2E02419024B69003BE763 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D2E02319024B69003BE763 /* ChartViewController.m */; };
 		AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CE81902381D003D9241 /* GroupChatViewController.m */; };
 		AAD17CEC19027DB0003D9241 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEB19027DB0003D9241 /* SettingsViewController.m */; };
 		AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CEE1902A245003D9241 /* SoundEngine.m */; };
 		AAD17CF31902A427003D9241 /* chat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF11902A427003D9241 /* chat.mp3 */; };
 		AAD17CF41902A427003D9241 /* message.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AAD17CF21902A427003D9241 /* message.mp3 */; };
+		C3150BCB190234900018521F /* LineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3150BCA190234900018521F /* LineChartView.m */; };
+		C37AB3D419036EE0004D354E /* Chartlet.m in Sources */ = {isa = PBXBuildFile; fileRef = C37AB3D319036EE0004D354E /* Chartlet.m */; };
+		C37D90F019028A1F001F8EB4 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */; };
+		C3D2E02419024B69003BE763 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D2E02319024B69003BE763 /* ChartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,12 +245,6 @@
 		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AACA120918FD9ABA005DB53B /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
 		AACA120B18FD9D01005DB53B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
-		C3150BC9190234900018521F /* LineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartView.h; sourceTree = "<group>"; };
-		C3150BCA190234900018521F /* LineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartView.m; sourceTree = "<group>"; };
-		C37D90EE19028A1F001F8EB4 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBChartTooltipTipView.h; path = Classes/JBChartTooltipTipView.h; sourceTree = "<group>"; };
-		C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBChartTooltipTipView.m; path = Classes/JBChartTooltipTipView.m; sourceTree = "<group>"; };
-		C3D2E02219024B69003BE763 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
-		C3D2E02319024B69003BE763 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		AAD17CE71902381D003D9241 /* GroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GroupChatViewController.h; path = ../GroupChatViewController.h; sourceTree = "<group>"; };
 		AAD17CE81902381D003D9241 /* GroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GroupChatViewController.m; path = ../GroupChatViewController.m; sourceTree = "<group>"; };
 		AAD17CEA19027DB0003D9241 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -258,6 +253,14 @@
 		AAD17CEE1902A245003D9241 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		AAD17CF11902A427003D9241 /* chat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chat.mp3; sourceTree = "<group>"; };
 		AAD17CF21902A427003D9241 /* message.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = message.mp3; sourceTree = "<group>"; };
+		C3150BC9190234900018521F /* LineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartView.h; sourceTree = "<group>"; };
+		C3150BCA190234900018521F /* LineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartView.m; sourceTree = "<group>"; };
+		C37AB3D219036EE0004D354E /* Chartlet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartlet.h; sourceTree = "<group>"; };
+		C37AB3D319036EE0004D354E /* Chartlet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chartlet.m; sourceTree = "<group>"; };
+		C37D90EE19028A1F001F8EB4 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBChartTooltipTipView.h; path = Classes/JBChartTooltipTipView.h; sourceTree = "<group>"; };
+		C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBChartTooltipTipView.m; path = Classes/JBChartTooltipTipView.m; sourceTree = "<group>"; };
+		C3D2E02219024B69003BE763 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		C3D2E02319024B69003BE763 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -615,6 +618,8 @@
 			children = (
 				C3150BC9190234900018521F /* LineChartView.h */,
 				C3150BCA190234900018521F /* LineChartView.m */,
+				C37AB3D219036EE0004D354E /* Chartlet.h */,
+				C37AB3D319036EE0004D354E /* Chartlet.m */,
 				C37D90EE19028A1F001F8EB4 /* JBChartTooltipTipView.h */,
 				C37D90EF19028A1F001F8EB4 /* JBChartTooltipTipView.m */,
 				AA9BDCFF18F93A9900EF6EEC /* JBChartTooltipView.h */,
@@ -762,6 +767,7 @@
 				AA4649FA18E814D100A607E0 /* SDWebImageDownloaderOperation.m in Sources */,
 				AA9BDD1718F9A4C800EF6EEC /* JBLineChartFooterView.m in Sources */,
 				AA9DC8AE18E1A1B400B4FDF7 /* Utility.m in Sources */,
+				C37AB3D419036EE0004D354E /* Chartlet.m in Sources */,
 				AA5204F518D80BFA00D78156 /* SideNavigationController.m in Sources */,
 				AA9BDCFB18F91E1100EF6EEC /* JBLineChartView.m in Sources */,
 				AA9BDCFE18F9380100EF6EEC /* JBChartInformationView.m in Sources */,

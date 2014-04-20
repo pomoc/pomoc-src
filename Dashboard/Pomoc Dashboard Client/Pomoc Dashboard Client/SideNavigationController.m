@@ -15,12 +15,9 @@
 #import "MainViewController.h"
 #import "HomeViewController.h"
 #import "ChatViewController.h"
-<<<<<<< HEAD
 #import "ChartViewController.h"
-=======
 #import "GroupChatViewController.h"
 #import "PMSupport.h"
->>>>>>> master
 
 #define HOME 0
 #define CHAT 1
@@ -50,12 +47,8 @@
 {
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-<<<<<<< HEAD
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"VISITORS", @"AGENTS", @"CHARTS", nil];
-=======
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"AGENTS CHAT", nil];
->>>>>>> master
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"AGENTS", @"CHAT", @"CHARTS", nil];
+
     settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
     sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
 
@@ -110,15 +103,12 @@
          } else if(indexPath.row == GROUP_CHAT) {
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-512.png"]
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-<<<<<<< HEAD
          } else if (indexPath.row == AGENTS) {
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"worker-512.png"]
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
          } else if (indexPath.row == CHARTS) {
              cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-512.png"]
                                                  toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-=======
->>>>>>> master
          }
          
      } else {

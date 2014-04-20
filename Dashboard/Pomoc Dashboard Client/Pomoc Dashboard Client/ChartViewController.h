@@ -10,6 +10,7 @@
 
 @interface ChartViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *chartArea;
+@property (weak, nonatomic) IBOutletCollection(UIScrollView) UIView *numArea;
 
 - (void) deallocDelegate;
 
