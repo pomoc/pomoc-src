@@ -44,8 +44,8 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     //show spinner
     [self showLoading];
     [singleton numberOfUnattendedConversation:^(NSUInteger total){
-        NSLog(@"singleton replied total == %lu",total);
-        [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",total]];
+        NSLog(@"singleton replied total == %lu",(unsigned long)total);
+        [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)total]];
         [spinner stopAnimating];
     }];
     
@@ -254,6 +254,10 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
     });
+    
+}
+
+- (void)totalUnattendedConversationChanged:(NSUInteger)totalUnattended {
     
 }
 
