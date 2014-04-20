@@ -136,7 +136,7 @@
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 {
     NSUInteger totalAttended = 0;
-    NSUInteger totalConversationIterated = 0;
+    //NSUInteger totalConversationIterated = 0;
     
     //NSLog(@"number of unattended called, current convo list == %lu",[_currentConversationList count]);
     
@@ -211,7 +211,7 @@
             NSLog(@"is handler array == nil");
         }
         
-        NSLog(@"called in line 122 of singleton with conversation user == %lu", total);
+        NSLog(@"called in line 122 of singleton with conversation user == %ld", (unsigned long)total);
         completion(conversations);
     }];
     
@@ -267,6 +267,10 @@
         }
         
     }
+}
+
+- (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId {
+
 }
 
 - (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion
