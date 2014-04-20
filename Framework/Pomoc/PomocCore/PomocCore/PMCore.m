@@ -309,13 +309,11 @@
     else if ([packet.name isEqualToString:@"newConversation"]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
-            NSString *creatorUserId = data[@"userId"];
+            NSString *creatorUserId = data[@"creatorUserId"];
             NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[@"createDate"] doubleValue]];
             
-            NSLog(@"createDate %@", createDate);
-            
-            
             PMConversation *conversation = self.conversations[conversationId];
+            
             if (!conversation) {
                 conversation = [[PMConversation alloc] initWithConversationId:conversationId creatorUserId:creatorUserId createDate:createDate];
                 @synchronized(self.conversations) {
