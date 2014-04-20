@@ -15,17 +15,15 @@
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
-- (void) playNewConversation;
-- (void) playNewMessage;
+- (void)playNewConversation;
+- (void)playNewMessage;
 
 //check user preference for sound
-- (BOOL) conversationSound;
-- (BOOL) messsageSound;
+- (BOOL)conversationSound;
+- (BOOL)messageSound;
 
 //set sound prefer
-- (void) setConversationSoundOn;
-- (void) setConversationSoundOff;
+- (void)toggleConversationSound:(BOOL)value;
+- (void)toggleMessageSound:(BOOL)value;
 
-- (void) setMessageSoundOn;
-- (void) setMessageSoundOff;
 @end

@@ -14,10 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *apiKeyLabel;
 
 - (IBAction)chatSoundPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *chatSoundBtn;
+@property (weak, nonatomic) IBOutlet UISwitch *chatSoundSwitch;
 
 
 - (IBAction)messageSoundPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *messageSoundBtn;
+@property (weak, nonatomic) IBOutlet UISwitch *messageSoundSwitch;
 
 @end

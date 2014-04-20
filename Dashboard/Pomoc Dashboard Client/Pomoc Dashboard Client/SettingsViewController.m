@@ -32,51 +32,21 @@
     //getting sound settings
     engine = [SoundEngine singleton];
     
-    if ([engine conversationSound]) {
-        [_chatSoundBtn setTitle:@"On" forState:UIControlStateNormal];
-    } else {
-        [_chatSoundBtn setTitle:@"Off" forState:UIControlStateNormal];
-    }
+    _chatSoundSwitch.on = [engine conversationSound];
+    _messageSoundSwitch.on = [engine messageSound];
     
-    if ([engine messsageSound]) {
-        [_messageSoundBtn setTitle:@"On" forState:UIControlStateNormal];
-    } else {
-        [_messageSoundBtn setTitle:@"Off" forState:UIControlStateNormal];
-    }
 }
 
 - (IBAction)chatSoundPressed:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    NSString *buttonTitle = button.currentTitle;
-    
-    if ([buttonTitle isEqualToString:@"On"]) {
-        //off chat sound now
-        [_chatSoundBtn setTitle:@"Off" forState:UIControlStateNormal];
-        [engine setConversationSoundOff];
-        
-    } else {
-        //on chat sound
-        [_chatSoundBtn setTitle:@"On" forState:UIControlStateNormal];
-        [engine setConversationSoundOn];
-    }
+
+    UISwitch *switchButton = sender;
+    [engine toggleConversationSound:switchButton.on];
 }
 
 - (IBAction)messageSoundPressed:(id)sender {
     
-    UIButton *button = (UIButton *)sender;
-    NSString *buttonTitle = button.currentTitle;
-    
-    if ([buttonTitle isEqualToString:@"On"]) {
-        //off chat sound now
-        [_messageSoundBtn setTitle:@"Off" forState:UIControlStateNormal];
-        [engine setMessageSoundOff];
-        
-    } else {
-        //on chat sound
-        [_messageSoundBtn setTitle:@"On" forState:UIControlStateNormal];
-        [engine setMessageSoundOn];
-    }
-    
+    UISwitch *switchButton = sender;
+    [engine toggleMessageSound:switchButton.on];
 }
 
 

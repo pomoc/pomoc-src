@@ -37,21 +37,17 @@
     [super viewDidLoad];
     username.layer.borderColor = [[UIColor whiteColor] CGColor];
     username.layer.borderWidth = 2.0f;
-//    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
-//    username.leftView = paddingView;
-//    username.leftViewMode = UITextFieldViewModeAlways;
     username.delegate = self;
     
     password.layer.borderColor = [[UIColor whiteColor] CGColor];
     password.layer.borderWidth = 2.0f;
     password.delegate = self;
-//    password.leftView = paddingView;
-//    password.leftViewMode = UITextFieldViewModeAlways;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
 }
 
 - (IBAction)loginPressed:(id)sender {
@@ -66,7 +62,6 @@
         [self performSegueWithIdentifier:@"login"
                                   sender:self];
     }];
-    
 }
 
 - (void)showActivityProgress {
