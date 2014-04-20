@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		6D5332D7190386A900A228D3 /* logo-word.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D6190386A900A228D3 /* logo-word.png */; };
 		6D5332D9190386EA00A228D3 /* logo-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D8190386EA00A228D3 /* logo-v2.png */; };
+		6D5332DF1903BD1D00A228D3 /* group-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DA1903BD1D00A228D3 /* group-white-512.png */; };
+		6D5332E01903BD1D00A228D3 /* home-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DB1903BD1D00A228D3 /* home-white-512.png */; };
+		6D5332E11903BD1D00A228D3 /* logout-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DC1903BD1D00A228D3 /* logout-white-512.png */; };
+		6D5332E21903BD1D00A228D3 /* settings_filled-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */; };
+		6D5332E31903BD1D00A228D3 /* speech_bubble-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */; };
+		6D5332E51903BD7600A228D3 /* settings-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332E41903BD7600A228D3 /* settings-white-512.png */; };
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
@@ -108,6 +114,12 @@
 /* Begin PBXFileReference section */
 		6D5332D6190386A900A228D3 /* logo-word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-word.png"; sourceTree = "<group>"; };
 		6D5332D8190386EA00A228D3 /* logo-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v2.png"; sourceTree = "<group>"; };
+		6D5332DA1903BD1D00A228D3 /* group-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-white-512.png"; sourceTree = "<group>"; };
+		6D5332DB1903BD1D00A228D3 /* home-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-white-512.png"; sourceTree = "<group>"; };
+		6D5332DC1903BD1D00A228D3 /* logout-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-white-512.png"; sourceTree = "<group>"; };
+		6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_filled-white-512.png"; sourceTree = "<group>"; };
+		6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech_bubble-white-512.png"; sourceTree = "<group>"; };
+		6D5332E41903BD7600A228D3 /* settings-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-white-512.png"; sourceTree = "<group>"; };
 		6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -522,6 +534,12 @@
 				AACA120918FD9ABA005DB53B /* background2.jpg */,
 				AACA11D218FB7BC0005DB53B /* background.png */,
 				AA4649D118E80EEE00A607E0 /* testImage.png */,
+				6D5332DA1903BD1D00A228D3 /* group-white-512.png */,
+				6D5332DB1903BD1D00A228D3 /* home-white-512.png */,
+				6D5332DC1903BD1D00A228D3 /* logout-white-512.png */,
+				6D5332E41903BD7600A228D3 /* settings-white-512.png */,
+				6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */,
+				6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */,
 				AA9DC95E18E48F5C00B4FDF7 /* group-512.png */,
 				AA9DC95C18E48F4100B4FDF7 /* worker-512.png */,
 				AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */,
@@ -694,20 +712,26 @@
 				AACA11D318FB7BC0005DB53B /* background.png in Resources */,
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
+				6D5332E11903BD1D00A228D3 /* logout-white-512.png in Resources */,
+				6D5332E51903BD7600A228D3 /* settings-white-512.png in Resources */,
 				AA6958FE1900E4C800E28EBE /* 40x40.png in Resources */,
 				AAD17CF31902A427003D9241 /* chat.mp3 in Resources */,
 				AAD17CF41902A427003D9241 /* message.mp3 in Resources */,
+				6D5332E01903BD1D00A228D3 /* home-white-512.png in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
 				AA6959021900E4C800E28EBE /* 152x152.png in Resources */,
 				AA9BDCFA18F91E1100EF6EEC /* JBChartView.podspec in Resources */,
+				6D5332E31903BD1D00A228D3 /* speech_bubble-white-512.png in Resources */,
 				AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */,
 				AA6959001900E4C800E28EBE /* 76x76.png in Resources */,
 				AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */,
 				AA6958FF1900E4C800E28EBE /* 58x58.png in Resources */,
+				6D5332DF1903BD1D00A228D3 /* group-white-512.png in Resources */,
 				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
 				AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */,
 				AA6959011900E4C800E28EBE /* 80x80.png in Resources */,
 				AACA120C18FD9D01005DB53B /* background2.png in Resources */,
+				6D5332E21903BD1D00A228D3 /* settings_filled-white-512.png in Resources */,
 				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
 				AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */,
 				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,

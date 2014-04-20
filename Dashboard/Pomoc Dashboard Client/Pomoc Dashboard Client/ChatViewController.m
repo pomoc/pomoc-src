@@ -246,29 +246,29 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+    if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 12)];
-        [label setFont:[UIFont fontWithName:@"Helvetica-Light" size:14]];
+        [label setFont:[UIFont fontWithName:@"Avenir" size:14]];
         [label setTextColor:[UIColor whiteColor]];
         
         NSString *string;
 
         switch(section) {
             case UNHANDLED_CHAT:
-                string = @"unhandled chats";
+                string = @"Unhandled chats";
                 [view setBackgroundColor:[UIColor redColor] ];
 
                 break;
             case HANDLING_CHAT:
-                string =  @"chats you are handling";
-                [view setBackgroundColor:[Utility colorFromHexString:@"42C9B3"]];
+                string =  @"Chats you are handling";
+                [view setBackgroundColor:[Utility colorFromHexString:@"#42C9B3"]];
                 break;
             case OTHER_CHAT:
                 string =  @"Other chats";
-                [view setBackgroundColor:[Utility colorFromHexString:@"42C9B3"]];
+                [view setBackgroundColor:[Utility colorFromHexString:@"#42C9B3"]];
                 break;
         }
         
