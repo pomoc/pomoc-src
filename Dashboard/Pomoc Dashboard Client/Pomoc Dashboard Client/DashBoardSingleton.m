@@ -48,7 +48,7 @@
     //[PMSupport initWithAppID:@"anc165" secretKey:@"mySecret"];
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"5" password:@"5" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"steve2" password:@"1" completion:^(NSString *returnedUserId) {
         
         //NSLog(@"returned userId == %@", returnedUserId);
         _selfUserId = returnedUserId;
@@ -61,7 +61,6 @@
             
             // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
-                
                 
                 //NSLog(@"all conversation.length == %lu",[conversations count]);
                 
@@ -223,9 +222,14 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    NSLog(@"singleton new conversation created called");
+    
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
-    //NSLog(@"dashboard singleton detected new chat");
+    
+    if ([self isHomeDelegateAlive]) {
+        [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+    }
     
     SoundEngine *engine = [SoundEngine singleton];
     [engine playNewConversation];
