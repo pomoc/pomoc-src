@@ -53,4 +53,25 @@
     [_loadingLabel setText:@"Logging in..."];
     
 }
+
+- (void)newConversationCreated:(PMConversation *)conversation {
+    
+}
+
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId {
+    
+}
+
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee {
+    
+}
+
+- (void)updateOnlineUsers:(NSArray *)users {
+    
+}
+
+- (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId {
+    
+}
+
 @end

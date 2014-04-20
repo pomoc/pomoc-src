@@ -84,8 +84,6 @@ typedef struct {
         }
         bufIdx += 4;
         
-        CGRect bounds = self.bounds;
-        
         dispatch_async(drawingQueue, ^{
             UIBezierPath *offsetPath = [UIBezierPath bezierPath];
             if (bufIdx == 0) return;
