@@ -192,7 +192,10 @@
     [PMSupport sharedInstance].delegate = delegate;
 }
 
-
++ (PMConversation *)agentConversation
+{
+    return [PMSupport sharedInstance].agentConversation;
+}
 
 #pragma mark - PMCore delegate
 
