@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D5332D7190386A900A228D3 /* logo-word.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D6190386A900A228D3 /* logo-word.png */; };
+		6D5332D9190386EA00A228D3 /* logo-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D8190386EA00A228D3 /* logo-v2.png */; };
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
@@ -105,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D5332D6190386A900A228D3 /* logo-word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-word.png"; sourceTree = "<group>"; };
+		6D5332D8190386EA00A228D3 /* logo-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v2.png"; sourceTree = "<group>"; };
 		6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -516,7 +520,9 @@
 			isa = PBXGroup;
 			children = (
 				AA6958F61900E24C00E28EBE /* logo */,
+				6D5332D6190386A900A228D3 /* logo-word.png */,
 				AA6958F41900DDAB00E28EBE /* logo-v2-1.png */,
+				6D5332D8190386EA00A228D3 /* logo-v2.png */,
 				AACA120B18FD9D01005DB53B /* background2.png */,
 				AACA120918FD9ABA005DB53B /* background2.jpg */,
 				AACA11D218FB7BC0005DB53B /* background.png */,
@@ -683,6 +689,8 @@
 				AA9DC8B218E1A49E00B4FDF7 /* send_file-512.png in Resources */,
 				AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */,
 				AA4649D218E80EEE00A607E0 /* testImage.png in Resources */,
+				6D5332D9190386EA00A228D3 /* logo-v2.png in Resources */,
+				6D5332D7190386A900A228D3 /* logo-word.png in Resources */,
 				AA6958F51900DDAB00E28EBE /* logo-v2-1.png in Resources */,
 				AA5204C118D7EF2C00D78156 /* Main.storyboard in Resources */,
 				AA9DC89218E175AF00B4FDF7 /* sampleImage.png in Resources */,
