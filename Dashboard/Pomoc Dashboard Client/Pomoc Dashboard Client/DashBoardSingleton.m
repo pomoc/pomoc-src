@@ -222,9 +222,14 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    NSLog(@"singleton new conversation created called");
+    
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
-    //NSLog(@"dashboard singleton detected new chat");
+    
+    if ([self isHomeDelegateAlive]) {
+        [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+    }
     
     SoundEngine *engine = [SoundEngine singleton];
     [engine playNewConversation];
