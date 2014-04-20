@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "DashBoardSingleton.h"
-#import "SoundEngine.h";
+#import "SoundEngine.h"
 
 @interface SettingsViewController (){
     SoundEngine *engine;
