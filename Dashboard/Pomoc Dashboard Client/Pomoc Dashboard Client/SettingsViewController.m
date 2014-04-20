@@ -48,4 +48,17 @@
     UISwitch *switchButton = sender;
     [engine toggleMessageSound:switchButton.on];
 }
+
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+
 @end

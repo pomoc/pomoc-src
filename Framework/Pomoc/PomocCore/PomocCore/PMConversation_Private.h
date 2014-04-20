@@ -14,6 +14,7 @@
 @property (nonatomic, strong) PMUser *creator;
 @property (nonatomic, strong) NSDate *createDate;
 @property (nonatomic, strong) NSMutableArray *allMessages;
+@property (nonatomic, strong) NSMutableArray *allNotes;
 
 - (void)joinConversationWithCompletion:(void(^)(BOOL success))completion;
 

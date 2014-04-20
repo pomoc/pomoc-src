@@ -31,6 +31,10 @@
 + (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
                                       conversationId:(NSString *)converstionId
                                        refereeUserId:(NSString *)refereeUserId;
++ (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
+                                      conversationId:(NSString *)conversationId
+                                             appData:(NSDictionary *)appData;
+
 + (PMChatMessage *)chatMessageWithMessage:(NSString *)message conversationId:(NSString *)conversationId;
 + (PMImageMessage *)imageMessageWithId:(NSString *)imageId conversationId:(NSString *)conversationId;
 

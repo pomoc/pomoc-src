@@ -47,6 +47,13 @@
 }
 
 + (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
+                                      conversationId:(NSString *)conversationId
+                                             appData:(NSDictionary *)appData
+{
+    return [[PMApplicationMessage alloc] initWithMessageCode:code conversationId:conversationId appData:appData];
+}
+
++ (PMApplicationMessage *)applicationMessageWithCode:(PMApplicationMessageCode)code
                                       conversationId:(NSString *)converstionId
                                        refereeUserId:(NSString *)refereeUserId
 {
