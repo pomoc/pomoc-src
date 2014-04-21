@@ -82,7 +82,7 @@
         if (i % self.bigTicksEvery == 0) {
             CGContextAddLineToPoint(context, x, height * LENGTH_BIG);
         } else if (i % self.smallTicksEvery == 0) {
-            CGContextAddLineToPoint(context, x, height * LENGTH_SMALL);
+            //CGContextAddLineToPoint(context, x, height * LENGTH_SMALL);
         }
     }
     
