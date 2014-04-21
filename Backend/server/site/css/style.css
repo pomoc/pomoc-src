@@ -35,3 +35,11 @@ a {
   text-align: center;
 }
 
+.install-container img {
+  -moz-box-shadow:    0 0 10px #999;
+  -webkit-box-shadow: 0 0 10px #999;
+  box-shadow:         0 0 10px #999;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
