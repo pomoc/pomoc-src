@@ -137,7 +137,7 @@ module.exports = function(app, db, crypto) {
     });
 
     
-    app.get('/app/:appId', function(req, res) {
+    app.get('/appUsers/:appId', function(req, res) {
         var key = req.param('appId') + ':users';
         db.client.smembers(key, function(err, reply) {
             var fields = ['name', 'userId', 'type'];
