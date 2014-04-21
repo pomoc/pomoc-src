@@ -613,7 +613,7 @@
     //Setting visitor name
     [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
     [cell.messageFrom boldAndBlackSubstring:message.user.name];
-
+    
     //setting the display text
     [cell.messageText setText: message.message];
     
