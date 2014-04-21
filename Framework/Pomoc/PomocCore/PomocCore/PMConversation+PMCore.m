@@ -11,6 +11,7 @@
 #import "PMMessage.h"
 #import "PMChatMessage.h"
 #import "PMImageMessage.h"
+#import "PMStatusMessage.h"
 #import "PMChatMessage_Private.h"
 #import "PMInternalMessage.h"
 #import "PMUserManager.h"
@@ -70,6 +71,10 @@
         
         if (messageClass == [PMInternalMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveInternalMessage:)]) {
             [self.delegate conversation:self didReceiveInternalMessage:(PMInternalMessage *)message];
+        }
+        
+        if (messageClass == [PMStatusMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveStatusMessage:)]) {
+            [self.delegate conversation:self didReceiveStatusMessage:(PMStatusMessage *)message];
         }
     }
 }

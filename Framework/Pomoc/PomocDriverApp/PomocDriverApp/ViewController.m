@@ -144,6 +144,8 @@
     } else if ([self.textField.text isEqualToString:@"image_small"]) {
         UIImage *image = [UIImage imageNamed:@"image_small"];
         [self.conversation sendImageMessage:image];
+    } else if ([self.textField.text isEqualToString:@"status_join"]) {
+        [self.conversation sendStatusMessage:PMStatusMessageJoin];
     } else {
         //[self.conversation sendTextMessage:self.textField.text];
         [self.conversation sendNote:self.textField.text];
@@ -205,6 +207,12 @@
         NSLog(@"Received image in completion");
         [self.chatTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }];
+}
+
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
+{
+    NSLog(@"Received status message");
+    
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(NSString *)notes
