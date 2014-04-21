@@ -1,50 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title> </title>
-	<link rel="stylesheet" href="css/vendor/bootstrap.css">
-	<link href="css/vendor/font-awesome.min.css" rel="stylesheet">
-	<link href="css/vendor/style.css" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title> </title>
+  <link rel="stylesheet" href="css/vendor/bootstrap.css">
+  <link href="css/vendor/font-awesome.min.css" rel="stylesheet">
+  <link href="css/vendor/style.css" rel="stylesheet">
   <link href="css/vendor/blue.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
 </head>
-		
-<body >  
+    
+<body ng-controller="rootController">  
 
-	<div ng-view>
-	</div>	
+  <div ng-view>
+  </div>  
 
-	<!-- Initialization -->
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Login to your Pomoc Account</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="input1">Email</label>
+                <input type="text" ng-model='login_email' class="form-control">
+              </div>
+              <div class="form-group col-md-12">
+              <label for="input2">Password</label>
+                <input type="password" ng-model='login_pw'  class="form-control" >
+              </div>
 
-		<!-- angular stuffs -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+            </form>
+            <div style="text-align:right; margin-right:12px" > 
+              <span style="color:red" ng-show="errorMessage.length > 0">{{ errorMessage }} </span>
+              <button type="button" ng-click="login()" class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	<script src="js/app/app.js" ></script>
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Sign up for a Pomoc Account</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="input1">Email</label>
+                <input type="text" ng-model='signup_email' class="form-control">
+              </div>
+              <div class="form-group col-md-12">
+              <label for="input2">Password</label>
+                <input type="password" ng-model='signup_pw1' class="form-control">
+              </div>
+              <div class="form-group col-md-12">
+              <label for="input2">Confirm Password</label>
+                <input type="password" ng-model='signup_pw2' class="form-control">
+              </div>
 
-	<!-- controllers --> 
-	<script src="js/app/controllers/homeController.js"></script> 
-	<script src="js/app/controllers/agentController.js"></script> 
-	<script src="js/app/controllers/navController.js"></script> 
-	<script src="js/app/controllers/setupController.js"></script> 
-	<script src="js/app/controllers/installController.js"></script> 
-	
-	<!-- services --> 
-	<script src="js/app/services/userService.js"></script>
-	
-	<!-- directive -->
-	<script src="js/app/directive.js"></script>
+          </form>
+          <div style="text-align:right; margin-right:12px" > 
+            <span style="color:red" ng-show="errorMessage.length > 0">{{ errorMessage }} </span>
+            <button type="button" ng-click="signUp()"  class="btn btn-primary">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Initialization -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <!-- angular stuffs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+
+  <script src="js/app/app.js"></script>
+
+  <!-- controllers --> 
+  <script src="js/app/controllers/rootController.js"></script> 
+  <script src="js/app/controllers/homeController.js"></script> 
+  <script src="js/app/controllers/agentController.js"></script> 
+  <script src="js/app/controllers/navController.js"></script> 
+  <script src="js/app/controllers/setupController.js"></script> 
+  <script src="js/app/controllers/installController.js"></script> 
+  
+  <!-- services --> 
+  <script src="js/app/services/userService.js"></script>
+  
+  <!-- directive -->
+  <script src="js/app/directive.js"></script>
 
 
-	<!-- vendor --> 
-	<script type="text/javascript" src="js/app/vendor/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="js/app/vendor/bootstrap.js"></script>
-    <script type="text/javascript" src="js/app/vendor/plugins.js"></script>
-    <script type="text/javascript" src="js/app/vendor/banzhow.js"></script>
+
+  <!-- vendor --> 
+  <script type="text/javascript" src="js/app/vendor/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/app/vendor/bootstrap.js"></script>
+  <script type="text/javascript" src="js/app/vendor/plugins.js"></script>
+  <script type="text/javascript" src="js/app/vendor/banzhow.js"></script>
 
 </body>
 </html>

@@ -45,6 +45,7 @@
     
     NSMutableArray *chatMessageList;
     NSInteger currentlySelectedChatRow;
+    NSIndexPath *currentlySelectedChatIndexPath;
     NSString *currentSelectedConvoId;
     PMConversation *currentlySelectedConvo;
     
@@ -349,6 +350,7 @@
         _chatInputView.hidden = FALSE;
         
         currentlySelectedChatRow = indexPath.row;
+        currentlySelectedChatIndexPath = indexPath;
         
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -561,10 +563,10 @@
     
     switch(message.code) {
         case PMStatusMessageJoin:
-            messageOutput = [NSString stringWithFormat:@"%@ has joined the conversation -- %@", message.user.name, dateString] ;
+            messageOutput = [NSString stringWithFormat:@"%@ has joined the conversation at %@", message.user.name, dateString] ;
             break;
         case PMStatusMessageLeave:
-            messageOutput = [NSString stringWithFormat:@"%@ has left the conversation -- %@", message.user.name, dateString];
+            messageOutput = [NSString stringWithFormat:@"%@ has left the conversation at %@", message.user.name, dateString];
             break;
         case PMStatusMessageNone:
             break;
@@ -639,6 +641,7 @@
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
     }
+    [_chatNavTable selectRowAtIndexPath:currentlySelectedChatIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void) handlerUpdate: (NSMutableArray *)newChatList

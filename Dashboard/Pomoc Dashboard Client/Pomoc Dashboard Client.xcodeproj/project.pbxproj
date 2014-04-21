@@ -134,6 +134,7 @@
 		9FD1FDA91903C9E900F4870C /* Axis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axis.m; sourceTree = "<group>"; };
 		AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMessageTableViewCell.h; sourceTree = "<group>"; };
 		AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMessageTableViewCell.m; sourceTree = "<group>"; };
+		AA1E193819055C0900F36932 /* PMStatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatusMessage.h; sourceTree = "<group>"; };
 		AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+boldAndGray.h"; sourceTree = "<group>"; };
 		AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+boldAndGray.m"; sourceTree = "<group>"; };
 		AA4649D118E80EEE00A607E0 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
@@ -490,6 +491,7 @@
 		AA7C2AB41903B5C50067FED1 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				AA1E193819055C0900F36932 /* PMStatusMessage.h */,
 				AA7C2AB51903B5C50067FED1 /* PMChatMessage.h */,
 				AA7C2AB61903B5C50067FED1 /* PMConversation.h */,
 				AA7C2AB71903B5C50067FED1 /* PMCore.h */,
