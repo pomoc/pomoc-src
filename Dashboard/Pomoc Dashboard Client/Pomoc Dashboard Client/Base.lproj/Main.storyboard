@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHw-gd-lxT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHw-gd-lxT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -468,14 +468,14 @@
                     <navigationItem key="navigationItem" title="Group Chat" id="Pk2-E6-fIU"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="agentListChatView" destination="xGp-Rx-Ah3" id="1i6-ro-Zev"/>
-                        <outlet property="agentListNavBar" destination="GEf-oc-i8m" id="qY7-NY-0uE"/>
-                        <outlet property="keyboardInput" destination="bBZ-ai-08P" id="ZSd-iT-wqL"/>
+                        <outlet property="chatInputView" destination="bBZ-ai-08P" id="KuK-c9-dY2"/>
+                        <outlet property="chatMessageTable" destination="xGp-Rx-Ah3" id="DKR-uw-4UU"/>
+                        <outlet property="chatNavTable" destination="GEf-oc-i8m" id="ORt-JP-es7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ha-an-PWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1544" y="76"/>
+            <point key="canvasLocation" x="-1530" y="78"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="yrJ-xC-Wdk">

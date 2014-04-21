@@ -8,6 +8,7 @@
 
 #import "GroupChatViewController.h"
 #import "DashBoardSingleton.h"
+#import "ChatMessageTextCell.h"
 #import "PMSupport.h"
 #import "PMUser.h"
 
@@ -16,6 +17,8 @@
     DashBoardSingleton *singleton;
     NSMutableArray *agentList;
     BOOL keyboardEditing;
+    
+    PMConversation *currentChat;
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -44,7 +47,6 @@
     _chatMessageTable.separatorColor = [UIColor clearColor];
     _chatNavTable.separatorColor = [UIColor clearColor];
     
-    
     //border
     _chatMessageTable.layer.borderWidth = 0.5;
     CALayer *leftBorder = [CALayer layer];
@@ -59,6 +61,8 @@
 
     singleton = [DashBoardSingleton singleton];
     agentList = singleton.currentAgentList;
+    currentChat = singleton.agentConversation;
+    
     singleton.groupChatDelegate = self;
     
     //storing the original position for moving them up when keyboard show
@@ -80,7 +84,7 @@
 {
     
     if ([tableView tag] == GROUP_CHAT_TABLEVIEW) {
-        return 5;
+        return [currentChat.messages count];
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
         return [agentList count];
     }
@@ -99,6 +103,16 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        
+        ChatMessageTextCell *chatCell = (ChatMessageTextCell *)cell;
+        PMChatMessage *message = [currentChat.messages objectAtIndex:row];
+        
+        //setting the started date of chat
+        NSString *dateString = [Utility formatDateForTable:message.timestamp];
+        
+        //Setting visitor name
+        [chatCell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
+        chatCell.messageText.text = message.message;
         
         return cell;
 
@@ -143,7 +157,7 @@
 - (void) agentListUpdated: (NSMutableArray *)updatedAgentList
 {
     agentList = updatedAgentList;
-    [_agentListNavBar reloadData];
+    [_chatNavTable reloadData];
 }
 
 -(BOOL)shouldAutorotate
@@ -176,19 +190,13 @@
     
     [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _chatMessageTable.frame = chatMessageOriginalFrame;
     
+    //chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    //_chatMessageTable.frame = chatMessageOriginalFrame;
     
     [self scrollChatContentToBottom];
     
     //change chat nav table height
-    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
-          chatNavOriginalFrame.size.height,
-          chatNavOriginalFrame.size.width);
-    NSLog(@"chat real  frame .height = %f and .wdith = %f",
-          _chatNavTable.frame.size.height,
-          _chatNavTable.frame.size.width);
     chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
     
@@ -207,8 +215,8 @@
     keyboardEditing = false;
     _chatInputView.center = chatInputOriginalCenter;
     
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
-    _chatMessageTable.frame = chatMessageOriginalFrame;
+    //chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
+    //_chatMessageTable.frame = chatMessageOriginalFrame;
     
     chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;

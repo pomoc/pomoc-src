@@ -70,10 +70,8 @@
                     [_currentConversationList addObject:convo];
                 }
                 
-                PMConversation *convo = [PMSupport agentConversation];
-                convo.delegate = self;
-                
-                
+                _agentConversation = [PMSupport agentConversation];
+                _agentConversation.delegate = self;
                 
                 [_currentConversationList addObject:[PMSupport agentConversation]];
                 
