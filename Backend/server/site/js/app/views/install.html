@@ -36,7 +36,7 @@
 {
 
     /* Other code here */
-    [Pomoc initWithAppId:@"{{ {true: appToken, false:'&lt;Your app ID&gt;'}[!!appToken] }}" secretKey:@"&lt;Your secret key&gt;"];
+    [Pomoc initWithAppId:@"{{ {true: appToken, false:'&lt;Your app ID&gt;'}[!!appToken] }}" secretKey:@"{{ {true: appSecret, false:'&lt;Your secret key&gt;'}[!!appSecret] }}"];
 
     return YES;
 }

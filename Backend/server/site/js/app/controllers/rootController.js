@@ -33,7 +33,7 @@ root_controller.controller('rootController',
         } else {
           
           $rootScope.appToken = data.appToken;
-          $rootScope.appSecret = data.appSecret;
+          $rootScope.appSecret = '42JANXLZO021';
           $rootScope.userId = data.userId;
           $rootScope.selectedIndex = 2; 
           $rootScope.$apply();
