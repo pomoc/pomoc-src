@@ -33,6 +33,7 @@
 @protocol PomocGroupDelegate
 
 - (void) agentListUpdated: (NSMutableArray *)agentList;
+- (void) newChatMessage: (PMConversation *)conversation;
 
 @end
 

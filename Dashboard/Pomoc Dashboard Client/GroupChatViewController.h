@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 
+@property (weak, nonatomic) IBOutlet UITextField *textInput;
+
+- (IBAction)sendMessage:(id)sender;
 - (void) deallocDelegate;
 
 @end
