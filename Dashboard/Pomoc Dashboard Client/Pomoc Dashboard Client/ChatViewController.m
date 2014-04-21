@@ -519,10 +519,10 @@
     [message retrieveImageWithCompletion:^(UIImage *image) {
         
         NSLog(@"image retrieved");
-        weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        weakCell.imageView.clipsToBounds = YES;
+        weakCell.messagePicture.contentMode = UIViewContentModeScaleAspectFill;
+        weakCell.messagePicture.clipsToBounds = YES;
         UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
-        [weakCell.imageView setImage:scaled];
+        [weakCell.messagePicture setImage:scaled];
         
         [weakCell.messageBigPicture setImage:image];
         weakCell.messageBigPicture.hidden = true;
