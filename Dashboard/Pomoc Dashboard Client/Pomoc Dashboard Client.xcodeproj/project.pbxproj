@@ -704,7 +704,7 @@
 				ORGANIZATIONNAME = nus.cs3217;
 				TargetAttributes = {
 					AA5204A918D7EF2C00D78156 = {
-						DevelopmentTeam = W76H98A34A;
+						DevelopmentTeam = 3P69678SU8;
 					};
 					AA5204CA18D7EF2C00D78156 = {
 						TestTargetID = AA5204A918D7EF2C00D78156;

@@ -55,7 +55,8 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     
     CGRect chartFrame = CGRectMake(0, 0, 450,  350);
     _lineChartView = [[LineChartView alloc] initWithFrame:chartFrame];
-    [_lineChartView addData:[self retrieveData:50]];
+    [_lineChartView addData:[self retrieveData:25] withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
+    [_lineChartView addData:[self retrieveData:25] withProperties:@{}];
     
     [_chartView addSubview:_lineChartView];
     

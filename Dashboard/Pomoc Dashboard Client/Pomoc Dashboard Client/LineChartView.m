@@ -23,6 +23,7 @@
 @interface LineChartView() <JBLineChartViewDataSource, JBLineChartViewDelegate> {
     JBLineChartView *lineChartView;
     NSMutableArray *chartData;
+    NSMutableArray *chartProp;
     
     // Tool tip
     JBChartTooltipView *tooltipView;
@@ -41,6 +42,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         chartData = [[NSMutableArray alloc] init];
+        chartProp = [[NSMutableArray alloc] init];
         
         [self initializeChart:frame];
         [self showChart];
@@ -69,6 +71,11 @@
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     [data addEntriesFromDictionary:newData];
     [chartData addObject:data];
+}
+
+- (void)addData:(NSDictionary *)newData withProperties:(NSDictionary *)prop {
+    [chartProp addObject:prop];
+    [self addData:newData];
     [xAxis setData:[((NSDictionary *)chartData[0]) allValues]];
     [lineChartView reloadData];
 }
@@ -132,12 +139,18 @@
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
 {
+    if ([chartProp count] > lineIndex && chartProp[lineIndex][@"line_color"]) {
+        return chartProp[lineIndex][@"line_color"];
+    }
     return COLOR_RED;
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return 3.0;
+    if ([chartProp count] > lineIndex && chartProp[lineIndex][@"line_width"]) {
+        return [chartProp[lineIndex][@"line_width"] floatValue];
+    }
+    return 6.0;
 }
 
 - (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
@@ -160,7 +173,7 @@
 
 - (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView
 {
-    return 1;
+    return 3;
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
@@ -208,7 +221,8 @@
     NSNumber *valueNumber = [chartData[lineIndex] objectForKey:idx];
     
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [tooltipView setText:[dateString uppercaseString]];
+    //[tooltipView setText:[dateString uppercaseString]];
+    [tooltipView setText:[[valueNumber stringValue] uppercaseString]];
     
     [self.delegate didSelectPointAtKey:idx value:valueNumber];
 }

@@ -102,7 +102,7 @@
     timeChart = [[LineChartView alloc] initWithFrame:self.chartArea.bounds];
     timeChart.delegate = self;
     
-    [timeChart addData:fakeData];
+    [timeChart addData:fakeData withProperties:@{}];
     
     [self.chartArea addSubview:timeChart];
     [timeChart showChart];

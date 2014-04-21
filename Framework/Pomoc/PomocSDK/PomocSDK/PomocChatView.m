@@ -132,8 +132,8 @@
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
-    self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.chatTableView.allowsSelection = NO;
+    self.chatTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
     [self.chatTableView addGestureRecognizer:gestureRecognizer];
@@ -282,8 +282,12 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
         }
-        cell.textLabel.text = chatMessage.message;
-        cell.detailTextLabel.text = [self.users[indexPath.row] name];
+        
+        cell.textLabel.text = [self.users[indexPath.row] name]; // followed by the time
+        cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+        
+        cell.detailTextLabel.text = chatMessage.message;
+        cell.detailTextLabel.textColor = [UIColor grayColor];
     }
     
     return cell;
