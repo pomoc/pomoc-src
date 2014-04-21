@@ -18,8 +18,7 @@
 
 - (id)initWithFrame:(CGRect)frame;
 
-- (void)addDataX:(NSArray *)x_vals withY:(NSArray *)y_vals;
-- (void)addData:(NSDictionary *)newData;
+- (void)addData:(NSDictionary *)newData withProperties:(NSDictionary *)prop;
 - (void)hideChart;
 - (void)showChart;
 
