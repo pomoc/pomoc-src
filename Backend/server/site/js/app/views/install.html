@@ -28,21 +28,21 @@
             <img src="img/linker-flags.png" width="600"/>
             <hr>
 
-            <h2 class="section-title">Step 3 - Launch the SDK from your app</h2>
-            <p>In your <code>AppDelegate.m</code> file, add the line <code>#import <PomocSDK/PomocSDK.h></code> at the top.</p>
+            <h2 class="section-title">Step 3 - Add code to your app</h2>
+            <p>In your <code>AppDelegate.m</code> file, add the line <code>#import &lt;PomocSDK/PomocSDK.h&gt;</code> at the top.</p>
             <p>Add the following code at the end of the <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions </code> method:
             <pre>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
     /* Other code here */
-    [Pomoc initWithAppId:@"&lt;Your app ID&gt;" secretKey:@"&lt;Your secret key&gt;"];
+    [Pomoc initWithAppId:@"{{ {true: appToken, false:'&lt;Your app ID&gt;'}[!!appToken] }}" secretKey:@"&lt;Your secret key&gt;"];
 
     return YES;
 }
 </pre>
 
-            <p>In the View Controller that you want to allow the user to toggle the Pomoc Chat head, firstly add <code>#import <PomocSDK/PomocSDK.h></code> at the top of the file and then use the following line of code to display the Chat Head:</p>
+            <p>In the View Controller that you want to allow the user to toggle the Pomoc Chat head, firstly add <code>#import &lt;PomocSDK/PomocSDK.h&gt;</code> at the top of the file and then use the following line of code to display the Chat Head:</p>
             <pre>
 [Pomoc registerUserWithName:@"&lt;A name you give to your user&gt;" completion:^(NSString *userId) {
     [Pomoc toggleChatHead];
@@ -50,7 +50,7 @@
 </pre>
             <hr>
 
-            <h2 class="section-title">Step 4 </h2>
+            <h2 class="section-title">Step 4 - Launch!</h2>
             <p>Launch the app and try out Pomoc!</p>
           </div>
 

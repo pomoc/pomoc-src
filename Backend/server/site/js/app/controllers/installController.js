@@ -1,4 +1,5 @@
 var install_controller = angular.module('app.controllers.install', [
+  'app.services.user'
 ]);
 
 install_controller.controller('installController',
