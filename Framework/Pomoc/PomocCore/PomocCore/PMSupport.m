@@ -145,11 +145,14 @@
                 [PMSupport sharedInstance].agentConversation = [[PMConversation alloc] initWithConversationId:agentConversationId creatorUserId:@"" createDate:[NSDate date]];
                 [[PMSupport sharedInstance].agentConversation joinConversationWithCompletion:^(BOOL success) {
                     [PMCore addConversation:[PMSupport sharedInstance].agentConversation];
+                    if (callback) {
+                        callback(connected);
+                    }
                 }];
+            } else {
+                callback(connected);
             }
-        }
-        
-        if (callback) {
+        } else {
             callback(connected);
         }
     }];
@@ -219,7 +222,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:)]) {
         [self.delegate updateHandlers:handlers conversationId:conversationId];
     }
-    
 }
 
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee

@@ -12,7 +12,7 @@
 //#define LOCAL_SERVER
 
 #ifdef LOCAL_SERVER
-#define POMOC_URL   @"172.28.179.115"
+#define POMOC_URL   @"172.28.177.128"
 #define POMOC_PORT  3217
 
 #else
