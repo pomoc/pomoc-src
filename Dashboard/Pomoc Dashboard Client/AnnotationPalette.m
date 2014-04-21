@@ -79,6 +79,8 @@
         
         UIButton *btn = (UIButton *)buttons[i];
         [btn setAlpha:0.40];
+        [btn.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [btn.layer setBorderWidth:0.0];
         
         if (b == btn) {
             found = true;
@@ -92,6 +94,8 @@
             
             if (b == btn) {
                 btnFrame = CGRectMake(i * BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE * 2, BUTTON_SIZE);
+                [btn.layer setBorderColor:[UIColor blackColor].CGColor];
+                [btn.layer setBorderWidth:2.0];
             } else {
                 btnFrame = CGRectMake(i * BUTTON_SIZE + BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE, BUTTON_SIZE);
             }
