@@ -143,7 +143,8 @@
             for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
                 // TODO: Generalize this
                 if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]] ||
-                    [jsonMessage[@"class"] isEqualToString:[[PMImageMessage class] description]]) {
+                    [jsonMessage[@"class"] isEqualToString:[[PMImageMessage class] description]] ||
+                    [jsonMessage[@"class"] isEqualToString:[[PMStatusMessage class] description]]) {
                     PMChatMessage *message = [PMMessage chatMessageFromJsonData:jsonMessage];
                     [messages addObject:message];
                 }
