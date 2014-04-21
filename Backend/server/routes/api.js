@@ -20,7 +20,7 @@ module.exports = function(app, db, crypto) {
                     "salt", salt,
                     "appToken", req.body.appToken,
                     "appSecret", req.body.appSecret,
-                    "type", "admin"
+                    "type", "agent"
                     );
                 res.statusCode = 200;
                 response = {success: true};
@@ -145,6 +145,7 @@ module.exports = function(app, db, crypto) {
             for (var userId in reply) {
                 multi.hmget([userId + ':account'].concat(fields));
             }
+            console.log(reply);
             multi.exec(function(errMulti, replies) {
                 console.log(replies);
                 res.send(replies);
