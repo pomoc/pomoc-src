@@ -81,7 +81,7 @@
 //#endif
     
     [PMSupport initWithAppID:@"f29e6e40f7bee2224384895bd5ed139a024ac1e8" secretKey:@"mySecret"];
-    NSString *customer = @"customer25";
+    NSString *customer = @"customer11";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
             [PMSupport getAllConversations:^(NSArray *conversations) {

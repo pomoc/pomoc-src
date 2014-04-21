@@ -12,6 +12,8 @@
 #import "PMSupport.h"
 #import "PMUser.h"
 
+#import "UILabel+boldAndGray.h"
+
 @interface GroupChatViewController ()<UITableViewDataSource, UITableViewDelegate >
 {
     DashBoardSingleton *singleton;
@@ -122,6 +124,7 @@
         
         //Setting visitor name
         [chatCell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
+        [chatCell.messageFrom boldAndBlackSubstring:message.user.name];
         chatCell.messageText.text = message.message;
         
         return cell;

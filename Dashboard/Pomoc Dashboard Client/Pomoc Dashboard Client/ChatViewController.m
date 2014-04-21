@@ -375,6 +375,10 @@
             
         }];
         
+        //make it read
+        pmConversation.read = TRUE;
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
     }
@@ -461,6 +465,10 @@
         case OTHER_CHAT:
             pmConvo = [otherChatList objectAtIndex:row];
             break;
+    }
+    
+    if (![pmConvo read]) {
+        [cell setBackgroundColor:[Utility colorFromHexString:@"#D3E4F0"]];
     }
     
     //Setting visitor name
@@ -605,7 +613,7 @@
     //Setting visitor name
     [cell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
     [cell.messageFrom boldAndBlackSubstring:message.user.name];
-
+    
     //setting the display text
     [cell.messageText setText: message.message];
     

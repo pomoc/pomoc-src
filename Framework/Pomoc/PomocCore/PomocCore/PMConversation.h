@@ -38,6 +38,10 @@
 @property (nonatomic, strong, readonly) PMUser *creator;
 @property (nonatomic, strong, readonly) NSDate *createDate;
 @property (nonatomic, strong) NSMutableArray *handlers;
+
+
+@property (nonatomic) BOOL read;
+
 @property (nonatomic, weak) id<PMConversationDelegate> delegate;
 
 - (void)sendTextMessage:(NSString *)message;
