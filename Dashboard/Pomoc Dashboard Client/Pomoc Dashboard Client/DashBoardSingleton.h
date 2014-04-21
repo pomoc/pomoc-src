@@ -61,8 +61,8 @@
 - (NSUInteger)numberOfConversation;
 
 //Handling convo
-- (void)handleConversation:(NSString *)conversationId;
-- (void)unhandleConversation:(NSString *)conversationId;
+- (void)handleConversation:(PMConversation *)convo;
+- (void)unhandleConversation:(PMConversation *)convo;
 - (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
 - (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion;
 

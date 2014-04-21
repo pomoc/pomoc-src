@@ -18,6 +18,7 @@
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
+		AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
 		AA4649D218E80EEE00A607E0 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4649D118E80EEE00A607E0 /* testImage.png */; };
 		AA4649F418E814D100A607E0 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649D818E814D100A607E0 /* MKAnnotationView+WebCache.m */; };
@@ -131,6 +132,8 @@
 		6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		9FD1FDA81903C9E900F4870C /* Axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
 		9FD1FDA91903C9E900F4870C /* Axis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axis.m; sourceTree = "<group>"; };
+		AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMessageTableViewCell.h; sourceTree = "<group>"; };
+		AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMessageTableViewCell.m; sourceTree = "<group>"; };
 		AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+boldAndGray.h"; sourceTree = "<group>"; };
 		AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+boldAndGray.m"; sourceTree = "<group>"; };
 		AA4649D118E80EEE00A607E0 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 		AA9DC92F18E44FD600B4FDF7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */,
+				AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */,
 				AA9DC92918E44FCE00B4FDF7 /* ChatMessagePictureCell.h */,
 				AA9DC92A18E44FCE00B4FDF7 /* ChatMessagePictureCell.m */,
 				AA9DC92B18E44FCE00B4FDF7 /* ChatMessageTextCell.h */,
@@ -812,6 +817,7 @@
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				C3150BCB190234900018521F /* LineChartView.m in Sources */,
 				6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */,
+				AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */,
 				AAD17CEF1902A245003D9241 /* SoundEngine.m in Sources */,
 				9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */,
 				AA4649FE18E814D100A607E0 /* UIImage+GIF.m in Sources */,

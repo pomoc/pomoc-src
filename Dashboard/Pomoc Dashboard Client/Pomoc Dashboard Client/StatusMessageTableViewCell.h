@@ -10,4 +10,6 @@
 
 @interface StatusMessageTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *statusMessage;
+
 @end
