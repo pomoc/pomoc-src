@@ -22,7 +22,7 @@
     return sharedMyModel;
 }
 
-- (id) init
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -31,37 +31,28 @@
     return self;
 }
 
-- (BOOL) conversationSound
+- (BOOL)conversationSound
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"conversationSound"];
 }
 
-- (BOOL) messsageSound
+- (BOOL)messageSound
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"messageSound"];
 }
 
 
-- (void) setConversationSoundOn
-{
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"conversationSound"];
-}
-- (void) setConversationSoundOff
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"conversationSound"];
+- (void)toggleConversationSound:(BOOL)value {
+    [[NSUserDefaults standardUserDefaults] setBool:value
+                                            forKey:@"conversationSound"];
 }
 
-- (void) setMessageSoundOn
-{
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"messageSound"];
-}
-- (void) setMessageSoundOff
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"messageSound"];
+- (void)toggleMessageSound:(BOOL)value {
+    [[NSUserDefaults standardUserDefaults] setBool:value
+                                            forKey:@"messageSound"];
 }
 
-
-- (void) playSoundOfFile: (NSString *)fileName :(NSString *)type
+- (void)playSoundOfFile: (NSString *)fileName :(NSString *)type
 {
     NSString *path = [ [NSBundle mainBundle] pathForResource:fileName
                                                       ofType:type];
@@ -81,14 +72,16 @@
 - (void) playNewConversation
 {
     if ([self conversationSound]) {
-        [self playSoundOfFile:@"chat" :@"mp3"];
+        [self playSoundOfFile:@"chat"
+                             :@"mp3"];
     }
 }
 
 - (void) playNewMessage
 {
-    if ([self messsageSound]) {
-        [self playSoundOfFile:@"message" :@"mp3"];
+    if ([self messageSound]) {
+        [self playSoundOfFile:@"message"
+                             :@"mp3"];
     }
 }
 

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		6D5332D7190386A900A228D3 /* logo-word.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D6190386A900A228D3 /* logo-word.png */; };
 		6D5332D9190386EA00A228D3 /* logo-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332D8190386EA00A228D3 /* logo-v2.png */; };
+		6D5332DF1903BD1D00A228D3 /* group-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DA1903BD1D00A228D3 /* group-white-512.png */; };
+		6D5332E01903BD1D00A228D3 /* home-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DB1903BD1D00A228D3 /* home-white-512.png */; };
+		6D5332E11903BD1D00A228D3 /* logout-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DC1903BD1D00A228D3 /* logout-white-512.png */; };
+		6D5332E21903BD1D00A228D3 /* settings_filled-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */; };
+		6D5332E31903BD1D00A228D3 /* speech_bubble-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */; };
+		6D5332E51903BD7600A228D3 /* settings-white-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D5332E41903BD7600A228D3 /* settings-white-512.png */; };
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
@@ -53,6 +59,7 @@
 		AA6959001900E4C800E28EBE /* 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FA1900E4C800E28EBE /* 76x76.png */; };
 		AA6959011900E4C800E28EBE /* 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FB1900E4C800E28EBE /* 80x80.png */; };
 		AA6959021900E4C800E28EBE /* 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FC1900E4C800E28EBE /* 152x152.png */; };
+		AA7C2AC31903B5C50067FED1 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7C2AC21903B5C50067FED1 /* libPomocCore.a */; };
 		AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */; };
 		AA9BDCF818F91E1100EF6EEC /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF218F91E1100EF6EEC /* JBBarChartView.m */; };
 		AA9BDCF918F91E1100EF6EEC /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF418F91E1100EF6EEC /* JBChartView.m */; };
@@ -86,7 +93,6 @@
 		AACA11D318FB7BC0005DB53B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D218FB7BC0005DB53B /* background.png */; };
 		AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA11D418FB7BF9005DB53B /* logo-v1.png */; };
 		AACA11DB18FB8DAF005DB53B /* ReferTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */; };
-		AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA120718FCFFF7005DB53B /* libPomocCore.a */; };
 		AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AACA120918FD9ABA005DB53B /* background2.jpg */; };
 		AACA120C18FD9D01005DB53B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA120B18FD9D01005DB53B /* background2.png */; };
 		AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD17CE81902381D003D9241 /* GroupChatViewController.m */; };
@@ -113,6 +119,12 @@
 /* Begin PBXFileReference section */
 		6D5332D6190386A900A228D3 /* logo-word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-word.png"; sourceTree = "<group>"; };
 		6D5332D8190386EA00A228D3 /* logo-v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v2.png"; sourceTree = "<group>"; };
+		6D5332DA1903BD1D00A228D3 /* group-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-white-512.png"; sourceTree = "<group>"; };
+		6D5332DB1903BD1D00A228D3 /* home-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-white-512.png"; sourceTree = "<group>"; };
+		6D5332DC1903BD1D00A228D3 /* logout-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-white-512.png"; sourceTree = "<group>"; };
+		6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_filled-white-512.png"; sourceTree = "<group>"; };
+		6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech_bubble-white-512.png"; sourceTree = "<group>"; };
+		6D5332E41903BD7600A228D3 /* settings-white-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-white-512.png"; sourceTree = "<group>"; };
 		6DCE531918D8AA9D00A50F61 /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
 		6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		6DCE531B18D8AA9D00A50F61 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
@@ -185,6 +197,20 @@
 		AA6958FA1900E4C800E28EBE /* 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76x76.png; sourceTree = "<group>"; };
 		AA6958FB1900E4C800E28EBE /* 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80x80.png; sourceTree = "<group>"; };
 		AA6958FC1900E4C800E28EBE /* 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152x152.png; sourceTree = "<group>"; };
+		AA7C2AB51903B5C50067FED1 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		AA7C2AB61903B5C50067FED1 /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
+		AA7C2AB71903B5C50067FED1 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		AA7C2AB81903B5C50067FED1 /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
+		AA7C2AB91903B5C50067FED1 /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
+		AA7C2ABA1903B5C50067FED1 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		AA7C2ABB1903B5C50067FED1 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		AA7C2ABC1903B5C50067FED1 /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
+		AA7C2ABD1903B5C50067FED1 /* PMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNote.h; sourceTree = "<group>"; };
+		AA7C2ABE1903B5C50067FED1 /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
+		AA7C2ABF1903B5C50067FED1 /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
+		AA7C2AC01903B5C50067FED1 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		AA7C2AC11903B5C50067FED1 /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
+		AA7C2AC21903B5C50067FED1 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AA7F6E2918DE909300400CDB /* DashBoardSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardSingleton.h; sourceTree = "<group>"; };
 		AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardSingleton.m; sourceTree = "<group>"; };
 		AA9BDCF118F91E1100EF6EEC /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
@@ -235,18 +261,6 @@
 		AACA11D418FB7BF9005DB53B /* logo-v1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-v1.png"; sourceTree = "<group>"; };
 		AACA11D918FB8DAF005DB53B /* ReferTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferTableViewController.h; sourceTree = "<group>"; };
 		AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferTableViewController.m; sourceTree = "<group>"; };
-		AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
-		AACA11FC18FCFFF6005DB53B /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
-		AACA11FD18FCFFF6005DB53B /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
-		AACA120018FCFFF6005DB53B /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
-		AACA120118FCFFF6005DB53B /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
-		AACA120218FCFFF6005DB53B /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
-		AACA120318FCFFF6005DB53B /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
-		AACA120418FCFFF6005DB53B /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
-		AACA120518FCFFF7005DB53B /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
-		AACA120618FCFFF7005DB53B /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
-		AACA120718FCFFF7005DB53B /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AACA120918FD9ABA005DB53B /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
 		AACA120B18FD9D01005DB53B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		AAD17CE71902381D003D9241 /* GroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GroupChatViewController.h; path = ../GroupChatViewController.h; sourceTree = "<group>"; };
@@ -275,7 +289,7 @@
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
-				AACA120818FCFFF7005DB53B /* libPomocCore.a in Frameworks */,
+				AA7C2AC31903B5C50067FED1 /* libPomocCore.a in Frameworks */,
 				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
 				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
 			);
@@ -470,6 +484,27 @@
 			name = logo;
 			sourceTree = "<group>";
 		};
+		AA7C2AB41903B5C50067FED1 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				AA7C2AB51903B5C50067FED1 /* PMChatMessage.h */,
+				AA7C2AB61903B5C50067FED1 /* PMConversation.h */,
+				AA7C2AB71903B5C50067FED1 /* PMCore.h */,
+				AA7C2AB81903B5C50067FED1 /* PMCoreDelegate.h */,
+				AA7C2AB91903B5C50067FED1 /* PMImageMessage.h */,
+				AA7C2ABA1903B5C50067FED1 /* PMInternalMessage.h */,
+				AA7C2ABB1903B5C50067FED1 /* PMMessage.h */,
+				AA7C2ABC1903B5C50067FED1 /* PMMessageConstants.h */,
+				AA7C2ABD1903B5C50067FED1 /* PMNote.h */,
+				AA7C2ABE1903B5C50067FED1 /* PMSupport.h */,
+				AA7C2ABF1903B5C50067FED1 /* PMUser.h */,
+				AA7C2AC01903B5C50067FED1 /* PomocCore.h */,
+				AA7C2AC11903B5C50067FED1 /* PomocSupport.h */,
+			);
+			name = Headers;
+			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
+			sourceTree = "<group>";
+		};
 		AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +573,12 @@
 				AACA120918FD9ABA005DB53B /* background2.jpg */,
 				AACA11D218FB7BC0005DB53B /* background.png */,
 				AA4649D118E80EEE00A607E0 /* testImage.png */,
+				6D5332DA1903BD1D00A228D3 /* group-white-512.png */,
+				6D5332DB1903BD1D00A228D3 /* home-white-512.png */,
+				6D5332DC1903BD1D00A228D3 /* logout-white-512.png */,
+				6D5332E41903BD7600A228D3 /* settings-white-512.png */,
+				6D5332DD1903BD1D00A228D3 /* settings_filled-white-512.png */,
+				6D5332DE1903BD1D00A228D3 /* speech_bubble-white-512.png */,
 				AA9DC95E18E48F5C00B4FDF7 /* group-512.png */,
 				AA9DC95C18E48F4100B4FDF7 /* worker-512.png */,
 				AA9DC8B118E1A49E00B4FDF7 /* send_file-512.png */,
@@ -580,25 +621,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		AACA11FA18FCFFF6005DB53B /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				AACA11FB18FCFFF6005DB53B /* PMChatMessage.h */,
-				AACA11FC18FCFFF6005DB53B /* PMConversation.h */,
-				AACA11FD18FCFFF6005DB53B /* PMCore.h */,
-				AACA11FF18FCFFF6005DB53B /* PMImageMessage.h */,
-				AACA120018FCFFF6005DB53B /* PMInternalMessage.h */,
-				AACA120118FCFFF6005DB53B /* PMMessage.h */,
-				AACA120218FCFFF6005DB53B /* PMMessageConstants.h */,
-				AACA120318FCFFF6005DB53B /* PMSupport.h */,
-				AACA120418FCFFF6005DB53B /* PMUser.h */,
-				AACA120518FCFFF7005DB53B /* PomocCore.h */,
-				AACA120618FCFFF7005DB53B /* PomocSupport.h */,
-			);
-			name = Headers;
-			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
-			sourceTree = "<group>";
-		};
 		AAD17CF01902A41B003D9241 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,8 +633,8 @@
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
 			isa = PBXGroup;
 			children = (
-				AACA11FA18FCFFF6005DB53B /* Headers */,
-				AACA120718FCFFF7005DB53B /* libPomocCore.a */,
+				AA7C2AB41903B5C50067FED1 /* Headers */,
+				AA7C2AC21903B5C50067FED1 /* libPomocCore.a */,
 			);
 			name = PMCore;
 			sourceTree = "<group>";
@@ -727,20 +749,26 @@
 				AACA11D318FB7BC0005DB53B /* background.png in Resources */,
 				AA9DC89718E17F7C00B4FDF7 /* speech_bubble_filled-512.png in Resources */,
 				AA9DC89418E17ED700B4FDF7 /* administrator-512.png in Resources */,
+				6D5332E11903BD1D00A228D3 /* logout-white-512.png in Resources */,
+				6D5332E51903BD7600A228D3 /* settings-white-512.png in Resources */,
 				AA6958FE1900E4C800E28EBE /* 40x40.png in Resources */,
 				AAD17CF31902A427003D9241 /* chat.mp3 in Resources */,
 				AAD17CF41902A427003D9241 /* message.mp3 in Resources */,
+				6D5332E01903BD1D00A228D3 /* home-white-512.png in Resources */,
 				AA9DC89E18E17FE500B4FDF7 /* logout-512.png in Resources */,
 				AA6959021900E4C800E28EBE /* 152x152.png in Resources */,
 				AA9BDCFA18F91E1100EF6EEC /* JBChartView.podspec in Resources */,
+				6D5332E31903BD1D00A228D3 /* speech_bubble-white-512.png in Resources */,
 				AA9DC89C18E17F9F00B4FDF7 /* settings-512.png in Resources */,
 				AA6959001900E4C800E28EBE /* 76x76.png in Resources */,
 				AA9DC95F18E48F5C00B4FDF7 /* group-512.png in Resources */,
 				AA6958FF1900E4C800E28EBE /* 58x58.png in Resources */,
+				6D5332DF1903BD1D00A228D3 /* group-white-512.png in Resources */,
 				AA9DC8B018E1A43E00B4FDF7 /* attach-512.png in Resources */,
 				AACA11D518FB7BF9005DB53B /* logo-v1.png in Resources */,
 				AA6959011900E4C800E28EBE /* 80x80.png in Resources */,
 				AACA120C18FD9D01005DB53B /* background2.png in Resources */,
+				6D5332E21903BD1D00A228D3 /* settings_filled-white-512.png in Resources */,
 				AA9DC89818E17F7C00B4FDF7 /* speech_bubble-512.png in Resources */,
 				AACA120A18FD9ABA005DB53B /* background2.jpg in Resources */,
 				AA9DC8A018E181B100B4FDF7 /* home-512.png in Resources */,
@@ -949,6 +977,9 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -972,6 +1003,9 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

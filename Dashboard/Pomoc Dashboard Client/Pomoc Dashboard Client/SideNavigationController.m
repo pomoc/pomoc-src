@@ -47,17 +47,25 @@
 {
     
     [super viewDidLoad];
-    dataArray = [[NSArray alloc] initWithObjects:@"HOME",@"MESSAGES", @"AGENTS", @"CHAT", @"CHARTS", nil];
-
-    settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS",@"LOGOUT", nil];
-    sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites",@"Settings", nil];
+    // Do any additional setup after loading the view.
+    dataArray = [[NSArray alloc] initWithObjects:@"HOME", @"MESSAGES", @"AGENTS CHAT", nil];
+    settingArray = [[NSArray alloc] initWithObjects:@"SETTINGS", @"LOGOUT", nil];
+    sectionHeading = [[NSArray alloc] initWithObjects:@"Favourites", @"Settings", nil];
 
     _tableView.scrollEnabled = NO;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [_tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+    [_tableView selectRowAtIndexPath:indexPath
+                            animated:NO
+                      scrollPosition:UITableViewScrollPositionNone];
     
     selected = HOME;
+    
+    
+    _tableView.opaque = NO;
+    [_tableView setBackgroundColor:[Utility colorFromHexString:@"#333333"]];
+    _tableView.backgroundView = nil;
+    
 }
 
 - (IBAction)Chat:(id)sender
@@ -69,7 +77,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if(section ==0) {
+    if (section == 0) {
         return [dataArray count];
         
     } else {
@@ -82,70 +90,61 @@
     return 2;
 }
 
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
-     
-     static NSString *cellIdentifier = @"Cell";
-     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-     if (indexPath.section == 0){
-         
-         cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
-         
-         if (indexPath.row == HOME) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-512.png"]
-                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-             
-         } else if(indexPath.row == CHAT) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-512.png"]
-                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                   reuseIdentifier:cellIdentifier];
 
-         } else if(indexPath.row == GROUP_CHAT) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-512.png"]
-                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-         } else if (indexPath.row == AGENTS) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"worker-512.png"]
-                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-         } else if (indexPath.row == CHARTS) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-512.png"]
-                                                 toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-         }
-         
-     } else {
-         
-         cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];
-         
-         if (indexPath.row == SETTING) {
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"settings-512.png"]
-                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-             
-         } else if(indexPath.row == LOGOUT){
-             cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"logout-512.png"]
-                                              toSize: CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
-         }
-     }
-     
-     cell.textLabel.font = [UIFont fontWithName:@"Marker Felt" size:16];
+    CGSize iconSize = CGSizeMake(LOGO_WIDTH, LOGO_WIDTH);
     
-     return cell;
- }
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if(section != 0) {
+    if (indexPath.section == 0){
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+        cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, view.center.y,  tableView.frame.size.width, 1)];
+        if (indexPath.row == HOME) {
+            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-white-512.png"]
+                                                toSize:iconSize];
+            
+        } else if(indexPath.row == CHAT) {
+            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-white-512.png"]
+                                                toSize:iconSize];
+            
+        } else if(indexPath.row == GROUP_CHAT) {
+            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-white-512.png"]
+                                                toSize:iconSize];
+        }
         
-        lineView.backgroundColor =  [UIColor colorWithWhite:0.5 alpha:0.5];
+    } else {
         
-        [view addSubview:lineView];
+        cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];
         
-        return view;
+        if (indexPath.row == SETTING) {
+            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"settings-white-512.png"]
+                                                toSize:iconSize];
+            
+        } else if(indexPath.row == LOGOUT){
+            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"logout-white-512.png"]
+                                                toSize:iconSize];
+        }
     }
     
-    return nil;
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:16];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
+    
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, view.center.y,  tableView.frame.size.width, 1)];
+    lineView.backgroundColor =  [UIColor clearColor];
+    [view addSubview:lineView];
+    return view;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

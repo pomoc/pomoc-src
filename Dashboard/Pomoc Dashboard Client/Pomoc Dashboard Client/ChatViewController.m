@@ -11,6 +11,7 @@
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
 
+#import "ContactInfoViewController.h"
 #import "ReferTableViewController.h"
 
 #import "PomocCore.h"
@@ -246,29 +247,29 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([tableView tag] ==CHAT_LIST_TABLEVIEW) {
+    if ([tableView tag] == CHAT_LIST_TABLEVIEW) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 12)];
-        [label setFont:[UIFont fontWithName:@"Helvetica-Light" size:14]];
+        [label setFont:[UIFont fontWithName:@"Avenir" size:14]];
         [label setTextColor:[UIColor whiteColor]];
         
         NSString *string;
 
         switch(section) {
             case UNHANDLED_CHAT:
-                string = @"unhandled chats";
+                string = @"Unhandled chats";
                 [view setBackgroundColor:[UIColor redColor] ];
 
                 break;
             case HANDLING_CHAT:
-                string =  @"chats you are handling";
-                [view setBackgroundColor:[Utility colorFromHexString:@"42C9B3"]];
+                string =  @"Chats you are handling";
+                [view setBackgroundColor:[Utility colorFromHexString:@"#42C9B3"]];
                 break;
             case OTHER_CHAT:
                 string =  @"Other chats";
-                [view setBackgroundColor:[Utility colorFromHexString:@"42C9B3"]];
+                [view setBackgroundColor:[Utility colorFromHexString:@"#42C9B3"]];
                 break;
         }
         
@@ -650,7 +651,24 @@
             referSegue.popoverContentSize = CGSizeMake(250, height);
         }
         
+    } else if ([[segue identifier] isEqualToString:@"addNote"]) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        
+        ContactInfoViewController *vc = [segue destinationViewController];
+        vc.currentConversation = currentlySelectedConvo;
+        
+        referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
+//        
+//        if ([currentlySelectedConvo.notes count] == 0) {
+//            referSegue.popoverContentSize = CGSizeMake(250, 44);
+//        } else {
+//            CGFloat height = [referList count] * 44;
+//            referSegue.popoverContentSize = CGSizeMake(250, height);
+//        }
+//        
     }
+    
 }
 
 - (void) closePopOver
@@ -698,16 +716,16 @@
     
 }
 
-- (void) scrollChatMessageUp
-{
-    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
-    
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _chatMessageTable.frame = chatMessageOriginalFrame;
-    
-    /* keyboard is visible, move views */
-    [self scrollChatContentToBottom];
-}
+//- (void) scrollChatMessageUp
+//{
+//    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+//    
+//    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+//    _chatMessageTable.frame = chatMessageOriginalFrame;
+//    
+//    /* keyboard is visible, move views */
+//    [self scrollChatContentToBottom];
+//}
 
 - (void) scrollChatContentToBottom
 {

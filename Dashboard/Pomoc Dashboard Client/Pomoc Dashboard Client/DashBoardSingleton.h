@@ -22,6 +22,14 @@
 
 @end
 
+
+@protocol PomocNoteDelegate
+
+- (void) updateNoteList: (PMConversation *)convo;
+
+@end
+
+
 @protocol PomocGroupDelegate
 
 - (void) agentListUpdated: (NSMutableArray *)agentList;
@@ -69,5 +77,6 @@
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;
 @property (nonatomic, assign) id  groupChatDelegate;
+@property (nonatomic, assign) id  notesDelegate;
 
 @end

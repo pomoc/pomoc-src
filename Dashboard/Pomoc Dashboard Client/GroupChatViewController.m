@@ -41,18 +41,16 @@
     [super viewDidLoad];
     
     //ensuring that no border for chat message table view
-    _agentListChatView.separatorColor = [UIColor clearColor];
-    _agentListNavBar.separatorColor = [UIColor clearColor];
+    _chatMessageTable.separatorColor = [UIColor clearColor];
+    _chatNavTable.separatorColor = [UIColor clearColor];
     
-    //border for table view
-    _agentListChatView.layer.borderWidth = 0.5;
+    
+    //border
+    _chatMessageTable.layer.borderWidth = 0.5;
     CALayer *leftBorder = [CALayer layer];
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
-    [leftBorder setFrame:CGRectMake(0, 0, 0.5, _agentListChatView.frame.size.height)];
-    [_agentListChatView.layer addSublayer:leftBorder];
-    
-    _keyboardInput.layer.borderWidth = 0.5;
-    [_keyboardInput.layer addSublayer:leftBorder];
+    [leftBorder setFrame:CGRectMake(_chatInputView.frame.size.width, 0, 0.5, _chatInputView.frame.size.height)];
+    [_chatInputView.layer addSublayer:leftBorder];
     
     keyboardEditing = false;
     
@@ -64,12 +62,10 @@
     singleton.groupChatDelegate = self;
     
     //storing the original position for moving them up when keyboard show
-    chatMessageOriginalFrame = _agentListChatView.frame;
-    
-    chatNavOriginalFrame = _agentListNavBar.frame;
-    //chatNavOriginalFrame.size.width = 314;
-    
-    chatInputOriginalCenter = _keyboardInput.center;
+    chatMessageOriginalFrame = _chatMessageTable.frame;
+    chatInputOriginalCenter = _chatInputView.center;
+    chatNavOriginalFrame = _chatNavTable.frame;
+    chatNavOriginalFrame.size.width = 280;
 
 }
 
@@ -161,11 +157,10 @@
 }
 
 
-#pragma mark - Text field editing
+#pragma  mark - Textfield editing delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     keyboardEditing = true;
-    NSLog(@"text field begin editing");
     [self scrollThingUp];
 }
 
@@ -176,48 +171,47 @@
 
 - (void) scrollThingUp
 {
-    [_keyboardInput setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+    
+    NSLog(@"scrolling things up");
+    
+    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _agentListChatView.frame = chatMessageOriginalFrame;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
+    
     
     [self scrollChatContentToBottom];
     
     //change chat nav table height
+    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
+          chatNavOriginalFrame.size.height,
+          chatNavOriginalFrame.size.width);
+    NSLog(@"chat real  frame .height = %f and .wdith = %f",
+          _chatNavTable.frame.size.height,
+          _chatNavTable.frame.size.width);
     chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _agentListNavBar.frame = chatNavOriginalFrame;
+    _chatNavTable.frame = chatNavOriginalFrame;
     
-}
-
-- (void) scrollChatMessageUp
-{
-    [_keyboardInput setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
-    
-    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _agentListChatView.frame = chatMessageOriginalFrame;
-    
-    /* keyboard is visible, move views */
-    [self scrollChatContentToBottom];
 }
 
 - (void) scrollChatContentToBottom
 {
-    NSInteger numberOfRows = [_agentListChatView numberOfRowsInSection:0];
+    NSInteger numberOfRows = [_chatMessageTable numberOfRowsInSection:0];
     if (numberOfRows) {
-        [_agentListChatView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:true];
+        [_chatMessageTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:true];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     keyboardEditing = false;
-    _keyboardInput.center = chatInputOriginalCenter;
+    _chatInputView.center = chatInputOriginalCenter;
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
-    _agentListChatView.frame = chatMessageOriginalFrame;
+    _chatMessageTable.frame = chatMessageOriginalFrame;
     
     chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
-    _agentListNavBar.frame = chatNavOriginalFrame;
+    _chatNavTable.frame = chatNavOriginalFrame;
 }
 
 

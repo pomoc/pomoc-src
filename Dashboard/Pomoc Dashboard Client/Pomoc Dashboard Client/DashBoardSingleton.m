@@ -46,7 +46,7 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"steve2" password:@"1" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"999" password:@"999" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
         
@@ -169,6 +169,8 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    NSLog(@"new convo created");
+    
     conversation.delegate = self;
     [_currentConversationList addObject:conversation];
     
@@ -237,6 +239,11 @@
 }
 
 #pragma mark - Pomoc Conversation delegates
+
+- (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes
+{
+    [_notesDelegate updateNoteList:conversation];
+}
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {

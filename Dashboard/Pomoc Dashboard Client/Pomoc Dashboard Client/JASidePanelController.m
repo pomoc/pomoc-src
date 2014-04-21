@@ -25,6 +25,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JASidePanelController.h"
+#import "SideNavigationController.h"
 
 static char ja_kvoContext;
 
@@ -401,6 +402,7 @@ static char ja_kvoContext;
         [_leftPanel.view removeFromSuperview];
         [_leftPanel removeFromParentViewController];
         _leftPanel = leftPanel;
+        
         if (_leftPanel) {
             [self addChildViewController:_leftPanel];
             [_leftPanel didMoveToParentViewController:self];

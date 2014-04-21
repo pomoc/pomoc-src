@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMSupport.h"
 
 @interface ContactInfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *notesTableView;
 @property (weak, nonatomic) IBOutlet UITextField *inputText;
+@property (weak, nonatomic) PMConversation *currentConversation;
+
 - (IBAction)addNotesPressed:(id)sender;
 
 @end
