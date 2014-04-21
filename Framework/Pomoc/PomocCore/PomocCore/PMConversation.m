@@ -52,6 +52,11 @@
     [PMCore sendImageMessage:image conversationId:self.conversationId];
 }
 
+- (void)sendStatusMessage:(PMStatusMessageCode)code
+{
+    [PMCore sendStatus:code conversationId:self.conversationId];
+}
+
 - (NSArray *)messages
 {
     return [self.allMessages copy];

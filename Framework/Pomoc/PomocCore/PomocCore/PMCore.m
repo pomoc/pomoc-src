@@ -17,6 +17,7 @@
 #import "PMApplicationMessage.h"
 #import "PMChatMessage.h"
 #import "PMImageMessage.h"
+#import "PMStatusMessage.h"
 #import "PomocImage.h"
 
 #import "PMNote.h"
@@ -105,6 +106,13 @@
         PMCore *core = [PMCore sharedInstance];
         [core sendMessage:imageMessage withAcknowledge:nil];
     }];
+}
+
++ (void)sendStatus:(PMStatusMessageCode)code conversationId:(NSString *)conversationId
+{
+    PMCore *core = [PMCore sharedInstance];
+    PMStatusMessage *statusMessage = [PMMessage statusMessageWithCode:code conversationId:conversationId];
+    [core sendMessage:statusMessage withAcknowledge:nil];
 }
 
 + (void)sendNote:(NSString *)note conversationId:(NSString *)conversationId
@@ -301,8 +309,6 @@
     if ([message isKindOfClass:[PMInternalMessage class]]) {
         [self.socket sendEvent:@"internalMessage" withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMChatMessage class]]) {
-        [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
-    } else if ([message isKindOfClass:[PMImageMessage class]]) {
         [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMApplicationMessage class]]) {
         [self.socket sendEvent:@"applicationMessage" withData:jsonData andAcknowledge:function];

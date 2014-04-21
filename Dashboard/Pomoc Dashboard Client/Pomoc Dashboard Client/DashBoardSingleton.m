@@ -70,6 +70,13 @@
                     [_currentConversationList addObject:convo];
                 }
                 
+                PMConversation *convo = [PMSupport agentConversation];
+                convo.delegate = self;
+                
+                
+                
+                [_currentConversationList addObject:[PMSupport agentConversation]];
+                
                 if ([self isHomeDelegateAlive]) {
                     [_homeDelegate totalConversationChanged:[conversations count]];
                 }

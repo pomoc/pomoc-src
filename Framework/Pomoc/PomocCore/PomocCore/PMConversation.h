@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PMMessageConstants.h"
 
-@class PMConversation, PMMessage, PMInternalMessage, PMChatMessage, PMImageMessage, PMUser, PMNote;
+@class PMConversation, PMMessage, PMInternalMessage, PMChatMessage, PMImageMessage, PMStatusMessage, PMUser, PMNote;
 
 @protocol PMConversationDelegate <NSObject>
 
@@ -17,12 +18,15 @@
 - (void)conversation:(PMConversation *)conversation didReceiveMessage:(PMMessage *)message;
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage;
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveInternalMessage:(PMInternalMessage *)internalMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes;
 
 // TODO
 - (void)didReceiveHandlerUpdate:(PMConversation *)conversation isReferral:(BOOL)isReferral
                        referrer:(PMUser *)referrer referee:(PMUser *)referee;
+
+//- (void)conversation:
 
 @end
 
@@ -37,7 +41,12 @@
 - (void)sendTextMessage:(NSString *)message;
 - (void)sendNote:(NSString *)note;
 - (void)sendImageMessage:(UIImage *)image;
+- (void)sendStatusMessage:(PMStatusMessageCode)code;
 - (NSArray *)messages;
 - (NSArray *)notes;
+
+//event type == 'Handle' and 'Unhandle'
+- (void)addApplicationMessage: (NSString *)eventType;
+
 
 @end

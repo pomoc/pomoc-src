@@ -28,6 +28,13 @@ typedef enum {
     PMApplicationMessageCodeAddNote
 } PMApplicationMessageCode;
 
+
+typedef enum {
+    PMStatusMessageNone,
+    PMStatusMessageJoin,
+    PMStatusMessageLeave
+} PMStatusMessageCode;
+
 #define MESSAGE_TIMESTAMP           @"timestamp"
 #define MESSAGE_CLASS               @"class"
 #define MESSAGE_MESSAGE             @"message"
