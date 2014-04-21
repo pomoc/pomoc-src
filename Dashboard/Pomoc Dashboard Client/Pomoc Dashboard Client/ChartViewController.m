@@ -64,7 +64,7 @@
 // Update the god-damn frames here so that the right size is used
 - (void)viewWillAppear:(BOOL)animated
 {
-    [timeChart uploadFrame:self.chartArea.bounds animated:NO];
+    [timeChart updateFrame:self.chartArea.bounds animated:NO];
 }
 
 - (void)didReceiveMemoryWarning

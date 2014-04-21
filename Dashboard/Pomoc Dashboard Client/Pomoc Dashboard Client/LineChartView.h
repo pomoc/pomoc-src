@@ -23,6 +23,6 @@
 - (void)hideChart;
 - (void)showChart;
 
-- (void)uploadFrame:(CGRect)frame animated:(BOOL)isAnimated;
+- (void)updateFrame:(CGRect)frame animated:(BOOL)isAnimated;
 
 @end

@@ -48,7 +48,7 @@
     return self;
 }
 
-- (void)uploadFrame:(CGRect)frame animated:(BOOL)isAnimated
+- (void)updateFrame:(CGRect)frame animated:(BOOL)isAnimated
 {
     self.frame = frame;
     lineChartView.frame = frame;
