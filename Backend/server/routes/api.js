@@ -143,12 +143,9 @@ module.exports = function(app, db, crypto) {
             var fields = ['name', 'userId', 'type'];
             var multi = db.client.multi();
             for (var userId in reply) {
-                multi.hmget([userId + ':account'].concat(fields));
-                console.log(userId);
+                multi.hmget([reply[userId]] + ':account'].concat(fields));
             }
-            console.log(reply);
             multi.exec(function(errMulti, replies) {
-                console.log(replies);
                 res.send(replies);
             });
         });
