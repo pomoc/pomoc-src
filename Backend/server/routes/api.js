@@ -146,7 +146,16 @@ module.exports = function(app, db, crypto) {
                 multi.hmget([reply[userId] + ':account'].concat(fields));
             }
             multi.exec(function(errMulti, replies) {
-                res.send(replies);
+                var result = [];
+                for (var user in replies) {
+                    var userObj = {
+                        "name": replies[user][0],
+                        "userId": replies[user][1],
+                        "type": replies[user][2]
+                    }
+                    result.push(userObj);
+                }
+                res.send(result);
             });
         });
     });
