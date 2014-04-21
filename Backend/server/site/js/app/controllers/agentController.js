@@ -5,6 +5,10 @@ var agent_controller = angular.module('app.controllers.agent', [
 agent_controller.controller('agentController',
   function($scope,$location, $routeParams, $rootScope, userService) {
 
+    if ($rootScope.userId == undefined) {
+      $location.path('/');
+    }
+
   	$scope.goSetup = function() {
   		$location.path('/setup');
   	}
