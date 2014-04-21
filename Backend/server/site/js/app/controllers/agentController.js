@@ -9,6 +9,16 @@ agent_controller.controller('agentController',
   		$location.path('/setup');
   	}
 
+    console.log('inside agent controller');
+    var getAgentPromise = userService.getAgent($rootScope.appToken);
+    getAgentPromise.success(function(data, textStatus, xhr){
+        console.log('Agent list!');
+        console.log(data);
+        $scope.agentList = data;
+        $scope.$apply();
+    })
+
+
   	$scope.addAgent = function() {
       console.log('add agent pressed');
   		var email = $scope.signup_email;
@@ -43,6 +53,14 @@ agent_controller.controller('agentController',
 
         $('#signUpModal').modal('hide');
         $('.modal-backdrop').remove();
+
+        var getAgentPromise = userService.getAgent($rootScope.appToken);
+        getAgentPromise.success(function(data, textStatus, xhr){
+            console.log('Agent list!');
+            console.log(data);
+            $scope.agentList = data;
+            $scope.$apply();
+        })
       })
 
       addAgentPromise.error(function(data, textStatus, xhr){
