@@ -15,7 +15,6 @@
 #import "MainViewController.h"
 #import "HomeViewController.h"
 #import "ChatViewController.h"
-#import "ChartViewController.h"
 #import "GroupChatViewController.h"
 #import "PMSupport.h"
 
@@ -27,7 +26,6 @@
 #define LOGOUT_SELECTION 3
 #define GROUP_CHAT 2
 #define AGENTS 3
-#define CHARTS 4
 #define LOGOUT 1
 #define LOGO_WIDTH 20
 
@@ -168,11 +166,6 @@
                 selected = GROUP_CHAT;
                 self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"groupChatNavigationController"];
                 break;
-            case CHARTS:
-                NSLog(@"Selected charts");
-                selected = CHARTS;
-                self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chartNavigationController"];
-                break;
             default:
                 break;
         }
@@ -194,7 +187,6 @@
     
     HomeViewController *homeVc;
     ChatViewController *chatVc;
-    ChartViewController *chartVc;
     GroupChatViewController *groupVc;
 
     UINavigationController *navController = (UINavigationController *) self.sidePanelController.centerPanel;
@@ -207,10 +199,6 @@
         case CHAT:
             chatVc = (ChatViewController *) [[navController viewControllers] objectAtIndex:0];
             [chatVc deallocDelegate];
-            break;
-        case CHARTS:
-            chartVc = (ChartViewController *) [[navController viewControllers] objectAtIndex:0];
-            [chartVc deallocDelegate];
             break;
         case GROUP_CHAT:
             groupVc = (GroupChatViewController *)  [[navController viewControllers] objectAtIndex:0];

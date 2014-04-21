@@ -85,11 +85,11 @@
     lineChartView.frame = chartFrame;
     lineChartView.delegate = self;
     lineChartView.dataSource = self;
-    lineChartView.backgroundColor = [UIColor whiteColor];
+    lineChartView.backgroundColor = [UIColor clearColor];
     [self addSubview:lineChartView];
     
     xAxis = [[Axis alloc] initWithFrame:xAxisFrame];
-    xAxis.backgroundColor = [UIColor whiteColor];
+    xAxis.backgroundColor = [UIColor clearColor];
     [self addSubview:xAxis];
  
     tooltipView = [[JBChartTooltipView alloc] init];
