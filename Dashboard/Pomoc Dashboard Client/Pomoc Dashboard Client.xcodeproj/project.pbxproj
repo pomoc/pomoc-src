@@ -19,6 +19,7 @@
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
 		AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */; };
+		AA1E19491905685E00F36932 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1E19481905685E00F36932 /* libPomocCore.a */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
 		AA4649D218E80EEE00A607E0 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4649D118E80EEE00A607E0 /* testImage.png */; };
 		AA4649F418E814D100A607E0 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649D818E814D100A607E0 /* MKAnnotationView+WebCache.m */; };
@@ -60,7 +61,6 @@
 		AA6959001900E4C800E28EBE /* 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FA1900E4C800E28EBE /* 76x76.png */; };
 		AA6959011900E4C800E28EBE /* 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FB1900E4C800E28EBE /* 80x80.png */; };
 		AA6959021900E4C800E28EBE /* 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = AA6958FC1900E4C800E28EBE /* 152x152.png */; };
-		AA7C2AC31903B5C50067FED1 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7C2AC21903B5C50067FED1 /* libPomocCore.a */; };
 		AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */; };
 		AA9BDCF818F91E1100EF6EEC /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF218F91E1100EF6EEC /* JBBarChartView.m */; };
 		AA9BDCF918F91E1100EF6EEC /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9BDCF418F91E1100EF6EEC /* JBChartView.m */; };
@@ -134,7 +134,21 @@
 		9FD1FDA91903C9E900F4870C /* Axis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axis.m; sourceTree = "<group>"; };
 		AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMessageTableViewCell.h; sourceTree = "<group>"; };
 		AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMessageTableViewCell.m; sourceTree = "<group>"; };
-		AA1E193819055C0900F36932 /* PMStatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatusMessage.h; sourceTree = "<group>"; };
+		AA1E193A1905685E00F36932 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
+		AA1E193B1905685E00F36932 /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
+		AA1E193C1905685E00F36932 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
+		AA1E193D1905685E00F36932 /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
+		AA1E193E1905685E00F36932 /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
+		AA1E193F1905685E00F36932 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
+		AA1E19401905685E00F36932 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
+		AA1E19411905685E00F36932 /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
+		AA1E19421905685E00F36932 /* PMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNote.h; sourceTree = "<group>"; };
+		AA1E19431905685E00F36932 /* PMStatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatusMessage.h; sourceTree = "<group>"; };
+		AA1E19441905685E00F36932 /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
+		AA1E19451905685E00F36932 /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
+		AA1E19461905685E00F36932 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
+		AA1E19471905685E00F36932 /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
+		AA1E19481905685E00F36932 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+boldAndGray.h"; sourceTree = "<group>"; };
 		AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+boldAndGray.m"; sourceTree = "<group>"; };
 		AA4649D118E80EEE00A607E0 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
@@ -201,20 +215,6 @@
 		AA6958FA1900E4C800E28EBE /* 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76x76.png; sourceTree = "<group>"; };
 		AA6958FB1900E4C800E28EBE /* 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80x80.png; sourceTree = "<group>"; };
 		AA6958FC1900E4C800E28EBE /* 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152x152.png; sourceTree = "<group>"; };
-		AA7C2AB51903B5C50067FED1 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
-		AA7C2AB61903B5C50067FED1 /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
-		AA7C2AB71903B5C50067FED1 /* PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCore.h; sourceTree = "<group>"; };
-		AA7C2AB81903B5C50067FED1 /* PMCoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMCoreDelegate.h; sourceTree = "<group>"; };
-		AA7C2AB91903B5C50067FED1 /* PMImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMImageMessage.h; sourceTree = "<group>"; };
-		AA7C2ABA1903B5C50067FED1 /* PMInternalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMInternalMessage.h; sourceTree = "<group>"; };
-		AA7C2ABB1903B5C50067FED1 /* PMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessage.h; sourceTree = "<group>"; };
-		AA7C2ABC1903B5C50067FED1 /* PMMessageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageConstants.h; sourceTree = "<group>"; };
-		AA7C2ABD1903B5C50067FED1 /* PMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNote.h; sourceTree = "<group>"; };
-		AA7C2ABE1903B5C50067FED1 /* PMSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMSupport.h; sourceTree = "<group>"; };
-		AA7C2ABF1903B5C50067FED1 /* PMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUser.h; sourceTree = "<group>"; };
-		AA7C2AC01903B5C50067FED1 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
-		AA7C2AC11903B5C50067FED1 /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
-		AA7C2AC21903B5C50067FED1 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
 		AA7F6E2918DE909300400CDB /* DashBoardSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardSingleton.h; sourceTree = "<group>"; };
 		AA7F6E2A18DE909300400CDB /* DashBoardSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardSingleton.m; sourceTree = "<group>"; };
 		AA9BDCF118F91E1100EF6EEC /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 				AA9DC8BF18E29D8B00B4FDF7 /* Security.framework in Frameworks */,
 				AA9DC8BD18E29D8400B4FDF7 /* libicucore.dylib in Frameworks */,
 				AA5204B018D7EF2C00D78156 /* CoreGraphics.framework in Frameworks */,
-				AA7C2AC31903B5C50067FED1 /* libPomocCore.a in Frameworks */,
+				AA1E19491905685E00F36932 /* libPomocCore.a in Frameworks */,
 				AA5204B218D7EF2C00D78156 /* UIKit.framework in Frameworks */,
 				AA5204AE18D7EF2C00D78156 /* Foundation.framework in Frameworks */,
 			);
@@ -326,6 +326,28 @@
 			children = (
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		AA1E19391905685E00F36932 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E193A1905685E00F36932 /* PMChatMessage.h */,
+				AA1E193B1905685E00F36932 /* PMConversation.h */,
+				AA1E193C1905685E00F36932 /* PMCore.h */,
+				AA1E193D1905685E00F36932 /* PMCoreDelegate.h */,
+				AA1E193E1905685E00F36932 /* PMImageMessage.h */,
+				AA1E193F1905685E00F36932 /* PMInternalMessage.h */,
+				AA1E19401905685E00F36932 /* PMMessage.h */,
+				AA1E19411905685E00F36932 /* PMMessageConstants.h */,
+				AA1E19421905685E00F36932 /* PMNote.h */,
+				AA1E19431905685E00F36932 /* PMStatusMessage.h */,
+				AA1E19441905685E00F36932 /* PMSupport.h */,
+				AA1E19451905685E00F36932 /* PMUser.h */,
+				AA1E19461905685E00F36932 /* PomocCore.h */,
+				AA1E19471905685E00F36932 /* PomocSupport.h */,
+			);
+			name = Headers;
+			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
 			sourceTree = "<group>";
 		};
 		AA4649D618E814D100A607E0 /* SDWebImage */ = {
@@ -488,28 +510,6 @@
 			name = logo;
 			sourceTree = "<group>";
 		};
-		AA7C2AB41903B5C50067FED1 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				AA1E193819055C0900F36932 /* PMStatusMessage.h */,
-				AA7C2AB51903B5C50067FED1 /* PMChatMessage.h */,
-				AA7C2AB61903B5C50067FED1 /* PMConversation.h */,
-				AA7C2AB71903B5C50067FED1 /* PMCore.h */,
-				AA7C2AB81903B5C50067FED1 /* PMCoreDelegate.h */,
-				AA7C2AB91903B5C50067FED1 /* PMImageMessage.h */,
-				AA7C2ABA1903B5C50067FED1 /* PMInternalMessage.h */,
-				AA7C2ABB1903B5C50067FED1 /* PMMessage.h */,
-				AA7C2ABC1903B5C50067FED1 /* PMMessageConstants.h */,
-				AA7C2ABD1903B5C50067FED1 /* PMNote.h */,
-				AA7C2ABE1903B5C50067FED1 /* PMSupport.h */,
-				AA7C2ABF1903B5C50067FED1 /* PMUser.h */,
-				AA7C2AC01903B5C50067FED1 /* PomocCore.h */,
-				AA7C2AC11903B5C50067FED1 /* PomocSupport.h */,
-			);
-			name = Headers;
-			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
-			sourceTree = "<group>";
-		};
 		AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,8 +640,8 @@
 		AADE13F918E5DC910042BF1A /* PMCore */ = {
 			isa = PBXGroup;
 			children = (
-				AA7C2AB41903B5C50067FED1 /* Headers */,
-				AA7C2AC21903B5C50067FED1 /* libPomocCore.a */,
+				AA1E19391905685E00F36932 /* Headers */,
+				AA1E19481905685E00F36932 /* libPomocCore.a */,
 			);
 			name = PMCore;
 			sourceTree = "<group>";
@@ -985,6 +985,9 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1008,6 +1011,9 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
+					/Users/steve/Dropbox/NUS,
+					"-",
+					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -67,6 +67,9 @@
                         convo.handlers = [[NSMutableArray alloc] initWithArray:users];
                     }];
                     
+                    //mark as unread
+                    convo.read = FALSE;
+                    
                     //setting delegates
                     convo.delegate = self;
                     [_currentConversationList addObject:convo];
@@ -253,6 +256,8 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
+    conversation.read = FALSE;
+    
     SoundEngine *engine = [SoundEngine singleton];
     [engine playNewMessage];
     
@@ -291,6 +296,7 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
 {
+    conversation.read = FALSE;
     
     SoundEngine *engine = [SoundEngine singleton];
     [engine playNewMessage];

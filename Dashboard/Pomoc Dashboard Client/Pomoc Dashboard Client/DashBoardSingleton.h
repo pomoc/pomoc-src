@@ -76,9 +76,9 @@
 @property (nonatomic, strong) NSMutableArray *currentUserList;
 @property (nonatomic, strong) PMConversation *agentConversation;
 
-@property (nonatomic, assign) id  chatDelegate;
-@property (nonatomic, assign) id  homeDelegate;
-@property (nonatomic, assign) id  groupChatDelegate;
-@property (nonatomic, assign) id  notesDelegate;
+@property (nonatomic, weak) id  chatDelegate;
+@property (nonatomic, weak) id  homeDelegate;
+@property (nonatomic, weak) id  groupChatDelegate;
+@property (nonatomic, weak) id  notesDelegate;
 
 @end
