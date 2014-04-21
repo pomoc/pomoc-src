@@ -19,6 +19,8 @@
 #import "PMImageMessage.h"
 #import "PomocImage.h"
 
+#import "PMNote.h"
+
 #import "PMConversation.h"
 #import "PMConversation+PMCore.h"
 
@@ -105,10 +107,19 @@
     }];
 }
 
++ (void)sendNote:(NSString *)note conversationId:(NSString *)conversationId
+{
+    NSDictionary *appData = @{@"note": note};
+    
+    PMCore *core = [PMCore sharedInstance];
+    PMMessage *noteMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeAddNote conversationId:conversationId appData:appData];
+    [core sendMessage:noteMessage withAcknowledge:nil];
+}
+
 + (void)joinConversation:(NSString *)conversationId
            creatorUserId:(NSString *)creatorUserId
               createDate:(NSDate *)createDate
-              completion:(void (^)(NSArray *messages))completion
+              completion:(void (^)(NSArray *messages, NSArray *notes))completion
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *observeMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeJoinConversation
@@ -119,6 +130,8 @@
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
             NSMutableArray *messages = [NSMutableArray array];
+            NSMutableArray *notes = [NSMutableArray array];
+            
             for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
                 // TODO: Generalize this
                 if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]] ||
@@ -128,7 +141,12 @@
                 }
             }
             
-            completion([NSArray arrayWithArray:messages]);
+            for (NSDictionary *noteData in jsonResponse[@"notes"]) {
+                PMNote *note = [[PMNote alloc] initWithJsonData:noteData];
+                [notes addObject:note];
+            }
+            
+            completion([NSArray arrayWithArray:messages], [NSArray arrayWithArray:notes]);
             
         }
     }];
@@ -251,6 +269,14 @@
     [core sendMessage:onlineConversationUsersMessage withAcknowledge:nil];
 }
 
++ (void)addConversation:(PMConversation *)conversation
+{
+    PMCore *core = [PMCore sharedInstance];
+    @synchronized(core.conversations) {
+        core.conversations[conversation.conversationId] = conversation;
+    }
+}
+
 - (void)connect
 {
     [self.socket connectToHost:POMOC_URL onPort:POMOC_PORT];
@@ -306,16 +332,23 @@
             [conversation addMessage:chatMessage];
         }
     }
+    else if ([packet.name isEqualToString:@"newNote"]) {
+        NSString *conversationId = data[@"conversationId"];
+        
+        PMConversation *conversation = self.conversations[conversationId];
+        if (conversation) {
+            PMNote *note = [[PMNote alloc] initWithJsonData:data[@"note"]];
+            [conversation addNote:note];
+        }
+    }
     else if ([packet.name isEqualToString:@"newConversation"]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[@"conversationId"];
-            NSString *creatorUserId = data[@"userId"];
+            NSString *creatorUserId = data[@"creatorUserId"];
             NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[@"createDate"] doubleValue]];
             
-            NSLog(@"createDate %@", createDate);
-            
-            
             PMConversation *conversation = self.conversations[conversationId];
+            
             if (!conversation) {
                 conversation = [[PMConversation alloc] initWithConversationId:conversationId creatorUserId:creatorUserId createDate:createDate];
                 @synchronized(self.conversations) {

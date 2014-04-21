@@ -64,7 +64,7 @@
 // Update the god-damn frames here so that the right size is used
 - (void)viewWillAppear:(BOOL)animated
 {
-    [timeChart uploadFrame:self.chartArea.frame animated:NO];
+    [timeChart uploadFrame:self.chartArea.bounds animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,10 +83,11 @@
 {
     fakeData = [[NSMutableDictionary alloc] init];
     float last = 0.0;
+    int bracket = 10;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
     for (int i=0; i<howmany; i++) {
-        last = last + (rand() % 11 - 4);
+        last = last + (rand() % (bracket * 2 + 1) - (bracket - 1));
         last = MAX(last, 0.0);
         [fakeData setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i]];
     }
@@ -98,7 +99,7 @@
 # pragma mark - Chart initializations
 - (void)initTimeChart
 {
-    timeChart = [[LineChartView alloc] initWithFrame:self.chartArea.frame];
+    timeChart = [[LineChartView alloc] initWithFrame:self.chartArea.bounds];
     timeChart.delegate = self;
     
     [timeChart addData:fakeData];

@@ -10,6 +10,7 @@
 #import "JBLineChartView.h"
 #import "JBChartTooltipView.h"
 #import "JBChartTooltipTipView.h"
+#import "Axis.h"
 
 // Color palette koped from https://kuler.adobe.com/retro-air-color-theme-3745716/
 
@@ -26,6 +27,9 @@
     // Tool tip
     JBChartTooltipView *tooltipView;
     JBChartTooltipTipView *tooltipTipView;
+    
+    // Axis
+    Axis *xAxis;
 }
 @end
 
@@ -65,15 +69,17 @@
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     [data addEntriesFromDictionary:newData];
     [chartData addObject:data];
+    [xAxis setData:[((NSDictionary *)chartData[0]) allValues]];
     [lineChartView reloadData];
 }
 
 - (void)initializeChart:(CGRect)frame
 {
-    float xAxis_height = 20;
+    float xAxis_height = 30;
     CGRect f = self.frame;
+    
     CGRect chartFrame = CGRectMake(f.origin.x, f.origin.y, f.size.width, f.size.height - xAxis_height);
-    CGRect xAxisFrame = CGRectMake(f.size.height - xAxis_height + f.origin.x, f.origin.y, f.size.width,xAxis_height);
+    CGRect xAxisFrame = CGRectMake(f.origin.x, f.size.height - xAxis_height + f.origin.y, f.size.width,xAxis_height);
     
     lineChartView = [[JBLineChartView alloc] init];
     lineChartView.frame = chartFrame;
@@ -82,8 +88,8 @@
     lineChartView.backgroundColor = [UIColor whiteColor];
     [self addSubview:lineChartView];
     
-    UIView *xAxis = [[UIView alloc] initWithFrame:xAxisFrame];
-    xAxis.backgroundColor = [UIColor greenColor];
+    xAxis = [[Axis alloc] initWithFrame:xAxisFrame];
+    xAxis.backgroundColor = [UIColor whiteColor];
     [self addSubview:xAxis];
  
     tooltipView = [[JBChartTooltipView alloc] init];
@@ -166,7 +172,7 @@
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return YES;
+    return NO;
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForLineAtLineIndex:(NSUInteger)lineIndex
@@ -195,7 +201,7 @@
     NSNumber *idx = keys[horizontalIndex];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[idx doubleValue]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd HH:mm"];
+    [formatter setDateFormat:@"HH:mm:ss"];
     
     NSString *dateString = [formatter stringFromDate:date];
     

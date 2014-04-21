@@ -8,6 +8,7 @@
 
 #import "PMSupport.h"
 #import "PMCore.h"
+#import "PMCore_Private.h"
 #import "AFNetworking.h"
 #import "PomocConstants.h"
 #import "PMConversation+PMCore.h"
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) NSString *secretKey;
 @property (nonatomic) BOOL isAgent;
 @property (nonatomic, copy) void (^connectCallback)(BOOL connected);
+@property (nonatomic, strong) PMConversation *agentConversation;
 
 @end
 
@@ -63,10 +65,13 @@
         if (completion) {
             NSString *userId = responseObject[@"userId"];
             [PMCore initWithAppID:responseObject[@"appToken"]];
+            [PMSupport sharedInstance].appToken = responseObject[@"appToken"];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
             [PMSupport sharedInstance].isAgent = YES;
+            
             completion(userId);
+
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (completion) {
@@ -136,6 +141,11 @@
         if (connected) {
             if ([PMSupport sharedInstance].isAgent) {
                 [PMCore observeNewConversations];
+                NSString *agentConversationId = [NSString stringWithFormat:@"agent_chat:%@", [PMSupport sharedInstance].appToken];
+                [PMSupport sharedInstance].agentConversation = [[PMConversation alloc] initWithConversationId:agentConversationId creatorUserId:@"" createDate:[NSDate date]];
+                [[PMSupport sharedInstance].agentConversation joinConversationWithCompletion:^(BOOL success) {
+                    [PMCore addConversation:[PMSupport sharedInstance].agentConversation];
+                }];
             }
         }
         
@@ -182,7 +192,10 @@
     [PMSupport sharedInstance].delegate = delegate;
 }
 
-
++ (PMConversation *)agentConversation
+{
+    return [PMSupport sharedInstance].agentConversation;
+}
 
 #pragma mark - PMCore delegate
 

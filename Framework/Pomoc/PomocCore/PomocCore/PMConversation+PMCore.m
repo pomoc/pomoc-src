@@ -14,6 +14,7 @@
 #import "PMChatMessage_Private.h"
 #import "PMInternalMessage.h"
 #import "PMUserManager.h"
+#import "PMNote.h"
 
 @implementation PMConversation (PMCore)
 
@@ -45,6 +46,12 @@
     }
 }
 
+- (void)addNote:(PMNote *)note
+{
+    [self.allNotes addObject:note];
+    [self updateDelegateOfNote:note];
+}
+
 - (void)updateDelegateOfMessage:(PMMessage *)message
 {
     Class messageClass = [message class];
@@ -64,6 +71,13 @@
         if (messageClass == [PMInternalMessage class] && [self.delegate respondsToSelector:@selector(conversation:didReceiveInternalMessage:)]) {
             [self.delegate conversation:self didReceiveInternalMessage:(PMInternalMessage *)message];
         }
+    }
+}
+
+- (void)updateDelegateOfNote:(PMNote *)note
+{
+    if ([self.delegate respondsToSelector:@selector(conversation:didReceiveNote:)]) {
+        [self.delegate conversation:self didReceiveNote:note];
     }
 }
 

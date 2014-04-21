@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		600EF15219039A42001F2E8F /* PMNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 600EF15019039A42001F2E8F /* PMNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		600EF15319039A42001F2E8F /* PMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 600EF15119039A42001F2E8F /* PMNote.m */; };
 		60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592ACC18EE8715006D5DEC /* PMConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592ACD18EE8715006D5DEC /* PMConversation.m */; };
 		60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */; };
@@ -269,6 +271,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		600EF15019039A42001F2E8F /* PMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNote.h; sourceTree = "<group>"; };
+		600EF15119039A42001F2E8F /* PMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMNote.m; sourceTree = "<group>"; };
 		60592ACC18EE8715006D5DEC /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
 		60592ACD18EE8715006D5DEC /* PMConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMConversation.m; sourceTree = "<group>"; };
 		60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMConversation+PMCore.h"; sourceTree = "<group>"; };
@@ -583,6 +587,8 @@
 				9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */,
 				9F2AE7CF18F7D0C40078D22A /* PMImageMessage.m */,
 				605B0CBE18E34C0E00EA6717 /* PMMessageConstants.h */,
+				600EF15019039A42001F2E8F /* PMNote.h */,
+				600EF15119039A42001F2E8F /* PMNote.m */,
 			);
 			name = PMMessage;
 			sourceTree = "<group>";
@@ -913,6 +919,7 @@
 				9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */,
 				9F2AE9D318F7D4C50078D22A /* AWS_SBJson.h in Headers */,
 				9F2AEA5318F7D4C50078D22A /* S3SetBucketVersioningConfigurationResponse.h in Headers */,
+				600EF15219039A42001F2E8F /* PMNote.h in Headers */,
 				9F2AEA5818F7D4C50078D22A /* S3UploadInputStream.h in Headers */,
 				9F2AEA1818F7D4C50078D22A /* S3GetBucketPolicyRequest.h in Headers */,
 				9F2AEA0118F7D4C50078D22A /* S3DeleteBucketCrossOriginResponse.h in Headers */,
@@ -1234,6 +1241,7 @@
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				60592AFD18F12E58006D5DEC /* AFSecurityPolicy.m in Sources */,
+				600EF15319039A42001F2E8F /* PMNote.m in Sources */,
 				60592AF618F12E58006D5DEC /* AFHTTPRequestOperationManager.m in Sources */,
 				60592AD818EE8962006D5DEC /* PMConversation+PMCore.m in Sources */,
 				60592B0318F12E58006D5DEC /* AFURLResponseSerialization.m in Sources */,

@@ -16,5 +16,6 @@
 #import "PMConversation.h"
 #import "PMImageMessage.h"
 #import "PMUser.h"
+#import "PMNote.h"
 
 #endif

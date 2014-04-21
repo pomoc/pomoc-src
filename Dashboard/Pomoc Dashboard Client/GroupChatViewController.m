@@ -11,10 +11,16 @@
 #import "PMSupport.h"
 #import "PMUser.h"
 
-@interface GroupChatViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface GroupChatViewController ()<UITableViewDataSource, UITableViewDelegate >
 {
     DashBoardSingleton *singleton;
     NSMutableArray *agentList;
+    BOOL keyboardEditing;
+    
+    //tracking UI table view
+    CGRect chatMessageOriginalFrame;
+    CGPoint chatInputOriginalCenter;
+    CGRect chatNavOriginalFrame;
 }
 
 @end
@@ -38,12 +44,17 @@
     _agentListChatView.separatorColor = [UIColor clearColor];
     _agentListNavBar.separatorColor = [UIColor clearColor];
     
-    //border
+    //border for table view
     _agentListChatView.layer.borderWidth = 0.5;
     CALayer *leftBorder = [CALayer layer];
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
     [leftBorder setFrame:CGRectMake(0, 0, 0.5, _agentListChatView.frame.size.height)];
     [_agentListChatView.layer addSublayer:leftBorder];
+    
+    _keyboardInput.layer.borderWidth = 0.5;
+    [_keyboardInput.layer addSublayer:leftBorder];
+    
+    keyboardEditing = false;
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Group Chat";
@@ -51,6 +62,15 @@
     singleton = [DashBoardSingleton singleton];
     agentList = singleton.currentAgentList;
     singleton.groupChatDelegate = self;
+    
+    //storing the original position for moving them up when keyboard show
+    chatMessageOriginalFrame = _agentListChatView.frame;
+    
+    chatNavOriginalFrame = _agentListNavBar.frame;
+    //chatNavOriginalFrame.size.width = 314;
+    
+    chatInputOriginalCenter = _keyboardInput.center;
+
 }
 
 - (void) deallocDelegate
@@ -129,6 +149,77 @@
     agentList = updatedAgentList;
     [_agentListNavBar reloadData];
 }
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+
+#pragma mark - Text field editing
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    keyboardEditing = true;
+    NSLog(@"text field begin editing");
+    [self scrollThingUp];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //[self sendMessage:self];
+    return YES;
+}
+
+- (void) scrollThingUp
+{
+    [_keyboardInput setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _agentListChatView.frame = chatMessageOriginalFrame;
+    
+    [self scrollChatContentToBottom];
+    
+    //change chat nav table height
+    chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _agentListNavBar.frame = chatNavOriginalFrame;
+    
+}
+
+- (void) scrollChatMessageUp
+{
+    [_keyboardInput setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+    _agentListChatView.frame = chatMessageOriginalFrame;
+    
+    /* keyboard is visible, move views */
+    [self scrollChatContentToBottom];
+}
+
+- (void) scrollChatContentToBottom
+{
+    NSInteger numberOfRows = [_agentListChatView numberOfRowsInSection:0];
+    if (numberOfRows) {
+        [_agentListChatView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:true];
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    keyboardEditing = false;
+    _keyboardInput.center = chatInputOriginalCenter;
+    
+    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
+    _agentListChatView.frame = chatMessageOriginalFrame;
+    
+    chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
+    _agentListNavBar.frame = chatNavOriginalFrame;
+}
+
 
 
 
