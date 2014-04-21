@@ -379,15 +379,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GEf-oc-i8m">
-                                <rect key="frame" x="710" y="0.0" width="314" height="768"/>
+                                <rect key="frame" x="748" y="0.0" width="276" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="8Y0-GU-ykg">
-                                        <rect key="frame" x="0.0" y="86" width="314" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="276" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Y0-GU-ykg" id="5s6-ru-yTa">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="276" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -398,15 +398,15 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xGp-Rx-Ah3">
-                                <rect key="frame" x="0.0" y="62" width="710" height="671"/>
+                                <rect key="frame" x="0.0" y="57" width="748" height="671"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="Lrr-Am-Jtj" customClass="ChatMessageTextCell">
-                                        <rect key="frame" x="0.0" y="22" width="710" height="70"/>
+                                        <rect key="frame" x="0.0" y="22" width="748" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lrr-Am-Jtj" id="WA4-A9-obE">
-                                            <rect key="frame" x="0.0" y="0.0" width="710" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="748" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visitor Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kep-Lh-gZ5">
@@ -436,11 +436,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="bBZ-ai-08P">
-                                <rect key="frame" x="0.0" y="729" width="710" height="39"/>
+                                <rect key="frame" x="0.0" y="729" width="748" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Ggj-PE-yGm">
-                                        <rect key="frame" x="6" y="5" width="644" height="30"/>
+                                        <rect key="frame" x="6" y="5" width="689" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -449,13 +449,13 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rGB-nX-Hjk">
-                                        <rect key="frame" x="658" y="2" width="40" height="34"/>
+                                        <rect key="frame" x="698" y="2" width="40" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="send_file-512.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="sendMessage:" destination="QxH-3e-iTU" eventType="touchUpInside" id="SjS-kK-lru"/>
+                                            <action selector="sendMessage:" destination="tQb-dx-6lY" eventType="touchUpInside" id="6SL-2c-AAm"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -468,14 +468,15 @@
                     <navigationItem key="navigationItem" title="Group Chat" id="Pk2-E6-fIU"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="agentListChatView" destination="xGp-Rx-Ah3" id="1i6-ro-Zev"/>
-                        <outlet property="agentListNavBar" destination="GEf-oc-i8m" id="qY7-NY-0uE"/>
-                        <outlet property="keyboardInput" destination="bBZ-ai-08P" id="ZSd-iT-wqL"/>
+                        <outlet property="chatInputView" destination="bBZ-ai-08P" id="KuK-c9-dY2"/>
+                        <outlet property="chatMessageTable" destination="xGp-Rx-Ah3" id="zLe-u9-9hh"/>
+                        <outlet property="chatNavTable" destination="GEf-oc-i8m" id="ORt-JP-es7"/>
+                        <outlet property="textInput" destination="Ggj-PE-yGm" id="HF8-hR-OIZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ha-an-PWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1544" y="76"/>
+            <point key="canvasLocation" x="-1530" y="78"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="yrJ-xC-Wdk">

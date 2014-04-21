@@ -145,6 +145,7 @@
         UIImage *image = [UIImage imageNamed:@"image_small"];
         [self.conversation sendImageMessage:image];
     } else if ([self.textField.text isEqualToString:@"status_join"]) {
+
         [self.conversation sendStatusMessage:PMStatusMessageJoin];
     } else {
         //[self.conversation sendTextMessage:self.textField.text];

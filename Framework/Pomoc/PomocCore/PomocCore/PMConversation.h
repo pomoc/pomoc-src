@@ -18,7 +18,9 @@
 - (void)conversation:(PMConversation *)conversation didReceiveMessage:(PMMessage *)message;
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage;
+
 - (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage;
+
 - (void)conversation:(PMConversation *)conversation didReceiveInternalMessage:(PMInternalMessage *)internalMessage;
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes;
 
@@ -41,12 +43,10 @@
 - (void)sendTextMessage:(NSString *)message;
 - (void)sendNote:(NSString *)note;
 - (void)sendImageMessage:(UIImage *)image;
+
 - (void)sendStatusMessage:(PMStatusMessageCode)code;
+
 - (NSArray *)messages;
 - (NSArray *)notes;
-
-//event type == 'Handle' and 'Unhandle'
-- (void)addApplicationMessage: (NSString *)eventType;
-
 
 @end

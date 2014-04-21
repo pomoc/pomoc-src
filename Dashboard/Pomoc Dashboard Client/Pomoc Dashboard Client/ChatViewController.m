@@ -701,31 +701,13 @@
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    
     [self scrollChatContentToBottom];
     
     //change chat nav table height
-    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
-            chatNavOriginalFrame.size.height,
-          chatNavOriginalFrame.size.width);
-    NSLog(@"chat real  frame .height = %f and .wdith = %f",
-          _chatNavTable.frame.size.height,
-          _chatNavTable.frame.size.width);
-    chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+      chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
     
 }
-
-//- (void) scrollChatMessageUp
-//{
-//    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
-//    
-//    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-//    _chatMessageTable.frame = chatMessageOriginalFrame;
-//    
-//    /* keyboard is visible, move views */
-//    [self scrollChatContentToBottom];
-//}
 
 - (void) scrollChatContentToBottom
 {

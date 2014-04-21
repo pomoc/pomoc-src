@@ -33,6 +33,7 @@
 @protocol PomocGroupDelegate
 
 - (void) agentListUpdated: (NSMutableArray *)agentList;
+- (void) newChatMessage: (PMConversation *)conversation;
 
 @end
 
@@ -73,6 +74,7 @@
 @property (nonatomic, strong) NSString *selfUserId;
 @property (nonatomic, strong) NSMutableArray *currentAgentList;
 @property (nonatomic, strong) NSMutableArray *currentUserList;
+@property (nonatomic, strong) PMConversation *agentConversation;
 
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;

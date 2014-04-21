@@ -8,6 +8,7 @@
 
 #import "GroupChatViewController.h"
 #import "DashBoardSingleton.h"
+#import "ChatMessageTextCell.h"
 #import "PMSupport.h"
 #import "PMUser.h"
 
@@ -17,10 +18,11 @@
     NSMutableArray *agentList;
     BOOL keyboardEditing;
     
+    PMConversation *currentChat;
+    
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
     CGPoint chatInputOriginalCenter;
-    CGRect chatNavOriginalFrame;
 }
 
 @end
@@ -44,7 +46,6 @@
     _chatMessageTable.separatorColor = [UIColor clearColor];
     _chatNavTable.separatorColor = [UIColor clearColor];
     
-    
     //border
     _chatMessageTable.layer.borderWidth = 0.5;
     CALayer *leftBorder = [CALayer layer];
@@ -59,14 +60,27 @@
 
     singleton = [DashBoardSingleton singleton];
     agentList = singleton.currentAgentList;
-    singleton.groupChatDelegate = self;
+    currentChat = singleton.agentConversation;
     
+    singleton.groupChatDelegate = self;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
     //storing the original position for moving them up when keyboard show
     chatMessageOriginalFrame = _chatMessageTable.frame;
     chatInputOriginalCenter = _chatInputView.center;
-    chatNavOriginalFrame = _chatNavTable.frame;
-    chatNavOriginalFrame.size.width = 280;
+}
 
+- (IBAction)sendMessage:(id)sender {
+   
+    NSString *userInput = _textInput.text;
+    
+    if ( [userInput length] > 0 ) {
+        NSLog(@"user sending message!");
+        [currentChat sendTextMessage:userInput];
+        [_textInput setText:@""];
+    }
 }
 
 - (void) deallocDelegate
@@ -80,7 +94,7 @@
 {
     
     if ([tableView tag] == GROUP_CHAT_TABLEVIEW) {
-        return 5;
+        return [currentChat.messages count];
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
         return [agentList count];
     }
@@ -100,6 +114,16 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
+        ChatMessageTextCell *chatCell = (ChatMessageTextCell *)cell;
+        PMChatMessage *message = [currentChat.messages objectAtIndex:row];
+        
+        //setting the started date of chat
+        NSString *dateString = [Utility formatDateForTable:message.timestamp];
+        
+        //Setting visitor name
+        [chatCell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
+        chatCell.messageText.text = message.message;
+        
         return cell;
 
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
@@ -116,6 +140,21 @@
         return @"Agents online";
     }
     return nil;
+}
+
+#pragma mark - POMOC delegate
+
+- (void) agentListUpdated: (NSMutableArray *)updatedAgentList
+{
+    agentList = updatedAgentList;
+    [_chatNavTable reloadData];
+}
+
+- (void) newChatMessage: (PMConversation *)conversation
+{
+    currentChat = conversation;
+    [_chatMessageTable reloadData];
+    [self scrollChatContentToBottom];
 }
 
 #pragma mark - CHAT SIDE NAV
@@ -139,13 +178,6 @@
     return cell;
 }
 
-
-- (void) agentListUpdated: (NSMutableArray *)updatedAgentList
-{
-    agentList = updatedAgentList;
-    [_agentListNavBar reloadData];
-}
-
 -(BOOL)shouldAutorotate
 {
     return YES;
@@ -165,32 +197,19 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    //[self sendMessage:self];
+    [self sendMessage:self];
     return YES;
 }
 
 - (void) scrollThingUp
 {
-    
-    NSLog(@"scrolling things up");
-    
     [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    
     [self scrollChatContentToBottom];
     
-    //change chat nav table height
-    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
-          chatNavOriginalFrame.size.height,
-          chatNavOriginalFrame.size.width);
-    NSLog(@"chat real  frame .height = %f and .wdith = %f",
-          _chatNavTable.frame.size.height,
-          _chatNavTable.frame.size.width);
-    chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-    _chatNavTable.frame = chatNavOriginalFrame;
     
 }
 
@@ -210,8 +229,6 @@
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    chatNavOriginalFrame.size.height = chatMessageOriginalFrame.size.height + KEYBOARD_UP_OFFSET;
-    _chatNavTable.frame = chatNavOriginalFrame;
 }
 
 
