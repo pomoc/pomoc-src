@@ -76,7 +76,7 @@
 		60807FCA18F8655F009B84D2 /* SocketIOTransportXHR.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */; };
 		60807FCB18F8655F009B84D2 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 60807FC118F8655F009B84D2 /* SRWebSocket.h */; };
 		60807FCC18F8655F009B84D2 /* libsocketio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60807FC218F8655F009B84D2 /* libsocketio.a */; };
-		60881B541904E5A8009720AD /* PMStatusMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 60881B521904E5A8009720AD /* PMStatusMessage.h */; };
+		60881B541904E5A8009720AD /* PMStatusMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 60881B521904E5A8009720AD /* PMStatusMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60881B551904E5A8009720AD /* PMStatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60881B531904E5A8009720AD /* PMStatusMessage.m */; };
 		60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FC18A518E1EB6500BF4C95 /* PMMessage.m */; };
 		9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2AE7CE18F7D0C40078D22A /* PMImageMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -923,6 +923,7 @@
 				9F2AEA1C18F7D4C50078D22A /* S3GetBucketVersioningConfigurationRequest.h in Headers */,
 				9F2AEA2718F7D4C50078D22A /* S3InitiateMultipartUploadRequest.h in Headers */,
 				9F2AE7D018F7D0C40078D22A /* PMImageMessage.h in Headers */,
+				60881B541904E5A8009720AD /* PMStatusMessage.h in Headers */,
 				9F2AE9D318F7D4C50078D22A /* AWS_SBJson.h in Headers */,
 				9F2AEA5318F7D4C50078D22A /* S3SetBucketVersioningConfigurationResponse.h in Headers */,
 				600EF15219039A42001F2E8F /* PMNote.h in Headers */,
@@ -939,7 +940,6 @@
 				9F2AEA4518F7D4C50078D22A /* S3RestoreObjectRequest.h in Headers */,
 				9F2AEA3418F7D4C50078D22A /* S3ListPartsResponse.h in Headers */,
 				9F2AEA1518F7D4C50078D22A /* S3GetBucketCrossOriginResponse.h in Headers */,
-				60881B541904E5A8009720AD /* PMStatusMessage.h in Headers */,
 				9F2AE9EB18F7D4C50078D22A /* S3BucketLifecycleConfigurationRule.h in Headers */,
 				9F2AE9BF18F7D4C50078D22A /* AmazonAuthUtils.h in Headers */,
 				9F2AE9F418F7D4C50078D22A /* S3CompleteMultipartUploadResponse.h in Headers */,

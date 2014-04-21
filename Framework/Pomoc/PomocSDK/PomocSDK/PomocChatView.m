@@ -268,6 +268,7 @@
         PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
         CGFloat dimension = self.frame.size.width / 3.0;
         
+        // TODO: Image View Cell should include the user name and timestamp
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, dimension, dimension)];
         [imageView setBackgroundColor:[UIColor grayColor]];
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -283,7 +284,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
         }
         
-        cell.textLabel.text = [self.users[indexPath.row] name]; // followed by the time
+        // TODO: Name should be followed by timestamp
+        cell.textLabel.text = [self.users[indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:12];
         
         cell.detailTextLabel.text = chatMessage.message;
