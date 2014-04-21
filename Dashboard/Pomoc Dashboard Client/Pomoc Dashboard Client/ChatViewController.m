@@ -10,6 +10,7 @@
 #import "DashBoardSingleton.h"
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
+#import "StatusMessageTableViewCell.h"
 
 #import "ContactInfoViewController.h"
 #import "ReferTableViewController.h"
@@ -18,6 +19,7 @@
 #import "PomocSupport.h"
 #import "PMChatMessage.h"
 #import "PMMessage.h"
+#import "PMStatusMessage.h"
 
 #import "UILabel+boldAndGray.h"
 
@@ -182,10 +184,10 @@
     NSLog(@"hande button pressed");
     
     if ([[_handleActionLabel title] isEqualToString: @"Handle"]) {
-        [singleton handleConversation:currentSelectedConvoId];
+        [singleton handleConversation:currentlySelectedConvo];
         [_handleActionLabel setTitle:@"Unhandle"];
     } else {
-        [singleton unhandleConversation:currentSelectedConvoId];
+        [singleton unhandleConversation:currentlySelectedConvo];
         [_handleActionLabel setTitle:@"Handle"];
     }
     
@@ -323,7 +325,10 @@
         PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
         id obj = [convo.messages objectAtIndex:indexPath.row];
         
-        if( [obj isKindOfClass:[PMImageMessage class]]) {
+        if ( [obj isKindOfClass:[PMStatusMessage class]]) {
+            return [self createStatusTableView: tableView atRow: row];
+        }
+         else if( [obj isKindOfClass:[PMImageMessage class]]) {
             return [self createChatImageTableView: tableView atRow:row];
             
         } else {
@@ -519,10 +524,10 @@
     [message retrieveImageWithCompletion:^(UIImage *image) {
         
         NSLog(@"image retrieved");
-        weakCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        weakCell.imageView.clipsToBounds = YES;
+        weakCell.messagePicture.contentMode = UIViewContentModeScaleAspectFill;
+        weakCell.messagePicture.clipsToBounds = YES;
         UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
-        [weakCell.imageView setImage:scaled];
+        [weakCell.messagePicture setImage:scaled];
         
         [weakCell.messageBigPicture setImage:image];
         weakCell.messageBigPicture.hidden = true;
@@ -531,6 +536,47 @@
     }];
     return cell;
 }
+
+- (UITableViewCell *) createStatusTableView: (UITableView *)tableView atRow: (NSInteger)row
+{
+    PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMStatusMessage *message = [pmConvo.messages objectAtIndex:row];
+    
+    return [self getStatusMessageCell:message tableView:tableView];
+}
+
+- (UITableViewCell *)getStatusMessageCell :(PMStatusMessage *)message tableView:(UITableView *)tableView;
+{
+    
+    static NSString *cellIdentifier = @"StatusMessageCell";
+    StatusMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[StatusMessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+
+    //setting the started date of chat
+    NSString *dateString = [Utility formatDateForTable:message.timestamp];
+    NSString *messageOutput;
+    
+    switch(message.code) {
+        case PMStatusMessageJoin:
+            messageOutput = [NSString stringWithFormat:@"%@ has joined the conversation -- %@", message.user.name, dateString] ;
+            break;
+        case PMStatusMessageLeave:
+            messageOutput = [NSString stringWithFormat:@"%@ has left the conversation -- %@", message.user.name, dateString];
+            break;
+        case PMStatusMessageNone:
+            break;
+    }
+    
+    //Setting visitor name
+    [cell.statusMessage setText:messageOutput];
+    [cell.statusMessage boldAndBlackSubstring:message.user.name];
+    
+    return cell;
+}
+
 
 - (UITableViewCell *) createChatMessageTableView: (UITableView *)tableView atRow: (NSInteger)row
 {
@@ -587,8 +633,6 @@
     
     [self splitChatIntoGroups];
     [_chatNavTable reloadData];
-    
-    NSLog(@"current convo id == %@, convo id == %@", currentlySelectedConvo.conversationId, conversation.conversationId);
     
     if ([currentlySelectedConvo.conversationId isEqualToString:conversation.conversationId]) {
         NSLog(@"yes equal!");
@@ -701,31 +745,13 @@
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
-    
     [self scrollChatContentToBottom];
     
     //change chat nav table height
-    NSLog(@"chat nav origina frame .height = %f and .wdith = %f",
-            chatNavOriginalFrame.size.height,
-          chatNavOriginalFrame.size.width);
-    NSLog(@"chat real  frame .height = %f and .wdith = %f",
-          _chatNavTable.frame.size.height,
-          _chatNavTable.frame.size.width);
-    chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
+      chatNavOriginalFrame.size.height = chatNavOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatNavTable.frame = chatNavOriginalFrame;
     
 }
-
-//- (void) scrollChatMessageUp
-//{
-//    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
-//    
-//    chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
-//    _chatMessageTable.frame = chatMessageOriginalFrame;
-//    
-//    /* keyboard is visible, move views */
-//    [self scrollChatContentToBottom];
-//}
 
 - (void) scrollChatContentToBottom
 {

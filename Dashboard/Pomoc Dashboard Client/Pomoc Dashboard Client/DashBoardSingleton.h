@@ -33,6 +33,7 @@
 @protocol PomocGroupDelegate
 
 - (void) agentListUpdated: (NSMutableArray *)agentList;
+- (void) newChatMessage: (PMConversation *)conversation;
 
 @end
 
@@ -60,8 +61,8 @@
 - (NSUInteger)numberOfConversation;
 
 //Handling convo
-- (void)handleConversation:(NSString *)conversationId;
-- (void)unhandleConversation:(NSString *)conversationId;
+- (void)handleConversation:(PMConversation *)convo;
+- (void)unhandleConversation:(PMConversation *)convo;
 - (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
 - (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion;
 
@@ -73,6 +74,7 @@
 @property (nonatomic, strong) NSString *selfUserId;
 @property (nonatomic, strong) NSMutableArray *currentAgentList;
 @property (nonatomic, strong) NSMutableArray *currentUserList;
+@property (nonatomic, strong) PMConversation *agentConversation;
 
 @property (nonatomic, assign) id  chatDelegate;
 @property (nonatomic, assign) id  homeDelegate;

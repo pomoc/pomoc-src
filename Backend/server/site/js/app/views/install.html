@@ -1,0 +1,69 @@
+<div ng-include=" 'js/app/views/partials/nav.html' "></div>
+
+    <div class="section">
+
+      <div class="container install-container">
+
+        <div class="row" style="margin-bottom: 30px">
+          <div class="col-md-12 col-sm-12">
+            <h1>Pomoc's 5 Minute Installation</h1>
+            <hr>
+            Pomoc installation is extremely simple and will not take longer than 5 mins!
+            <br><br><br><br><br>
+
+            <h2 class="section-title">Step 1 - Download the SDK</h2>
+            <p>Download the SDK from <a href="http://www.pomoc.im/sdk/download">http://www.pomoc.im/sdk/download</a>.</p>
+            <hr>
+            
+            <h2 class="section-title">Step 2 - Import the SDK</h2>
+            <p>Include the downloaded files <code>PomocSDK.bundle</code> and <code>PomocSDK.framework</code> into your project. You should check the <strong>Copy items into destination group's folder (if needed)</strong> option.</p>
+            <img src="img/import-frameworks.png" width="200"/>
+            <br>
+
+            <p>Click on the Xcode Project file. Go to <strong>Build Phases &gt; Link Binary With Libraries</strong>, click on the <strong>+</strong> button and add the following frameworks and library: <code>libicucore.dylib</code>, <code>Security.framework</code> and <code>CFNetwork.framework</code>.</p>
+            <img src="img/add-frameworks.png" width="400"/>
+            <br>
+
+            <p>Under <strong>Build Settings</strong>, search for <strong>Other Linker Flags</strong> and add the value <code>-ObjC</code>.</p>
+            <img src="img/linker-flags.png" width="600"/>
+            <hr>
+
+            <h2 class="section-title">Step 3 - Launch the SDK from your app</h2>
+            <p>In your <code>AppDelegate.m</code> file, add the line <code>#import <PomocSDK/PomocSDK.h></code> at the top.</p>
+            <p>Add the following code at the end of the <code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions </code> method:
+            <pre>
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+
+    /* Other code here */
+    [Pomoc initWithAppId:@"&lt;Your app ID&gt;" secretKey:@"&lt;Your secret key&gt;"];
+
+    return YES;
+}
+</pre>
+
+            <p>In the View Controller that you want to allow the user to toggle the Pomoc Chat head, firstly add <code>#import <PomocSDK/PomocSDK.h></code> at the top of the file and then use the following line of code to display the Chat Head:</p>
+            <pre>
+[Pomoc registerUserWithName:@"&lt;A name you give to your user&gt;" completion:^(NSString *userId) {
+    [Pomoc toggleChatHead];
+}];
+</pre>
+            <hr>
+
+            <h2 class="section-title">Step 4 </h2>
+            <p>Launch the app and try out Pomoc!</p>
+          </div>
+
+        </div>
+      </div>
+    </div>    
+
+
+
+  <div class="footer-after">
+    <div class="container">
+      <div class="row">
+        <p class="col-md-10">©2014 All rights reserved. Pomoc.</p>
+      </div><!-- /.row -->
+    </div>
+  </div>

@@ -70,10 +70,8 @@
                     [_currentConversationList addObject:convo];
                 }
                 
-                PMConversation *convo = [PMSupport agentConversation];
-                convo.delegate = self;
-                
-                
+                _agentConversation = [PMSupport agentConversation];
+                _agentConversation.delegate = self;
                 
                 [_currentConversationList addObject:[PMSupport agentConversation]];
                 
@@ -153,14 +151,16 @@
 }
 
 #pragma mark - handling convo
-- (void)handleConversation:(NSString *)conversationId
+- (void)handleConversation:(PMConversation *)convo;
 {
-    [PMSupport handleConversation:conversationId];
+    [PMSupport handleConversation:convo.conversationId];
+    [convo sendStatusMessage:PMStatusMessageJoin];
 }
 
-- (void)unhandleConversation:(NSString *)conversationId
+- (void)unhandleConversation:(PMConversation *)convo;
 {
-    [PMSupport unhandleConversation:conversationId];
+    [PMSupport unhandleConversation:convo.conversationId];
+    [convo sendStatusMessage:PMStatusMessageLeave];
 }
 
 - (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion
@@ -173,7 +173,6 @@
 
 
 #pragma mark - Pocmoc Support Delegate
-
 - (void)newConversationCreated:(PMConversation *)conversation
 {
     NSLog(@"new convo created");
@@ -257,15 +256,37 @@
     SoundEngine *engine = [SoundEngine singleton];
     [engine playNewMessage];
     
+    if ([self isEqualToAgent:conversation]) {
+        _agentConversation = conversation;
+        if ([self isGroupChatDelegateAlive]) {
+            [_groupChatDelegate newChatMessage:_agentConversation];
+        }
+    } else {
+        
+        for (PMConversation __strong *convo in _currentConversationList) {
+            if (convo.conversationId == conversation.conversationId) {
+                convo = conversation;
+                convo.delegate = self;
+            }
+        }
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
+        }
+    }
+}
+
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
+{
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
-            convo.delegate = self;
         }
     }
+    
     if ([self isChatDelegateAlive]) {
         [_chatDelegate hasNewMessage:_currentConversationList conversation:conversation];
     }
+    
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
@@ -322,6 +343,11 @@
         
         [PMSupport handleConversation:conversationId];
     }
+}
+
+- (BOOL) isEqualToAgent: (PMConversation *)convo
+{
+    return [[PMSupport agentConversation].conversationId isEqualToString: convo.conversationId];
 }
 
 // check

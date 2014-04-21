@@ -3,6 +3,14 @@ var user_service = angular.module('app.services.user', []);
 user_service.service('userService',
   function($http, $rootScope) {
 
+    this.getAgent = function(appId) {
+      var url = '/appUsers/'+appId;
+      return $.ajax({
+        url:url,
+        type: "GET"
+      })
+    }
+
     this.registerApp = function(userid, password) {
       var url = "/appRegistration";
       return $.ajax({

@@ -41,7 +41,7 @@ home_controller.controller('homeController',
 
           $('#loginModal').modal('hide');
           $('.modal-backdrop').remove();
-          $location.path('/setup');
+          $location.path('/agents');
           $scope.$apply();
         }
         
