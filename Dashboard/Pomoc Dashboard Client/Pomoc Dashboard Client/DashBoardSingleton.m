@@ -46,7 +46,7 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"999" password:@"999" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"stevesteve" password:@"stevesteve" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
         
@@ -57,6 +57,8 @@
             
             // Get all conversations
             [PMSupport getAllConversations:^(NSArray *conversations) {
+                
+                NSLog(@"total converlength == %lu",[conversations count]);
                 
                 for (PMConversation *convo in conversations) {
                     
@@ -72,8 +74,6 @@
                 
                 _agentConversation = [PMSupport agentConversation];
                 _agentConversation.delegate = self;
-                
-                [_currentConversationList addObject:[PMSupport agentConversation]];
                 
                 if ([self isHomeDelegateAlive]) {
                     [_homeDelegate totalConversationChanged:[conversations count]];

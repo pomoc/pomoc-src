@@ -27,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -54,14 +54,14 @@
     
     [self showActivityProgress];
     
-    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
-    [singleton loginAgentWithUserId:@"steveng.1988@gmail.com"
-                           password:@"hehe"
+    DashBoardSingleton *singleton = [DashBoardSingleton  singleton];
+    [singleton loginAgentWithUserId:username.text
+                           password:password.text
                          completion:^(BOOL success) {
-        NSLog(@"result returned!");
-        // TODO: Uncomment this in DEMO!
-        //[self performSegueWithIdentifier:@"login"
-        //                          sender:self];
+                             NSLog(@"result returned!");
+                             // TODO: Uncomment this in DEMO!
+                             //[self performSegueWithIdentifier:@"login"
+                             //                          sender:self];
     }];
 
     [self performSegueWithIdentifier:@"login"

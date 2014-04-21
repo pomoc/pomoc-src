@@ -44,41 +44,64 @@
     [PMSupport setDelegate:self];
     
     // User 'login' code
-#ifndef __i386__
-        [PMSupport initWithAppID:@"afc97ea131fd7e2695a98ef34013608f97f34e1d" secretKey:@"mySecret"];
-        NSString *customer = @"customer25";
-        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
-            [PMSupport connectWithCompletion:^(BOOL connected) {
-                [PMSupport getAllConversations:^(NSArray *conversations) {
-                    NSLog(@"logged in");
-
-//                    NSString *testConversationId = @"test:anc63:chat";
-//                    // Handling test
-//                    [PMSupport handleConversation:testConversationId];
-//                    [PMSupport unhandleConversation:testConversationId];
-//                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
-//                        NSLog(@"getHandlersForConversation: %@", handlers);
-//                    }];
-//                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+//#ifndef __i386__
+//        [PMSupport initWithAppID:@"f29e6e40f7bee2224384895bd5ed139a024ac1e8" secretKey:@"mySecret"];
+//        NSString *customer = @"customer25";
+//        [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+//            [PMSupport connectWithCompletion:^(BOOL connected) {
+//                [PMSupport getAllConversations:^(NSArray *conversations) {
+//                    NSLog(@"logged in");
+//
+////                    NSString *testConversationId = @"test:anc63:chat";
+////                    // Handling test
+////                    [PMSupport handleConversation:testConversationId];
+////                    [PMSupport unhandleConversation:testConversationId];
+////                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
+////                        NSLog(@"getHandlersForConversation: %@", handlers);
+////                    }];
+////                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+////                    
+//                    // Online test
+//                    [PMSupport pingApp];
+//                    //[PMSupport pingConversation:testConversationId];
+//                }];
+//            }];
+//        }];
+//#else
+//        [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
+//            self.userId = userId;
+//            NSLog(@"------- USER ID IS %@", userId);
+//            [PMSupport connectWithCompletion:^(BOOL connected) {
+//                // Get all conversations
+//                [PMSupport getAllConversations:^(NSArray *conversations) {
 //                    
-                    // Online test
-                    [PMSupport pingApp];
-                    //[PMSupport pingConversation:testConversationId];
-                }];
+//                }];
+//            }];
+//        }];
+//#endif
+    
+    [PMSupport initWithAppID:@"f29e6e40f7bee2224384895bd5ed139a024ac1e8" secretKey:@"mySecret"];
+    NSString *customer = @"customer25";
+    [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
+        [PMSupport connectWithCompletion:^(BOOL connected) {
+            [PMSupport getAllConversations:^(NSArray *conversations) {
+                NSLog(@"logged in");
+                
+                //                    NSString *testConversationId = @"test:anc63:chat";
+                //                    // Handling test
+                //                    [PMSupport handleConversation:testConversationId];
+                //                    [PMSupport unhandleConversation:testConversationId];
+                //                    [PMSupport getHandlersForConversation:testConversationId completion:^(NSArray *handlers) {
+                //                        NSLog(@"getHandlersForConversation: %@", handlers);
+                //                    }];
+                //                    [PMSupport referHandlerConversation:testConversationId refereeUserId:@"9A40ABF6-78CC-41C2-BC06-37FA5ACC6D60"];
+                //
+                // Online test
+                [PMSupport pingApp];
+                //[PMSupport pingConversation:testConversationId];
             }];
         }];
-#else
-        [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
-            self.userId = userId;
-            NSLog(@"------- USER ID IS %@", userId);
-            [PMSupport connectWithCompletion:^(BOOL connected) {
-                // Get all conversations
-                [PMSupport getAllConversations:^(NSArray *conversations) {
-                    
-                }];
-            }];
-        }];
-#endif
+    }];
 
 //    [PMSupport loginAgentWithUserId:@"steveng.19888@gmail.com" password:@"hehe" completion:^(NSString *userId) {
 //        if (userId) {
@@ -119,7 +142,6 @@
 
 - (IBAction)startConversationPressed:(UIButton *)button
 {
-    
     NSMutableArray *currentConversationList = [[NSMutableArray alloc] init];
     
     [button setEnabled:NO];
@@ -148,8 +170,8 @@
 
         [self.conversation sendStatusMessage:PMStatusMessageJoin];
     } else {
-        //[self.conversation sendTextMessage:self.textField.text];
-        [self.conversation sendNote:self.textField.text];
+        [self.conversation sendTextMessage:self.textField.text];
+        //[self.conversation sendNote:self.textField.text];
     }
     self.textField.text = @"";
 }
