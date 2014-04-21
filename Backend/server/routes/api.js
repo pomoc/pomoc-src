@@ -100,6 +100,9 @@ module.exports = function(app, db, crypto) {
             // Create app user list
             db.client.sadd(appKey, userKey); 
 
+            // Add super user to list of app users
+            db.client.sadd(appToken + ':users', req.body.userId);
+
             // Return appToken and appSecret
             res.statusCode = 200;
             response = {success:true, appToken:appToken, appSecret:appSecret};
@@ -131,6 +134,22 @@ module.exports = function(app, db, crypto) {
                     res.send(result);
                 });
             });
+    });
+
+    
+    app.post('/app/:appId', function(req, res) {
+        var key = req.param('appId') + ':users';
+        db.client.smembers(key, function(err, reply) {
+            var fields = ['name', 'userId', 'type'];
+            var multi = db.client.multi();
+            for (var userId in reply) {
+                multi.hmget([userId + ':account'].concat(fields));
+            }
+            multi.exec(function(errMulti, replies) {
+                console.log(replies);
+                res.send(replies);
+            });
+        });
     });
 
 

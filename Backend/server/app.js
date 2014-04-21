@@ -5,8 +5,6 @@ var express = require('express');
 var socket_io = require('socket.io');
 var crypto = require('crypto');
 
-// TODO: constants list
-// For now:
 var TIMESTAMP_BUFFER = 1000;
 
 var app = express();
