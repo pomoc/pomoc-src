@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMConversation.h"
 
-@interface PomocChatView : UIView
+@interface PomocChatView : UIView <PMConversationDelegate>
 
 - (void)dismissKeyboard;
 
