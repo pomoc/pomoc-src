@@ -1,5 +1,6 @@
 var app = angular.module('app', [
     'ngRoute',
+    'app.controllers.root',
     'app.controllers.home',
     'app.controllers.agent',
     'app.controllers.setup',
@@ -31,9 +32,7 @@ app.config(['$routeProvider',function($routeProvider){
 
 
 app.run(function($rootScope, $location){
-
-  if ($rootScope.userId == undefined) {
-    $location.path('/');
-  }
+  
+  console.log($location);
 
 });
