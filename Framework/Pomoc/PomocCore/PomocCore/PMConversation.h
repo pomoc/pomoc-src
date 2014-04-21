@@ -24,6 +24,8 @@
 - (void)didReceiveHandlerUpdate:(PMConversation *)conversation isReferral:(BOOL)isReferral
                        referrer:(PMUser *)referrer referee:(PMUser *)referee;
 
+//- (void)conversation:
+
 @end
 
 @interface PMConversation : NSObject
@@ -39,5 +41,9 @@
 - (void)sendImageMessage:(UIImage *)image;
 - (NSArray *)messages;
 - (NSArray *)notes;
+
+//event type == 'Handle' and 'Unhandle'
+- (void)addApplicationMessage: (NSString *)eventType;
+
 
 @end
