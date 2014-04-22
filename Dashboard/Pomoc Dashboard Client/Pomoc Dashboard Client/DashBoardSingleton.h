@@ -14,6 +14,9 @@
 
 @protocol PomocChatDelegate
 
+- (void) noInternet;
+- (void) internetBack;
+
 - (void) updateChatList: (NSMutableArray *)chatList;
 - (void) hasNewConversation: (NSMutableArray *)chatList;
 - (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
@@ -32,6 +35,8 @@
 
 @protocol PomocGroupDelegate
 
+- (void) noInternet;
+- (void) internetBack;
 - (void) agentListUpdated: (NSMutableArray *)agentList;
 - (void) newChatMessage: (PMConversation *)conversation;
 
@@ -40,6 +45,8 @@
 
 @protocol PomocHomeDelegate
 
+- (void) noInternet;
+- (void) internetBack;
 - (void) agentTotalNumberChange: (NSUInteger)agentNumber;
 - (void) userTotalNumberChange: (NSUInteger)userNumber;
 - (void) totalConversationChanged: (NSUInteger)totalConversation;
@@ -55,6 +62,7 @@
 + (id)singleton;
 
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion;
+- (BOOL) isConnected;
 
 //For home page to get number of conversation with 0 agents and total conversation
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
@@ -69,6 +77,7 @@
 //For refer view controller to get list of controller without self
 - (void)getPossibleRefer: (PMConversation *)convo completion:(void (^)(NSArray *user))completion;
 - (void)refer: (PMConversation *)convo referee:(PMUser *)user;
+
 
 @property (nonatomic, strong) NSMutableArray *currentConversationList;
 @property (nonatomic, strong) NSString *selfUserId;

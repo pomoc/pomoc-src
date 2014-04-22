@@ -12,6 +12,8 @@
 
 + (NSDictionary *)navigationTitleDesign;
 
++ (UIAlertView *)disconnectAlert;
+
 + (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize;
 
 + (NSString *)formatDateForTable :(NSDate *)dateToFormat;

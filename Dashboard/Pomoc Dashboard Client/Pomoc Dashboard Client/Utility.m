@@ -18,6 +18,15 @@
     return dateString;
 }
 
++ (UIAlertView *)disconnectAlert
+{
+    return [[UIAlertView alloc] initWithTitle:@"No network connection"
+                               message:@"You must be connected to the internet to use this app, clicking ok will redirect you to the login screen."
+                              delegate:nil
+                     cancelButtonTitle:@"OK"
+                     otherButtonTitles:nil];
+}
+
 + (NSDictionary *)navigationTitleDesign
 {
 

@@ -9,11 +9,14 @@
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
 #import "SoundEngine.h"
+#import "Reachability.h"
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
     __block NSUInteger totalUnattendedConversation;
     NSString *storedUserId;
     NSString *storedPassword;
+    
+    Reachability* reach;
 }
 
 @end
@@ -37,16 +40,61 @@
     if (self = [super init]) {
         _currentAgentList = [[NSMutableArray alloc] init];
         _currentUserList = [[NSMutableArray alloc] init];
+        
+        // Allocate a reachability object
+        reach = [Reachability reachabilityForLocalWiFi]; //[Reachability reachabilityWithHostname:@"www.google.com"];
+        
+        // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
+        reach.reachableOnWWAN = NO;
+        
+        // Here we set up a NSNotification observer. The Reachability that caused the notification
+        // is passed in the object parameter
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reachabilityChanged:)
+                                                     name:kReachabilityChangedNotification
+                                                   object:nil];
+        
+        [reach startNotifier];
     }
     return self;
 }
 
+- (BOOL) isConnected
+{
+    return [reach isReachableViaWiFi];
+}
+
+- (void)reachabilityChanged:(NSNotification *)notification {
+    
+    if ([reach isReachableViaWiFi]) {
+        
+        NSLog(@"reachable");
+    } else {
+        
+        if ([self isHomeDelegateAlive]) {
+            [_homeDelegate noInternet];
+        }
+        
+        if ([self isGroupChatDelegateAlive]) {
+            [_groupChatDelegate noInternet];
+        }
+        
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate noInternet];
+        }
+        
+        NSLog(@"not reachable");
+    }
+}
 
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion
 {
     _currentConversationList = [[NSMutableArray alloc] init];
     
     [PMSupport setDelegate:self];
+    
+    
+    [PMSupport disconnect];
     
     [PMSupport loginAgentWithUserId:@"cm3" password:@"cm3" completion:^(NSString *returnedUserId) {
         
@@ -279,11 +327,11 @@
 
 - (void)hasDisconnected
 {
-    NSLog(@"disconnected!!");
-    
-    [self loginAgentWithUserId:storedUserId password:storedPassword completion:^(BOOL success){
-        
-    }];
+//    NSLog(@"disconnected!!");
+//    
+//    [self loginAgentWithUserId:storedUserId password:storedPassword completion:^(BOOL success){
+//        
+//    }];
     
 }
 

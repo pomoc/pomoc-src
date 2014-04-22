@@ -17,7 +17,7 @@
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
-@interface HomeViewController () <PomocHomeDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate> {
+@interface HomeViewController () <PomocHomeDelegate, UIAlertViewDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate> {
     DashBoardSingleton *singleton;
     UIActivityIndicatorView *spinner;
 }
@@ -148,5 +148,22 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
+#pragma mark - DISCONNECT
+- (void) noInternet
+{
+    UIAlertView *alert = [Utility disconnectAlert];
+    alert.delegate = self;
+    
+    [alert show];
+}
+
+#pragma mark - UIAlertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"backtoLogin" sender:self];
+    }
+}
 
 @end

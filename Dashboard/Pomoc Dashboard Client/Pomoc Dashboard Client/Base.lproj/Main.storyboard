@@ -61,6 +61,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Qy-od-c9P">
+                                <rect key="frame" x="0.0" y="590" width="1024" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.96470594409999999" green="0.062745101750000004" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-v2.png" id="cZz-42-JPz">
                                 <rect key="frame" x="410" y="89" width="205" height="205"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -89,6 +96,7 @@
                     <connections>
                         <outlet property="loadingLabel" destination="gnK-LJ-302" id="Pb0-qx-Aup"/>
                         <outlet property="loginButton" destination="eoc-Pk-x0h" id="jQZ-c9-s28"/>
+                        <outlet property="loginError" destination="1Qy-od-c9P" id="VDm-tp-IPc"/>
                         <outlet property="password" destination="0RD-Tl-2ZY" id="dUt-bG-RmZ"/>
                         <outlet property="spinner" destination="9hT-g4-Aaj" id="KmQ-dn-y0A"/>
                         <outlet property="username" destination="fWq-b0-zLU" id="Wl5-I7-xpw"/>
@@ -371,6 +379,7 @@
                         <segue destination="z9Q-sW-j4L" kind="popover" identifier="referAgents" popoverAnchorBarButtonItem="OJA-3N-MhU" id="v27-Er-qvV">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="cHw-gd-lxT" kind="modal" identifier="backtoLogin" id="Sfz-yF-UQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Og2-lc-I3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -496,6 +505,7 @@
                         <outlet property="chatMessageTable" destination="xGp-Rx-Ah3" id="zLe-u9-9hh"/>
                         <outlet property="chatNavTable" destination="GEf-oc-i8m" id="ORt-JP-es7"/>
                         <outlet property="textInput" destination="Ggj-PE-yGm" id="HF8-hR-OIZ"/>
+                        <segue destination="cHw-gd-lxT" kind="modal" identifier="backtoLogin" id="1iU-5f-4le"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ha-an-PWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -672,6 +682,7 @@
                         <outlet property="totalConversationLabel" destination="h8l-C6-9v5" id="Cpe-6S-wWh"/>
                         <outlet property="unattendedConversationLabel" destination="cOT-bs-uxq" id="b1j-ub-plm"/>
                         <outlet property="userOnlineLabel" destination="e5P-qZ-bbW" id="f3b-yO-qel"/>
+                        <segue destination="cHw-gd-lxT" kind="modal" identifier="backtoLogin" id="9W8-ag-bqG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AND-L7-dqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1048,4 +1059,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="1iU-5f-4le"/>
+    </inferredMetricsTieBreakers>
 </document>

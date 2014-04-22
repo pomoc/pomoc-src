@@ -29,7 +29,7 @@
 
 #import "AnnotateViewController.h"
 
-@interface ChatViewController () < UINavigationControllerDelegate, AnnotateViewControllerDelegate, PomocChatDelegate, ReferDelegate> {
+@interface ChatViewController () < UINavigationControllerDelegate, UIAlertViewDelegate, AnnotateViewControllerDelegate, PomocChatDelegate, ReferDelegate> {
     
     //tracking UI table view
     CGRect chatMessageOriginalFrame;
@@ -855,5 +855,22 @@
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
+#pragma mark - DISCONNECT
+- (void) noInternet
+{
+    UIAlertView *alert = [Utility disconnectAlert];
+    alert.delegate = self;
+    
+    [alert show];
+}
+
+#pragma mark - UIAlertView 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"backtoLogin" sender:self];
+    }
+}
 
 @end
