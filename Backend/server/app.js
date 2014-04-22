@@ -285,9 +285,9 @@ io.sockets.on('connection', function(client) {
     // Refer handler
     // Broadcast new handlers list
         else if (data.type == 'referHandler') {
-            db.client.sadd(data.coversationId + ':handlers', data.refereeUserId);
             var multi = db.client.multi();
             // Add referred agent to list of agents handling the conersation
+            multi.sadd(data.conversationId + ':handlers', data.refereeUserId);
             multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.hgetall(data.refereeUserId + ':account');
