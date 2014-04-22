@@ -73,6 +73,11 @@
 }
 
 - (IBAction)addNotesPressed:(id)sender {
+    NSLog(@"add notes pressed");
+    
+    NSLog(@"current conversation id == %@",_currentConversation.conversationId);
+    NSLog(@"text == %@",_inputText.text);
+    
     [_currentConversation sendNote:_inputText.text];
     _inputText.text = @"";
 }

@@ -81,37 +81,38 @@ io.sockets.on('connection', function(client) {
             var conversationId = data.userId + ':' + data.appId + ':chat';
             var payload = {
                 conversationId: conversationId,
-    creatorUserId: data.userId,
-    createDate: data.timestamp
+                creatorUserId: data.userId,
+                createDate: data.timestamp
             };
 
             // subscribes client to new chat
             client.join(conversationId);
 
             // adds conversationId to app's list of conversation
-            db.client.sadd(data.appId + ':conversations', JSON.stringify(payload));
+            db.client.exists(conversationId, function(err, reply) {
+                if (!reply) {
+                    db.client.sadd(data.appId + ':conversations', JSON.stringify(payload));
 
-            // adds conversationId to user's list of conversations
-            db.client.sadd(data.userId + ':sub', JSON.stringify(payload));
+                    // adds conversationId to user's list of conversations
+                    db.client.sadd(data.userId + ':sub', JSON.stringify(payload));
 
-            // adds userId to list of participants in conversation
-            db.client.sadd(conversationId + ':party', data.userId);
+                    // adds userId to list of participants in conversation
+                    db.client.sadd(conversationId + ':party', data.userId);
 
-            // adds userId to list of online participants in conversation
-            db.client.sadd(conversationId + ':online', data.userId);
+                    // broadcast notification of new channel to app channel
+                    client.broadcast.to(data.appId + ':notification').emit('newConversation', payload);
+                    console.log(data.appId + ' notified about: ' + conversationId);
+                    console.log(data.userId + ' subscribed to: ' + conversationId);
+                }
 
-            console.log(data.userId + ' subscribed to: ' + conversationId);
-
-            // sends back chat id of new chat
-            if (callback) {
-                payload['success'] = true;
-                callback(payload);
-            }
-
-            // broadcast notification of new channel to app channel
-            var key = data.appId + ':notification';
-            client.broadcast.to(data.appId + ':notification').emit('newConversation', payload);
-            console.log(data.appId + ' notified about: ' + conversationId);
+                // adds userId to list of online participants in conversation
+                db.client.sadd(conversationId + ':online', data.userId);
+                // sends back chat id of new chat
+                if (callback) {
+                    payload['success'] = true;
+                    callback(payload);
+                }
+            });
         }
 
         // Observe conversation lists
@@ -124,11 +125,21 @@ io.sockets.on('connection', function(client) {
         else if (data.type == 'joinConversations') {
             var multi = db.client.multi();
             var timestamp = (new Date()).getTime() + TIMESTAMP_BUFFER;
-            for (var i = 0; i < data.conversationIds.length; i++) {
-                multi.zrange([data.conversationId, 0, timestamp]);
-            }
+            data.conversationIds.map(function(conversationId) {
+                multi.zrange([conversationId, 0, timestamp]);
+                multi.zrange(['notes:' + conversationId, 0, timestamp]);
+            });
             multi.execute(function(err, replies) {
-                
+                var result = [];
+                for (var i = 0; i < replies.length; i+=2) {
+                    var resultObj = {
+                        success: true,
+                        messages: replies[i],
+                        notes: replies[i + 1]
+                    }
+                    result.push(resultObj);
+                }
+                console.log('Sent old messages for conversations');
             });
         }
 

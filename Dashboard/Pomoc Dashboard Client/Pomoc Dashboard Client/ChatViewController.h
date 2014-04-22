@@ -13,6 +13,7 @@
 //Main
 @property (weak, nonatomic) IBOutlet UIView *chatView;
 
+@property (weak, nonatomic) UIView *imageView;
 //Chat nav IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatNavTable;
 
