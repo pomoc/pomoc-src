@@ -82,8 +82,6 @@
     } else {
         _loginError.text = @"Sorry, but you have no internet connection currently";
     }
-    
-    
 }
 
 - (void)showActivityProgress {

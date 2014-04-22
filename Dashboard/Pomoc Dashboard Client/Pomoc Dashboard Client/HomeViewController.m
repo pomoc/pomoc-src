@@ -128,7 +128,9 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 }
 
 - (void)totalUnattendedConversationChanged:(NSUInteger)totalUnattended {
+    NSLog(@"delegate called");
     
+    [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)totalUnattended]];
 }
 
 - (void) deallocDelegate
