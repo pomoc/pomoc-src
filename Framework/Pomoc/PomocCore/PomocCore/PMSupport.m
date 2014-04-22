@@ -217,6 +217,13 @@
     }
 }
 
+- (void)hasDisconnected
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hasDisconnected)]) {
+        [self.delegate hasDisconnected];
+    }
+}
+
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:)]) {
