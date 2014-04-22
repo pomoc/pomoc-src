@@ -120,6 +120,18 @@ io.sockets.on('connection', function(client) {
             client.join(key);
             console.log(data.userId + ' observing ' + key);
         }
+        
+        else if (data.type == 'joinConversations') {
+            var multi = db.client.multi();
+            var timestamp = (new Date()).getTime() + TIMESTAMP_BUFFER;
+            for (var i = 0; i < data.conversationIds.length; i++) {
+                multi.zrange([data.conversationId, 0, timestamp]);
+            }
+            multi.execute(function(err, replies) {
+                
+            });
+        }
+
 
         // Observe existing conversation
         else if (data.type == 'joinConversation') {
@@ -273,10 +285,9 @@ io.sockets.on('connection', function(client) {
     // Refer handler
     // Broadcast new handlers list
         else if (data.type == 'referHandler') {
-            db.client.sadd(data.coversationId + ':handlers', data.refereeUserId);
             var multi = db.client.multi();
             // Add referred agent to list of agents handling the conersation
-            multi.sadd(data.conversationId + ':handlers', data.userId);
+            multi.sadd(data.conversationId + ':handlers', data.refereeUserId);
             multi.smembers(data.conversationId + ':handlers');
             multi.hgetall(data.userId + ':account');
             multi.hgetall(data.refereeUserId + ':account');
