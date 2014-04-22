@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageFrom;
 @property (weak, nonatomic) IBOutlet UIImageView *messagePicture;
 @property (weak, nonatomic) IBOutlet UIImageView *messageBigPicture;
+@property (weak, nonatomic) IBOutlet UIButton *viewPicture;
 
 - (IBAction)editPicturePressed:(id)sender;
 - (IBAction)viewPicturePressed:(id)sender;

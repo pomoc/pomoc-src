@@ -18,6 +18,7 @@
 		6DCE531D18D8AA9D00A50F61 /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531A18D8AA9D00A50F61 /* JASidePanelController.m */; };
 		6DCE531E18D8AA9D00A50F61 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */; };
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
+		AA13F2F71906AC5400A739E8 /* close-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA13F2F61906AC5400A739E8 /* close-512.png */; };
 		AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */; };
 		AA1E19491905685E00F36932 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1E19481905685E00F36932 /* libPomocCore.a */; };
 		AA1E194D190640FB00F36932 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E194C190640FB00F36932 /* Reachability.m */; };
@@ -133,6 +134,7 @@
 		6DCE531C18D8AA9D00A50F61 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		9FD1FDA81903C9E900F4870C /* Axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
 		9FD1FDA91903C9E900F4870C /* Axis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axis.m; sourceTree = "<group>"; };
+		AA13F2F61906AC5400A739E8 /* close-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-512.png"; sourceTree = "<group>"; };
 		AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMessageTableViewCell.h; sourceTree = "<group>"; };
 		AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMessageTableViewCell.m; sourceTree = "<group>"; };
 		AA1E193A1905685E00F36932 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 		AA9DC89018E1759500B4FDF7 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				AA13F2F61906AC5400A739E8 /* close-512.png */,
 				AA6958F61900E24C00E28EBE /* logo */,
 				6D5332D6190386A900A228D3 /* logo-word.png */,
 				AA6958F41900DDAB00E28EBE /* logo-v2-1.png */,
@@ -756,6 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA5204C618D7EF2C00D78156 /* Images.xcassets in Resources */,
+				AA13F2F71906AC5400A739E8 /* close-512.png in Resources */,
 				AA9DC8B218E1A49E00B4FDF7 /* send_file-512.png in Resources */,
 				AA5204B818D7EF2C00D78156 /* InfoPlist.strings in Resources */,
 				AA4649D218E80EEE00A607E0 /* testImage.png in Resources */,

@@ -59,6 +59,8 @@
     UIPopoverController *referSegue;
     
     __block NSArray *referList;
+ 
+    UIView *popOutImage;
     
 }
 
@@ -225,6 +227,9 @@
     }
 }
 
+- (IBAction)tapPictureAction:(id)sender {
+}
+
 - (void)userCompleteAnnotation:(UIImage *)image
 {
     NSLog(@"called user complete annotation !");
@@ -235,10 +240,10 @@
 - (void)pictureSelected:(UIImage *)image
 {
     NSLog(@"sending image");
-    dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(aQueue, ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [currentlySelectedConvo sendImageMessage:image];
     });
+    NSLog(@"image sent block done");
 }
 
 #pragma mark - Navigation Table view data source
@@ -382,6 +387,22 @@
         
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
+    
+    } else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        
+        NSLog(@"did select");
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        if ([cell isKindOfClass:[ChatMessagePictureCell class]]) {
+            
+            NSLog(@"did select");
+            ChatMessagePictureCell *cell = (ChatMessagePictureCell *) [tableView cellForRowAtIndexPath:indexPath];
+            [self showImage:cell.messagePicture.image];
+
+        }
+       
+        
     }
     
     
@@ -534,73 +555,49 @@
     //setting the display text
     [message retrieveImageWithCompletion:^(UIImage *image) {
         
-        NSLog(@"image retrieved");
         weakCell.messagePicture.contentMode = UIViewContentModeScaleAspectFit;
         weakCell.messagePicture.clipsToBounds = YES;
-        //UIImage *scaled = [Utility scaleImage:image toSize:CGSizeMake(120, 120)];
-        
         [weakCell.messagePicture setImage:image];
-        
-        UITapGestureRecognizer *tapRecognizer =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandler:)];
-        [weakCell.messagePicture addGestureRecognizer:tapRecognizer];
-        
-        //[weakCell.messageBigPicture setImage:image];
-        //weakCell.messageBigPicture.hidden = true;
         [weakCell setNeedsLayout];
         
     }];
-    
-    
-    
+ 
     return cell;
 }
 
-- (IBAction)tapHandler:(UITapGestureRecognizer *)recognizer
+#define POPOUT_IMAGE_OFFSET 50
+
+- (void)showImage:(UIImage *)image
 {
-    NSLog(@"image clicked");
+    popOutImage = [[UIView alloc] initWithFrame:CGRectMake(0, POPOUT_IMAGE_OFFSET, self.view.frame.size.width, self.view.frame.size.height-POPOUT_IMAGE_OFFSET)];
+    [popOutImage setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
+    
+    CGRect frame = popOutImage.bounds;
+    frame.size.width *= 0.9;
+    frame.size.height *= 0.9;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+    [imageView setImage:image];
+    [imageView setCenter:CGPointMake(popOutImage.frame.size.width/2.0, popOutImage.frame.size.height / 2.0)];
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [popOutImage addSubview:imageView];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImage:)];
+    [popOutImage addGestureRecognizer:tapGestureRecognizer];
+    
+    //TODO LATER IF NEED CLOSE BUTTON
+//    UIImageView *closeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 32, 32, 32)];
+//    [closeImage setContentMode:UIViewContentModeScaleAspectFit];
+//    [closeImage setImage:[UIImage imageNamed:@"close-512.png"]];
+//    [imageView addSubview:closeImage];
+    
+    [self.view addSubview:popOutImage];
 }
 
-/*
- 
- 
- 
- */
-
-
-#define CHAT_VIEW_HEADER_HEIGHT 100 
-#define CHAT_VIEW_HEADER_HEIGHT 500
-//
-//- (void)showImage:(UIImage *)image
-//{
-//    self.imageView = [[UIView alloc] initWithFrame:CGRectMake(0, CHAT_VIEW_HEADER_HEIGHT, self.frame.size.width, self.frame.size.height-CHAT_VIEW_HEADER_HEIGHT)];
-//    [self.imageView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.3]];
-//    
-//    CGRect frame = self.imageView.bounds;
-//    frame.size.width *= 0.9;
-//    frame.size.height *= 0.9;
-//    
-//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-//    [imageView setImage:image];
-//    [imageView setCenter:CGPointMake(self.imageView.frame.size.width/2.0, self.imageView.frame.size.height / 2.0)];
-//    [imageView setContentMode:UIViewContentModeScaleAspectFit];
-//    [self.imageView addSubview:imageView];
-//    
-//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImage:)];
-//    [self.imageView addGestureRecognizer:tapGestureRecognizer];
-//    
-//    UIImageView *closeImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.imageView.frame.size.width-32, 0, 32, 32)];
-//    
-//    [closeImage setImage:[PomocResources imageNamed:@"close-icon" type:@"png"]];
-//    
-//    [self.imageView addSubview:closeImage];
-//    
-//    [self addSubview:self.imageView];
-//}
-//
-//- (void)removeImage:(UITapGestureRecognizer *)tapRecognizer
-//{
-//    [self.imageView removeFromSuperview];
-//}
+- (void)removeImage:(UITapGestureRecognizer *)tapRecognizer
+{
+    [popOutImage removeFromSuperview];
+}
 
 
 

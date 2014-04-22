@@ -28,6 +28,14 @@
 // Annotation
 - (IBAction)annotateActionPressed:(id)sender;
 
+- (IBAction)tapPictureAction:(id)sender;
+
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender;
+
+// View picture
+- (IBAction)viewPicturePressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *viewPicture;
+
 //Chat message action
 - (IBAction)sendMessage:(id)sender;
 
