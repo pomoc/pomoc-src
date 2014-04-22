@@ -45,21 +45,24 @@
 
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId
 {
-    if ([PMUserManager sharedInstance].userCache[userId]) {
-        return [PMUserManager sharedInstance].userCache[userId];
+    @synchronized([PMUserManager sharedInstance]) {
+        if ([PMUserManager sharedInstance].userCache[userId]) {
+            return [PMUserManager sharedInstance].userCache[userId];
+        }
+        
+        NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
+        NSHTTPURLResponse *responseCode = nil;
+        NSError *error = nil;
+        PMUser *user = nil;
+        
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
+        if (!error) {
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            user = [[PMUser alloc] initWithJsonData:jsonObject];
+            [PMUserManager sharedInstance].userCache[userId] = user;
+        }
+        return user;
     }
-    
-    NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
-    NSHTTPURLResponse *responseCode = nil;
-    NSError *error = nil;
-    PMUser *user = nil;
-    
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-    if (!error) {
-        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        user = [[PMUser alloc] initWithJsonData:jsonObject];
-    }
-    return user;
 }
 
 + (void)getUserObjectFromUserId:(NSString *)userId completionBlock:(void (^)(PMUser *user))completionBlock
@@ -79,6 +82,9 @@
         if (!error) {
             NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
             user = [[PMUser alloc] initWithJsonData:jsonObject];
+            @synchronized([PMUserManager sharedInstance].userCache) {
+                [PMUserManager sharedInstance].userCache[userId] = user;
+            }
         }
         completionBlock(user);
     }];
