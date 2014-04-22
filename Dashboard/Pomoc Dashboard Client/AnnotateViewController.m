@@ -118,7 +118,7 @@
 }
 
 - (UIImage *)saveImage {
-    UIGraphicsBeginImageContext(drawArea.frame.size);
+    UIGraphicsBeginImageContext(bgView.bounds.size);
     [[bgView layer] renderInContext:UIGraphicsGetCurrentContext()];
     [[drawArea layer] renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *savedImage = UIGraphicsGetImageFromCurrentImageContext();
