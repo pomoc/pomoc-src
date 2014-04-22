@@ -15,8 +15,6 @@
 #import "PomocResources.h"
 #import "PomocChatView_Private.h"
 
-
-
 @interface PomocChatView () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
@@ -185,6 +183,11 @@
     }];
 }
 
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
+{
+    
+}
+
 
 #pragma mark - TextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -249,7 +252,8 @@
     static NSString *imageCellId = @"ImageCell";
     
     PMChatMessage *chatMessage = self.messages[indexPath.row];
-    
+   
+ 
     UITableViewCell *cell;
     if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:imageCellId];
@@ -280,14 +284,43 @@
         }
         
         // TODO: Name should be followed by timestamp
+       
+        /*
         cell.textLabel.text = [self.users[indexPath.row] name];
         cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+         */
+        
+        NSAttributedString *userDetails = [self userStringFromMessage:chatMessage];
+        [cell.textLabel setAttributedText:userDetails];
         
         cell.detailTextLabel.text = chatMessage.message;
         cell.detailTextLabel.textColor = [UIColor grayColor];
     }
     
     return cell;
+}
+
+- (NSAttributedString *)userStringFromMessage:(PMChatMessage *)chatMessage
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@" 'at' hh:mm a"];
+    NSString *timeString = [dateFormatter stringFromDate:chatMessage.timestamp];
+    
+    
+    NSMutableAttributedString *userDetails = [[NSMutableAttributedString alloc] init];
+    NSDictionary *usernameAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                         NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+    NSAttributedString *username = [[NSAttributedString alloc] initWithString:chatMessage.user.name attributes:usernameAttributes];
+    
+    NSDictionary *timestampAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor],
+                                          NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+    NSAttributedString *timestamp = [[NSAttributedString alloc] initWithString:timeString attributes:timestampAttributes];
+    
+    
+    [userDetails appendAttributedString:username];
+    [userDetails appendAttributedString:timestamp];
+    
+    return userDetails;
 }
 
 @end
