@@ -711,6 +711,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         
         ContactInfoViewController *vc = [segue destinationViewController];
+        NSLog(@"chat vc line 714 convo id == %@",currentlySelectedConvo.conversationId);
         vc.currentConversation = currentlySelectedConvo;
         
         referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;

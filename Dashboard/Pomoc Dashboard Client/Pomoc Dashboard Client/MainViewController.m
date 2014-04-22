@@ -35,7 +35,7 @@
     
     SideNavigationController *sideNav = [self.storyboard instantiateViewControllerWithIdentifier:@"sideNavigationController"];
     [self setLeftPanel:sideNav];
-    [self setLeftGapPercentage:0.25];
+    [self setLeftGapPercentage:0.20];
 
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"homeNavigationController"]];
 }

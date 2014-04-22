@@ -342,7 +342,7 @@
                                             <barButtonItem systemItem="flexibleSpace" id="G07-VU-Fwa"/>
                                             <barButtonItem title="Notes" id="Ngi-NJ-foP">
                                                 <connections>
-                                                    <segue destination="mTl-jf-a1g" kind="popover" popoverAnchorBarButtonItem="Ngi-NJ-foP" id="geR-73-LGH">
+                                                    <segue destination="mTl-jf-a1g" kind="popover" identifier="addNote" popoverAnchorBarButtonItem="Ngi-NJ-foP" id="geR-73-LGH">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                     </segue>
                                                 </connections>
@@ -745,6 +745,9 @@
                                     <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addNotesPressed:" destination="mTl-jf-a1g" eventType="touchUpInside" id="EtA-aK-hhk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -755,6 +758,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="250" height="337"/>
                     <connections>
+                        <outlet property="inputText" destination="pnI-84-EFc" id="NOQ-l8-hsd"/>
                         <outlet property="notesTableView" destination="xbz-yC-3tS" id="fMg-6a-t6h"/>
                     </connections>
                 </viewController>

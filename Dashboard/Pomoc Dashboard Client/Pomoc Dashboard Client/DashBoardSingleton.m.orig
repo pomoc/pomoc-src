@@ -48,10 +48,14 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"cm3" password:@"cm3" completion:^(NSString *returnedUserId) {
+<<<<<<< HEAD
+    [PMSupport loginAgentWithUserId:@"1" password:@"1" completion:^(NSString *returnedUserId) {
         
-        storedUserId = @"cm3";
-        storedPassword = @"cm3";
+        storedUserId = @"1";
+        storedPassword = @"1";
+=======
+    [PMSupport loginAgentWithUserId:@"cm" password:@"cm" completion:^(NSString *returnedUserId) {
+>>>>>>> dd7c1671bdacf62932cb195d60f24d05cfa78aae
         
         _selfUserId = returnedUserId;
         NSLog(@"user id == %@",returnedUserId);
