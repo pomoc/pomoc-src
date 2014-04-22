@@ -81,6 +81,9 @@
     
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Camera"]) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        transform = CGAffineTransformRotate(transform, M_PI/2.0);
+        picker.cameraViewTransform = transform;
     
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

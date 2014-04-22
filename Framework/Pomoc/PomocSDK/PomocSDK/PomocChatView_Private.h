@@ -12,6 +12,8 @@
 #define CHAT_VIEW_FOOTER_HEIGHT     30
 
 #define CHAT_TEXT_CELL_HEIGHT       50
+#define CHAT_STATUS_CELL_HEIGHT     40
+#define CHAT_IMAGE_CELL_HEIGHT      250
 
 @class PMConversation;
 
@@ -21,5 +23,6 @@
 
 @property (nonatomic, strong) UITextField *loginTextField;
 @property (nonatomic, strong) UIView *loginView;
+@property (nonatomic, strong) UIView *imageView;
 
 @end

@@ -11,11 +11,10 @@
 #import "PomocSupport.h"
 #import "PomocChatView+Screenshot.h"
 #import "PomocChatView+Login.h"
+#import "PomocChatView+Image.h"
 #import "PomocWindow.h"
 #import "PomocResources.h"
 #import "PomocChatView_Private.h"
-
-
 
 @interface PomocChatView () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -127,7 +126,6 @@
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
-    self.chatTableView.allowsSelection = NO;
     self.chatTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -185,6 +183,11 @@
     }];
 }
 
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
+{
+    [self addMessageToTableView:statusMessage];
+}
+
 
 #pragma mark - TextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -238,23 +241,36 @@
 {
     PMChatMessage *chatMessage = self.messages[indexPath.row];
     if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
-        return self.frame.size.width / 3.0;
+        return self.frame.size.width / 3.0 + 40;
+    } else if ([chatMessage isKindOfClass:[PMStatusMessage class]]) {
+        return CHAT_STATUS_CELL_HEIGHT;
     }
     return CHAT_TEXT_CELL_HEIGHT;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PMChatMessage *chatMessage = self.messages[indexPath.row];
+    if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
+        PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
+        [self showImage:imageMessage.image];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *chatCellId = @"ChatCell";
     static NSString *imageCellId = @"ImageCell";
+    static NSString *statusCellId = @"StatusCell";
     
     PMChatMessage *chatMessage = self.messages[indexPath.row];
-    
+   
+ 
     UITableViewCell *cell;
     if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:imageCellId];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imageCellId];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:imageCellId];
         }
         
         // Clear the content view
@@ -263,8 +279,13 @@
         PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
         CGFloat dimension = self.frame.size.width / 3.0;
         
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, cell.contentView.bounds.size.width, 20)];
+        NSAttributedString *userDetail = [self userStringFromMessage:chatMessage];
+        [textLabel setAttributedText:userDetail];
+        [cell.contentView addSubview:textLabel];
+        
         // TODO: Image View Cell should include the user name and timestamp
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, dimension, dimension)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 30, dimension, dimension)];
         [imageView setBackgroundColor:[UIColor grayColor]];
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         [imageView setClipsToBounds:YES];
@@ -273,21 +294,77 @@
         if (imageMessage.image) {
             [imageView setImage:imageMessage.image];
         }
+    } else if ([chatMessage isKindOfClass:[PMStatusMessage class]]) {
+        PMStatusMessage *statusMessage = (PMStatusMessage *)chatMessage;
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:statusCellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
+        }
+        
+        [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+       
+        NSString *statusText;
+        if (statusMessage.code == PMStatusMessageJoin) {
+            statusText = @" joined";
+        } else if (statusMessage.code == PMStatusMessageLeave) {
+            statusText = @" left";
+        }
+        
+        NSMutableAttributedString *userDetails = [[NSMutableAttributedString alloc] init];
+        NSDictionary *usernameAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                             NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+        NSAttributedString *username = [[NSAttributedString alloc] initWithString:chatMessage.user.name attributes:usernameAttributes];
+        
+        NSDictionary *statusAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor],
+                                              NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+        NSAttributedString *status = [[NSAttributedString alloc] initWithString:statusText attributes:statusAttributes];
+        
+        [userDetails appendAttributedString:username];
+        [userDetails appendAttributedString:status];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, cell.contentView.bounds.size.width-15, 20)];
+        [label setAttributedText:userDetails];
+        [cell.contentView addSubview:label];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:chatCellId];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
         }
         
-        // TODO: Name should be followed by timestamp
-        cell.textLabel.text = [self.users[indexPath.row] name];
-        cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:12];
+        NSAttributedString *userDetails = [self userStringFromMessage:chatMessage];
+        [cell.textLabel setAttributedText:userDetails];
         
         cell.detailTextLabel.text = chatMessage.message;
         cell.detailTextLabel.textColor = [UIColor grayColor];
     }
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
+}
+
+- (NSAttributedString *)userStringFromMessage:(PMChatMessage *)chatMessage
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@" 'at' hh:mm a"];
+    NSString *timeString = [dateFormatter stringFromDate:chatMessage.timestamp];
+    
+    
+    NSMutableAttributedString *userDetails = [[NSMutableAttributedString alloc] init];
+    NSDictionary *usernameAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                         NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+    NSAttributedString *username = [[NSAttributedString alloc] initWithString:chatMessage.user.name attributes:usernameAttributes];
+    
+    NSDictionary *timestampAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor],
+                                          NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+    NSAttributedString *timestamp = [[NSAttributedString alloc] initWithString:timeString attributes:timestampAttributes];
+    
+    
+    [userDetails appendAttributedString:username];
+    [userDetails appendAttributedString:timestamp];
+    
+    return userDetails;
 }
 
 @end
