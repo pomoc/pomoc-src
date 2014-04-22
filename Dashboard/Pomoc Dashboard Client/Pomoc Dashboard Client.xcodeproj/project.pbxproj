@@ -20,6 +20,7 @@
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
 		AA13F2F71906AC5400A739E8 /* close-512.png in Resources */ = {isa = PBXBuildFile; fileRef = AA13F2F61906AC5400A739E8 /* close-512.png */; };
 		AA13F2F91906B27F00A739E8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA13F2F81906B27F00A739E8 /* SystemConfiguration.framework */; };
+		AA13F2FC1906D23D00A739E8 /* NotesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA13F2FB1906D23D00A739E8 /* NotesTableViewCell.m */; };
 		AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */; };
 		AA1E19491905685E00F36932 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1E19481905685E00F36932 /* libPomocCore.a */; };
 		AA1E194D190640FB00F36932 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E194C190640FB00F36932 /* Reachability.m */; };
@@ -137,6 +138,8 @@
 		9FD1FDA91903C9E900F4870C /* Axis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axis.m; sourceTree = "<group>"; };
 		AA13F2F61906AC5400A739E8 /* close-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-512.png"; sourceTree = "<group>"; };
 		AA13F2F81906B27F00A739E8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AA13F2FA1906D23D00A739E8 /* NotesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesTableViewCell.h; sourceTree = "<group>"; };
+		AA13F2FB1906D23D00A739E8 /* NotesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesTableViewCell.m; sourceTree = "<group>"; };
 		AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMessageTableViewCell.h; sourceTree = "<group>"; };
 		AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMessageTableViewCell.m; sourceTree = "<group>"; };
 		AA1E193A1905685E00F36932 /* PMChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMChatMessage.h; sourceTree = "<group>"; };
@@ -624,6 +627,8 @@
 		AA9DC92F18E44FD600B4FDF7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AA13F2FA1906D23D00A739E8 /* NotesTableViewCell.h */,
+				AA13F2FB1906D23D00A739E8 /* NotesTableViewCell.m */,
 				AA1E1933190528EC00F36932 /* StatusMessageTableViewCell.h */,
 				AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */,
 				AA9DC92918E44FCE00B4FDF7 /* ChatMessagePictureCell.h */,
@@ -837,6 +842,7 @@
 				AA9BDCFB18F91E1100EF6EEC /* JBLineChartView.m in Sources */,
 				AA9BDCFE18F9380100EF6EEC /* JBChartInformationView.m in Sources */,
 				AAC2A1F118E55498008ACDBD /* AnnotationView.m in Sources */,
+				AA13F2FC1906D23D00A739E8 /* NotesTableViewCell.m in Sources */,
 				AA464A0118E814D100A607E0 /* UIImageView+WebCache.m in Sources */,
 				AA5204F218D80B3F00D78156 /* MainViewController.m in Sources */,
 				C3150BCB190234900018521F /* LineChartView.m in Sources */,

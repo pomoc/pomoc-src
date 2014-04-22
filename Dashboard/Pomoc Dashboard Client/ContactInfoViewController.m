@@ -10,6 +10,7 @@
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
 #import "PMNote.h"
+#import "NotesTableViewCell.h"
 
 @interface ContactInfoViewController () <PomocNoteDelegate>
 {
@@ -52,7 +53,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     //update the UILabel's height based on text size
     /*
@@ -67,7 +68,14 @@
     */
     
     PMNote *note = [noteList objectAtIndex:indexPath.row];
-    cell.textLabel.text = note.note;
+    
+    cell.notesInfo.text = note.note;
+    
+    //setting the started date of chat
+    NSString *dateString = [Utility formatDateForTable:note.timestamp];
+    cell.dateLabel.text = dateString;
+    
+    //cell.textLabel.text = note.note;
     
     return cell;
 }
