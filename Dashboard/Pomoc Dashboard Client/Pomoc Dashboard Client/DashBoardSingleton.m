@@ -49,9 +49,11 @@
     [PMSupport loginAgentWithUserId:@"steve" password:@"steve" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
+        NSLog(@"user id == %@",returnedUserId);
         
         [PMSupport connectWithCompletion:^(BOOL connected) {
             
+            NSLog(@"connected ");
             //inform applicaiton online
             [PMSupport pingApp];
             
@@ -68,7 +70,7 @@
                     }];
                     
                     //mark as unread
-                    convo.read = FALSE;
+                    convo.read = TRUE;
                     
                     //setting delegates
                     convo.delegate = self;
@@ -108,6 +110,7 @@
     for (PMConversation *conversation in _currentConversationList) {
         
         if ([conversation.conversationId isEqualToString:convo.conversationId]) {
+            
             for (PMUser *user in conversation.handlers) {
                 [listOfAgent removeObject:user];
             }
