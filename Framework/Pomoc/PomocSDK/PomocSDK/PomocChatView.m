@@ -10,15 +10,14 @@
 #import "PomocChatView.h"
 #import "PomocSupport.h"
 #import "PomocChatView+Screenshot.h"
+#import "PomocChatView+Login.h"
 #import "PomocWindow.h"
 #import "PomocResources.h"
+#import "PomocChatView_Private.h"
 
-#define CHAT_VIEW_HEADER_HEIGHT     30
-#define CHAT_VIEW_FOOTER_HEIGHT     30
 
-#define CHAT_TEXT_CELL_HEIGHT       50
 
-@interface PomocChatView () <PMConversationDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface PomocChatView () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *chatTableView;
@@ -26,7 +25,6 @@
 
 @property (nonatomic, strong) UITextField *chatTextField;
 
-@property (nonatomic, strong) PMConversation *conversation;
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSMutableArray *users;
 
@@ -41,20 +39,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
         [self setupView];
         [self setupHeaderView];
         [self setupChatView];
         [self setupFooterView];
         [self adjustViewsToHeight:self.frame.size.height];
         
+        [self setupLoginView];
+        
         self.messages = [@[] mutableCopy];
         self.users = [@[] mutableCopy];
-        
-        [PMSupport startConversationWithCompletion:^(PMConversation *conversation) {
-            self.conversation = conversation;
-            self.conversation.delegate = self;
-        }];
-
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
