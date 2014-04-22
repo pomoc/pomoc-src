@@ -191,21 +191,36 @@
 #pragma mark - Pocmoc Support Delegate
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    
     NSLog(@"new convo created");
     
-    conversation.delegate = self;
-    [_currentConversationList addObject:conversation];
     
-    if ([self isHomeDelegateAlive]) {
-        [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+    BOOL existingConvo = FALSE;
+    
+    for (PMConversation *convo in _currentConversationList) {
+        if ([convo.conversationId isEqualToString:conversation.conversationId])
+        {
+            existingConvo = TRUE;
+            break;
+        }
     }
     
-    SoundEngine *engine = [SoundEngine singleton];
-    [engine playNewConversation];
-    
-    if ([self isChatDelegateAlive]) {
-        [_chatDelegate hasNewConversation:_currentConversationList];
+    if (!existingConvo) {
+        conversation.delegate = self;
+        [_currentConversationList addObject:conversation];
+        
+        if ([self isHomeDelegateAlive]) {
+            [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+        }
+        
+        SoundEngine *engine = [SoundEngine singleton];
+        [engine playNewConversation];
+        
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate hasNewConversation:_currentConversationList];
+        }
     }
+    
 }
 
 - (void)updateOnlineUsers:(NSArray *)users
