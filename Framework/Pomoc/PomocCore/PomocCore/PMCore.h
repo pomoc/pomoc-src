@@ -14,6 +14,7 @@
 
 - (void)newConversationCreated:(PMConversation *)conversation;
 - (void)hasConnected;
+- (void)hasDisconnected;
 // Online status
 - (void)updateOnlineUsers:(NSArray *)users;
 - (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId;

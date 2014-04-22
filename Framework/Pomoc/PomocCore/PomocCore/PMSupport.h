@@ -12,6 +12,7 @@
 
 @protocol PMSupportDelegate <NSObject>
 
+- (void)hasDisconnected;
 - (void)newConversationCreated:(PMConversation *)conversation;
 
 // Delegate method for handlers

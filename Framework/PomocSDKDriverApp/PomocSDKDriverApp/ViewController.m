@@ -22,11 +22,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [Pomoc initWithAppId:@"anc" secretKey:@"secret"];
-    [Pomoc registerUserWithName:@"customer" completion:^(NSString *userId) {
-        NSLog(@"userid %@", userId);
-        [self.toggleButton setEnabled:YES];
-    }];
+    [Pomoc initWithAppId:@"9ce5770b3bb4b2a1d59be2d97e34379cd192299f" secretKey:@"secret"];
+    [self.toggleButton setEnabled:YES];
     [self.view setBackgroundColor:[UIColor greenColor]];
 }
 

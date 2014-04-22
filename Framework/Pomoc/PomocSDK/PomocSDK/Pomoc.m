@@ -7,6 +7,7 @@
 //
 
 #import "Pomoc.h"
+#import "Pomoc_Private.h"
 #import "PomocWindow.h"
 #import "PomocViewController.h"
 #import "PomocSupport.h"
@@ -44,7 +45,7 @@
 + (void)registerUserWithName:(NSString *)name completion:(void (^)(NSString *userId))completion
 {
     Pomoc *pomoc = [Pomoc sharedInstance];
-    [PMSupport registerUserWithName:@"Customer" completion:^(NSString *userId) {
+    [PMSupport registerUserWithName:name completion:^(NSString *userId) {
         pomoc.userId = userId;
         if (completion) {
             [PMSupport connectWithCompletion:^(BOOL connected) {
@@ -56,10 +57,6 @@
             }];
         }
     }];
-}
-
-+ (void)login
-{
 }
 
 + (void)toggleChatHead

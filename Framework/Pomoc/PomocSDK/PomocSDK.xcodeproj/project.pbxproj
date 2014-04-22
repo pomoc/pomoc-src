@@ -52,6 +52,8 @@
 		609FD58B18ED4CE30091EE41 /* PomocChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 609FD58918ED4CE30091EE41 /* PomocChatView.m */; };
 		609FD58E18ED4DBC0091EE41 /* PomocViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 609FD58C18ED4DBC0091EE41 /* PomocViewController.h */; };
 		609FD58F18ED4DBC0091EE41 /* PomocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 609FD58D18ED4DBC0091EE41 /* PomocViewController.m */; };
+		60A6C04619058A610005D726 /* PomocChatView+Login.h in Headers */ = {isa = PBXBuildFile; fileRef = 60A6C04419058A610005D726 /* PomocChatView+Login.h */; };
+		60A6C04719058A610005D726 /* PomocChatView+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A6C04519058A610005D726 /* PomocChatView+Login.m */; };
 		60AC91BB18E553B8006007E2 /* Pomoc.h in Headers */ = {isa = PBXBuildFile; fileRef = 60AC91B918E553B8006007E2 /* Pomoc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60AC91BC18E553B8006007E2 /* Pomoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 60AC91BA18E553B8006007E2 /* Pomoc.m */; };
 		60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */; };
@@ -130,6 +132,10 @@
 		609FD58918ED4CE30091EE41 /* PomocChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocChatView.m; sourceTree = "<group>"; };
 		609FD58C18ED4DBC0091EE41 /* PomocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocViewController.h; sourceTree = "<group>"; };
 		609FD58D18ED4DBC0091EE41 /* PomocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomocViewController.m; sourceTree = "<group>"; };
+		60A6C04419058A610005D726 /* PomocChatView+Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PomocChatView+Login.h"; sourceTree = "<group>"; };
+		60A6C04519058A610005D726 /* PomocChatView+Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PomocChatView+Login.m"; sourceTree = "<group>"; };
+		60A6C04819058CC90005D726 /* Pomoc_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pomoc_Private.h; sourceTree = "<group>"; };
+		60A6C04919058D570005D726 /* PomocChatView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocChatView_Private.h; sourceTree = "<group>"; };
 		60AC91B918E553B8006007E2 /* Pomoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pomoc.h; sourceTree = "<group>"; };
 		60AC91BA18E553B8006007E2 /* Pomoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pomoc.m; sourceTree = "<group>"; };
 		60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PomocChatView+Screenshot.h"; sourceTree = "<group>"; };
@@ -242,6 +248,7 @@
 				605B0C9A18E3233E00EA6717 /* PomocSDK.h */,
 				60AC91B918E553B8006007E2 /* Pomoc.h */,
 				60AC91BA18E553B8006007E2 /* Pomoc.m */,
+				60A6C04819058CC90005D726 /* Pomoc_Private.h */,
 				609FD58C18ED4DBC0091EE41 /* PomocViewController.h */,
 				609FD58D18ED4DBC0091EE41 /* PomocViewController.m */,
 				60E6408318E59F9C0089B51F /* PomocWindow.h */,
@@ -293,6 +300,9 @@
 			children = (
 				609FD58818ED4CE30091EE41 /* PomocChatView.h */,
 				609FD58918ED4CE30091EE41 /* PomocChatView.m */,
+				60A6C04919058D570005D726 /* PomocChatView_Private.h */,
+				60A6C04419058A610005D726 /* PomocChatView+Login.h */,
+				60A6C04519058A610005D726 /* PomocChatView+Login.m */,
 				60D5E28B18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h */,
 				60D5E28C18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m */,
 			);
@@ -335,6 +345,7 @@
 				60592B2E18F13B0C006D5DEC /* PMInternalMessage.h in Headers */,
 				60592B4318F16A34006D5DEC /* PomocResources.h in Headers */,
 				60AC91BB18E553B8006007E2 /* Pomoc.h in Headers */,
+				60A6C04619058A610005D726 /* PomocChatView+Login.h in Headers */,
 				60D5E28D18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.h in Headers */,
 				609FD58E18ED4DBC0091EE41 /* PomocViewController.h in Headers */,
 				60592B2F18F13B0C006D5DEC /* PMMessage.h in Headers */,
@@ -495,6 +506,7 @@
 				609FD58B18ED4CE30091EE41 /* PomocChatView.m in Sources */,
 				60592B4418F16A34006D5DEC /* PomocResources.m in Sources */,
 				60D5E28E18ED9E6D00CA9DE8 /* PomocChatView+Screenshot.m in Sources */,
+				60A6C04719058A610005D726 /* PomocChatView+Login.m in Sources */,
 				609FD58418ED41DD0091EE41 /* YSChatHead.m in Sources */,
 				60AC91BC18E553B8006007E2 /* Pomoc.m in Sources */,
 			);
