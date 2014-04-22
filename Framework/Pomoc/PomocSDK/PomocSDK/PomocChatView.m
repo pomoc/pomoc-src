@@ -185,7 +185,7 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
 {
-    
+    [self addMessageToTableView:statusMessage];
 }
 
 
@@ -242,6 +242,8 @@
     PMChatMessage *chatMessage = self.messages[indexPath.row];
     if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
         return self.frame.size.width / 3.0 + 40;
+    } else if ([chatMessage isKindOfClass:[PMStatusMessage class]]) {
+        return CHAT_STATUS_CELL_HEIGHT;
     }
     return CHAT_TEXT_CELL_HEIGHT;
 }
@@ -250,6 +252,7 @@
 {
     static NSString *chatCellId = @"ChatCell";
     static NSString *imageCellId = @"ImageCell";
+    static NSString *statusCellId = @"StatusCell";
     
     PMChatMessage *chatMessage = self.messages[indexPath.row];
    
@@ -267,7 +270,7 @@
         PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
         CGFloat dimension = self.frame.size.width / 3.0;
         
-        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, cell.bounds.size.width, 20)];
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, cell.contentView.bounds.size.width, 20)];
         NSAttributedString *userDetail = [self userStringFromMessage:chatMessage];
         [textLabel setAttributedText:userDetail];
         [cell.contentView addSubview:textLabel];
@@ -282,6 +285,38 @@
         if (imageMessage.image) {
             [imageView setImage:imageMessage.image];
         }
+    } else if ([chatMessage isKindOfClass:[PMStatusMessage class]]) {
+        PMStatusMessage *statusMessage = (PMStatusMessage *)chatMessage;
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:statusCellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:chatCellId];
+        }
+        
+        [[cell.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+       
+        NSString *statusText;
+        if (statusMessage.code == PMStatusMessageJoin) {
+            statusText = @" joined";
+        } else if (statusMessage.code == PMStatusMessageLeave) {
+            statusText = @" left";
+        }
+        
+        NSMutableAttributedString *userDetails = [[NSMutableAttributedString alloc] init];
+        NSDictionary *usernameAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                                             NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+        NSAttributedString *username = [[NSAttributedString alloc] initWithString:chatMessage.user.name attributes:usernameAttributes];
+        
+        NSDictionary *statusAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor],
+                                              NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
+        NSAttributedString *status = [[NSAttributedString alloc] initWithString:statusText attributes:statusAttributes];
+        
+        [userDetails appendAttributedString:username];
+        [userDetails appendAttributedString:status];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, cell.contentView.bounds.size.width-15, 20)];
+        [label setAttributedText:userDetails];
+        [cell.contentView addSubview:label];
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:chatCellId];
         if (!cell) {
