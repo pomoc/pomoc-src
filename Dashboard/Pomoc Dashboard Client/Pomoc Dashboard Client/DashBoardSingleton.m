@@ -12,6 +12,8 @@
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
     __block NSUInteger totalUnattendedConversation;
+    NSString *storedUserId;
+    NSString *storedPassword;
 }
 
 @end
@@ -46,12 +48,17 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"cm" password:@"cm" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"1" password:@"1" completion:^(NSString *returnedUserId) {
+        
+        storedUserId = @"1";
+        storedPassword = @"1";
         
         _selfUserId = returnedUserId;
+        NSLog(@"user id == %@",returnedUserId);
         
         [PMSupport connectWithCompletion:^(BOOL connected) {
             
+            NSLog(@"connected ");
             //inform applicaiton online
             [PMSupport pingApp];
             
@@ -68,7 +75,7 @@
                     }];
                     
                     //mark as unread
-                    convo.read = FALSE;
+                    convo.read = TRUE;
                     
                     //setting delegates
                     convo.delegate = self;
@@ -108,8 +115,14 @@
     for (PMConversation *conversation in _currentConversationList) {
         
         if ([conversation.conversationId isEqualToString:convo.conversationId]) {
+            
             for (PMUser *user in conversation.handlers) {
-                [listOfAgent removeObject:user];
+                
+                for (PMUser *currentUser in [listOfAgent allObjects]){
+                    if ([currentUser.userId isEqualToString:user.userId]){
+                        [listOfAgent removeObject:currentUser];
+                    }
+                }
             }
             
             completion([listOfAgent allObjects]);
@@ -178,21 +191,36 @@
 #pragma mark - Pocmoc Support Delegate
 - (void)newConversationCreated:(PMConversation *)conversation
 {
+    
     NSLog(@"new convo created");
     
-    conversation.delegate = self;
-    [_currentConversationList addObject:conversation];
     
-    if ([self isHomeDelegateAlive]) {
-        [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+    BOOL existingConvo = FALSE;
+    
+    for (PMConversation *convo in _currentConversationList) {
+        if ([convo.conversationId isEqualToString:conversation.conversationId])
+        {
+            existingConvo = TRUE;
+            break;
+        }
     }
     
-    SoundEngine *engine = [SoundEngine singleton];
-    [engine playNewConversation];
-    
-    if ([self isChatDelegateAlive]) {
-        [_chatDelegate hasNewConversation:_currentConversationList];
+    if (!existingConvo) {
+        conversation.delegate = self;
+        [_currentConversationList addObject:conversation];
+        
+        if ([self isHomeDelegateAlive]) {
+            [_homeDelegate totalConversationChanged:[_currentConversationList count]];
+        }
+        
+        SoundEngine *engine = [SoundEngine singleton];
+        [engine playNewConversation];
+        
+        if ([self isChatDelegateAlive]) {
+            [_chatDelegate hasNewConversation:_currentConversationList];
+        }
     }
+    
 }
 
 - (void)updateOnlineUsers:(NSArray *)users
@@ -248,6 +276,16 @@
 }
 
 #pragma mark - Pomoc Conversation delegates
+
+- (void)hasDisconnected
+{
+    NSLog(@"disconnected!!");
+    
+    [self loginAgentWithUserId:storedUserId password:storedPassword completion:^(BOOL success){
+        
+    }];
+    
+}
 
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes
 {
@@ -341,6 +379,8 @@
 // Delegate method for referral of handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
+    NSLog(@"refere user id == %@ and referrer user id == %@",referee.userId, referrer.userId);
+    
     if ([referee.userId isEqualToString: _selfUserId]) {
         
         if ([self isChatDelegateAlive]) {
