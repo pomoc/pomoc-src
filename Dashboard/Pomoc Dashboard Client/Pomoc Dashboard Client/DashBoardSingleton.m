@@ -92,8 +92,6 @@
     _currentConversationList = [[NSMutableArray alloc] init];
     
     [PMSupport setDelegate:self];
-    
-    
     [PMSupport disconnect];
     
     [PMSupport loginAgentWithUserId:@"cm3" password:@"cm3" completion:^(NSString *returnedUserId) {

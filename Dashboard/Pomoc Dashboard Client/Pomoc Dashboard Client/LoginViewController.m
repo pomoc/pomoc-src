@@ -56,20 +56,29 @@
     
     if ([singleton isConnected]) {
         
-        [self showActivityProgress];
+        _loginError.text = @"";
         
-        [singleton loginAgentWithUserId:username.text
-                               password:password.text
+        [self showActivityProgress];
+
+        NSString *usernameKeyed = username.text;
+        NSString *passwordKeyed = password.text;
+        
+        if ([username.text length]==0) {
+            usernameKeyed = @"cm3";
+            passwordKeyed = @"cm3";
+        }
+        
+        [username resignFirstResponder];
+        [password resignFirstResponder];
+        
+        [singleton loginAgentWithUserId:usernameKeyed
+                               password:passwordKeyed
                              completion:^(BOOL success) {
                                  NSLog(@"result returned!");
                                  // TODO: Uncomment this in DEMO!
-                                 //[self performSegueWithIdentifier:@"login"
-                                 //                          sender:self];
+                                 [self performSegueWithIdentifier:@"login" sender:self];
                              }];
         
-        [self performSegueWithIdentifier:@"login"
-                                  sender:self];
-
     } else {
         _loginError.text = @"Sorry, but you have no internet connection currently";
     }
