@@ -20,6 +20,7 @@
 		9FD1FDAA1903C9E900F4870C /* Axis.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1FDA91903C9E900F4870C /* Axis.m */; };
 		AA1E1935190528EC00F36932 /* StatusMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E1934190528EC00F36932 /* StatusMessageTableViewCell.m */; };
 		AA1E19491905685E00F36932 /* libPomocCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1E19481905685E00F36932 /* libPomocCore.a */; };
+		AA1E194D190640FB00F36932 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1E194C190640FB00F36932 /* Reachability.m */; };
 		AA4649D018E7E7CD00A607E0 /* UILabel+boldAndGray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */; };
 		AA4649D218E80EEE00A607E0 /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4649D118E80EEE00A607E0 /* testImage.png */; };
 		AA4649F418E814D100A607E0 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4649D818E814D100A607E0 /* MKAnnotationView+WebCache.m */; };
@@ -149,6 +150,8 @@
 		AA1E19461905685E00F36932 /* PomocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocCore.h; sourceTree = "<group>"; };
 		AA1E19471905685E00F36932 /* PomocSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomocSupport.h; sourceTree = "<group>"; };
 		AA1E19481905685E00F36932 /* libPomocCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPomocCore.a; path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/libPomocCore.a; sourceTree = "<group>"; };
+		AA1E194B190640FB00F36932 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AA1E194C190640FB00F36932 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+boldAndGray.h"; sourceTree = "<group>"; };
 		AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+boldAndGray.m"; sourceTree = "<group>"; };
 		AA4649D118E80EEE00A607E0 /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
@@ -350,6 +353,15 @@
 			path = ../../Framework/Pomoc/PomocCore/Distribution/PomocCore/Headers;
 			sourceTree = "<group>";
 		};
+		AA1E194A190640F200F36932 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				AA1E194B190640FB00F36932 /* Reachability.h */,
+				AA1E194C190640FB00F36932 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		AA4649D618E814D100A607E0 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +502,7 @@
 		AA5204EB18D7F74B00D78156 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				AA1E194A190640F200F36932 /* Reachability */,
 				AA9BDCF018F91E1100EF6EEC /* JBChartView */,
 				AA4649D618E814D100A607E0 /* SDWebImage */,
 				AA9BDCEF18F91E0400EF6EEC /* JASidePanel */,
@@ -802,6 +815,7 @@
 				AA7F6E2B18DE909300400CDB /* DashBoardSingleton.m in Sources */,
 				AA9BDD0118F93A9900EF6EEC /* JBChartTooltipView.m in Sources */,
 				AA4649FB18E814D100A607E0 /* SDWebImageManager.m in Sources */,
+				AA1E194D190640FB00F36932 /* Reachability.m in Sources */,
 				AA5204BE18D7EF2C00D78156 /* AppDelegate.m in Sources */,
 				AAC2A1F018E55498008ACDBD /* AnnotationPalette.m in Sources */,
 				AAD17CE91902381D003D9241 /* GroupChatViewController.m in Sources */,

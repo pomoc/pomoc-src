@@ -12,6 +12,8 @@
 
 @interface DashBoardSingleton () <PMSupportDelegate, PMConversationDelegate>{
     __block NSUInteger totalUnattendedConversation;
+    NSString *storedUserId;
+    NSString *storedPassword;
 }
 
 @end
@@ -47,6 +49,9 @@
     [PMSupport setDelegate:self];
     
     [PMSupport loginAgentWithUserId:@"1" password:@"1" completion:^(NSString *returnedUserId) {
+        
+        storedUserId = @"1";
+        storedPassword = @"1";
         
         _selfUserId = returnedUserId;
         NSLog(@"user id == %@",returnedUserId);
@@ -257,6 +262,16 @@
 
 #pragma mark - Pomoc Conversation delegates
 
+- (void)hasDisconnected
+{
+    NSLog(@"disconnected!!");
+    
+    [self loginAgentWithUserId:storedUserId password:storedPassword completion:^(BOOL success){
+        
+    }];
+    
+}
+
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes
 {
     [_notesDelegate updateNoteList:conversation];
@@ -349,6 +364,8 @@
 // Delegate method for referral of handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
+    NSLog(@"refere user id == %@ and referrer user id == %@",referee.userId, referrer.userId);
+    
     if ([referee.userId isEqualToString: _selfUserId]) {
         
         if ([self isChatDelegateAlive]) {
