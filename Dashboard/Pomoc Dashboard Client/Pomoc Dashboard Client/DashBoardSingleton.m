@@ -94,10 +94,10 @@
     [PMSupport setDelegate:self];
     [PMSupport disconnect];
     
-    [PMSupport loginAgentWithUserId:@"cm3" password:@"cm3" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:userId password:password completion:^(NSString *returnedUserId) {
         
-        storedUserId = @"cm3";
-        storedPassword = @"cm3";
+        storedUserId = userId;
+        storedPassword = password;
         
         _selfUserId = returnedUserId;
         NSLog(@"user id == %@",returnedUserId);
