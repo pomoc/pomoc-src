@@ -47,6 +47,8 @@
                 self.conversation = conversation;
                 self.conversation.delegate = self;
                 
+                [self.conversation sendStatusMessage:PMStatusMessageJoin];
+                
                 [self.loginView removeFromSuperview];
             }];
         }];

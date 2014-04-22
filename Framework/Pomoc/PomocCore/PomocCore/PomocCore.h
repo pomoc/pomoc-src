@@ -15,6 +15,7 @@
 #import "PMChatMessage.h"
 #import "PMConversation.h"
 #import "PMImageMessage.h"
+#import "PMStatusMessage.h"
 #import "PMUser.h"
 #import "PMNote.h"
 
