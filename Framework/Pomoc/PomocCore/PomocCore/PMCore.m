@@ -412,4 +412,11 @@
     }
 }
 
+- (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(hasDisconnected)]) {
+        [self.delegate hasDisconnected];
+    }
+}
+
 @end
