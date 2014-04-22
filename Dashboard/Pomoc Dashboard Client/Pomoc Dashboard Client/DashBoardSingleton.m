@@ -46,7 +46,7 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"steve" password:@"steve" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"1" password:@"1" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
         NSLog(@"user id == %@",returnedUserId);
@@ -112,7 +112,12 @@
         if ([conversation.conversationId isEqualToString:convo.conversationId]) {
             
             for (PMUser *user in conversation.handlers) {
-                [listOfAgent removeObject:user];
+                
+                for (PMUser *currentUser in [listOfAgent allObjects]){
+                    if ([currentUser.userId isEqualToString:user.userId]){
+                        [listOfAgent removeObject:currentUser];
+                    }
+                }
             }
             
             completion([listOfAgent allObjects]);

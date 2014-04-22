@@ -80,7 +80,7 @@
 //        }];
 //#endif
     
-    [PMSupport initWithAppID:@"9ce5770b3bb4b2a1d59be2d97e34379cd192299f" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"356a192b7913b04c54574d18c28d46e6395428ab" secretKey:@"mySecret"];
     NSString *customer = @"customer11";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
