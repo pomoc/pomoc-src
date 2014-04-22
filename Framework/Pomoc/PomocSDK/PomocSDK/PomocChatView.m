@@ -11,6 +11,7 @@
 #import "PomocSupport.h"
 #import "PomocChatView+Screenshot.h"
 #import "PomocChatView+Login.h"
+#import "PomocChatView+Image.h"
 #import "PomocWindow.h"
 #import "PomocResources.h"
 #import "PomocChatView_Private.h"
@@ -125,7 +126,6 @@
     self.chatTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
-    self.chatTableView.allowsSelection = NO;
     self.chatTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     gestureRecognizer.cancelsTouchesInView = NO;
@@ -248,6 +248,15 @@
     return CHAT_TEXT_CELL_HEIGHT;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PMChatMessage *chatMessage = self.messages[indexPath.row];
+    if ([chatMessage isKindOfClass:[PMImageMessage class]]) {
+        PMImageMessage *imageMessage = (PMImageMessage *)chatMessage;
+        [self showImage:imageMessage.image];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *chatCellId = @"ChatCell";
@@ -329,6 +338,8 @@
         cell.detailTextLabel.text = chatMessage.message;
         cell.detailTextLabel.textColor = [UIColor grayColor];
     }
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
 }

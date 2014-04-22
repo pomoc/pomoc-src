@@ -23,5 +23,6 @@
 
 @property (nonatomic, strong) UITextField *loginTextField;
 @property (nonatomic, strong) UIView *loginView;
+@property (nonatomic, strong) UIView *imageView;
 
 @end
