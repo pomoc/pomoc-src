@@ -153,6 +153,7 @@
         conversation.delegate = self;
         [self.sendButton setHidden:NO];
         [self.textField setHidden:NO];
+        [self.textField setReturnKeyType:UIReturnKeySend];
         [self.chatTableView setHidden:NO];
         [button setHidden:YES];
     }];

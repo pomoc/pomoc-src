@@ -55,8 +55,8 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     
     CGRect chartFrame = CGRectMake(0, 0, 450,  350);
     _lineChartView = [[LineChartView alloc] initWithFrame:chartFrame];
-    [_lineChartView addData:[self retrieveData:25] withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
-    [_lineChartView addData:[self retrieveData:25] withProperties:@{}];
+    [_lineChartView addData:[self retrieveData:25 type:1] withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
+    [_lineChartView addData:[self retrieveData:25 type:2] withProperties:@{}];
     
     [_chartView addSubview:_lineChartView];
     
@@ -72,13 +72,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [_lineChartView updateFrame:_chartView.bounds animated:NO];
 }
 
-- (NSDictionary *)retrieveData:(int)num
+- (NSDictionary *)retrieveData:(int)num type:(int)type
 {
     NSMutableDictionary *buffer = [[NSMutableDictionary alloc] init];
     float last = 0.0;
     int bracket = 10;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
+    srand(3217+type);
     for (int i=0; i<num; i++) {
         last = last + (rand() % (bracket * 2 + 1) - (bracket - 1));
         last = MAX(last, 0.0);
