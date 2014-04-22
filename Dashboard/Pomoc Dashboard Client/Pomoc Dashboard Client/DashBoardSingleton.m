@@ -46,7 +46,7 @@
     
     [PMSupport setDelegate:self];
     
-    [PMSupport loginAgentWithUserId:@"stevesteve" password:@"stevesteve" completion:^(NSString *returnedUserId) {
+    [PMSupport loginAgentWithUserId:@"steve" password:@"steve" completion:^(NSString *returnedUserId) {
         
         _selfUserId = returnedUserId;
         
