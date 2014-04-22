@@ -13,8 +13,8 @@
 
 // Numerics
 CGFloat static const kJBChartTooltipViewCornerRadius = 5.0;
-CGFloat const kJBChartTooltipViewDefaultWidth = 50.0f;
-CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
+CGFloat const kJBChartTooltipViewDefaultWidth = 75.0f;
+CGFloat const kJBChartTooltipViewDefaultHeight = 37.5f;
 
 
 @interface JBChartTooltipView ()
@@ -29,7 +29,7 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
 
 - (id)init
 {
-    UIFont *kJBFontTooltipText = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
+    UIFont *kJBFontTooltipText = [UIFont fontWithName:@"HelveticaNeue-Bold" size:28];
     UIColor *kJBColorTooltipTextColor = [UIColor colorWithRed:0.251 green:0.251 blue:0.251 alpha:1.0];
     UIColor *kJBColorTooltipColor = [UIColor whiteColor];
     
@@ -44,7 +44,7 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 25.0f;
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = kJBColorTooltipTextColor;
         _textLabel.adjustsFontSizeToFitWidth = YES;
-        _textLabel.numberOfLines = 1;
+        _textLabel.numberOfLines = 0;
         _textLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_textLabel];
     }

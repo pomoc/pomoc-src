@@ -14,8 +14,8 @@
 
 - (id)init
 {
-    CGFloat kJBChartTooltipTipViewDefaultWidth = 8.0f;
-    CGFloat kJBChartTooltipTipViewDefaultHeight = 5.0f;
+    CGFloat kJBChartTooltipTipViewDefaultWidth = 40.0f;
+    CGFloat kJBChartTooltipTipViewDefaultHeight = 20.0f;
     self = [super initWithFrame:CGRectMake(0, 0, kJBChartTooltipTipViewDefaultWidth, kJBChartTooltipTipViewDefaultHeight)];
     if (self)
     {

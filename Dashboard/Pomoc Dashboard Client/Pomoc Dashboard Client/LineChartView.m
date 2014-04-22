@@ -217,12 +217,15 @@
     [formatter setDateFormat:@"HH:mm:ss"];
     
     NSString *dateString = [formatter stringFromDate:date];
-    
     NSNumber *valueNumber = [chartData[lineIndex] objectForKey:idx];
+    NSString *valueString = [valueNumber stringValue];
+    
+    NSString *formatText = lineIndex == 0 ? @"Time: %@\nOnline: %@" : @"Time: %@\nCreated: %@";
+    NSString *labelText = [NSString stringWithFormat:formatText, dateString, valueString];
     
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
     //[tooltipView setText:[dateString uppercaseString]];
-    [tooltipView setText:[[valueNumber stringValue] uppercaseString]];
+    [tooltipView setText:labelText];
     
     [self.delegate didSelectPointAtKey:idx value:valueNumber];
 }
