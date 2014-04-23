@@ -101,54 +101,59 @@
         storedPassword = password;
         
         _selfUserId = returnedUserId;
-        NSLog(@"user id == %@",returnedUserId);
         
-        [PMSupport connectWithCompletion:^(BOOL connected) {
+        NSLog(@"returned user id == %@",returnedUserId);
+        
+        if (returnedUserId == nil) {
+            completion(FALSE);
+    
+        } else {
             
-            NSLog(@"connected ");
-            //inform applicaiton online
-            [PMSupport pingApp];
-            
-            // Get all conversations
-            [PMSupport getAllConversations:^(NSArray *conversations) {
+            [PMSupport connectWithCompletion:^(BOOL connected) {
                 
-                NSLog(@"total converlength == %lu",[conversations count]);
+                NSLog(@"connected ");
+                //inform applicaiton online
+                [PMSupport pingApp];
                 
-                for (PMConversation *convo in conversations) {
+                // Get all conversations
+                [PMSupport getAllConversations:^(NSArray *conversations) {
                     
-                    //getting handlers
-                    [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
-                        convo.handlers = [[NSMutableArray alloc] initWithArray:users];
-                    }];
+                    NSLog(@"total converlength == %lu",[conversations count]);
                     
-                    //mark as unread
-                    convo.read = TRUE;
+                    for (PMConversation *convo in conversations) {
+                        
+                        //getting handlers
+                        [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+                            convo.handlers = [[NSMutableArray alloc] initWithArray:users];
+                        }];
+                        
+                        //mark as unread
+                        convo.read = TRUE;
+                        
+                        //setting delegates
+                        convo.delegate = self;
+                        [_currentConversationList addObject:convo];
+                    }
                     
-                    //setting delegates
-                    convo.delegate = self;
-                    [_currentConversationList addObject:convo];
-                }
-                
-                _agentConversation = [PMSupport agentConversation];
-                _agentConversation.delegate = self;
-//                
-//                for (PMMessage *messge in _agentConversation.messages) {
-//                    NSLog(@"message.timestamp %@ ",messge.timestamp);
-//                }
-                
-                if ([self isHomeDelegateAlive]) {
-                    [_homeDelegate totalConversationChanged:[conversations count]];
-                }
-                
-                if ([self isChatDelegateAlive]) {
-                   [_chatDelegate updateChatList:_currentConversationList ];
-                }
-                
-                completion(TRUE);
+                    _agentConversation = [PMSupport agentConversation];
+                    _agentConversation.delegate = self;
+                    
+                    if ([self isHomeDelegateAlive]) {
+                        [_homeDelegate totalConversationChanged:[conversations count]];
+                    }
+                    
+                    if ([self isChatDelegateAlive]) {
+                        [_chatDelegate updateChatList:_currentConversationList ];
+                    }
+                    
+                    completion(TRUE);
+                    
+                }];
                 
             }];
+
             
-        }];
+        }
     }];
 }
 

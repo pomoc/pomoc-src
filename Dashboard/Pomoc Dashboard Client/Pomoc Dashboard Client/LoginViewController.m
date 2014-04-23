@@ -74,9 +74,16 @@
         [singleton loginAgentWithUserId:usernameKeyed
                                password:passwordKeyed
                              completion:^(BOOL success) {
-                                 NSLog(@"result returned!");
-                                 // TODO: Uncomment this in DEMO!
-                                 [self performSegueWithIdentifier:@"login" sender:self];
+                                
+                                 if (success) {
+                                     [self performSegueWithIdentifier:@"login" sender:self];
+                                     NSLog(@"result success");
+                                 } else {
+                                     _loginError.text = @"Sorry wrong login credential";
+                                     NSLog(@"result failed");
+                                     spinner.hidden = YES;
+                                 }
+                                 
                              }];
         
     } else {
