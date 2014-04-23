@@ -8,7 +8,7 @@
 
 #import "PomocChatView.h"
 
-#define CHAT_VIEW_HEADER_HEIGHT     30
+#define CHAT_VIEW_HEADER_HEIGHT     42
 #define CHAT_VIEW_FOOTER_HEIGHT     30
 
 #define CHAT_TEXT_CELL_HEIGHT       50

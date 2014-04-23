@@ -11,6 +11,7 @@
 #import "PomocChatView_Private.h"
 #import "PMSupport.h"
 #import "PMConversation.h"
+#import "PomocResources.h"
 
 @implementation PomocChatView (Login)
 
@@ -19,19 +20,35 @@
     self.loginView = [[UIView alloc] initWithFrame:CGRectMake(0, CHAT_VIEW_HEADER_HEIGHT, self.bounds.size.width, self.bounds.size.height-CHAT_VIEW_HEADER_HEIGHT)];
     [self.loginView setBackgroundColor:[UIColor whiteColor]];
     
-    UILabel *loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.bounds.size.width, 40)];
-    [loginLabel setText:@"Hi"];
-    [loginLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.loginView addSubview:loginLabel];
+    UIImage *chatImage = [PomocResources imageNamed:@"logo-blue" type:@"png"];
+    UIImageView *chatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, 128, 128)];
+    [chatImageView setImage:chatImage];
+    chatImageView.center = CGPointMake(self.bounds.size.width/2.0, chatImageView.center.x);
     
-    self.loginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 60, self.bounds.size.width, 40)];
-    [self.loginTextField setPlaceholder:@"What is your name?"];
+    [self.loginView addSubview:chatImageView];
+    
+    
+    UIImage *welcomeImage = [PomocResources imageNamed:@"welcome-word" type:@"png"];
+    UIImageView *welcomeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 170, 100)];
+    [welcomeImageView setContentMode:UIViewContentModeScaleAspectFit];
+    [welcomeImageView setImage:welcomeImage];
+    welcomeImageView.center = CGPointMake(self.bounds.size.width/2.0, welcomeImageView.center.y);
+    [self.loginView addSubview:welcomeImageView];
+    
+    
+    self.loginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 190, self.bounds.size.width, 40)];
+    [self.loginTextField setPlaceholder:@"Enter your name here."];
     [self.loginTextField setTextAlignment:NSTextAlignmentCenter];
     [self.loginView addSubview:self.loginTextField];
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [loginButton setTitle:@"Go" forState:UIControlStateNormal];
-    [loginButton setFrame:CGRectMake(0, 100, 60, 60)];
+    [loginButton setTitle:@"Help me!" forState:UIControlStateNormal];
+    
+    [[loginButton titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:22]];
+    [loginButton setTitleColor:[UIColor colorWithRed:24/255.0 green:181/255.0 blue:240/255.0 alpha:1.0] forState:UIControlStateNormal];
+    
+    [[loginButton titleLabel] setTextColor:[UIColor blackColor]];
+    [loginButton setFrame:CGRectMake(0, 210, 200, 60)];
     [loginButton setCenter:CGPointMake(self.bounds.size.width/2, loginButton.center.y)];
     [loginButton addTarget:self action:@selector(loginPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginView addSubview:loginButton];

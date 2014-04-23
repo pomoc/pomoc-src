@@ -70,14 +70,17 @@
 
 - (void)setupHeaderView
 {
-    self.headerView = [[UIView alloc] init];
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
     self.headerView.backgroundColor = [UIColor colorWithRed:24/255.0 green:181/255.0 blue:240/255.0 alpha:1.0];
     
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, CHAT_VIEW_HEADER_HEIGHT)];
-    [headerLabel setText:@"Pomoc Chat"];
-    [headerLabel setTextAlignment:NSTextAlignmentCenter];
-    [headerLabel setTextColor:[UIColor whiteColor]];
-    [self.headerView addSubview:headerLabel];
+    UIImage *pomocHeader = [PomocResources imageNamed:@"logo-word" type:@"png"];
+    UIImageView *pomocImageView = [[UIImageView alloc] initWithImage:pomocHeader];
+    
+    [pomocImageView setContentMode:UIViewContentModeScaleAspectFit];
+    pomocImageView.frame = CGRectMake(0, 4, self.frame.size.width, 32);
+    
+    
+    [self.headerView addSubview:pomocImageView];
     
     [self addSubview:self.headerView];
 }
