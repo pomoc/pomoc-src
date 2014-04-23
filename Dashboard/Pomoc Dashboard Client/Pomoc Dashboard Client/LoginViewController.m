@@ -50,6 +50,12 @@
     
 }
 
+- (IBAction)loginReturnPressed:(id)sender {
+
+    [self loginPressed:self];
+}
+
+
 - (IBAction)loginPressed:(id)sender {
     
     DashBoardSingleton *singleton = [DashBoardSingleton  singleton];
@@ -81,7 +87,7 @@
                                  } else {
                                      _loginError.text = @"Sorry wrong login credential";
                                      NSLog(@"result failed");
-                                     spinner.hidden = YES;
+                                     [self stopActivityProgress];
                                  }
                                  
                              }];
@@ -89,6 +95,13 @@
     } else {
         _loginError.text = @"Sorry, but you have no internet connection currently";
     }
+}
+
+- (void)stopActivityProgress {
+    spinner.hidden = YES;
+    [spinner stopAnimating];
+    
+    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
 }
 
 - (void)showActivityProgress {
@@ -166,6 +179,5 @@
 {
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
-
 
 @end

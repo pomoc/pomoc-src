@@ -13,5 +13,6 @@
 - (IBAction)loginPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *loginError;
+- (IBAction)loginReturnPressed:(id)sender;
 
 @end
