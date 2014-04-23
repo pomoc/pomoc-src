@@ -178,6 +178,7 @@ module.exports = function(app, db, crypto) {
                 "type", "agent"
                 );
             db.client.sadd(appToken + ":users", username);
+            console.log('RESET username: ' + username);
         });
         res.send("YOLO RESET!");
     });
