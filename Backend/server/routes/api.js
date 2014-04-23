@@ -100,6 +100,8 @@ module.exports = function(app, db, crypto) {
             // Add super user to list of app users
             db.client.sadd(appToken + ':users', req.body.userId);
 
+            db.client.sadd(appKey, userKey); 
+
             // Return appToken and appSecret
             res.statusCode = 200;
             response = {success:true, appToken:appToken, appSecret:appSecret};
