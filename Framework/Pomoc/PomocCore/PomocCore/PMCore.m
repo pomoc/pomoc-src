@@ -75,7 +75,7 @@
 {
     PMCore *core = [PMCore sharedInstance];
     PMMessage *initMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeNewConversation];
-    
+
     [core sendMessage:initMessage withAcknowledge:^(NSDictionary *jsonResponse) {
         if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
             NSString *conversationId = jsonResponse[@"conversationId"];
@@ -308,6 +308,7 @@
 {
     NSDictionary *jsonData = [self jsonDataForMessage:message];
     if ([message isKindOfClass:[PMInternalMessage class]]) {
+        NSLog(@"internal data %@", jsonData);
         [self.socket sendEvent:@"internalMessage" withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMChatMessage class]]) {
         [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
@@ -319,17 +320,8 @@
 - (NSDictionary *)jsonDataForMessage:(PMMessage *)message
 {
     NSMutableDictionary *jsonDict = [[message jsonObject] mutableCopy];
-    if ([jsonDict objectForKey:MESSAGE_USER_ID]) {
-        jsonDict[MESSAGE_USER_ID] = self.userId;
-    } else {
-        jsonDict[MESSAGE_USER_ID] = @"";
-    }
-    
-    if ([jsonDict objectForKey:MESSAGE_APP_ID]) {
-        jsonDict[MESSAGE_APP_ID] = self.appId;
-    } else {
-        jsonDict[MESSAGE_APP_ID] = @"";
-    }
+    jsonDict[MESSAGE_USER_ID] = self.userId;
+    jsonDict[MESSAGE_APP_ID] = self.appId;
     
     return [NSDictionary dictionaryWithDictionary:jsonDict];
 }
