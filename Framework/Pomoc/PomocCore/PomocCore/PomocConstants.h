@@ -16,8 +16,8 @@
 #define POMOC_PORT  80
 
 #else
-#define POMOC_URL   @"54.251.139.223"
-#define POMOC_PORT  80
+#define POMOC_URL   @"pomoc.im"
+#define POMOC_PORT  3217
 #endif
 
 #endif
