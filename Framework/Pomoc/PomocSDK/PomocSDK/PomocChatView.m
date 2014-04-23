@@ -352,12 +352,16 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@" 'at' hh:mm a"];
     NSString *timeString = [dateFormatter stringFromDate:chatMessage.timestamp];
-    
+   
+    NSString *userName = chatMessage.user.name;
+    if ([chatMessage.user.type isEqualToString:@"agent"]) {
+        userName = [NSString stringWithFormat:@"%@ (agent)", userName];
+    }
     
     NSMutableAttributedString *userDetails = [[NSMutableAttributedString alloc] init];
     NSDictionary *usernameAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
                                          NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
-    NSAttributedString *username = [[NSAttributedString alloc] initWithString:chatMessage.user.name attributes:usernameAttributes];
+    NSAttributedString *username = [[NSAttributedString alloc] initWithString:userName attributes:usernameAttributes];
     
     NSDictionary *timestampAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor],
                                           NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:12]};
