@@ -319,13 +319,17 @@
 - (NSDictionary *)jsonDataForMessage:(PMMessage *)message
 {
     NSMutableDictionary *jsonDict = [[message jsonObject] mutableCopy];
-    if ([jsonDict objectForKey:@"userId"]) {
+    if ([jsonDict objectForKey:MESSAGE_USER_ID]) {
         jsonDict[MESSAGE_USER_ID] = self.userId;
     } else {
         jsonDict[MESSAGE_USER_ID] = @"";
     }
-    jsonDict[MESSAGE_APP_ID] = self.appId;
     
+    if ([jsonDict objectForKey:MESSAGE_APP_ID]) {
+        jsonDict[MESSAGE_APP_ID] = self.appId;
+    } else {
+        jsonDict[MESSAGE_APP_ID] = @"";
+    }
     
     return [NSDictionary dictionaryWithDictionary:jsonDict];
 }
