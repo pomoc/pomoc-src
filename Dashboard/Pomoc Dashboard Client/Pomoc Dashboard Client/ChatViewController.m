@@ -366,8 +366,26 @@
         NSString *visitorName = [visitorNameLabel text];
         [self.navigationItem setTitle:visitorName];
         
+        PMConversation *pmConversation;
         //setting the chat for chat table view
-        PMConversation *pmConversation = [chatList objectAtIndex:currentlySelectedChatRow];
+        switch (indexPath.section) {
+            case UNHANDLED_CHAT:
+                pmConversation = [unhandledChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+            case HANDLING_CHAT:
+                pmConversation = [handlingChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+            case OTHER_CHAT:
+                pmConversation = [otherChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+        }
+        
+        for (PMConversation *convo in chatList) {
+            NSLog(@"convo.conversation id == %@",convo.conversationId);
+        }
+        
+        NSLog(@"pm conversation selected == %@",pmConversation.conversationId);
+        
         chatMessageList = [NSMutableArray arrayWithArray:pmConversation.messages];
         currentSelectedConvoId = pmConversation.conversationId;
         currentlySelectedConvo = pmConversation;

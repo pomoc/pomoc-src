@@ -98,6 +98,7 @@
     if ([tableView tag] == GROUP_CHAT_TABLEVIEW) {
         return [currentChat.messages count];
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
+        NSLog(@"total agent list = %lu",[agentList count]);
         return [agentList count];
     }
     return 0;
@@ -171,6 +172,8 @@
     }
     
     PMUser *agent = [agentList objectAtIndex:row];
+    
+    
     cell.textLabel.text = agent.name;
     cell.textLabel.font = [UIFont fontWithName:@"Marker Felt" size:17];
     
