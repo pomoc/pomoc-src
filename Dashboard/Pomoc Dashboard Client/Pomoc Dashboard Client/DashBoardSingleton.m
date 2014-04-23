@@ -47,8 +47,7 @@
         // Tell the reachability that we DON'T want to be reachable on 3G/EDGE/CDMA
         reach.reachableOnWWAN = NO;
         
-        // Here we set up a NSNotification observer. The Reachability that caused the notification
-        // is passed in the object parameter
+        // Here we set up a NSNotification observer. The Reachability that caused the notification is passed in the object parameter
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(reachabilityChanged:)
                                                      name:kReachabilityChangedNotification
@@ -96,6 +95,8 @@
     
     [PMSupport loginAgentWithUserId:userId password:password completion:^(NSString *returnedUserId) {
         
+        [self removeAllExistingData];
+        
         storedUserId = userId;
         storedPassword = password;
         
@@ -130,6 +131,10 @@
                 
                 _agentConversation = [PMSupport agentConversation];
                 _agentConversation.delegate = self;
+//                
+//                for (PMMessage *messge in _agentConversation.messages) {
+//                    NSLog(@"message.timestamp %@ ",messge.timestamp);
+//                }
                 
                 if ([self isHomeDelegateAlive]) {
                     [_homeDelegate totalConversationChanged:[conversations count]];
@@ -325,12 +330,7 @@
 
 - (void)hasDisconnected
 {
-//    NSLog(@"disconnected!!");
-//    
-//    [self loginAgentWithUserId:storedUserId password:storedPassword completion:^(BOOL success){
-//        
-//    }];
-    
+
 }
 
 - (void)conversation:(PMConversation *)conversation didReceiveNote:(PMNote *)notes
@@ -431,8 +431,6 @@
 // Delegate method for referral of handlers
 - (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
 {
-    NSLog(@"refere user id == %@ and referrer user id == %@",referee.userId, referrer.userId);
-    
     if ([referee.userId isEqualToString: _selfUserId]) {
         
         if ([self isChatDelegateAlive]) {
@@ -446,6 +444,14 @@
 - (BOOL) isEqualToAgent: (PMConversation *)convo
 {
     return [[PMSupport agentConversation].conversationId isEqualToString: convo.conversationId];
+}
+
+- (void) removeAllExistingData
+{
+    NSLog(@"called this");
+    [_currentAgentList removeAllObjects];
+    [_currentConversationList removeAllObjects];
+    [_currentUserList removeAllObjects];
 }
 
 // check

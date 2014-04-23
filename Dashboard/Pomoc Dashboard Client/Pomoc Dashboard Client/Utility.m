@@ -13,9 +13,10 @@
 + (NSString *)formatDateForTable :(NSDate *)dateToFormat
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd 'at' HH:MM"];
+    [dateFormatter setDateFormat:@"MM-dd 'at' HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:dateToFormat];
     return dateString;
+    
 }
 
 + (UIAlertView *)disconnectAlert
