@@ -166,7 +166,7 @@ module.exports = function(app, db, crypto) {
         db.client.FLUSHALL();
         usernames.map(function(username) {
             var hash =  crypto.createHash('sha1');
-            hash.write(username);
+            hash.write(username + salt);
             var password = hash.digest('hex');
             db.client.hmset(username + ":account",
                 "name", username,
