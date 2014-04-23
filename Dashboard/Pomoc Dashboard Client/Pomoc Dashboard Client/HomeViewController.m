@@ -76,14 +76,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 {
     NSMutableDictionary *buffer = [[NSMutableDictionary alloc] init];
     float last = 0.0;
-    int bracket = 60 * 60;
+    int bracket = 10;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
     srand(3217+type);
     for (int i=0; i<num; i++) {
         last = last + (rand() % (bracket * 2 + 1) - (bracket - 1));
         last = MAX(last, 0.0);
-        [buffer setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i]];
+        [buffer setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i*60*60]];
     }
     return buffer;
 }
