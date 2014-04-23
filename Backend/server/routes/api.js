@@ -97,9 +97,6 @@ module.exports = function(app, db, crypto) {
                 "type", "agent"
                 );
 
-            // Create app user list
-            db.client.sadd(appKey, userKey); 
-
             // Add super user to list of app users
             db.client.sadd(appToken + ':users', req.body.userId);
 
@@ -158,6 +155,31 @@ module.exports = function(app, db, crypto) {
                 res.send(result);
             });
         });
+    });
+
+    
+    app.get('/reset', function(req, res) {
+        var usernames = ['steve', 'chunmun', 'soedar', 'banghui', 'yangshun'];
+        var appToken = "1D129EF1042";
+        var appSecret = "F1293AD9E";
+        db.client.FLUSHALL();
+        usernames.map(function(username) {
+            var salt = Date.now();
+            var hash =  crypto.createHash('sha1');
+            hash.write(username);
+            var password = hash.digest('hex');
+            db.client.hmset(username + ":account",
+                "name", username,
+                "userId", username,
+                "password", password,
+                "salt", salt,
+                "appToken", appToken,
+                "appSecret", appSecret,
+                "type", "agent"
+                );
+            db.client.sadd(appToken + ":users", username);
+        });
+        res.send("YOLO RESET!");
     });
 
 
