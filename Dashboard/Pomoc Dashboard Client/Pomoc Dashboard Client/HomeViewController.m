@@ -76,7 +76,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 {
     NSMutableDictionary *buffer = [[NSMutableDictionary alloc] init];
     float last = 0.0;
-    int bracket = 10;
+    int bracket = 60 * 60;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
     srand(3217+type);
