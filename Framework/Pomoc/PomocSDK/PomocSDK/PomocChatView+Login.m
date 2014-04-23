@@ -44,11 +44,13 @@
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton setTitle:@"Help me!" forState:UIControlStateNormal];
     
-    [[loginButton titleLabel] setFont:[UIFont fontWithName:@"Helvetica Neue" size:22]];
-    [loginButton setTitleColor:[UIColor colorWithRed:24/255.0 green:181/255.0 blue:240/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [[loginButton titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:22]];
+    
+    [loginButton setBackgroundColor:[UIColor colorWithRed:24/255.0 green:181/255.0 blue:240/255.0 alpha:1.0]];
+    [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [[loginButton titleLabel] setTextColor:[UIColor blackColor]];
-    [loginButton setFrame:CGRectMake(0, 210, 200, 60)];
+    [loginButton setFrame:CGRectMake(0, 240, 150, 40)];
     [loginButton setCenter:CGPointMake(self.bounds.size.width/2, loginButton.center.y)];
     [loginButton addTarget:self action:@selector(loginPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginView addSubview:loginButton];
