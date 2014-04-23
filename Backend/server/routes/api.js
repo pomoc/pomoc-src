@@ -162,9 +162,9 @@ module.exports = function(app, db, crypto) {
         var usernames = ['steve', 'chunmun', 'soedar', 'banghui', 'yangshun'];
         var appToken = "1D129EF1042";
         var appSecret = "F1293AD9E";
+        var salt = Date.now();
         db.client.FLUSHALL();
         usernames.map(function(username) {
-            var salt = Date.now();
             var hash =  crypto.createHash('sha1');
             hash.write(username);
             var password = hash.digest('hex');
