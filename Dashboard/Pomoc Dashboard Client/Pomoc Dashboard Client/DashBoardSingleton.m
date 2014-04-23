@@ -342,8 +342,12 @@
 {
     conversation.read = FALSE;
     
-    SoundEngine *engine = [SoundEngine singleton];
-    [engine playNewMessage];
+    if (![chatMessage.user.userId isEqualToString:_selfUserId]) {
+        
+        SoundEngine *engine = [SoundEngine singleton];
+        [engine playNewMessage];
+    }
+    
     
     if ([self isEqualToAgent:conversation]) {
         _agentConversation = conversation;
@@ -382,9 +386,11 @@
 {
     conversation.read = FALSE;
     
-    SoundEngine *engine = [SoundEngine singleton];
-    [engine playNewMessage];
-    
+    if (![imageMessage.user.userId isEqualToString:_selfUserId]) {
+        SoundEngine *engine = [SoundEngine singleton];
+        [engine playNewMessage];
+    }
+        
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
