@@ -301,11 +301,16 @@
 //                return [otherChatList count];
 //                break;
 //        }
+        NSLog(@"came inside here with chat list count = %lu",[chatList count]);
         
         if ([chatList count] == 0) {
             return 0;
         } else {
-            return [currentlySelectedConvo.messages count];
+            if (currentlySelectedConvo ==nil) {
+                return 0;
+            } else {
+                return [currentlySelectedConvo.messages count];
+            }
         }
         return 0;
     }
@@ -314,13 +319,19 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     NSInteger row = indexPath.row;
     if (tableView.tag == CHAT_LIST_TABLEVIEW) {
+        
         return [self createChatNavTableView:tableView atRow:row type:indexPath.section];
+    
     } else if(tableView.tag == CHAT_MESSAGE_TABLEVIEW) {
         
-        PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
-        currentlySelectedConvo = convo;
+        //PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
+        
+        PMConversation *convo = currentlySelectedConvo;
+        
+        NSLog(@"indexPath.row == %lu",indexPath.row);
         
         id obj = [convo.messages objectAtIndex:indexPath.row];
         
@@ -370,8 +381,6 @@
                 pmConversation = [otherChatList objectAtIndex:currentlySelectedChatRow];
                 break;
         }
-        
-        NSLog(@"pm conversation selected == %@",pmConversation.conversationId);
         
         chatMessageList = [NSMutableArray arrayWithArray:pmConversation.messages];
         currentSelectedConvoId = pmConversation.conversationId;
@@ -436,25 +445,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if ([tableView tag] == CHAT_LIST_TABLEVIEW ) {
         return 65;
+        
     } else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-        PMConversation *pmConvo;
-        switch (indexPath.section) {
-            case UNHANDLED_CHAT:
-                pmConvo = [unhandledChatList objectAtIndex:currentlySelectedChatRow];
-                break;
-            case HANDLING_CHAT:
-                pmConvo = [handlingChatList objectAtIndex:currentlySelectedChatRow];
-                break;
-            case OTHER_CHAT:
-                pmConvo = [otherChatList objectAtIndex:currentlySelectedChatRow];
-                break;
-        }
+        //NSLog(@"at height for row, index path row = %lu",indexPath.row);
         
-        NSLog(@" index path row ==%lu, %i",(long)indexPath.row, indexPath.section);
-        id obj = [pmConvo.messages objectAtIndex:indexPath.row];
+        PMConversation *pmConvo;
+        pmConvo = currentlySelectedConvo;
+        
+        NSLog(@" index path row ==%lu, %li",(long)indexPath.row, (long)indexPath.section);
+        id obj = [currentlySelectedConvo.messages objectAtIndex:indexPath.row];
         
         if ([obj isKindOfClass:[PMImageMessage class]]) {
             return 170;
@@ -536,7 +539,7 @@
 #pragma mark - CHAT MESSAGE
 - (UITableViewCell *)createChatImageTableView:(UITableView *)tableView
                                         atRow:(NSInteger)row {
-    PMConversation *pmCovo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMConversation *pmCovo = currentlySelectedConvo;
     PMImageMessage *message = [pmCovo.messages objectAtIndex:row];
     
     return [self getChatImageCell:message tableView:tableView ];
@@ -610,7 +613,7 @@
 
 - (UITableViewCell *) createStatusTableView:(UITableView *)tableView
                                       atRow:(NSInteger)row {
-    PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMConversation *pmConvo = currentlySelectedConvo; //[chatList objectAtIndex:currentlySelectedChatRow];
     PMStatusMessage *message = [pmConvo.messages objectAtIndex:row];
     
     return [self getStatusMessageCell:message tableView:tableView];
@@ -652,7 +655,7 @@
 
 - (UITableViewCell *)createChatMessageTableView:(UITableView *)tableView
                                           atRow:(NSInteger)row {
-    PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+    PMConversation *pmConvo = currentlySelectedConvo;
     PMChatMessage *message = [pmConvo.messages objectAtIndex:row];
     
     return [self getChatMessageCell:message tableView:tableView];

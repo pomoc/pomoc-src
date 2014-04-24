@@ -69,8 +69,8 @@
         
         if ([username.text length] == 0) {
             // TODO: Fix this hardcoding please.
-            usernameKeyed = @"cm3";
-            passwordKeyed = @"cm3";
+            usernameKeyed = @"66";
+            passwordKeyed = @"66";
         }
         
         [username resignFirstResponder];
