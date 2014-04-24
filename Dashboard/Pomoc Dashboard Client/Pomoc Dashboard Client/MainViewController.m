@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"inside main view controller view did load");
     [super viewDidLoad];
     
 }
@@ -29,8 +28,6 @@
 }
 
 - (void) setUpPanels {
-    
-    NSLog(@"setting up panel");
     
     self.bounceOnCenterPanelChange = false;
     

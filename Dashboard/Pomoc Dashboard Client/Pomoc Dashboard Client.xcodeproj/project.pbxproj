@@ -447,24 +447,13 @@
 				AAD17CF01902A41B003D9241 /* Sounds */,
 				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
-				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
-				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
 				AAD17CED1902A245003D9241 /* SoundEngine.h */,
 				AAD17CEE1902A245003D9241 /* SoundEngine.m */,
-				AAD17CEA19027DB0003D9241 /* SettingsViewController.h */,
-				AAD17CEB19027DB0003D9241 /* SettingsViewController.m */,
-				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
-				AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */,
-				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
-				AA5204F418D80BFA00D78156 /* SideNavigationController.m */,
-				AA5204F018D80B3F00D78156 /* MainViewController.h */,
-				AA5204F118D80B3F00D78156 /* MainViewController.m */,
-				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
-				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
-				C3D2E02219024B69003BE763 /* ChartViewController.h */,
-				C3D2E02319024B69003BE763 /* ChartViewController.m */,
-				AAD17CE71902381D003D9241 /* GroupChatViewController.h */,
-				AAD17CE81902381D003D9241 /* GroupChatViewController.m */,
+				AA7901DC1909728D00D23348 /* MainMVC */,
+				AA7901DD1909729600D23348 /* LoginMVC */,
+				AA7901DB190971FB00D23348 /* SettingsMVC */,
+				AA7901D9190971DD00D23348 /* HomeMVC */,
+				AA7901DA190971EF00D23348 /* GroupMVC */,
 				C3150BC81902346C0018521F /* ChartMVC */,
 				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
@@ -479,6 +468,8 @@
 		AA5204B418D7EF2C00D78156 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
+				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
 				AA9DC8AB18E1A07E00B4FDF7 /* Constants.h */,
 				AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */,
 				AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */,
@@ -530,6 +521,55 @@
 				AA6958FC1900E4C800E28EBE /* 152x152.png */,
 			);
 			name = logo;
+			sourceTree = "<group>";
+		};
+		AA7901D9190971DD00D23348 /* HomeMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204FC18D8109A00D78156 /* HomeViewController.h */,
+				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
+				C3D2E02219024B69003BE763 /* ChartViewController.h */,
+				C3D2E02319024B69003BE763 /* ChartViewController.m */,
+			);
+			name = HomeMVC;
+			sourceTree = "<group>";
+		};
+		AA7901DA190971EF00D23348 /* GroupMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AAD17CE71902381D003D9241 /* GroupChatViewController.h */,
+				AAD17CE81902381D003D9241 /* GroupChatViewController.m */,
+			);
+			name = GroupMVC;
+			sourceTree = "<group>";
+		};
+		AA7901DB190971FB00D23348 /* SettingsMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AAD17CEA19027DB0003D9241 /* SettingsViewController.h */,
+				AAD17CEB19027DB0003D9241 /* SettingsViewController.m */,
+			);
+			name = SettingsMVC;
+			sourceTree = "<group>";
+		};
+		AA7901DC1909728D00D23348 /* MainMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA5204F318D80BFA00D78156 /* SideNavigationController.h */,
+				AA5204F418D80BFA00D78156 /* SideNavigationController.m */,
+				AA5204F018D80B3F00D78156 /* MainViewController.h */,
+				AA5204F118D80B3F00D78156 /* MainViewController.m */,
+			);
+			name = MainMVC;
+			sourceTree = "<group>";
+		};
+		AA7901DD1909729600D23348 /* LoginMVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA9DC88118DF2F2C00B4FDF7 /* LoginViewController.h */,
+				AA9DC88218DF2F2C00B4FDF7 /* LoginViewController.m */,
+			);
+			name = LoginMVC;
 			sourceTree = "<group>";
 		};
 		AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */ = {
