@@ -51,7 +51,6 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    // TODO: This code is possibly quite inefficient
     NSMutableArray *views = [NSMutableArray arrayWithObject:self.chatHead];
     if (self.chatView) {
         [views addObject:self.chatView];

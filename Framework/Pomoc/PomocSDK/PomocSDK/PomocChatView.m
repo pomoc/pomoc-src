@@ -287,7 +287,6 @@
         [textLabel setAttributedText:userDetail];
         [cell.contentView addSubview:textLabel];
         
-        // TODO: Image View Cell should include the user name and timestamp
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 30, dimension, dimension)];
         [imageView setBackgroundColor:[UIColor grayColor]];
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
