@@ -183,24 +183,16 @@
     
 }
 
-#pragma mark - Action button
-
-- (IBAction)viewAction:(id)sender {
-    // TODO: Remove empty method
-}
-
 #pragma mark - annotation related
 
 - (IBAction)annotateActionPressed:(id)sender {
     
     NSArray *subviews = [sender superview].subviews;
     UIImageView *imv;
-    NSLog(@"sub views count == %lu", (unsigned long)[subviews count]);
-    // TODO: Can change to for (UIView *view in subviews)
-    for (int i = 0; i < [subviews count]; i++) {
-        if ([subviews[i] isKindOfClass:[UIImageView class]] &&
-            ((UIImageView *)subviews[i]).image) {
-            imv = subviews[i];
+    for (UIImageView *view in subviews) {
+        if ([view isKindOfClass:[UIImageView class]] &&
+            ((UIImageView *)view).image) {
+            imv = view;
             break;
         }
     }
@@ -213,23 +205,16 @@
     }
 }
 
-- (IBAction)tapPictureAction:(id)sender {
-    // TODO: Remove empty method
-}
-
 - (void)userCompleteAnnotation:(UIImage *)image {
-    NSLog(@"called user complete annotation !");
     [currentlySelectedConvo sendImageMessage:image];
 }
 
 #pragma mark - Upload View Controller Delegate
 - (void)pictureSelected:(UIImage *)image {
-    NSLog(@"sending image");
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [currentlySelectedConvo sendImageMessage:image];
     });
     [uploadSegue dismissPopoverAnimated:YES];
-    NSLog(@"image sent block done");
 }
 
 #pragma mark - Navigation Table view data source
@@ -418,8 +403,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    // TODO: This part seems repetitive, but I can't think of a good and easy way to shorten it
-    //       Any ideas @soedar?
     switch (section) {
         case UNHANDLED_CHAT:
             if (unhandledChatList.count == 0) {

@@ -67,29 +67,30 @@
         NSString *usernameKeyed = username.text;
         NSString *passwordKeyed = password.text;
         
-        if ([username.text length] == 0) {
-            // TODO: Fix this hardcoding please.
-            usernameKeyed = @"66";
-            passwordKeyed = @"66";
+        if ([username.text length] == 0 || [password.text length] ==0) {
+            _loginError.text = @"Sorry, please ensure both fields are filled in";
+            [self stopActivityProgress];
+        } else {
+            [singleton loginAgentWithUserId:usernameKeyed
+                                   password:passwordKeyed
+                                 completion:^(BOOL success) {
+                                     
+                                     if (success) {
+                                         [self performSegueWithIdentifier:@"login" sender:self];
+                                         NSLog(@"result success");
+                                     } else {
+                                         _loginError.text = @"Sorry wrong login credential";
+                                         NSLog(@"result failed");
+                                         [self stopActivityProgress];
+                                     }
+                                     
+                                 }];
         }
         
         [username resignFirstResponder];
         [password resignFirstResponder];
         
-        [singleton loginAgentWithUserId:usernameKeyed
-                               password:passwordKeyed
-                             completion:^(BOOL success) {
-                                
-                                 if (success) {
-                                     [self performSegueWithIdentifier:@"login" sender:self];
-                                     NSLog(@"result success");
-                                 } else {
-                                     _loginError.text = @"Sorry wrong login credential";
-                                     NSLog(@"result failed");
-                                     [self stopActivityProgress];
-                                 }
-                                 
-                             }];
+        
         
     } else {
         _loginError.text = @"Sorry, but you have no internet connection currently";

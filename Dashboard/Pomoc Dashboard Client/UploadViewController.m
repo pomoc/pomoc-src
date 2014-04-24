@@ -73,8 +73,6 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     
-    NSLog(@"button pressed == %@",[actionSheet buttonTitleAtIndex:buttonIndex]);
-    
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Camera"]) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         CGAffineTransform transform = CGAffineTransformIdentity;
@@ -83,10 +81,6 @@
     
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
-        // TODO: What is this elif block for? It's the same as the one above.
-        return;
     }
     
     picker.modalPresentationStyle = UIModalPresentationCurrentContext;

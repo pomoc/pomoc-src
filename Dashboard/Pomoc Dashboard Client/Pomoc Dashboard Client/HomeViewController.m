@@ -37,7 +37,6 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     singleton = [DashBoardSingleton singleton];
     [singleton setHomeDelegate:self];
     
-    //TODO ask dashboard singleton for number of convo current, users online etc
     _agentOnlineLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]];
     _userOnlineLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]];
     _totalConversationLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]];

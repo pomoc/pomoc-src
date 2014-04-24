@@ -115,8 +115,4 @@
     tappedButton.alpha = 1;
 }
 
-- (void)undo {
-    // TODO: Remove if empty
-}
-
 @end

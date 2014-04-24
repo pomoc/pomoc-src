@@ -64,10 +64,6 @@
     _tableView.backgroundView = nil;
 }
 
-- (IBAction)chat:(id)sender {
-    // TODO: Is this method unused?
-    self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
-}
 
 #pragma mark - Table view data source
 
@@ -93,13 +89,18 @@
         // TODO: Use enum and/or switch statement
         cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
         
-        if (indexPath.row == HOME) {
-            cellImage = [UIImage imageNamed:@"home-white-512.png"];
-        } else if (indexPath.row == CHAT) {
-            cellImage = [UIImage imageNamed:@"speech_bubble-white-512.png"];
-        } else if (indexPath.row == GROUP_CHAT) {
-            cellImage = [UIImage imageNamed:@"group-white-512.png"];
+        switch (indexPath.row) {
+            case HOME:
+                cellImage = [UIImage imageNamed:@"home-white-512.png"];
+                break;
+            case CHAT:
+                cellImage = [UIImage imageNamed:@"speech_bubble-white-512.png"];
+                break;
+            case GROUP_CHAT:
+                cellImage = [UIImage imageNamed:@"group-white-512.png"];
+                break;
         }
+        
     } else {
         cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];
         

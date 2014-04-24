@@ -22,12 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
-// Main
-- (IBAction)viewAction:(id)sender;
-
 // Annotation
 - (IBAction)annotateActionPressed:(id)sender;
-- (IBAction)tapPictureAction:(id)sender;
 
 // View picture
 @property (weak, nonatomic) IBOutlet UIButton *viewPicture;
