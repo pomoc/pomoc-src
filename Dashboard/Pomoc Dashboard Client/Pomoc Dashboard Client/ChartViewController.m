@@ -56,9 +56,9 @@
     }];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
-    self.title = @"Charts";
+    self.title = CHART_NAV_TITLE;
     
-    [self.numArea registerClass:[Chartlet class] forCellWithReuseIdentifier:@"chartlet"];
+    [self.numArea registerClass:[Chartlet class] forCellWithReuseIdentifier:CHART_REUSE_CELL];
 }
 
 // Update the god-damn frames here so that the right size is used
@@ -72,7 +72,6 @@
 }
 
 - (void)deallocDelegate {
-    NSLog(@"inside dealloc delegate of chart vc");
     singleton.homeDelegate = nil;
 }
 
@@ -89,10 +88,10 @@
                      forKey:[NSNumber numberWithInt:startTime + i]];
     }
 
-    chartArray = [[NSMutableArray alloc] initWithArray:@[@"Agents"]];
+    chartArray = [[NSMutableArray alloc] initWithArray:@[CHART_ARRAY]];
     chartlets = [[NSMutableDictionary alloc] init];
-    [chartlets setObject:@"10"
-                  forKey:@"Agents"];
+    [chartlets setObject:NO_OF_CELL
+                  forKey:CHART_ARRAY];
 }
 
 # pragma mark - Chart initializations
@@ -123,22 +122,6 @@
     [spinner startAnimating];
 }
 
-# pragma mark - Pomoc delegate
-
-- (void)agentTotalNumberChange:(NSUInteger)agentNumber
-{
-}
-
-- (void)userTotalNumberChange:(NSUInteger)userNumber
-{
-}
-
-- (void)totalConversationChanged:(NSUInteger)totalConversation
-{
-}
-
-# pragma mark - Chartlets
-
 # pragma mark - UICollectionView datasource methods
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
@@ -154,25 +137,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Chartlet *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"chartlet"
+    Chartlet *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CHART_REUSE_CELL
                                                                forIndexPath:indexPath];
     
     NSString *key = chartArray[indexPath.row];
     [cell setTitleText:key];
     [cell setNumberText:[chartlets objectForKey:key]];
     return cell;
-}
-
-# pragma mark - UICollectionView delegate methods
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO: Select Item
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO: Deselect item
 }
 
 # pragma mark - LineChartView delegate methods
@@ -192,16 +163,5 @@
     Chartlet *cell = (Chartlet *)[self.numArea cellForItemAtIndexPath:indexPath];
     [cell setNumberText:@"0"];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

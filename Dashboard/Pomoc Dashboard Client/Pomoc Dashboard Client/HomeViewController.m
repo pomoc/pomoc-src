@@ -44,28 +44,21 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     //show spinner
     [self showLoading];
     [singleton numberOfUnattendedConversation:^(NSUInteger total) {
-        NSLog(@"singleton replied total == %lu",(unsigned long)total);
         [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)total]];
         [spinner stopAnimating];
     }];
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
-    self.title = @"Home";
-    
-    CGRect chartFrame = CGRectMake(0, 0, 450, 350);
+    self.title = HOME_NAV_TITLE;
+
+    CGRect chartFrame = CGRectMake(0, 0, CHART_WIDTH, CHART_HEIGHT);
     _lineChartView = [[LineChartView alloc] initWithFrame:chartFrame];
-    [_lineChartView addData:[self retrieveData:25 type:1]
-             withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
-    [_lineChartView addData:[self retrieveData:25 type:2]
+    [_lineChartView addData:[self retrieveData:DATA_POINTS type:1]
+             withProperties:@{@"line_color":LINE_COLOR, @"line_width":LINE_CHAT_WIDTH}];
+    [_lineChartView addData:[self retrieveData:DATA_POINTS type:2]
              withProperties:@{}];
     
     [_chartView addSubview:_lineChartView];
-    
-    //_lineChartView.userInteractionEnabled = YES;
-    UISwipeGestureRecognizer *swipeRecognizer =
-        [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                  action:@selector(swipeGesture:)];
-    [_chartView addGestureRecognizer:swipeRecognizer];
     
 }
 
@@ -100,15 +93,6 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [spinner startAnimating];
 }
 
-- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"detected a swipe");
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Pomoc delegate
 
 - (void)agentTotalNumberChange: (NSUInteger)agentNumber {
@@ -126,12 +110,10 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 }
 
 - (void)totalUnattendedConversationChanged:(NSUInteger)totalUnattended {
-    NSLog(@"delegate called");
     [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)totalUnattended]];
 }
 
 - (void)deallocDelegate {
-    NSLog(@"inside dealloc delegate of home vc");
     [singleton setHomeDelegate:nil];
 }
 

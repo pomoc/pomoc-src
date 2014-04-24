@@ -36,11 +36,11 @@
 {
     [super viewDidLoad];
     username.layer.borderColor = [[UIColor whiteColor] CGColor];
-    username.layer.borderWidth = 2.0f;
+    username.layer.borderWidth = TEXT_FIELD_BORDER_WIDTH;
     username.delegate = self;
     
     password.layer.borderColor = [[UIColor whiteColor] CGColor];
-    password.layer.borderWidth = 2.0f;
+    password.layer.borderWidth = TEXT_FIELD_BORDER_WIDTH;
     password.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -68,7 +68,7 @@
         NSString *passwordKeyed = password.text;
         
         if ([username.text length] == 0 || [password.text length] ==0) {
-            _loginError.text = @"Sorry, please ensure both fields are filled in";
+            _loginError.text = FIELDS_NOT_FILLED;
             [self stopActivityProgress];
         } else {
             [singleton loginAgentWithUserId:usernameKeyed
@@ -77,10 +77,8 @@
                                      
                                      if (success) {
                                          [self performSegueWithIdentifier:@"login" sender:self];
-                                         NSLog(@"result success");
                                      } else {
-                                         _loginError.text = @"Sorry wrong login credential";
-                                         NSLog(@"result failed");
+                                         _loginError.text = WRONG_LOGIN;
                                          [self stopActivityProgress];
                                      }
                                      
@@ -90,10 +88,8 @@
         [username resignFirstResponder];
         [password resignFirstResponder];
         
-        
-        
     } else {
-        _loginError.text = @"Sorry, but you have no internet connection currently";
+        _loginError.text = NO_INTERNET;
     }
 }
 
@@ -129,8 +125,8 @@
 }
 
 - (void)animateScreenUp:(BOOL)up {
-    const int movementDistance = 200.f; // tweak as needed
-    const float movementDuration = 0.2f; // tweak as needed
+    const int movementDistance = LOGIN_KEYBOARD_UP_OFF_SET;
+    const float movementDuration = LOGIN_KEYBOARD_UP_TIME;
     
     int final = up ? movementDistance : 384;
     [UIView animateWithDuration:movementDuration

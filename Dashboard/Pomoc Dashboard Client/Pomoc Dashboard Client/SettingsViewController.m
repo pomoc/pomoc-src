@@ -33,10 +33,10 @@
     engine = [SoundEngine singleton];
     
     _chatSoundSwitch.backgroundColor = [UIColor redColor];
-    _chatSoundSwitch.layer.cornerRadius = 16.0; // you must import QuartzCore to do this.
+    _chatSoundSwitch.layer.cornerRadius = SWITCH_CORNER_RADIUS;
     
     _messageSoundSwitch.backgroundColor = [UIColor redColor];
-    _messageSoundSwitch.layer.cornerRadius = 16.0; // you must import QuartzCore to do this.
+    _messageSoundSwitch.layer.cornerRadius = SWITCH_CORNER_RADIUS; 
     
     _chatSoundSwitch.on = [engine conversationSound];
     _messageSoundSwitch.on = [engine messageSound];

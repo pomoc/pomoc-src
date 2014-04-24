@@ -6,9 +6,30 @@
 //  Copyright (c) 2014 nus.cs3217. All rights reserved.
 //
 
+//LOGIN VIEW CONTROLLER
+#define TEXT_FIELD_BORDER_WIDTH 2.0f
+#define FIELDS_NOT_FILLED @"Sorry, please ensure that both fields are fillled in"
+#define WRONG_LOGIN @"Sorry, wrong login credentials"
+#define NO_INTERNET @"Sorry, but you have no internet connect currently"
+#define LOGIN_KEYBOARD_UP_OFF_SET 200.0f
+#define LOGIN_KEYBOARD_UP_TIME 0.2f
+
+//SETTING VIEW CONTROLLER
+#define SWITCH_CORNER_RADIUS 16.0
+
 //HOME VIEW CONTROLLER
-#define CHART_WIDTH 700
-#define CHART_HEIGHT 400
+#define HOME_NAV_TITLE @"Home"
+#define LINE_CHAT_WIDTH @"4.0"
+#define LINE_COLOR [UIColor greenColor]
+#define DATA_POINTS 25
+#define CHART_WIDTH 450
+#define CHART_HEIGHT 350
+
+//CHART VIEW CONTROLLER
+#define CHART_NAV_TITLE @"Charts"
+#define CHART_REUSE_CELL @"chartlets"
+#define CHART_ARRAY @"Agents"
+#define NO_OF_CELL @"10"
 
 //ANNOTATE VIEW CONTROLLER
 #define NUM_COLORS 20
