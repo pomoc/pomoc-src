@@ -8,7 +8,7 @@
 
 #import "PMUserManager.h"
 #import "PMUser.h"
-#import "PomocConstants.h"
+#import "PMCoreConstants.h"
 
 @interface PMUserManager ()
 
@@ -45,6 +45,9 @@
 
 + (PMUser *)getUserObjectFromUserId:(NSString *)userId
 {
+    // For some reason, making the sendSynchronousRequest calls too aggressively
+    // actually causes the threads to fail. As such, we take the easy way out and
+    // simply ensure that only one thread can make the synchronous call at any time
     @synchronized([PMUserManager sharedInstance]) {
         if ([PMUserManager sharedInstance].userCache[userId]) {
             return [PMUserManager sharedInstance].userCache[userId];
@@ -77,7 +80,9 @@
     NSMutableURLRequest *request = [PMUserManager getRequestObject:userId];
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *responseCode, NSData *responseData, NSError *error){
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *responseCode, NSData *responseData, NSError *error){
         PMUser *user = nil;
         if (!error) {
             NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
@@ -94,7 +99,7 @@
 + (NSArray *)getUserObjectsFromUserIds:(NSArray *)userIds
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    dispatch_queue_t joinQueue = dispatch_queue_create("joinQueue", NULL);
+    dispatch_queue_t joinQueue = dispatch_queue_create("userQueue", NULL);
     dispatch_group_t group = dispatch_group_create();
     
     NSMutableArray *users = [NSMutableArray array];

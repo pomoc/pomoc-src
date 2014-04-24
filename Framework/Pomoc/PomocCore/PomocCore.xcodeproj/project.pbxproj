@@ -24,6 +24,8 @@
 /* Begin PBXBuildFile section */
 		600EF15219039A42001F2E8F /* PMNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 600EF15019039A42001F2E8F /* PMNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		600EF15319039A42001F2E8F /* PMNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 600EF15119039A42001F2E8F /* PMNote.m */; };
+		6036EB2319096A2700209141 /* PMMessage+Constructors.h in Headers */ = {isa = PBXBuildFile; fileRef = 6036EB2119096A2700209141 /* PMMessage+Constructors.h */; };
+		6036EB2419096A2700209141 /* PMMessage+Constructors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6036EB2219096A2700209141 /* PMMessage+Constructors.m */; };
 		60592ACE18EE8715006D5DEC /* PMConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592ACC18EE8715006D5DEC /* PMConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60592ACD18EE8715006D5DEC /* PMConversation.m */; };
 		60592AD718EE8962006D5DEC /* PMConversation+PMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */; };
@@ -275,6 +277,9 @@
 /* Begin PBXFileReference section */
 		600EF15019039A42001F2E8F /* PMNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMNote.h; sourceTree = "<group>"; };
 		600EF15119039A42001F2E8F /* PMNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMNote.m; sourceTree = "<group>"; };
+		6036EB2119096A2700209141 /* PMMessage+Constructors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMMessage+Constructors.h"; sourceTree = "<group>"; };
+		6036EB2219096A2700209141 /* PMMessage+Constructors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PMMessage+Constructors.m"; sourceTree = "<group>"; };
+		6036EB2519096DE500209141 /* PMSupportConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMSupportConstants.h; sourceTree = "<group>"; };
 		60592ACC18EE8715006D5DEC /* PMConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMConversation.h; sourceTree = "<group>"; };
 		60592ACD18EE8715006D5DEC /* PMConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMConversation.m; sourceTree = "<group>"; };
 		60592AD518EE8962006D5DEC /* PMConversation+PMCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMConversation+PMCore.h"; sourceTree = "<group>"; };
@@ -330,7 +335,7 @@
 		60807FC018F8655F009B84D2 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
 		60807FC118F8655F009B84D2 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		60807FC218F8655F009B84D2 /* libsocketio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsocketio.a; sourceTree = "<group>"; };
-		60829ABE18F940D9005E396B /* PomocConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PomocConstants.h; sourceTree = "<group>"; };
+		60829ABE18F940D9005E396B /* PMCoreConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMCoreConstants.h; sourceTree = "<group>"; };
 		60881B521904E5A8009720AD /* PMStatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMStatusMessage.h; sourceTree = "<group>"; };
 		60881B531904E5A8009720AD /* PMStatusMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMStatusMessage.m; sourceTree = "<group>"; };
 		609DF3C918F8FD53004ACD98 /* PMChatMessage_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMChatMessage_Private.h; sourceTree = "<group>"; };
@@ -581,6 +586,8 @@
 			children = (
 				60FC18A418E1EB6500BF4C95 /* PMMessage.h */,
 				60FC18A518E1EB6500BF4C95 /* PMMessage.m */,
+				6036EB2119096A2700209141 /* PMMessage+Constructors.h */,
+				6036EB2219096A2700209141 /* PMMessage+Constructors.m */,
 				BDCBCBEA18F8C6F900A394CE /* PMApplicationMessage.h */,
 				BDCBCBEB18F8C6F900A394CE /* PMApplicationMessage.m */,
 				605B0C1218E2CCE300EA6717 /* PMInternalMessage.h */,
@@ -640,13 +647,14 @@
 				60592B1D18F13ABB006D5DEC /* PomocSupport.h */,
 				60592ADB18F12C6D006D5DEC /* PMSupport.h */,
 				60592ADC18F12C6D006D5DEC /* PMSupport.m */,
+				6036EB2519096DE500209141 /* PMSupportConstants.h */,
 				6068F2D318E1E40B005B87F4 /* PMCore.h */,
 				6068F2D518E1E40B005B87F4 /* PMCore.m */,
 				60592ADA18EE8A46006D5DEC /* PMCore_Private.h */,
 				9F2AE7D218F7D3060078D22A /* PomocImage.h */,
 				9F2AE7D318F7D3060078D22A /* PomocImage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
-				60829ABE18F940D9005E396B /* PomocConstants.h */,
+				60829ABE18F940D9005E396B /* PMCoreConstants.h */,
 			);
 			path = PomocCore;
 			sourceTree = "<group>";
@@ -951,6 +959,7 @@
 				BDCBCBEC18F8C6F900A394CE /* PMApplicationMessage.h in Headers */,
 				9F2AEA0218F7D4C50078D22A /* S3DeleteBucketLifecycleConfigurationRequest.h in Headers */,
 				9F2AEA2D18F7D4C50078D22A /* S3ListMultipartUploadsRequest.h in Headers */,
+				6036EB2319096A2700209141 /* PMMessage+Constructors.h in Headers */,
 				9F2AE9CE18F7D4C50078D22A /* AmazonServiceResponse.h in Headers */,
 				9F2AEA1018F7D4C50078D22A /* S3DeleteVersionRequest.h in Headers */,
 				60807FC618F8655F009B84D2 /* SocketIOJSONSerialization.h in Headers */,
@@ -1247,6 +1256,7 @@
 				60592ADE18F12C6D006D5DEC /* PMSupport.m in Sources */,
 				605B0C1418E2CCE300EA6717 /* PMInternalMessage.m in Sources */,
 				60592ACF18EE8715006D5DEC /* PMConversation.m in Sources */,
+				6036EB2419096A2700209141 /* PMMessage+Constructors.m in Sources */,
 				60FC18A618E1EB6500BF4C95 /* PMMessage.m in Sources */,
 				60592AFD18F12E58006D5DEC /* AFSecurityPolicy.m in Sources */,
 				600EF15319039A42001F2E8F /* PMNote.m in Sources */,

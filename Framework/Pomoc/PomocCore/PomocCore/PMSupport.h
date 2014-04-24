@@ -47,11 +47,9 @@
 
 // Online
 + (void)pingApp;
-+ (void)pingConversation:(NSString *)conversationId;
 
 + (void)setDelegate:(id<PMSupportDelegate>)delegate;
 
 + (PMConversation *)agentConversation;
-
 
 @end

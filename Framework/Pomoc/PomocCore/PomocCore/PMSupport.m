@@ -10,7 +10,7 @@
 #import "PMCore.h"
 #import "PMCore_Private.h"
 #import "AFNetworking.h"
-#import "PomocConstants.h"
+#import "PMSupportConstants.h"
 #import "PMConversation+PMCore.h"
 #import "PMConversation_Private.h"
 
@@ -58,14 +58,13 @@
     
     [PMCore setDelegate:[PMSupport sharedInstance]];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"userId": userId, @"password": password};
+    NSDictionary *parameters = @{USER_ID_KEY: userId, PASSWORD_KEY: password};
     
-    NSString *url = [NSString stringWithFormat:@"http://%@:%i/agentLogin", POMOC_URL, POMOC_PORT];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:HTTP_AGENT_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
-            NSString *userId = responseObject[@"userId"];
-            [PMCore initWithAppID:responseObject[@"appToken"]];
-            [PMSupport sharedInstance].appToken = responseObject[@"appToken"];
+            NSString *userId = responseObject[USER_ID_KEY];
+            [PMCore initWithAppID:responseObject[APP_TOKEN_KEY]];
+            [PMSupport sharedInstance].appToken = responseObject[APP_TOKEN_KEY];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
             [PMSupport sharedInstance].isAgent = YES;
@@ -94,14 +93,14 @@
     [PMCore setDelegate:[PMSupport sharedInstance]];
     [PMCore initWithAppID:[PMSupport sharedInstance].appToken];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"name": name, @"appToken": [PMSupport sharedInstance].appToken};
+    NSDictionary *parameters = @{NAME_KEY: name, APP_TOKEN_KEY: [PMSupport sharedInstance].appToken};
    
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *postUrl = [NSString stringWithFormat:@"http://%@:%i/user/%@", POMOC_URL, POMOC_PORT, userId];
+    NSString *postUrl = [NSString stringWithFormat:HTTP_CUSTOMER_URL, userId];
     
     [manager POST:postUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
-            NSString *userId = responseObject[@"userId"];
+            NSString *userId = responseObject[USER_ID_KEY];
             [PMCore setUserId:userId];
             [PMSupport sharedInstance].userId = userId;
             [PMSupport sharedInstance].isAgent = NO;
@@ -141,7 +140,7 @@
         if (connected) {
             if ([PMSupport sharedInstance].isAgent) {
                 [PMCore observeNewConversations];
-                NSString *agentConversationId = [NSString stringWithFormat:@"agent_chat:%@", [PMSupport sharedInstance].appToken];
+                NSString *agentConversationId = [NSString stringWithFormat:@"%@%@", AGENT_CHAT_ROOM_PREFIX, [PMSupport sharedInstance].appToken];
                 [PMSupport sharedInstance].agentConversation = [[PMConversation alloc] initWithConversationId:agentConversationId creatorUserId:@"" createDate:[NSDate date]];
                 [[PMSupport sharedInstance].agentConversation joinConversationWithCompletion:^(BOOL success) {
                     [PMCore addConversation:[PMSupport sharedInstance].agentConversation];
@@ -182,12 +181,6 @@
 + (void)pingApp
 {
     [PMCore pingApp];
-}
-
-+ (void)pingConversation:(NSString *)conversationId
-{
-
-    [PMCore pingConversation:conversationId];
 }
 
 + (void)setDelegate:(id<PMSupportDelegate>)delegate

@@ -20,4 +20,6 @@
 #define POMOC_PORT  3217
 #endif
 
+#define APP_TOKEN_KEY   @"appToken"
+
 #endif

@@ -13,6 +13,7 @@
 #import "SocketIOPacket.h"
 
 #import "PMMessage.h"
+#import "PMMessage+Constructors.h"
 #import "PMInternalMessage.h"
 #import "PMApplicationMessage.h"
 #import "PMChatMessage.h"
@@ -27,7 +28,7 @@
 
 #import "PMUserManager.h"
 
-#import "PomocConstants.h"
+#import "PMCoreConstants.h"
 
 #define MESSAGE_USER_ID   @"userId"
 #define MESSAGE_APP_ID    @"appId"
@@ -269,13 +270,6 @@
     PMCore *core = [PMCore sharedInstance];
     PMMessage *onlineAppUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingApp];
     [core sendMessage:onlineAppUsersMessage withAcknowledge:nil];
-}
-
-+ (void)pingConversation:(NSString *)conversationId
-{
-    PMCore *core = [PMCore sharedInstance];
-    PMMessage *onlineConversationUsersMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodePingConversation conversationId:conversationId];
-    [core sendMessage:onlineConversationUsersMessage withAcknowledge:nil];
 }
 
 + (void)addConversation:(PMConversation *)conversation

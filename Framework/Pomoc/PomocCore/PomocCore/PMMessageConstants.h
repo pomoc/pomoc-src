@@ -16,7 +16,6 @@ typedef enum {
     PMInternalMessageCodeJoinConversation,
     PMInternalMessageCodeGetAppConversationList,
     PMInternalMessageCodePingApp,
-    PMInternalMessageCodePingConversation
 } PMInternalMessageCode;
 
 typedef enum {
@@ -45,5 +44,6 @@ typedef enum {
 #define MESSAGE_CREATE_DATE         @"createDate"
 #define MESSAGE_CREATOR_USERID      @"creatorUserId"
 #define MESSAGE_APP_DATA            @"appData"
+#define MESSAGE_NOTE                @"note"
 
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import "PMNote.h"
+#import "PMMessageConstants.h"
 
 @interface PMNote ()
 @property (nonatomic, strong) NSString *note;
@@ -29,9 +30,9 @@
 {
     self = [super init];
     if (self) {
-        NSTimeInterval intervalSince1970 = [jsonData[@"timestamp"] floatValue] / 1000;
+        NSTimeInterval intervalSince1970 = [jsonData[MESSAGE_TIMESTAMP] floatValue] / 1000;
         self.timestamp = [NSDate dateWithTimeIntervalSince1970:intervalSince1970];
-        self.note = jsonData[@"note"];
+        self.note = jsonData[MESSAGE_NOTE];
     }
     return self;
 }
