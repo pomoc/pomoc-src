@@ -55,7 +55,6 @@
     [engine toggleMessageSound:switchButton.on];
 }
 
-
 -(BOOL)shouldAutorotate
 {
     return YES;

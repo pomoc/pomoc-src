@@ -10,50 +10,47 @@
 
 @interface ChatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-//Main
+// Main
 @property (weak, nonatomic) IBOutlet UIView *chatView;
-
 @property (weak, nonatomic) UIView *imageView;
-//Chat nav IBOutlets
+
+// Chat nav IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatNavTable;
 
-//Chat message IBOutlets
+// Chat message IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pastAndInfoToolbar;
 
-//Main
+// Main
 - (IBAction)viewAction:(id)sender;
 
 // Annotation
 - (IBAction)annotateActionPressed:(id)sender;
-
 - (IBAction)tapPictureAction:(id)sender;
-
 - (IBAction)tapGesture:(UITapGestureRecognizer *)sender;
 
 // View picture
 - (IBAction)viewPicturePressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *viewPicture;
 
-//Chat message action
+// Chat message action
 - (IBAction)sendMessage:(id)sender;
 
-//convo related
+// Convo related
 - (IBAction)inviteActionPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *inviteBarButton;
 
-//Toolbar that contains info/action
+// Toolbar that contains info/action
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 
-//Handling unhandling
+// Handling unhandling
 - (IBAction)handleActionPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *handleActionLabel;
 
-
 @property (weak, nonatomic) IBOutlet UITextField *userTextInput;
 
-//
-- (void) deallocDelegate;
+
+- (void)deallocDelegate;
 
 @end

@@ -12,8 +12,7 @@
 #import "PMNote.h"
 #import "NotesTableViewCell.h"
 
-@interface ContactInfoViewController () <PomocNoteDelegate>
-{
+@interface ContactInfoViewController () <PomocNoteDelegate> {
     DashBoardSingleton *singleton;
     NSArray *noteList;
 }
@@ -22,8 +21,7 @@
 
 @implementation ContactInfoViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     singleton = [DashBoardSingleton singleton];
@@ -35,23 +33,20 @@
     noteList = _currentConversation.notes;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Navigation Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [noteList count];
+    return noteList.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cell";
     NotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -91,8 +86,7 @@
 }
 
 #pragma mark - PomocRefer Delegate
-- (void) updateNoteList: (PMConversation *)convo;
-{
+- (void)updateNoteList:(PMConversation *)convo; {
     if ([convo.conversationId isEqualToString:_currentConversation.conversationId]) {
         noteList = convo.notes;
         [_notesTableView reloadData];
@@ -100,13 +94,11 @@
 }
 
 
--(BOOL)shouldAutorotate
-{
+-(BOOL)shouldAutorotate {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
-{
+-(NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 @end

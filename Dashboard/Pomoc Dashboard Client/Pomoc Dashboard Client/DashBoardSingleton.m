@@ -58,15 +58,13 @@
     return self;
 }
 
-- (BOOL) isConnected
-{
+- (BOOL)isConnected {
     return [reach isReachableViaWiFi];
 }
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     
     if ([reach isReachableViaWiFi]) {
-        
         NSLog(@"reachable");
     } else {
         
@@ -86,8 +84,9 @@
     }
 }
 
-- (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion
-{
+- (void)loginAgentWithUserId:(NSString *)userId
+                    password:(NSString *)password
+                  completion:(void (^)(BOOL success))completion {
     _currentConversationList = [[NSMutableArray alloc] init];
     
     [PMSupport setDelegate:self];
@@ -105,7 +104,7 @@
         NSLog(@"returned user id == %@",returnedUserId);
         
         if (returnedUserId == nil) {
-            completion(FALSE);
+            completion(NO);
     
         } else {
             
@@ -123,7 +122,8 @@
                     for (PMConversation *convo in conversations) {
                         
                         //getting handlers
-                        [PMSupport getHandlersForConversation:convo.conversationId completion:^(NSArray *users){
+                        [PMSupport getHandlersForConversation:convo.conversationId
+                                                   completion:^(NSArray *users){
                             convo.handlers = [[NSMutableArray alloc] initWithArray:users];
                         }];
                         
@@ -145,20 +145,15 @@
                     if ([self isChatDelegateAlive]) {
                         [_chatDelegate updateChatList:_currentConversationList ];
                     }
-                    
-                    completion(TRUE);
-                    
+                    completion(YES);
                 }];
-                
             }];
-
-            
         }
     }];
 }
 
-- (void)getPossibleRefer: (PMConversation *) convo completion:(void (^)(NSArray *user))completion;
-{
+- (void)getPossibleRefer:(PMConversation *)convo
+              completion:(void (^)(NSArray *user))completion {
     NSMutableSet *listOfAgent = [[NSMutableSet alloc] initWithArray:_currentAgentList];
     
     for (PMUser *user in [listOfAgent allObjects]) {
@@ -171,9 +166,7 @@
     for (PMConversation *conversation in _currentConversationList) {
         
         if ([conversation.conversationId isEqualToString:convo.conversationId]) {
-            
             for (PMUser *user in conversation.handlers) {
-                
                 for (PMUser *currentUser in [listOfAgent allObjects]){
                     if ([currentUser.userId isEqualToString:user.userId]){
                         [listOfAgent removeObject:currentUser];
@@ -188,23 +181,19 @@
     }
 }
 
-- (void)refer: (PMConversation *)convo referee:(PMUser *)user
-{
+- (void)refer:(PMConversation *)convo referee:(PMUser *)user {
     [PMSupport referHandlerConversation:convo.conversationId refereeUserId:user.userId];
 }
 
-
-- (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
-{
+- (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion; {
     NSUInteger totalAttended = 0;
     
-    if ([_currentConversationList count] == 0) {
+    if (_currentConversationList.count == 0) {
         totalUnattendedConversation = 0;
         completion(0);
     }
     
     for (PMConversation *convo in _currentConversationList) {
-        
         for (PMUser *user in convo.handlers) {
             if (![user.type isEqualToString:USER_TYPE_PUBLIC]){
                 totalAttended++;
@@ -217,46 +206,40 @@
     completion(totalUnattendedConversation);
 }
 
-- (NSUInteger)numberOfConversation
-{
-    return [_currentConversationList count];
+- (NSUInteger)numberOfConversation {
+    return _currentConversationList.count;
 }
 
-#pragma mark - handling convo
-- (void)handleConversation:(PMConversation *)convo;
-{
+# pragma mark - handling convo
+
+- (void)handleConversation:(PMConversation *)convo {
     [PMSupport handleConversation:convo.conversationId];
     [convo sendStatusMessage:PMStatusMessageJoin];
 }
 
-- (void)unhandleConversation:(PMConversation *)convo;
-{
+- (void)unhandleConversation:(PMConversation *)convo {
     [PMSupport unhandleConversation:convo.conversationId];
     [convo sendStatusMessage:PMStatusMessageLeave];
 }
 
-- (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion
-{
+- (void)getHandlersForConversation:(NSString *)conversationId
+                        completion:(void  (^)(NSArray *conversations))completion {
     [PMSupport getHandlersForConversation:conversationId completion:^(NSArray *conversations){
         completion(conversations);
     }];
-    
 }
 
 
 #pragma mark - Pocmoc Support Delegate
-- (void)newConversationCreated:(PMConversation *)conversation
-{
+- (void)newConversationCreated:(PMConversation *)conversation {
     
     NSLog(@"new convo created");
-    
-    
-    BOOL existingConvo = FALSE;
+
+    BOOL existingConvo = NO;
     
     for (PMConversation *convo in _currentConversationList) {
-        if ([convo.conversationId isEqualToString:conversation.conversationId])
-        {
-            existingConvo = TRUE;
+        if ([convo.conversationId isEqualToString:conversation.conversationId]) {
+            existingConvo = YES;
             break;
         }
     }
@@ -279,15 +262,14 @@
     
 }
 
-- (void)updateOnlineUsers:(NSArray *)users
-{
+- (void)updateOnlineUsers:(NSArray *)users {
     NSUInteger currentAgentCount = [_currentAgentList count];
     
     [_currentAgentList removeAllObjects];
     [_currentUserList removeAllObjects];
     
     for (PMUser *user in users) {
-        if([user.type isEqualToString:USER_TYPE_PUBLIC]) {
+        if ([user.type isEqualToString:USER_TYPE_PUBLIC]) {
             [_currentUserList addObject:user];
         } else {
             [_currentAgentList addObject:user];
@@ -312,17 +294,17 @@
 }
 
 - (void)updateOnlineUsers:(NSArray *)users conversationId:(NSString *)conversationId {
-
+    // TODO: Remove empty method
 }
 
-- (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion
-{
+- (void)isHandlerForConversation:(NSString *)conversationId
+                      completion:(void (^)(BOOL isHandler))completion {
     [self getHandlersForConversation:conversationId completion:^(NSArray * users){
        
-        BOOL found = false;
+        BOOL found = NO;
         for (PMUser *user in users) {
             if ([user.userId isEqualToString:_selfUserId]) {
-                found = true;
+                found = YES;
                 break;
             }
         }
@@ -345,7 +327,7 @@
 
 - (void)conversation:(PMConversation *)conversation didReceiveChatMessage:(PMChatMessage *)chatMessage
 {
-    conversation.read = FALSE;
+    conversation.read = NO;
     
     if (![chatMessage.user.userId isEqualToString:_selfUserId]) {
         
@@ -353,14 +335,12 @@
         [engine playNewMessage];
     }
     
-    
     if ([self isEqualToAgent:conversation]) {
         _agentConversation = conversation;
         if ([self isGroupChatDelegateAlive]) {
             [_groupChatDelegate newChatMessage:_agentConversation];
         }
     } else {
-        
         for (PMConversation __strong *convo in _currentConversationList) {
             if (convo.conversationId == conversation.conversationId) {
                 convo = conversation;
@@ -373,8 +353,7 @@
     }
 }
 
-- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage
-{
+- (void)conversation:(PMConversation *)conversation didReceiveStatusMessage:(PMStatusMessage *)statusMessage {
     for (PMConversation __strong *convo in _currentConversationList) {
         if (convo.conversationId == conversation.conversationId) {
             convo = conversation;
@@ -387,9 +366,8 @@
     
 }
 
-- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage
-{
-    conversation.read = FALSE;
+- (void)conversation:(PMConversation *)conversation didReceiveImageMessage:(PMImageMessage *)imageMessage {
+    conversation.read = NO;
     
     if (![imageMessage.user.userId isEqualToString:_selfUserId]) {
         SoundEngine *engine = [SoundEngine singleton];
@@ -407,16 +385,15 @@
 }
 
 // Delegate method for handlers
-- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId
-{
-    //replacing current handlers
+- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId {
+    // Replacing current handlers
     for (PMConversation *convo in _currentConversationList) {
         if ([convo.conversationId isEqualToString:conversationId]) {
             convo.handlers = (NSMutableArray *)handlers;
         }
     }
 
-    //checking if current unattended conversation list changed
+    // Checking if current unattended conversation list changed
     __block NSUInteger temp = totalUnattendedConversation;
     
     [self numberOfUnattendedConversation:^(NSUInteger total){
@@ -434,8 +411,10 @@
 }
 
 // Delegate method for referral of handlers
-- (void)updateHandlers:(NSArray *)handlers conversationId:(NSString *)conversationId referrer:(PMUser *)referrer referee:(PMUser *)referee;
-{
+- (void)updateHandlers:(NSArray *)handlers
+        conversationId:(NSString *)conversationId
+              referrer:(PMUser *)referrer
+               referee:(PMUser *)referee {
     if ([referee.userId isEqualToString: _selfUserId]) {
         
         if ([self isChatDelegateAlive]) {
@@ -446,13 +425,11 @@
     }
 }
 
-- (BOOL) isEqualToAgent: (PMConversation *)convo
-{
+- (BOOL)isEqualToAgent:(PMConversation *)convo {
     return [[PMSupport agentConversation].conversationId isEqualToString: convo.conversationId];
 }
 
-- (void) removeAllExistingData
-{
+- (void)removeAllExistingData {
     NSLog(@"called this");
     [_currentAgentList removeAllObjects];
     [_currentConversationList removeAllObjects];
@@ -460,25 +437,16 @@
 }
 
 // check
-- (BOOL)isHomeDelegateAlive
-{
-    if (_homeDelegate == nil)
-        return FALSE;
-    return TRUE;
+- (BOOL)isHomeDelegateAlive {
+    return _homeDelegate != nil;
 }
 
-- (BOOL)isChatDelegateAlive
-{
-    if (_chatDelegate == nil)
-        return FALSE;
-    return TRUE;
+- (BOOL)isChatDelegateAlive {
+    return _chatDelegate != nil;
 }
 
-- (BOOL)isGroupChatDelegateAlive
-{
-    if(_groupChatDelegate == nil)
-        return FALSE;
-    return TRUE;
+- (BOOL)isGroupChatDelegateAlive {
+    return _groupChatDelegate != nil;
 }
 
 @end

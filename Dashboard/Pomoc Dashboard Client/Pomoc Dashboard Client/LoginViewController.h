@@ -10,9 +10,10 @@
 
 @interface LoginViewController : UIViewController
 
-- (IBAction)loginPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *loginError;
+
+- (IBAction)loginPressed:(id)sender;
 - (IBAction)loginReturnPressed:(id)sender;
 
 @end

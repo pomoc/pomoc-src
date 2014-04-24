@@ -10,8 +10,8 @@
 
 @interface SideNavigationController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-- (IBAction)Chat:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)Chat:(id)sender;
 
 @end

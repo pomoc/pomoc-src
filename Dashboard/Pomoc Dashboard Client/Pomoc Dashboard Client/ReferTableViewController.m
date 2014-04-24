@@ -20,8 +20,7 @@
 
 @implementation ReferTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -29,37 +28,33 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    empty = FALSE;
+    empty = NO;
     singleton = [DashBoardSingleton singleton];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if ([_referList count] == 0){
-        empty = TRUE;
+    if (_referList.count == 0){
+        empty = YES;
         return 10;
     } else {
-        return [_referList count];
+        return _referList.count;
     }
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (empty) {
-        cell.textLabel.text = @"No avail agents to invite";
-        
+        cell.textLabel.text = @"No available agents to invite";
     } else {
-        PMUser *user = [_referList objectAtIndex:indexPath.row];
+        PMUser *user = _referList[indexPath.row];
         cell.textLabel.text = user.name;
     }
     
@@ -67,12 +62,11 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected row == %lu",(long)indexPath.row);
     
     if (!empty) {
-        PMUser *selectedUser = [_referList objectAtIndex:indexPath.row];
+        PMUser *selectedUser = _referList[indexPath.row];
         NSLog(@"selected user name == %@",selectedUser.name);
         
         [singleton refer:_currentConvo referee:selectedUser];

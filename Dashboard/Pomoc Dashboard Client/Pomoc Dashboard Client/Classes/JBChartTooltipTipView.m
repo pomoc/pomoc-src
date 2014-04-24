@@ -16,9 +16,10 @@
 {
     CGFloat kJBChartTooltipTipViewDefaultWidth = 40.0f;
     CGFloat kJBChartTooltipTipViewDefaultHeight = 20.0f;
-    self = [super initWithFrame:CGRectMake(0, 0, kJBChartTooltipTipViewDefaultWidth, kJBChartTooltipTipViewDefaultHeight)];
-    if (self)
-    {
+    self = [super initWithFrame:CGRectMake(0, 0,
+                                           kJBChartTooltipTipViewDefaultWidth,
+                                           kJBChartTooltipTipViewDefaultHeight)];
+    if (self) {
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -26,8 +27,7 @@
 
 #pragma mark - Drawing
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     UIColor *kJBColorTooltipColor = [UIColor whiteColor];
     

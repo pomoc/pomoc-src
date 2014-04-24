@@ -27,8 +27,7 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 37.5f;
 
 #pragma mark - Alloc/Init
 
-- (id)init
-{
+- (id)init {
     UIFont *kJBFontTooltipText = [UIFont fontWithName:@"HelveticaNeue-Bold" size:28];
     UIColor *kJBColorTooltipTextColor = [UIColor colorWithRed:0.251 green:0.251 blue:0.251 alpha:1.0];
     UIColor *kJBColorTooltipColor = [UIColor whiteColor];
@@ -53,22 +52,19 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 37.5f;
 
 #pragma mark - Setters
 
-- (void)setText:(NSString *)text
-{
+- (void)setText:(NSString *)text {
     self.textLabel.text = text;
     [self setNeedsLayout];
 }
 
-- (void)setTooltipColor:(UIColor *)tooltipColor
-{
+- (void)setTooltipColor:(UIColor *)tooltipColor {
     self.backgroundColor = tooltipColor;
     [self setNeedsDisplay];
 }
 
 #pragma mark - Layout
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     _textLabel.frame = self.bounds;
 }

@@ -14,15 +14,14 @@
 
 #import "UILabel+boldAndGray.h"
 
-@interface GroupChatViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate >
-{
+@interface GroupChatViewController ()<UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate > {
     DashBoardSingleton *singleton;
     NSMutableArray *agentList;
     BOOL keyboardEditing;
     
     PMConversation *currentChat;
     
-    //tracking UI table view
+    // Tracking UI table view
     CGRect chatMessageOriginalFrame;
     CGPoint chatInputOriginalCenter;
 }
@@ -44,15 +43,16 @@
 {
     [super viewDidLoad];
     
-    //ensuring that no border for chat message table view
+    // Ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
     _chatNavTable.separatorColor = [UIColor clearColor];
     
-    //border
+    // Border
     _chatMessageTable.layer.borderWidth = 0.5;
     CALayer *leftBorder = [CALayer layer];
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
-    [leftBorder setFrame:CGRectMake(_chatInputView.frame.size.width, 0, 0.5, _chatInputView.frame.size.height)];
+    [leftBorder setFrame:CGRectMake(_chatInputView.frame.size.width, 0, 0.5,
+                                    _chatInputView.frame.size.height)];
     [_chatInputView.layer addSublayer:leftBorder];
     
     keyboardEditing = false;
@@ -67,8 +67,7 @@
     singleton.groupChatDelegate = self;
 }
 
-- (void) viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     //storing the original position for moving them up when keyboard show
     chatMessageOriginalFrame = _chatMessageTable.frame;
     chatInputOriginalCenter = _chatInputView.center;
@@ -78,24 +77,22 @@
    
     NSString *userInput = _textInput.text;
     
-    if ( [userInput length] > 0 ) {
+    if ([userInput length] > 0) {
         NSLog(@"user sending message!");
         [currentChat sendTextMessage:userInput];
-        [_textInput setText:@""];
+        _textInput.text = @"";
     }
 }
 
-- (void) deallocDelegate
-{
+- (void)deallocDelegate {
     singleton.groupChatDelegate = nil;
 }
 
 
 #pragma mark - Navigation Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if ([tableView tag] == GROUP_CHAT_TABLEVIEW) {
+    if (tableView.tag == GROUP_CHAT_TABLEVIEW) {
         return [currentChat.messages count];
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
         NSLog(@"total agent list = %lu",[agentList count]);
@@ -105,32 +102,32 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
-    if ([tableView tag] == GROUP_CHAT_TABLEVIEW) {
+    if (tableView.tag == GROUP_CHAT_TABLEVIEW) {
         
         static NSString *cellIdentifier = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:cellIdentifier];
         }
         
         ChatMessageTextCell *chatCell = (ChatMessageTextCell *)cell;
         PMChatMessage *message = [currentChat.messages objectAtIndex:row];
         
-        //setting the started date of chat
+        // Setting the started date of chat
         NSString *dateString = [Utility formatDateForTable:message.timestamp];
         
-        //Setting visitor name
+        // Setting visitor name
         [chatCell.messageFrom setText:[NSString stringWithFormat:@"%@   %@",message.user.name, dateString]];
         [chatCell.messageFrom boldAndBlackSubstring:message.user.name];
         chatCell.messageText.text = message.message;
         
         return cell;
 
-    } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
+    } else if (tableView.tag == AGENT_LIST_TABLEVIEW) {
         return [self createAgentListTable:tableView atRow:row];
     }
     
@@ -138,66 +135,61 @@
     
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
-        return @"Agents online";
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (tableView.tag == AGENT_LIST_TABLEVIEW) {
+        return @"Agents Online";
     }
     return nil;
 }
 
 #pragma mark - POMOC delegate
 
-- (void) agentListUpdated: (NSMutableArray *)updatedAgentList
-{
+- (void)agentListUpdated:(NSMutableArray *)updatedAgentList {
     agentList = updatedAgentList;
     [_chatNavTable reloadData];
 }
 
-- (void) newChatMessage: (PMConversation *)conversation
-{
+- (void)newChatMessage:(PMConversation *)conversation {
     currentChat = conversation;
     [_chatMessageTable reloadData];
     [self scrollChatContentToBottom];
 }
 
 #pragma mark - CHAT SIDE NAV
-- (UITableViewCell *) createAgentListTable: (UITableView *) tableView atRow: (NSInteger)row
-{
+- (UITableViewCell *)createAgentListTable:(UITableView *)tableView
+                                    atRow:(NSInteger)row {
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
     }
     
     PMUser *agent = [agentList objectAtIndex:row];
-    
-    
+
     cell.textLabel.text = agent.name;
     cell.textLabel.font = [UIFont fontWithName:@"Marker Felt" size:17];
     
     UIImage *thumbNail = [UIImage imageNamed:@"worker-512.png"];
-    UIImage *scaled = [Utility scaleImage:thumbNail toSize:CGSizeMake(25, 25)];
+    UIImage *scaled = [Utility scaleImage:thumbNail
+                                   toSize:CGSizeMake(25, 25)];
     
     cell.imageView.image = scaled;
     return cell;
 }
 
--(BOOL)shouldAutorotate
-{
+-(BOOL)shouldAutorotate {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
-{
+-(NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 
-#pragma  mark - Textfield editing delegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+# pragma mark - Textfield editing delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     keyboardEditing = true;
     [self scrollThingUp];
 }
@@ -207,28 +199,25 @@
     return YES;
 }
 
-- (void) scrollThingUp
-{
-    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x, chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
+- (void)scrollThingUp {
+    [_chatInputView setCenter:CGPointMake(chatInputOriginalCenter.x,
+                                          chatInputOriginalCenter.y - KEYBOARD_UP_OFFSET)];
     
     chatMessageOriginalFrame.size.height = chatMessageOriginalFrame.size.height - KEYBOARD_UP_OFFSET;
     _chatMessageTable.frame = chatMessageOriginalFrame;
     
     [self scrollChatContentToBottom];
-    
-    
 }
 
-- (void) scrollChatContentToBottom
-{
+- (void)scrollChatContentToBottom {
     NSInteger numberOfRows = [_chatMessageTable numberOfRowsInSection:0];
     if (numberOfRows) {
-        [_chatMessageTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:true];
+        [_chatMessageTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0]
+                                 atScrollPosition:UITableViewScrollPositionBottom animated:true];
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     keyboardEditing = false;
     _chatInputView.center = chatInputOriginalCenter;
     
@@ -238,8 +227,8 @@
 }
 
 #pragma mark - DISCONNECT
-- (void) noInternet
-{
+
+- (void)noInternet {
     UIAlertView *alert = [Utility disconnectAlert];
     alert.delegate = self;
     
@@ -247,10 +236,8 @@
 }
 
 #pragma mark - UIAlertView
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
         [self performSegueWithIdentifier:@"backtoLogin" sender:self];
     }
 }

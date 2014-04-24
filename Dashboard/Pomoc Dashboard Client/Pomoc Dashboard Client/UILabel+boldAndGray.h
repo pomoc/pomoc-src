@@ -10,8 +10,7 @@
 
 @interface UILabel (boldAndGray)
 
-- (void) boldAndBlackSubstring: (NSString*) substring;
-
-- (void) boldRange: (NSRange) range;
+- (void) boldAndBlackSubstring:(NSString *)substring;
+- (void) boldRange:(NSRange)range;
 
 @end

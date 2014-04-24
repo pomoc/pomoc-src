@@ -51,14 +51,12 @@
 }
 
 - (IBAction)loginReturnPressed:(id)sender {
-
     [self loginPressed:self];
 }
 
-
 - (IBAction)loginPressed:(id)sender {
     
-    DashBoardSingleton *singleton = [DashBoardSingleton  singleton];
+    DashBoardSingleton *singleton = [DashBoardSingleton singleton];
     
     if ([singleton isConnected]) {
         
@@ -69,7 +67,8 @@
         NSString *usernameKeyed = username.text;
         NSString *passwordKeyed = password.text;
         
-        if ([username.text length]==0) {
+        if ([username.text length] == 0) {
+            // TODO: Fix this hardcoding please.
             usernameKeyed = @"cm3";
             passwordKeyed = @"cm3";
         }
@@ -144,6 +143,8 @@
     [self animateScreenUp:NO];
 }
 
+// TODO:    Add pragma mark for protocol methods. Or make them optional so
+//          that they do not have to appear here.
 - (void)newConversationCreated:(PMConversation *)conversation {
     
 }
@@ -157,7 +158,6 @@
         conversationId:(NSString *)conversationId
               referrer:(PMUser *)referrer
                referee:(PMUser *)referee {
-    
 }
 
 - (void)updateOnlineUsers:(NSArray *)users {
@@ -168,7 +168,6 @@
            conversationId:(NSString *)conversationId {
     
 }
-
 
 -(BOOL)shouldAutorotate
 {

@@ -37,13 +37,14 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     singleton = [DashBoardSingleton singleton];
-    [singleton setHomeDelegate:self];
-    [self initFakeData:100];
+    singleton.homeDelegate = self;
+
+    [self initData:100];
     [self initTimeChart];
     
     self.numArea.delegate = self;
@@ -62,47 +63,47 @@
 }
 
 // Update the god-damn frames here so that the right size is used
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [timeChart updateFrame:self.chartArea.bounds animated:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void) deallocDelegate
-{
+- (void)deallocDelegate {
     NSLog(@"inside dealloc delegate of chart vc");
-    [singleton setHomeDelegate:nil];
+    singleton.homeDelegate = nil;
 }
 
-- (void)initFakeData:(int)howmany
-{
+- (void)initData:(int)amount {
     fakeData = [[NSMutableDictionary alloc] init];
     float last = 0.0;
     int bracket = 10;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
-    for (int i=0; i<howmany; i++) {
+    for (int i = 0; i < amount; i++) {
         last = last + (rand() % (bracket * 2 + 1) - (bracket - 1));
         last = MAX(last, 0.0);
-        [fakeData setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i]];
+        [fakeData setObject:[NSNumber numberWithFloat:last]
+                     forKey:[NSNumber numberWithInt:startTime + i]];
     }
+
     chartArray = [[NSMutableArray alloc] initWithArray:@[@"Agents"]];
     chartlets = [[NSMutableDictionary alloc] init];
-    [chartlets setObject:@"10" forKey:@"Agents"];
+    [chartlets setObject:@"10"
+                  forKey:@"Agents"];
 }
 
 # pragma mark - Chart initializations
-- (void)initTimeChart
-{
+
+- (void)initTimeChart {
     timeChart = [[LineChartView alloc] initWithFrame:self.chartArea.bounds];
     timeChart.delegate = self;
     
-    [timeChart addData:fakeData withProperties:@{}];
+    [timeChart addData:fakeData
+        withProperties:@{}];
     
     [self.chartArea addSubview:timeChart];
     [timeChart showChart];
@@ -111,12 +112,13 @@
 
 # pragma mark - Utility methods
 
-- (void)showLoading
-{
+- (void)showLoading {
+    
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGPoint origin = self.view.bounds.origin;
     CGSize size = self.view.bounds.size;
-    spinner.center = CGPointMake(origin.x + size.width/2, origin.y + size.height/2);
+    spinner.center = CGPointMake(origin.x + size.width/2,
+                                 origin.y + size.height/2);
     [self.view addSubview:spinner];
     [self.view bringSubviewToFront:spinner];
     [spinner startAnimating];
@@ -124,15 +126,15 @@
 
 # pragma mark - Pomoc delegate
 
-- (void) agentTotalNumberChange: (NSUInteger)agentNumber
+- (void)agentTotalNumberChange:(NSUInteger)agentNumber
 {
 }
 
-- (void) userTotalNumberChange: (NSUInteger)userNumber
+- (void)userTotalNumberChange:(NSUInteger)userNumber
 {
 }
 
-- (void) totalConversationChanged: (NSUInteger)totalConversation
+- (void)totalConversationChanged:(NSUInteger)totalConversation
 {
 }
 
@@ -150,9 +152,11 @@
     return [chartlets count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    Chartlet *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"chartlet" forIndexPath:indexPath];
+    Chartlet *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"chartlet"
+                                                               forIndexPath:indexPath];
     
     NSString *key = chartArray[indexPath.row];
     [cell setTitleText:key];
@@ -173,10 +177,12 @@
 }
 
 # pragma mark - LineChartView delegate methods
+
 - (void)didSelectPointAtKey:(NSNumber *)key value:(NSNumber *)value
 {
     // Update agents
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0
+                                                 inSection:0];
     Chartlet *cell = (Chartlet *)[self.numArea cellForItemAtIndexPath:indexPath];
     [cell setNumberText:[value stringValue]];
 }

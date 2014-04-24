@@ -252,7 +252,7 @@
 		AA9DC89A18E17F9F00B4FDF7 /* settings-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-512.png"; sourceTree = "<group>"; };
 		AA9DC89D18E17FE500B4FDF7 /* logout-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout-512.png"; sourceTree = "<group>"; };
 		AA9DC89F18E181B100B4FDF7 /* home-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-512.png"; sourceTree = "<group>"; };
-		AA9DC8AB18E1A07E00B4FDF7 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		AA9DC8AB18E1A07E00B4FDF7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		AA9DC8AF18E1A43E00B4FDF7 /* attach-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attach-512.png"; sourceTree = "<group>"; };
@@ -447,6 +447,8 @@
 				AAD17CF01902A41B003D9241 /* Sounds */,
 				AA9DC89018E1759500B4FDF7 /* Pictures */,
 				AA5204BF18D7EF2C00D78156 /* Main.storyboard */,
+				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
+				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
 				AAD17CED1902A245003D9241 /* SoundEngine.h */,
 				AAD17CEE1902A245003D9241 /* SoundEngine.m */,
 				AAD17CEA19027DB0003D9241 /* SettingsViewController.h */,
@@ -461,9 +463,9 @@
 				AA5204FD18D8109A00D78156 /* HomeViewController.m */,
 				C3D2E02219024B69003BE763 /* ChartViewController.h */,
 				C3D2E02319024B69003BE763 /* ChartViewController.m */,
-				C3150BC81902346C0018521F /* ChartMVC */,
 				AAD17CE71902381D003D9241 /* GroupChatViewController.h */,
 				AAD17CE81902381D003D9241 /* GroupChatViewController.m */,
+				C3150BC81902346C0018521F /* ChartMVC */,
 				AAC2A1F218E5549C008ACDBD /* Annotate MVC */,
 				AA9DC87D18DF275300B4FDF7 /* ChatMVC */,
 				AA7F6E2818DE8A8000400CDB /* PomocSupportAbstract */,
@@ -477,11 +479,9 @@
 		AA5204B418D7EF2C00D78156 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AA9DC8AB18E1A07E00B4FDF7 /* constants.h */,
+				AA9DC8AB18E1A07E00B4FDF7 /* Constants.h */,
 				AA9DC8AC18E1A1B400B4FDF7 /* Utility.h */,
 				AA9DC8AD18E1A1B400B4FDF7 /* Utility.m */,
-				AA5204BC18D7EF2C00D78156 /* AppDelegate.h */,
-				AA5204BD18D7EF2C00D78156 /* AppDelegate.m */,
 				AA5204B518D7EF2C00D78156 /* Pomoc Dashboard Client-Info.plist */,
 				AA5204B618D7EF2C00D78156 /* InfoPlist.strings */,
 				AA5204B918D7EF2C00D78156 /* main.m */,
@@ -578,9 +578,9 @@
 				AA464A0318E8257400A607E0 /* UploadViewController.m */,
 				AA5204F918D80F2200D78156 /* ChatViewController.h */,
 				AA5204FA18D80F2200D78156 /* ChatViewController.m */,
-				AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */,
 				AACA11D918FB8DAF005DB53B /* ReferTableViewController.h */,
 				AACA11DA18FB8DAF005DB53B /* ReferTableViewController.m */,
+				AA4649CE18E7E7CD00A607E0 /* UILabel+boldAndGray.h */,
 				AA4649CF18E7E7CD00A607E0 /* UILabel+boldAndGray.m */,
 				AA9DC92F18E44FD600B4FDF7 /* Cell */,
 				AA9DC87A18DF274A00B4FDF7 /* ContactInfoViewController.h */,

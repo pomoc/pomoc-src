@@ -10,17 +10,16 @@
 
 @interface GroupChatViewController : UIViewController <UITextFieldDelegate>
 
-
-//Chat nav IBOutlets
+// Chat nav IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatNavTable;
 
-//Chat message IBOutlets
+// Chat message IBOutlets
 @property (weak, nonatomic) IBOutlet UITableView *chatMessageTable;
 @property (weak, nonatomic) IBOutlet UIView *chatInputView;
 
 @property (weak, nonatomic) IBOutlet UITextField *textInput;
 
 - (IBAction)sendMessage:(id)sender;
-- (void) deallocDelegate;
+- (void)deallocDelegate;
 
 @end

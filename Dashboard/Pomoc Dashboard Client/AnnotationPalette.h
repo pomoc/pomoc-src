@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @protocol PaletteTouchDelegate <NSObject>
+
 @required
+
 - (void)tap:(UIButton *)b;
+
 @end
 
 @interface AnnotationPalette : UIView
+
 @property (nonatomic, weak) id<PaletteTouchDelegate> delegate;
+
 @end

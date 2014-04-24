@@ -52,8 +52,8 @@
 - (void) totalConversationChanged: (NSUInteger)totalConversation;
 - (void) totalUnattendedConversationChanged: (NSUInteger)totalUnattended;
 
-//delegate for agent online/ offline
-//delegate for user online/ offline
+// Delegate for agent online/ offline
+// Delegate for user online/ offline
 
 @end
 
@@ -64,17 +64,17 @@
 - (void)loginAgentWithUserId:(NSString *)userId password:(NSString *)password completion:(void (^)(BOOL success))completion;
 - (BOOL) isConnected;
 
-//For home page to get number of conversation with 0 agents and total conversation
+// For home page to get number of conversation with 0 agents and total conversation
 - (void)numberOfUnattendedConversation:(void (^)(NSUInteger number))completion;
 - (NSUInteger)numberOfConversation;
 
-//Handling convo
+// Handling convo
 - (void)handleConversation:(PMConversation *)convo;
 - (void)unhandleConversation:(PMConversation *)convo;
 - (void)getHandlersForConversation:(NSString *)conversationId completion:(void  (^)(NSArray *conversations))completion;
 - (void)isHandlerForConversation:(NSString *)conversationId completion:(void (^)(BOOL isHandler))completion;
 
-//For refer view controller to get list of controller without self
+// For refer view controller to get list of controller without self
 - (void)getPossibleRefer: (PMConversation *)convo completion:(void (^)(NSArray *user))completion;
 - (void)refer: (PMConversation *)convo referee:(PMUser *)user;
 

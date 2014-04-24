@@ -8,13 +8,14 @@
 
 #import "AnnotationPalette.h"
 
+#define INCREMENT 0.05
+
 @implementation AnnotationPalette {
     NSMutableArray *colors;
     NSMutableArray *buttons;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initColors];
@@ -30,8 +31,7 @@
     colors = [NSMutableArray array];
     [colors addObject:[UIColor blackColor]];
     [colors addObject:[UIColor whiteColor]];
-    
-    float INCREMENT = 0.05;
+
     for (float hue = 0.0; hue < 1.0; hue += INCREMENT) {
         UIColor *color = [UIColor colorWithHue:hue
                                     saturation:1.0
@@ -43,73 +43,80 @@
 
 - (void)initButtons {
     buttons = [NSMutableArray array];
-    for (int i=0; i<NUM_COLORS; i++) {
+    for (int i = 0; i < NUM_COLORS; i++) {
         
         //int offset = i * BUTTON_SIDE_OFFSET;
         //int top = BUTTON_SIDE_OFFSET;
         
         //CGRect btnFrame = CGRectMake(BUTTON_SIDE_OFFSET, i * BUTTON_SIZE+offset+top, BUTTON_SIZE, BUTTON_SIZE);
         CGRect btnFrame = CGRectMake(i * BUTTON_SIZE, 0, BUTTON_SIZE, BUTTON_SIZE);
-        UIButton *b = [[UIButton alloc] initWithFrame:btnFrame];
+        UIButton *button = [[UIButton alloc] initWithFrame:btnFrame];
     
         //[b.layer setBorderWidth: 0.0];
-        b.layer.borderWidth = 0.0;
+        button.layer.borderWidth = 0.0;
         //[b.layer setBorderColor: [[UIColor grayColor] CGColor]];
         //[b.layer setBorderWidth: 4.0];
-        [b.layer setMasksToBounds:YES];
+        [button.layer setMasksToBounds:YES];
         //[b.layer setCornerRadius:BUTTON_SIZE/2.0];
-        [b setAlpha:0.40];
-        
-        [b setBackgroundColor:colors[i%[colors count]]];
-        [b addTarget:self action:@selector(colorTap:) forControlEvents:UIControlEventTouchUpInside];
-        b.tag = i;
-        [buttons addObject:b];
-        [self addSubview:b];
+        button.alpha = 0.40f;
+        button.backgroundColor = colors[i%[colors count]];
+        [button addTarget:self
+                   action:@selector(colorTap:)
+         forControlEvents:UIControlEventTouchUpInside];
+        button.tag = i;
+        [buttons addObject:button];
+        [self addSubview:button];
     }
     [self colorTap:buttons[0]];
 }
 
-- (void)colorTap:(UIButton *)b {
-    [self.delegate tap:b];
+- (void)colorTap:(UIButton *)tappedButton {
+    [self.delegate tap:tappedButton];
 
     BOOL found = 0;
     CGRect btnFrame;
     
-    for (int i =0; i < [buttons count]; i ++) {
+    for (int i = 0; i < [buttons count]; i++) {
         
-        UIButton *btn = (UIButton *)buttons[i];
-        [btn setAlpha:0.40];
-        [btn.layer setBorderColor:[UIColor whiteColor].CGColor];
-        [btn.layer setBorderWidth:0.0];
+        UIButton *button = (UIButton *)buttons[i];
+        button.alpha = 0.40;
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        button.layer.borderWidth = 0.0f;
         
-        if (b == btn) {
+        if (tappedButton == button) {
             found = true;
         }
         
-        if( !found ) {
-            btnFrame = CGRectMake(i * BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE, BUTTON_SIZE);
-            [btn setFrame:btnFrame];
-            
+        if (!found) {
+            btnFrame = CGRectMake(i * BUTTON_SIZE,
+                                  button.frame.origin.y,
+                                  BUTTON_SIZE,
+                                  BUTTON_SIZE);
+            [button setFrame:btnFrame];
         } else {
-            
-            if (b == btn) {
-                btnFrame = CGRectMake(i * BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE * 2, BUTTON_SIZE);
-                [btn.layer setBorderColor:[UIColor blackColor].CGColor];
-                [btn.layer setBorderWidth:2.0];
+            if (tappedButton == button) {
+                btnFrame = CGRectMake(i * BUTTON_SIZE,
+                                      button.frame.origin.y,
+                                      BUTTON_SIZE * 2,
+                                      BUTTON_SIZE);
+                button.layer.borderColor = [UIColor blackColor].CGColor;
+                button.layer.borderWidth = 2.0;
             } else {
-                btnFrame = CGRectMake(i * BUTTON_SIZE + BUTTON_SIZE ,btn.frame.origin.y, BUTTON_SIZE, BUTTON_SIZE);
+                btnFrame = CGRectMake(i * BUTTON_SIZE + BUTTON_SIZE,
+                                      button.frame.origin.y,
+                                      BUTTON_SIZE,
+                                      BUTTON_SIZE);
             }
         }
         
-        [btn setFrame:btnFrame];
+        [button setFrame:btnFrame];
     }
     
-    [b setAlpha: 1];
-    
+    tappedButton.alpha = 1;
 }
 
 - (void)undo {
-    
+    // TODO: Remove if empty
 }
 
 @end

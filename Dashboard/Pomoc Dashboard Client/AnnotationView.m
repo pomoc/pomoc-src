@@ -9,7 +9,7 @@
 #import "AnnotationView.h"
 
 #define CAPACITY 100
-#define FF .2
+#define FF 0.2
 #define LOWER 0.01
 #define UPPER 1.0
 
@@ -43,7 +43,8 @@ typedef struct {
         [self setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.0]];
         drawingQueue = dispatch_queue_create("drawingQueue", NULL);
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addDot:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(addDot:)];
         [self addGestureRecognizer:tap];
        
         selectedColor = [UIColor blackColor];
@@ -57,7 +58,7 @@ typedef struct {
 }
 
 - (void)addDot:(UITapGestureRecognizer *)t {
-    
+    // TODO: Remove if empty
 }
 
 - (void)eraseDrawing {
@@ -65,31 +66,35 @@ typedef struct {
     [self setNeedsDisplay];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches
+           withEvent:(UIEvent *)event {
     ctr = 0;
     bufIdx = 0;
     pts[0] = [[touches anyObject] locationInView:self];
     isFirstTouchPoint = YES;
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches
+           withEvent:(UIEvent *)event {
     CGPoint p = [[touches anyObject] locationInView:self];
     ctr++;
     pts[ctr] = p;
     if (ctr == 4) {
-        pts[3] = CGPointMake((pts[2].x+pts[4].x)/2.0, (pts[2].y+pts[4].y)/2.0);
+        pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0, (pts[2].y + pts[4].y)/2.0);
         
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i<4; i++) {
             pointsBuffer[bufIdx+i] = pts[i];
         }
         bufIdx += 4;
         
         dispatch_async(drawingQueue, ^{
             UIBezierPath *offsetPath = [UIBezierPath bezierPath];
-            if (bufIdx == 0) return;
+            if (bufIdx == 0){
+                return;
+            }
             
             LineSegment ls[4];
-            for (int i=0; i<bufIdx; i+=4) {
+            for (int i = 0; i < bufIdx; i += 4) {
                 if (isFirstTouchPoint) {
                     ls[0] = (LineSegment){pointsBuffer[0], pointsBuffer[0]};
                     [offsetPath moveToPoint:ls[0].firstPoint];
@@ -113,9 +118,13 @@ typedef struct {
                 ls[3] = [self lineSegmentPerpendicularTo:(LineSegment){pointsBuffer[i+2],pointsBuffer[i+3]} ofRelativeLength:frac3];
                 
                 [offsetPath moveToPoint:ls[0].firstPoint];
-                [offsetPath addCurveToPoint:ls[3].firstPoint controlPoint1:ls[1].firstPoint controlPoint2:ls[2].firstPoint];
+                [offsetPath addCurveToPoint:ls[3].firstPoint
+                              controlPoint1:ls[1].firstPoint
+                              controlPoint2:ls[2].firstPoint];
                 [offsetPath addLineToPoint:ls[3].secondPoint];
-                [offsetPath addCurveToPoint:ls[0].secondPoint controlPoint1:ls[2].secondPoint controlPoint2:ls[1].secondPoint];
+                [offsetPath addCurveToPoint:ls[0].secondPoint
+                              controlPoint1:ls[2].secondPoint
+                              controlPoint2:ls[1].secondPoint];
                 [offsetPath closePath];
                 
                 lastSegmentOfPrev = ls[3];
@@ -149,11 +158,13 @@ typedef struct {
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches
+           withEvent:(UIEvent *)event {
     [self setNeedsDisplay];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet *)touches
+               withEvent:(UIEvent *)event {
     [self touchesEnded:touches withEvent:event];
 }
 

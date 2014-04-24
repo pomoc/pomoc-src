@@ -41,9 +41,8 @@
 
 @implementation SideNavigationController
 
-- (void)viewDidLoad
-{
-    
+- (void)viewDidLoad {
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     dataArray = [[NSArray alloc] initWithObjects:@"HOME", @"MESSAGES", @"AGENTS CHAT", nil];
@@ -52,36 +51,30 @@
 
     _tableView.scrollEnabled = NO;
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0
+                                                inSection:0];
+
     [_tableView selectRowAtIndexPath:indexPath
                             animated:NO
                       scrollPosition:UITableViewScrollPositionNone];
     
     selected = HOME;
-    
-    
     _tableView.opaque = NO;
-    [_tableView setBackgroundColor:[Utility colorFromHexString:@"#333333"]];
+    _tableView.backgroundColor = [Utility colorFromHexString:@"#333333"];
     _tableView.backgroundView = nil;
-    
 }
 
-- (IBAction)Chat:(id)sender
-{
+- (IBAction)chat:(id)sender {
+    // TODO: Is this method unused?
     self.sidePanelController.centerPanel = [self.storyboard instantiateViewControllerWithIdentifier:@"chatNavigationController"];
 }
 
 #pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     // Return the number of rows in the section.
-    if (section == 0) {
-        return [dataArray count];
-        
-    } else {
-        return [settingArray count];
-        
-    }
+    return section == 0 ? [dataArray count] : [settingArray count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -94,38 +87,31 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                    reuseIdentifier:cellIdentifier];
 
-    CGSize iconSize = CGSizeMake(LOGO_WIDTH, LOGO_WIDTH);
-    
+    UIImage *cellImage;
+
     if (indexPath.section == 0){
-        
+        // TODO: Use enum and/or switch statement
         cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
         
         if (indexPath.row == HOME) {
-            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"home-white-512.png"]
-                                                toSize:iconSize];
-            
-        } else if(indexPath.row == CHAT) {
-            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"speech_bubble-white-512.png"]
-                                                toSize:iconSize];
-            
-        } else if(indexPath.row == GROUP_CHAT) {
-            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"group-white-512.png"]
-                                                toSize:iconSize];
+            cellImage = [UIImage imageNamed:@"home-white-512.png"];
+        } else if (indexPath.row == CHAT) {
+            cellImage = [UIImage imageNamed:@"speech_bubble-white-512.png"];
+        } else if (indexPath.row == GROUP_CHAT) {
+            cellImage = [UIImage imageNamed:@"group-white-512.png"];
         }
-        
     } else {
-        
         cell.textLabel.text = [settingArray objectAtIndex:indexPath.row];
         
         if (indexPath.row == SETTING) {
-            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"settings-white-512.png"]
-                                                toSize:iconSize];
-            
-        } else if(indexPath.row == LOGOUT){
-            cell.imageView.image = [Utility scaleImage:[UIImage imageNamed:@"logout-white-512.png"]
-                                                toSize:iconSize];
+            cellImage = [UIImage imageNamed:@"settings-white-512.png"];
+        } else if (indexPath.row == LOGOUT) {
+            cellImage = [UIImage imageNamed:@"logout-white-512.png"];
         }
     }
+    
+    cell.imageView.image = [Utility scaleImage:cellImage
+                                        toSize:CGSizeMake(LOGO_WIDTH, LOGO_WIDTH)];
     
     cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:16];
     cell.textLabel.textColor = [UIColor whiteColor];
@@ -137,8 +123,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, view.center.y,  tableView.frame.size.width, 1)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,
+                                                            tableView.frame.size.width,
+                                                            20)];
+
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                view.center.y,
+                                                                tableView.frame.size.width,
+                                                                1)];
     lineView.backgroundColor =  [UIColor clearColor];
     [view addSubview:lineView];
     return view;
@@ -150,7 +142,6 @@
     [self deallocDelegate];
 
     if (indexPath.section == 0){
-        
         switch (indexPath.row) {
             case HOME:
                 NSLog(@"selected home");
@@ -193,15 +184,15 @@
     
     switch(selected) {
         case HOME:
-            homeVc = (HomeViewController *) [[navController viewControllers] objectAtIndex:0];
+            homeVc = (HomeViewController *)[[navController viewControllers] objectAtIndex:0];
             [homeVc deallocDelegate];
             break;
         case CHAT:
-            chatVc = (ChatViewController *) [[navController viewControllers] objectAtIndex:0];
+            chatVc = (ChatViewController *)[[navController viewControllers] objectAtIndex:0];
             [chatVc deallocDelegate];
             break;
         case GROUP_CHAT:
-            groupVc = (GroupChatViewController *)  [[navController viewControllers] objectAtIndex:0];
+            groupVc = (GroupChatViewController *)[[navController viewControllers] objectAtIndex:0];
             [groupVc deallocDelegate];
             break;
         default:

@@ -10,31 +10,27 @@
 
 @implementation Utility
 
-+ (NSString *)formatDateForTable :(NSDate *)dateToFormat
-{
++ (NSString *)formatDateForTable :(NSDate *)dateToFormat {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd 'at' HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:dateToFormat];
     return dateString;
-    
 }
 
-+ (UIAlertView *)disconnectAlert
-{
++ (UIAlertView *)disconnectAlert {
     return [[UIAlertView alloc] initWithTitle:@"No network connection"
-                               message:@"You must be connected to the internet to use this app, clicking ok will redirect you to the login screen."
-                              delegate:nil
-                     cancelButtonTitle:@"OK"
-                     otherButtonTitles:nil];
+                                      message:@"You must be connected to the internet to use this app, clicking ok will redirect you to the login screen."
+                                     delegate:nil
+                            cancelButtonTitle:@"OK"
+                            otherButtonTitles:nil];
 }
 
-+ (NSDictionary *)navigationTitleDesign
-{
++ (NSDictionary *)navigationTitleDesign {
 
     NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor], NSForegroundColorAttributeName,
                                     [UIFont fontWithName:@"Helvetica-Light" size:18.0f], NSFontAttributeName,
-                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+                                    [UIColor whiteColor], NSBackgroundColorAttributeName,nil];
     
     return textAttributes;
 }
@@ -57,15 +53,15 @@
     rect.size.width  = width;
     rect.size.height = height;
     
-    if(height < width)
+    if (height < width) {
         rect.origin.y = height / 3;
-    [image drawInRect: rect];
+    }
+    [image drawInRect:rect];
     
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return smallImage;
-    
 }
 
 

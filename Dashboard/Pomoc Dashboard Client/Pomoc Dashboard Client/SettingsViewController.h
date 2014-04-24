@@ -9,15 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *apiKeyLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *chatSoundSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *messageSoundSwitch;
 
 - (IBAction)chatSoundPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UISwitch *chatSoundSwitch;
-
-
 - (IBAction)messageSoundPressed:(id)sender;
-@property (weak, nonatomic) IBOutlet UISwitch *messageSoundSwitch;
 
 @end

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AnnotationView : UIView
+
 - (void)setColor:(UIColor *)c;
+
 @end

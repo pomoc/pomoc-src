@@ -44,8 +44,11 @@
     float height = self.bounds.size.height;
     float width = self.bounds.size.width;
     double chunk = 1.0 / [sortedData count] * width;
-    for (int i=0; i<[sortedData count]; i += self.bigTicksEvery) {
-        CGRect frame = CGRectMake(i * chunk, LENGTH_BIG * height, self.smallTicksEvery * chunk, (1-LENGTH_BIG)*height);
+    for (int i = 0; i < [sortedData count]; i += self.bigTicksEvery) {
+        CGRect frame = CGRectMake(i * chunk,
+                                  LENGTH_BIG * height,
+                                  self.smallTicksEvery * chunk,
+                                  (1-LENGTH_BIG)*height);
         UILabel *label = [[UILabel alloc] initWithFrame:frame];
         label.text = sortedData[i];
         label.textAlignment = NSTextAlignmentCenter;

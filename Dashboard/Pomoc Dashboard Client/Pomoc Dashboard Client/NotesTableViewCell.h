@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NotesTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *notesInfo;
 

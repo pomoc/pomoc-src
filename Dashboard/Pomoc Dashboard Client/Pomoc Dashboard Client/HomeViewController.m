@@ -38,13 +38,13 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     [singleton setHomeDelegate:self];
     
     //TODO ask dashboard singleton for number of convo current, users online etc
-    [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]]];
-    [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]]];
-    [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]]];
+    _agentOnlineLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentAgentList count]];
+    _userOnlineLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentUserList count]];
+    _totalConversationLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[singleton.currentConversationList count]];
     
     //show spinner
     [self showLoading];
-    [singleton numberOfUnattendedConversation:^(NSUInteger total){
+    [singleton numberOfUnattendedConversation:^(NSUInteger total) {
         NSLog(@"singleton replied total == %lu",(unsigned long)total);
         [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)total]];
         [spinner stopAnimating];
@@ -53,117 +53,107 @@ CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
     self.title = @"Home";
     
-    CGRect chartFrame = CGRectMake(0, 0, 450,  350);
+    CGRect chartFrame = CGRectMake(0, 0, 450, 350);
     _lineChartView = [[LineChartView alloc] initWithFrame:chartFrame];
-    [_lineChartView addData:[self retrieveData:25 type:1] withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
-    [_lineChartView addData:[self retrieveData:25 type:2] withProperties:@{}];
+    [_lineChartView addData:[self retrieveData:25 type:1]
+             withProperties:@{@"line_color":[UIColor greenColor], @"line_width":@"4.0"}];
+    [_lineChartView addData:[self retrieveData:25 type:2]
+             withProperties:@{}];
     
     [_chartView addSubview:_lineChartView];
     
     //_lineChartView.userInteractionEnabled = YES;
-    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture:)];
+    UISwipeGestureRecognizer *swipeRecognizer =
+        [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                  action:@selector(swipeGesture:)];
     [_chartView addGestureRecognizer:swipeRecognizer];
     
 }
 
 // Update the god-damn frames here so that the right size is used
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [_lineChartView updateFrame:_chartView.bounds animated:NO];
 }
 
-- (NSDictionary *)retrieveData:(int)num type:(int)type
-{
+- (NSDictionary *)retrieveData:(int)num type:(int)type {
     NSMutableDictionary *buffer = [[NSMutableDictionary alloc] init];
     float last = 0.0;
     int bracket = 10;
     int startTime = [[NSDate date] timeIntervalSince1970];
     
-    srand(3217+type);
-    for (int i=0; i<num; i++) {
+    srand(3217 + type);
+    for (int i = 0; i < num; i++) {
         last = last + (rand() % (bracket * 2 + 1) - (bracket - 1));
         last = MAX(last, 0.0);
-        [buffer setObject:[NSNumber numberWithFloat:last] forKey:[NSNumber numberWithInt:startTime+i*60*60]];
+        [buffer setObject:[NSNumber numberWithFloat:last]
+                   forKey:[NSNumber numberWithInt:startTime + i * 3600]];
     }
+    
     return buffer;
 }
 
 
-- (void)showLoading
-{
+- (void)showLoading {
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = _unattendedConversationLabel.center;
     [self.view addSubview:spinner];
     [self.view bringSubviewToFront:spinner];
     [spinner startAnimating];
 }
-- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer
-{
+
+- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"detected a swipe");
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Pomoc delegate
-- (void) agentTotalNumberChange: (NSUInteger)agentNumber
-{
+
+- (void)agentTotalNumberChange: (NSUInteger)agentNumber {
     [_agentOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)agentNumber]];
 }
 
-- (void) userTotalNumberChange: (NSUInteger)userNumber
-{
+- (void)userTotalNumberChange: (NSUInteger)userNumber {
     [_userOnlineLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)userNumber]];
 }
 
-- (void) totalConversationChanged: (NSUInteger)totalConversation
-{
+- (void)totalConversationChanged: (NSUInteger)totalConversation {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_totalConversationLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)totalConversation]];
     });
-    
 }
 
 - (void)totalUnattendedConversationChanged:(NSUInteger)totalUnattended {
     NSLog(@"delegate called");
-    
     [_unattendedConversationLabel setText:[NSString stringWithFormat:@"%lu",(unsigned long)totalUnattended]];
 }
 
-- (void) deallocDelegate
-{
+- (void)deallocDelegate {
     NSLog(@"inside dealloc delegate of home vc");
     [singleton setHomeDelegate:nil];
 }
 
-
--(BOOL)shouldAutorotate
-{
+- (BOOL)shouldAutorotate {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
-{
+- (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 #pragma mark - DISCONNECT
-- (void) noInternet
-{
+- (void)noInternet {
     UIAlertView *alert = [Utility disconnectAlert];
     alert.delegate = self;
-    
     [alert show];
 }
 
 #pragma mark - UIAlertView
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
         [self performSegueWithIdentifier:@"backtoLogin" sender:self];
     }
 }

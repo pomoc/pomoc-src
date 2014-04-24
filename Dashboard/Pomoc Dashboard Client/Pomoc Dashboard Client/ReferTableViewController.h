@@ -21,6 +21,6 @@
 
 @property (nonatomic, strong) PMConversation *currentConvo;
 @property (nonatomic, strong) NSArray *referList;
-@property (nonatomic, assign) id  delegate;
+@property (nonatomic, assign) id delegate;
 
 @end

@@ -9,8 +9,7 @@
 #import "UploadViewController.h"
 #import "ChatViewController.h"
 
-@interface UploadViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-{
+@interface UploadViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 }
 
 @end
@@ -41,24 +40,22 @@
 
 - (void) showActionSheet
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Upload image from?"
-                                  delegate:self
-                                  cancelButtonTitle:@"Cancel"
-                                  destructiveButtonTitle:nil
-                                  otherButtonTitles:@"Camera", @"Photos Library", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Upload image from?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Camera", @"Photos Library", nil];
     
     [actionSheet showInView:self.view];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:YES
+                               completion:nil];
     
-    UIImage* originalImage = nil;
-    originalImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *originalImage = [info objectForKey:UIImagePickerControllerEditedImage];
     
-    if(originalImage==nil) {
+    if (!originalImage) {
         originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
     
@@ -67,8 +64,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    
+
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]) {
         [_delegate closePopOver];
         return;
@@ -89,23 +85,22 @@
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
+        // TODO: What is this elif block for? It's the same as the one above.
         return;
     }
     
-    
     picker.modalPresentationStyle = UIModalPresentationCurrentContext;
     
-    //[self presentViewController:picker animated:YES];
     [self presentViewController:picker animated:YES completion:^(){}];
 }
 
 
--(BOOL)shouldAutorotate
+- (BOOL)shouldAutorotate
 {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
+- (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscapeLeft;
 }

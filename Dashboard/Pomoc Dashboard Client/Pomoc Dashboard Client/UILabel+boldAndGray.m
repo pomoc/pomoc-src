@@ -10,17 +10,19 @@
 
 @implementation UILabel (boldAndGray)
 
-- (void) boldRange: (NSRange) range {
+- (void)boldRange:(NSRange)range {
     if (![self respondsToSelector:@selector(setAttributedText:)]) {
         return;
     }
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:self.font.pointSize], NSForegroundColorAttributeName: [UIColor blackColor]} range:range];
+    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:self.font.pointSize],
+                                    NSForegroundColorAttributeName:[UIColor blackColor]}
+                            range:range];
     
     self.attributedText = attributedText;
 }
 
-- (void) boldAndBlackSubstring: (NSString*) substring {
+- (void)boldAndBlackSubstring:(NSString *)substring {
     NSRange range = [self.text rangeOfString:substring];
     [self boldRange:range];
 }

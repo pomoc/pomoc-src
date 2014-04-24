@@ -37,8 +37,7 @@
 
 @implementation LineChartView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         chartData = [[NSMutableArray alloc] init];
@@ -50,18 +49,18 @@
     return self;
 }
 
-- (void)updateFrame:(CGRect)frame animated:(BOOL)isAnimated
-{
+- (void)updateFrame:(CGRect)frame animated:(BOOL)animated {
+    // TODO: Removed unused parameter: animated
     self.frame = frame;
     lineChartView.frame = frame;
 }
 
 // Note Y values have to be >= 0 or the whole thing will complain
-- (void)addDataX:(NSArray *)x_vals withY:(NSArray *)y_vals
+- (void)addDataX:(NSArray *)xValues withY:(NSArray *)yValues
 {
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    for (int i=0; i < [x_vals count]; i++) {
-        [data setObject:y_vals[i] forKey:x_vals[i]];
+    for (int i = 0; i < [xValues count]; i++) {
+        [data setObject:yValues[i] forKey:xValues[i]];
     }
     [chartData addObject:data];
     [lineChartView reloadData];
@@ -80,13 +79,18 @@
     [lineChartView reloadData];
 }
 
-- (void)initializeChart:(CGRect)frame
-{
-    float xAxis_height = 30;
+- (void)initializeChart:(CGRect)frame {
+    float xAxisHeight = 30;
     CGRect f = self.frame;
     
-    CGRect chartFrame = CGRectMake(f.origin.x, f.origin.y, f.size.width, f.size.height - xAxis_height);
-    CGRect xAxisFrame = CGRectMake(f.origin.x, f.size.height - xAxis_height + f.origin.y, f.size.width,xAxis_height);
+    CGRect chartFrame = CGRectMake(f.origin.x,
+                                   f.origin.y,
+                                   f.size.width,
+                                   f.size.height - xAxisHeight);
+    CGRect xAxisFrame = CGRectMake(f.origin.x,
+                                   f.size.height - xAxisHeight + f.origin.y,
+                                   f.size.width,
+                                   xAxisHeight);
     
     lineChartView = [[JBLineChartView alloc] init];
     lineChartView.frame = chartFrame;
@@ -116,18 +120,18 @@
 
 # pragma mark - JBLineChartViewDataSource, JBLineChartViewDelegate methods for DATA
 
-- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
-{
+- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView {
     return [chartData count];
 }
 
-- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
-{
+- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView
+numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex {
     return [chartData[lineIndex] count];
 }
 
-- (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
-{
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView
+verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex
+             atLineIndex:(NSUInteger)lineIndex {
     NSMutableArray *keys= [NSMutableArray arrayWithArray:[chartData[lineIndex] allKeys]];
     [keys sortUsingSelector:@selector(compare:)];
     
@@ -153,7 +157,8 @@
     return 6.0;
 }
 
-- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
+- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView
+              lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
 {
     return JBLineChartViewLineStyleDashed;
 }

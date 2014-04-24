@@ -52,10 +52,9 @@
                                             forKey:@"messageSound"];
 }
 
-- (void)playSoundOfFile: (NSString *)fileName :(NSString *)type
-{
-    NSString *path = [ [NSBundle mainBundle] pathForResource:fileName
-                                                      ofType:type];
+- (void)playSoundOfFile: (NSString *)fileName :(NSString *)type {
+    NSString *path = [[NSBundle mainBundle] pathForResource:fileName
+                                                     ofType:type];
     
     NSLog(@"path == %@",path);
     
@@ -69,16 +68,14 @@
     [_audioPlayer play];
 }
 
-- (void) playNewConversation
-{
+- (void)playNewConversation {
     if ([self conversationSound]) {
         [self playSoundOfFile:@"chat"
                              :@"mp3"];
     }
 }
 
-- (void) playNewMessage
-{
+- (void)playNewMessage {
     if ([self messageSound]) {
         [self playSoundOfFile:@"message"
                              :@"mp3"];

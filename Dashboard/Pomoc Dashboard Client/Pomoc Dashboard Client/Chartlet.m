@@ -29,12 +29,12 @@
 
 - (void)setNumberText:(NSString *)numberText {
     _numberText = numberText;
-    [numberLabel setText:numberText];
+    numberLabel.text = numberText;
 }
 
 - (void)setTitleText:(NSString *)titleText {
     _titleText = titleText;
-    [titleLabel setText:titleText];
+    titleLabel.text = titleText;
 }
 
 - (void)initializeChartlet {

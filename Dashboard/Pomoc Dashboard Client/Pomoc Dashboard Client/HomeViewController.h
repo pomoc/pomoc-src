@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIView *chartView;
 @property (weak, nonatomic) IBOutlet UIView *toolTipView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
