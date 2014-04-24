@@ -650,11 +650,11 @@
 				6036EB2519096DE500209141 /* PMSupportConstants.h */,
 				6068F2D318E1E40B005B87F4 /* PMCore.h */,
 				6068F2D518E1E40B005B87F4 /* PMCore.m */,
+				60829ABE18F940D9005E396B /* PMCoreConstants.h */,
 				60592ADA18EE8A46006D5DEC /* PMCore_Private.h */,
 				9F2AE7D218F7D3060078D22A /* PomocImage.h */,
 				9F2AE7D318F7D3060078D22A /* PomocImage.m */,
 				6068F2D118E1E40B005B87F4 /* Supporting Files */,
-				60829ABE18F940D9005E396B /* PMCoreConstants.h */,
 			);
 			path = PomocCore;
 			sourceTree = "<group>";

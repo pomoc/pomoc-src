@@ -13,6 +13,7 @@
 #import "SocketIOPacket.h"
 
 #import "PMMessage.h"
+#import "PMMessageConstants.h"
 #import "PMMessage+Constructors.h"
 #import "PMInternalMessage.h"
 #import "PMApplicationMessage.h"
@@ -78,10 +79,10 @@
     PMMessage *initMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeNewConversation];
 
     [core sendMessage:initMessage withAcknowledge:^(NSDictionary *jsonResponse) {
-        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
-            NSString *conversationId = jsonResponse[@"conversationId"];
-            NSString *creatorUserId = jsonResponse[@"creatorUserId"];
-            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[jsonResponse[@"createDate"] doubleValue]];
+        if ([jsonResponse[SUCCESS_KEY] isEqual:@(YES)] && completion) {
+            NSString *conversationId = jsonResponse[MESSAGE_CONVERSATION_ID];
+            NSString *creatorUserId = jsonResponse[MESSAGE_CREATOR_USERID];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[jsonResponse[MESSAGE_CREATE_DATE] doubleValue]];
             PMConversation *conversation = [[PMConversation alloc] initWithConversationId:conversationId
                                             creatorUserId:creatorUserId createDate:createDate];
             
@@ -118,7 +119,7 @@
 
 + (void)sendNote:(NSString *)note conversationId:(NSString *)conversationId
 {
-    NSDictionary *appData = @{@"note": note};
+    NSDictionary *appData = @{MESSAGE_NOTE: note};
     
     PMCore *core = [PMCore sharedInstance];
     PMMessage *noteMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeAddNote conversationId:conversationId appData:appData];
@@ -137,27 +138,24 @@
                                                         createDate:createDate];
     
     [core sendMessage:observeMessage withAcknowledge:^(NSDictionary *jsonResponse) {
-        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+        if ([jsonResponse[SUCCESS_KEY] isEqual:@(YES)] && completion) {
             NSMutableArray *messages = [NSMutableArray array];
             NSMutableArray *notes = [NSMutableArray array];
             
-            for (NSDictionary *jsonMessage in jsonResponse[@"messages"]) {
-                // TODO: Generalize this
-                if ([jsonMessage[@"class"] isEqualToString:[[PMChatMessage class] description]] ||
-                    [jsonMessage[@"class"] isEqualToString:[[PMImageMessage class] description]] ||
-                    [jsonMessage[@"class"] isEqualToString:[[PMStatusMessage class] description]]) {
-                    PMChatMessage *message = [PMMessage chatMessageFromJsonData:jsonMessage];
+            for (NSDictionary *jsonMessage in jsonResponse[MESSAGES_KEY]) {
+                PMChatMessage *message = [PMMessage chatMessageFromJsonData:jsonMessage];
+                // Message will be non nil if it is of chat message type
+                if (message) {
                     [messages addObject:message];
                 }
             }
             
-            for (NSDictionary *noteData in jsonResponse[@"notes"]) {
+            for (NSDictionary *noteData in jsonResponse[NOTES_KEY]) {
                 PMNote *note = [[PMNote alloc] initWithJsonData:noteData];
                 [notes addObject:note];
             }
             
             completion([NSArray arrayWithArray:messages], [NSArray arrayWithArray:notes]);
-            
         }
     }];
 }
@@ -168,14 +166,14 @@
     PMMessage *allConversationMessage = [PMMessage internalMessageWithCode:PMInternalMessageCodeGetAppConversationList];
     
     [core sendMessage:allConversationMessage withAcknowledge:^(NSDictionary *jsonResponse) {
-        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
+        if ([jsonResponse[SUCCESS_KEY] isEqual:@(YES)] && completion) {
             
-            NSArray *conversationObjects = jsonResponse[@"conversationIds"];
+            NSArray *conversationObjects = jsonResponse[CONVERSATION_IDS_KEY];
             NSMutableArray *conversations = [NSMutableArray array];
             for (NSDictionary *conversation in conversationObjects) {
-                NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[conversation[@"createDate"] doubleValue]];
-                [conversations addObject:[[PMConversation alloc] initWithConversationId:conversation[@"conversationId"]
-                                                                          creatorUserId:conversation[@"creatorUserId"]
+                NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[conversation[MESSAGE_CREATE_DATE] doubleValue]];
+                [conversations addObject:[[PMConversation alloc] initWithConversationId:conversation[MESSAGE_CONVERSATION_ID]
+                                                                          creatorUserId:conversation[MESSAGE_CREATOR_USERID]
                                                                              createDate:createDate]];
             }
             
@@ -258,8 +256,8 @@
     PMCore *core = [PMCore sharedInstance];
     PMMessage *getHandlersMessage = [PMMessage applicationMessageWithCode:PMApplicationMessageCodeGetHandlers conversationId:conversationId];
     [core sendMessage:getHandlersMessage withAcknowledge:^(NSDictionary *jsonResponse) {
-        if ([jsonResponse[@"success"] isEqual:@(YES)] && completion) {
-            NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:jsonResponse[@"handlers"]];
+        if ([jsonResponse[SUCCESS_KEY] isEqual:@(YES)] && completion) {
+            NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:jsonResponse[HANDLERS_KEY]];
             completion(handlers);
         }
     }];
@@ -302,12 +300,11 @@
 {
     NSDictionary *jsonData = [self jsonDataForMessage:message];
     if ([message isKindOfClass:[PMInternalMessage class]]) {
-        NSLog(@"internal data %@", jsonData);
-        [self.socket sendEvent:@"internalMessage" withData:jsonData andAcknowledge:function];
+        [self.socket sendEvent:INTERNAL_MESSAGE_EVENT withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMChatMessage class]]) {
-        [self.socket sendEvent:@"chatMessage" withData:jsonData andAcknowledge:function];
+        [self.socket sendEvent:CHAT_MESSAGE_EVENT withData:jsonData andAcknowledge:function];
     } else if ([message isKindOfClass:[PMApplicationMessage class]]) {
-        [self.socket sendEvent:@"applicationMessage" withData:jsonData andAcknowledge:function];
+        [self.socket sendEvent:APPLICATION_MESSAGE_EVENT withData:jsonData andAcknowledge:function];
     }
 }
 
@@ -324,9 +321,9 @@
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
-    NSDictionary *data = [packet dataAsJSON][@"args"][0];
+    NSDictionary *data = [packet dataAsJSON][ARGS_KEY][0];
     
-    if ([packet.name isEqualToString:@"chatMessage"]) {
+    if ([packet.name isEqualToString:CHAT_MESSAGE_EVENT]) {
         PMChatMessage *chatMessage = [PMMessage chatMessageFromJsonData:data];
         
         PMConversation *conversation = self.conversations[chatMessage.conversationId];
@@ -334,20 +331,20 @@
             [conversation addMessage:chatMessage];
         }
     }
-    else if ([packet.name isEqualToString:@"newNote"]) {
-        NSString *conversationId = data[@"conversationId"];
+    else if ([packet.name isEqualToString:NEW_NOTE_EVENT]) {
+        NSString *conversationId = data[MESSAGE_CONVERSATION_ID];
         
         PMConversation *conversation = self.conversations[conversationId];
         if (conversation) {
-            PMNote *note = [[PMNote alloc] initWithJsonData:data[@"note"]];
+            PMNote *note = [[PMNote alloc] initWithJsonData:data[MESSAGE_NOTE]];
             [conversation addNote:note];
         }
     }
-    else if ([packet.name isEqualToString:@"newConversation"]) {
+    else if ([packet.name isEqualToString:NEW_CONVERSATION_EVENT]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
-            NSString *conversationId = data[@"conversationId"];
-            NSString *creatorUserId = data[@"creatorUserId"];
-            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[@"createDate"] doubleValue]];
+            NSString *conversationId = data[MESSAGE_CONVERSATION_ID];
+            NSString *creatorUserId = data[MESSAGE_CREATOR_USERID];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[MESSAGE_CREATE_DATE] doubleValue]];
             
             PMConversation *conversation = self.conversations[conversationId];
             
@@ -368,30 +365,30 @@
         }
     }
     else if ([packet.name isEqualToString:@"onlineStatus"]) {
-        NSArray *users = [PMUserManager getUserObjectsFromUserIds:data[@"users"]];
+        NSArray *users = [PMUserManager getUserObjectsFromUserIds:data[USERS_KEY]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:conversationId:)]) {
-            if ([data[@"type"] isEqualToString:@"conversation"]) {
-                [self.delegate updateOnlineUsers:users conversationId:data[@"conversationId"]];
+            if ([data[TYPE_KEY] isEqualToString:@"conversation"]) {
+                [self.delegate updateOnlineUsers:users conversationId:data[MESSAGE_CONVERSATION_ID]];
             }
         }
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
-            if ([data[@"type"] isEqualToString:@"app"]) {
+            if ([data[TYPE_KEY] isEqualToString:@"app"]) {
                 [self.delegate updateOnlineUsers:users];
             }
         }
     }
     else if ([packet.name isEqualToString:@"handlerStatus"]) {
-        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:data[@"users"]];
+        NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:data[USERS_KEY]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:referrer:referee:)]) {
-            if ([data[@"type"] isEqualToString:@"handlers"]) {
-                [self.delegate updateHandlers:handlers conversationId:data[@"conversationId"]];
+            if ([data[TYPE_KEY] isEqualToString:@"handlers"]) {
+                [self.delegate updateHandlers:handlers conversationId:data[MESSAGE_CONVERSATION_ID]];
             }
-            else if ([data[@"type"] isEqualToString:@"referral"]) {
+            else if ([data[TYPE_KEY] isEqualToString:@"referral"]) {
                 PMUser *referrer = [PMUserManager getUserObjectFromUserId:data[@"referrerUserId"]];
                 PMUser *referee = [PMUserManager getUserObjectFromUserId:data[@"refereeUserId"]];
                 
                 [self.delegate updateHandlers:handlers
-                               conversationId:data[@"conversationId"]
+                               conversationId:data[MESSAGE_CONVERSATION_ID]
                                      referrer:referrer
                                       referee:referee];
             }
