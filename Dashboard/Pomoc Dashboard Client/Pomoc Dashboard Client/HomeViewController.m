@@ -17,7 +17,7 @@
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 0.0f;
 
-@interface HomeViewController () <PomocHomeDelegate, UIAlertViewDelegate ,JBLineChartViewDataSource, JBLineChartViewDelegate> {
+@interface HomeViewController () <PomocHomeDelegate, UIAlertViewDelegate> {
     DashBoardSingleton *singleton;
     UIActivityIndicatorView *spinner;
 }

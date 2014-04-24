@@ -10,7 +10,7 @@
 #import "DashBoardSingleton.h"
 #import "PomocSupport.h"
 
-@interface LoginViewController () <UITextFieldDelegate, PMSupportDelegate, PMConversationDelegate> {
+@interface LoginViewController () <UITextFieldDelegate, PMConversationDelegate> {
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;
     IBOutlet UIButton *loginButton;
@@ -141,32 +141,6 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     [self animateScreenUp:NO];
-}
-
-// TODO:    Add pragma mark for protocol methods. Or make them optional so
-//          that they do not have to appear here.
-- (void)newConversationCreated:(PMConversation *)conversation {
-    
-}
-
-- (void)updateHandlers:(NSArray *)handlers
-        conversationId:(NSString *)conversationId {
-    
-}
-
-- (void)updateHandlers:(NSArray *)handlers
-        conversationId:(NSString *)conversationId
-              referrer:(PMUser *)referrer
-               referee:(PMUser *)referee {
-}
-
-- (void)updateOnlineUsers:(NSArray *)users {
-    
-}
-
-- (void)updateOnlineUsers:(NSArray *)users
-           conversationId:(NSString *)conversationId {
-    
 }
 
 -(BOOL)shouldAutorotate

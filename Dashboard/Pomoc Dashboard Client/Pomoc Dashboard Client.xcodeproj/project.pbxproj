@@ -1013,9 +1013,6 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1039,9 +1036,6 @@
 					"$(inherited)",
 					"../../Framework/Pomoc/PomocCore/Distribution/PomocCore/**",
 					"$(PROJECT_DIR)",
-					/Users/steve/Dropbox/NUS,
-					"-",
-					CS3217/pomoc_real/pomoc/Framework/Pomoc/PomocCore/Distribution/PomocCore,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

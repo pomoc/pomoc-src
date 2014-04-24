@@ -256,10 +256,6 @@
                                                                 <action selector="annotateActionPressed:" destination="QxH-3e-iTU" eventType="touchUpInside" id="WRt-vQ-GuM"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="y7J-CP-vWH">
-                                                            <rect key="frame" x="611" y="8" width="120" height="120"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KHS-1W-Yv9">
                                                             <rect key="frame" x="10" y="45" width="120" height="120"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -278,7 +274,6 @@
                                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                                 </accessibility>
                                                 <connections>
-                                                    <outlet property="messageBigPicture" destination="y7J-CP-vWH" id="Ds7-i6-BrV"/>
                                                     <outlet property="messageFrom" destination="p6d-iE-Vdu" id="ner-8I-wdQ"/>
                                                     <outlet property="messagePicture" destination="KHS-1W-Yv9" id="enz-rc-scP"/>
                                                 </connections>
@@ -1072,6 +1067,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9W8-ag-bqG"/>
+        <segue reference="Sfz-yF-UQb"/>
     </inferredMetricsTieBreakers>
 </document>

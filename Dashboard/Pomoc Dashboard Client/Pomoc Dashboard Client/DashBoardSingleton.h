@@ -15,8 +15,6 @@
 @protocol PomocChatDelegate
 
 - (void) noInternet;
-- (void) internetBack;
-
 - (void) updateChatList: (NSMutableArray *)chatList;
 - (void) hasNewConversation: (NSMutableArray *)chatList;
 - (void) hasNewMessage: (NSMutableArray *)chatList conversation: (PMConversation *)conversation;
@@ -36,7 +34,6 @@
 @protocol PomocGroupDelegate
 
 - (void) noInternet;
-- (void) internetBack;
 - (void) agentListUpdated: (NSMutableArray *)agentList;
 - (void) newChatMessage: (PMConversation *)conversation;
 
@@ -46,14 +43,10 @@
 @protocol PomocHomeDelegate
 
 - (void) noInternet;
-- (void) internetBack;
 - (void) agentTotalNumberChange: (NSUInteger)agentNumber;
 - (void) userTotalNumberChange: (NSUInteger)userNumber;
 - (void) totalConversationChanged: (NSUInteger)totalConversation;
 - (void) totalUnattendedConversationChanged: (NSUInteger)totalUnattended;
-
-// Delegate for agent online/ offline
-// Delegate for user online/ offline
 
 @end
 

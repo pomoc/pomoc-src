@@ -52,7 +52,6 @@
     //show spinner
     [self showLoading];
     [singleton numberOfUnattendedConversation:^(NSUInteger total){
-        NSLog(@"singleton replied total == %d", total);
         [spinner stopAnimating];
     }];
     
