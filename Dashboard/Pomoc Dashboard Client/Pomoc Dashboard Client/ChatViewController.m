@@ -310,12 +310,26 @@
         }
         
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
+        
+//        switch(section) {
+//            case UNHANDLED_CHAT:
+//                return [unhandledChatList count];
+//                break;
+//            case HANDLING_CHAT:
+//                return [handlingChatList count];
+//                break;
+//            case OTHER_CHAT:
+//                return [otherChatList count];
+//                break;
+//        }
+        
         if ([chatList count] == 0) {
             return 0;
             
         } else {
             return [currentlySelectedConvo.messages count];
         }
+        return 0;
     }
     return 0;
 }
@@ -331,6 +345,8 @@
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
         PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
+        currentlySelectedConvo = convo;
+        
         id obj = [convo.messages objectAtIndex:indexPath.row];
         
         if ( [obj isKindOfClass:[PMStatusMessage class]]) {
@@ -378,10 +394,6 @@
             case OTHER_CHAT:
                 pmConversation = [otherChatList objectAtIndex:currentlySelectedChatRow];
                 break;
-        }
-        
-        for (PMConversation *convo in chatList) {
-            NSLog(@"convo.conversation id == %@",convo.conversationId);
         }
         
         NSLog(@"pm conversation selected == %@",pmConversation.conversationId);
@@ -459,7 +471,20 @@
         
     }else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-        PMConversation *pmConvo = [chatList objectAtIndex:currentlySelectedChatRow];
+        PMConversation *pmConvo;
+        switch (indexPath.section) {
+            case UNHANDLED_CHAT:
+                pmConvo = [unhandledChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+            case HANDLING_CHAT:
+                pmConvo = [handlingChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+            case OTHER_CHAT:
+                pmConvo = [otherChatList objectAtIndex:currentlySelectedChatRow];
+                break;
+        }
+        
+        NSLog(@" index path row ==%lu, %i",(long)indexPath.row, indexPath.section);
         id obj = [pmConvo.messages objectAtIndex:indexPath.row];
         
         if( [obj isKindOfClass:[PMImageMessage class]]) {
