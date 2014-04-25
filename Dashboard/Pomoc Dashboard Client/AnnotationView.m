@@ -8,11 +8,6 @@
 
 #import "AnnotationView.h"
 
-#define CAPACITY 100
-#define FF 0.2
-#define LOWER 0.01
-#define UPPER 1.0
-
 typedef struct {
     CGPoint firstPoint;
     CGPoint secondPoint;

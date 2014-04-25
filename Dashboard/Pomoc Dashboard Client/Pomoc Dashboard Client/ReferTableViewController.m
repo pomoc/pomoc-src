@@ -48,11 +48,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cell";
+    static NSString *cellIdentifier = REFER_REUSE_CELL;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (empty) {
-        cell.textLabel.text = @"No available agents to invite";
+        cell.textLabel.text = MESSAGE_WHEN_NO_AGENT;
     } else {
         PMUser *user = _referList[indexPath.row];
         cell.textLabel.text = user.name;
@@ -63,11 +63,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"selected row == %lu",(long)indexPath.row);
-    
+  
     if (!empty) {
         PMUser *selectedUser = _referList[indexPath.row];
-        NSLog(@"selected user name == %@",selectedUser.name);
         
         [singleton refer:_currentConvo referee:selectedUser];
     }

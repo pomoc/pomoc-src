@@ -7,8 +7,6 @@
 //
 
 #import "Axis.h"
-#define LENGTH_SMALL 0.15
-#define LENGTH_BIG 0.25
 
 @interface Axis () {
     NSMutableArray *labels;

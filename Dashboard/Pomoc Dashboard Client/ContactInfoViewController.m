@@ -35,32 +35,18 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Navigation Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return noteList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cell";
+    static NSString *cellIdentifier = NOTE_REUSE_CELL;
     NotesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    //update the UILabel's height based on text size
-    /*
-    _messageText.numberOfLines = 0;
-    
-    CGSize maximumLabelSize = CGSizeMake(_messageText.frame.size.width, 9999);
-    CGSize expectedSize = [_messageText sizeThatFits:maximumLabelSize];
-    
-    CGRect newFrame = _messageText.frame;
-    newFrame.size.height = expectedSize.height;
-    _messageText.frame = newFrame;
-    */
     
     PMNote *note = [noteList objectAtIndex:indexPath.row];
     
@@ -70,17 +56,10 @@
     NSString *dateString = [Utility formatDateForTable:note.timestamp];
     cell.dateLabel.text = dateString;
     
-    //cell.textLabel.text = note.note;
-    
     return cell;
 }
 
 - (IBAction)addNotesPressed:(id)sender {
-    NSLog(@"add notes pressed");
-    
-    NSLog(@"current conversation id == %@",_currentConversation.conversationId);
-    NSLog(@"text == %@",_inputText.text);
-    
     [_currentConversation sendNote:_inputText.text];
     _inputText.text = @"";
 }
@@ -92,7 +71,6 @@
         [_notesTableView reloadData];
     }
 }
-
 
 -(BOOL)shouldAutorotate {
     return YES;

@@ -12,8 +12,8 @@
 #import "JBChartTooltipTipView.h"
 #import "Axis.h"
 
-// Color palette koped from https://kuler.adobe.com/retro-air-color-theme-3745716/
 
+// Color palette koped from https://kuler.adobe.com/retro-air-color-theme-3745716/
 #define COLOR_BLACK [UIColor colorWithRed:0.251 green:0.251 blue:0.251 alpha:1.0];
 #define COLOR_BLUE [UIColor colorWithRed:0.008 green:0.286 blue:0.349 alpha:1.0];
 #define COLOR_TEAL [UIColor colorWithRed:0.012 green:0.494 blue:0.549 alpha:1.0];
@@ -288,15 +288,5 @@ verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex
         adjustTooltipVisibility();
     }
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

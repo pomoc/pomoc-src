@@ -48,7 +48,7 @@
     _chatNavTable.separatorColor = [UIColor clearColor];
     
     // Border
-    _chatMessageTable.layer.borderWidth = 0.5;
+    _chatMessageTable.layer.borderWidth = GROUP_CHAT_BORDER_WIDTH;
     CALayer *leftBorder = [CALayer layer];
     [leftBorder setBackgroundColor:[[UIColor blackColor] CGColor]];
     [leftBorder setFrame:CGRectMake(_chatInputView.frame.size.width, 0, 0.5,
@@ -58,7 +58,7 @@
     keyboardEditing = false;
     
     self.navigationController.navigationBar.titleTextAttributes = [Utility navigationTitleDesign];
-    self.title = @"Group Chat";
+    self.title = GROUP_CHAT_NAV_TITLE;
 
     singleton = [DashBoardSingleton singleton];
     agentList = singleton.currentAgentList;
@@ -78,7 +78,6 @@
     NSString *userInput = _textInput.text;
     
     if ([userInput length] > 0) {
-        NSLog(@"user sending message!");
         [currentChat sendTextMessage:userInput];
         _textInput.text = @"";
     }
@@ -95,7 +94,6 @@
     if (tableView.tag == GROUP_CHAT_TABLEVIEW) {
         return [currentChat.messages count];
     } else if ([tableView tag] ==AGENT_LIST_TABLEVIEW) {
-        NSLog(@"total agent list = %lu",[agentList count]);
         return [agentList count];
     }
     return 0;
@@ -137,7 +135,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (tableView.tag == AGENT_LIST_TABLEVIEW) {
-        return @"Agents Online";
+        return AGENT_ONLINE_TABLE_TITLE;
     }
     return nil;
 }
@@ -158,7 +156,7 @@
 #pragma mark - CHAT SIDE NAV
 - (UITableViewCell *)createAgentListTable:(UITableView *)tableView
                                     atRow:(NSInteger)row {
-    static NSString *cellIdentifier = @"cell";
+    static NSString *cellIdentifier = AGENT_MESSAGE_REUSABLE_CELL;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell) {
@@ -169,11 +167,11 @@
     PMUser *agent = [agentList objectAtIndex:row];
 
     cell.textLabel.text = agent.name;
-    cell.textLabel.font = [UIFont fontWithName:@"Marker Felt" size:17];
+    cell.textLabel.font = [UIFont fontWithName:AGENT_LIST_FONT_STYLE size:AGENT_LIST_FONT_SIZE];
     
-    UIImage *thumbNail = [UIImage imageNamed:@"worker-512.png"];
+    UIImage *thumbNail = [UIImage imageNamed:AGENT_LIST_THUMBNAIL];
     UIImage *scaled = [Utility scaleImage:thumbNail
-                                   toSize:CGSizeMake(25, 25)];
+                                   toSize:CGSizeMake(AGENT_LIST_THUMBNAIL_SIZE, AGENT_LIST_THUMBNAIL_SIZE)];
     
     cell.imageView.image = scaled;
     return cell;
@@ -231,7 +229,6 @@
 - (void)noInternet {
     UIAlertView *alert = [Utility disconnectAlert];
     alert.delegate = self;
-    
     [alert show];
 }
 

@@ -45,20 +45,12 @@
     buttons = [NSMutableArray array];
     for (int i = 0; i < NUM_COLORS; i++) {
         
-        //int offset = i * BUTTON_SIDE_OFFSET;
-        //int top = BUTTON_SIDE_OFFSET;
-        
-        //CGRect btnFrame = CGRectMake(BUTTON_SIDE_OFFSET, i * BUTTON_SIZE+offset+top, BUTTON_SIZE, BUTTON_SIZE);
         CGRect btnFrame = CGRectMake(i * BUTTON_SIZE, 0, BUTTON_SIZE, BUTTON_SIZE);
         UIButton *button = [[UIButton alloc] initWithFrame:btnFrame];
     
-        //[b.layer setBorderWidth: 0.0];
         button.layer.borderWidth = 0.0;
-        //[b.layer setBorderColor: [[UIColor grayColor] CGColor]];
-        //[b.layer setBorderWidth: 4.0];
         [button.layer setMasksToBounds:YES];
-        //[b.layer setCornerRadius:BUTTON_SIZE/2.0];
-        button.alpha = 0.40f;
+        button.alpha = PALETTE_ALPHA;
         button.backgroundColor = colors[i%[colors count]];
         [button addTarget:self
                    action:@selector(colorTap:)
@@ -79,9 +71,9 @@
     for (int i = 0; i < [buttons count]; i++) {
         
         UIButton *button = (UIButton *)buttons[i];
-        button.alpha = 0.40;
+        button.alpha = PALETTE_ALPHA;
         button.layer.borderColor = [UIColor whiteColor].CGColor;
-        button.layer.borderWidth = 0.0f;
+        button.layer.borderWidth = PALETTE_BORDER_WIDTH;
         
         if (tappedButton == button) {
             found = true;
@@ -100,7 +92,7 @@
                                       BUTTON_SIZE * 2,
                                       BUTTON_SIZE);
                 button.layer.borderColor = [UIColor blackColor].CGColor;
-                button.layer.borderWidth = 2.0;
+                button.layer.borderWidth = PALETTE_BORDER_WIDTH_TAPPED;
             } else {
                 btnFrame = CGRectMake(i * BUTTON_SIZE + BUTTON_SIZE,
                                       button.frame.origin.y,
@@ -112,7 +104,7 @@
         [button setFrame:btnFrame];
     }
     
-    tappedButton.alpha = 1;
+    tappedButton.alpha = PALETTE_TAPPED_ALPHA;
 }
 
 @end

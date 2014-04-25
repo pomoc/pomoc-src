@@ -11,7 +11,6 @@
 @class UploadViewController;
 @protocol UploadDelegate
 
-// define protocol functions that can be used in any class using this delegate
 - (void)pictureSelected:(UIImage *)image;
 - (void)closePopOver;
 

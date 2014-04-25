@@ -64,10 +64,7 @@
 
 - (void)reachabilityChanged:(NSNotification *)notification {
     
-    if ([reach isReachableViaWiFi]) {
-        NSLog(@"reachable");
-    } else {
-        
+    if (![reach isReachableViaWiFi]) {
         if ([self isHomeDelegateAlive]) {
             [_homeDelegate noInternet];
         }
@@ -79,8 +76,6 @@
         if ([self isChatDelegateAlive]) {
             [_chatDelegate noInternet];
         }
-        
-        NSLog(@"not reachable");
     }
 }
 
@@ -101,8 +96,6 @@
         
         _selfUserId = returnedUserId;
         
-        NSLog(@"returned user id == %@",returnedUserId);
-        
         if (returnedUserId == nil) {
             completion(NO);
     
@@ -110,14 +103,11 @@
             
             [PMSupport connectWithCompletion:^(BOOL connected) {
                 
-                NSLog(@"connected ");
                 //inform applicaiton online
                 [PMSupport pingApp];
                 
                 // Get all conversations
                 [PMSupport getAllConversations:^(NSArray *conversations) {
-                    
-                    NSLog(@"total converlength == %lu",[conversations count]);
                     
                     for (PMConversation *convo in conversations) {
                         
@@ -233,8 +223,6 @@
 #pragma mark - Pocmoc Support Delegate
 - (void)newConversationCreated:(PMConversation *)conversation {
     
-    NSLog(@"new convo created");
-
     BOOL existingConvo = NO;
     
     for (PMConversation *convo in _currentConversationList) {
@@ -430,7 +418,6 @@
 }
 
 - (void)removeAllExistingData {
-    NSLog(@"called this");
     [_currentAgentList removeAllObjects];
     [_currentConversationList removeAllObjects];
     [_currentUserList removeAllObjects];

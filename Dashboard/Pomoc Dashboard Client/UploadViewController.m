@@ -28,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -40,11 +39,11 @@
 
 - (void) showActionSheet
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Upload image from?"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:UPLOAD_ACTION_SHEET_TITLE
                                                              delegate:self
-                                                    cancelButtonTitle:@"Cancel"
+                                                    cancelButtonTitle:UPLOAD_CANCEL
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Camera", @"Photos Library", nil];
+                                                    otherButtonTitles:UPLOAD_ACTION_SHEET_CAM, UPLOAD_ACTION_SHEET_PICT, nil];
     
     [actionSheet showInView:self.view];
 }
@@ -65,7 +64,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]) {
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:UPLOAD_CANCEL]) {
         [_delegate closePopOver];
         return;
     }
@@ -73,13 +72,13 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Camera"]) {
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:UPLOAD_ACTION_SHEET_CAM]) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         CGAffineTransform transform = CGAffineTransformIdentity;
         transform = CGAffineTransformRotate(transform, M_PI/2.0);
         picker.cameraViewTransform = transform;
     
-    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photos Library"]) {
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:UPLOAD_ACTION_SHEET_PICT]) {
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     

@@ -44,11 +44,11 @@
         
     [self.view setBackgroundColor:[UIColor grayColor]];
     
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:DONE_BUTTON_TITLE
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(editedImage:)];
-    self.navigationItem.rightBarButtonItem = anotherButton;
+    self.navigationItem.rightBarButtonItem = doneBtn;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -123,13 +123,6 @@
     UIGraphicsEndImageContext();
     return savedImage;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 -(BOOL)shouldAutorotate
 {

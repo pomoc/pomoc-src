@@ -11,22 +11,15 @@
 #import "ChatMessagePictureCell.h"
 #import "ChatMessageTextCell.h"
 #import "StatusMessageTableViewCell.h"
-
 #import "ContactInfoViewController.h"
 #import "ReferTableViewController.h"
-
-#import "PomocCore.h"
 #import "PomocSupport.h"
 #import "PMChatMessage.h"
 #import "PMMessage.h"
 #import "PMStatusMessage.h"
-
 #import "UILabel+boldAndGray.h"
-
 #import "UIImageView+WebCache.h"
-
 #import "DashBoardSingleton.h"
-
 #import "AnnotateViewController.h"
 
 @interface ChatViewController () < UINavigationControllerDelegate, UIAlertViewDelegate, AnnotateViewControllerDelegate, PomocChatDelegate, ReferDelegate> {
@@ -71,7 +64,7 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    self.title = @"Messages";
+    self.title = CHAT_NAV_TITLE;
     
     // Ensuring that no border for chat message table view
     _chatMessageTable.separatorColor = [UIColor clearColor];
@@ -113,13 +106,12 @@
     chatMessageOriginalFrame = _chatMessageTable.frame;
     chatInputOriginalCenter = _chatInputView.center;
     chatNavOriginalFrame = _chatNavTable.frame;
-    chatNavOriginalFrame.size.width = 280;
+    chatNavOriginalFrame.size.width = CHAT_NAV_ORIGINAL_FRAME;
     
     _toolBarView.hidden = TRUE;
 }
-     
+
 - (void)splitChatIntoGroups {
-    NSLog(@"came inside split");
     [unhandledChatList removeAllObjects];
     [handlingChatList removeAllObjects];
     [otherChatList removeAllObjects];
@@ -163,7 +155,6 @@
     NSString *userInput = _userTextInput.text;
     
     if ([userInput length] > 0 ) {
-        NSLog(@"user sending message!");
         [currentlySelectedConvo sendTextMessage:userInput];
         [_userTextInput setText:@""];
     }
@@ -171,14 +162,12 @@
 
 - (IBAction)handleActionPressed:(id)sender {
     
-    NSLog(@"hande button pressed");
-    
-    if ([[_handleActionLabel title] isEqualToString: @"Handle"]) {
+    if ([[_handleActionLabel title] isEqualToString: HANDLE_CHAT_BTN]) {
         [singleton handleConversation:currentlySelectedConvo];
-        [_handleActionLabel setTitle:@"Unhandle"];
+        [_handleActionLabel setTitle:UNHANDLE_CHAT_BTN];
     } else {
         [singleton unhandleConversation:currentlySelectedConvo];
-        [_handleActionLabel setTitle:@"Handle"];
+        [_handleActionLabel setTitle:HANDLE_CHAT_BTN];
     }
     
 }
@@ -231,23 +220,23 @@
     
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 12)];
-        [label setFont:[UIFont fontWithName:@"Avenir" size:14]];
+        [label setFont:[UIFont fontWithName:CHAT_NAV_FONT size:CHAT_NAV_FONT_SIZE]];
         [label setTextColor:[UIColor whiteColor]];
         
         NSString *headerTitle;
 
         switch(section) {
             case UNHANDLED_CHAT:
-                headerTitle = @"Unhandled chats";
+                headerTitle = UNHANDLE_CHAT_SECTION;
                 view.backgroundColor = [UIColor redColor];
                 break;
             case HANDLING_CHAT:
-                headerTitle =  @"Chats you are handling";
-                view.backgroundColor = [Utility colorFromHexString:@"#42C9B3"];
+                headerTitle =  HANDLING_CHAT_SECTION;
+                view.backgroundColor = [Utility colorFromHexString:HANDLING_CHAT_SECTION_COLOR];
                 break;
             case OTHER_CHAT:
-                headerTitle =  @"Other chats";
-                view.backgroundColor = [Utility colorFromHexString:@"#42C9B3"];
+                headerTitle =  OTHER_CHAT_SECTION;
+                view.backgroundColor = [Utility colorFromHexString:OTHER_CHAT_SECTION_COLOR];
                 break;
         }
         
@@ -275,19 +264,6 @@
         }
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-//        switch(section) {
-//            case UNHANDLED_CHAT:
-//                return [unhandledChatList count];
-//                break;
-//            case HANDLING_CHAT:
-//                return [handlingChatList count];
-//                break;
-//            case OTHER_CHAT:
-//                return [otherChatList count];
-//                break;
-//        }
-        NSLog(@"came inside here with chat list count = %lu",[chatList count]);
-        
         if ([chatList count] == 0) {
             return 0;
         } else {
@@ -312,12 +288,7 @@
     
     } else if(tableView.tag == CHAT_MESSAGE_TABLEVIEW) {
         
-        //PMConversation *convo = [chatList objectAtIndex:currentlySelectedChatRow];
-        
         PMConversation *convo = currentlySelectedConvo;
-        
-        NSLog(@"indexPath.row == %lu",indexPath.row);
-        
         id obj = [convo.messages objectAtIndex:indexPath.row];
         
         if ([obj isKindOfClass:[PMStatusMessage class]]) {
@@ -374,11 +345,10 @@
         [singleton isHandlerForConversation:currentSelectedConvoId completion:^(BOOL isHandler){
             
             if (isHandler) {
-                [_handleActionLabel setTitle:@"Unhandle"];
+                [_handleActionLabel setTitle:UNHANDLE_CHAT_BTN];
             } else {
-                [_handleActionLabel setTitle:@"Handle"];
+                [_handleActionLabel setTitle:HANDLE_CHAT_BTN];
             }
-            
         }];
         
         // Make it read
@@ -390,12 +360,9 @@
     
     } else if ([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
         
-        NSLog(@"did select");
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
-        if ([cell isKindOfClass:[ChatMessagePictureCell class]]) {
-            NSLog(@"did select");
-            ChatMessagePictureCell *cell = (ChatMessagePictureCell *) [tableView cellForRowAtIndexPath:indexPath];
+        if ([cell isKindOfClass:[ChatMessagePictureCell class]]) {            ChatMessagePictureCell *cell = (ChatMessagePictureCell *) [tableView cellForRowAtIndexPath:indexPath];
             [self showImage:cell.messagePicture.image];
         }
     }
@@ -408,19 +375,19 @@
             if (unhandledChatList.count == 0) {
                 return 0;
             }
-            return 20;
+            return SECTION_HEIGHT;
             break;
         case HANDLING_CHAT:
             if (handlingChatList.count == 0) {
                 return 0;
             }
-            return 20;
+            return SECTION_HEIGHT;
             break;
         case OTHER_CHAT:
             if (otherChatList.count == 0) {
                 return 0;
             }
-            return 20;
+            return SECTION_HEIGHT;
             break;
     }
     
@@ -430,30 +397,27 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([tableView tag] == CHAT_LIST_TABLEVIEW ) {
-        return 65;
+        return SECTION_CONTENT_HIGHT;
         
     } else if([tableView tag] == CHAT_MESSAGE_TABLEVIEW) {
-        
-        //NSLog(@"at height for row, index path row = %lu",indexPath.row);
         
         PMConversation *pmConvo;
         pmConvo = currentlySelectedConvo;
         
-        NSLog(@" index path row ==%lu, %li",(long)indexPath.row, (long)indexPath.section);
         id obj = [currentlySelectedConvo.messages objectAtIndex:indexPath.row];
         
         if ([obj isKindOfClass:[PMImageMessage class]]) {
-            return 170;
+            return CHAT_MESSAGE_PICTURE_HEIGHT;
         } else {
             
             PMChatMessage *message = [pmConvo.messages objectAtIndex:indexPath.row];
             NSString *text = message.message;
             UILabel *gettingSizeLabel = [[UILabel alloc] init];
-            gettingSizeLabel.font = [UIFont fontWithName:@"Avenir" size:15];
+            gettingSizeLabel.font = [UIFont fontWithName:CHAT_MESSAGE_TEXT_FONT size:CHAT_MESSAGE_TEXT_FONT_SIZE];
             gettingSizeLabel.text = text;
             gettingSizeLabel.numberOfLines = 0;
             gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            CGSize maximumLabelSize = CGSizeMake(695, 9999); // TODO: Kinda hackish..
+            CGSize maximumLabelSize = CGSizeMake(695, 9999);
             CGSize expectedSize = [gettingSizeLabel sizeThatFits:maximumLabelSize];
             
             return expectedSize.height + 40;
@@ -467,9 +431,8 @@
 - (UITableViewCell *)createChatNavTableView:(UITableView *)tableView
                                       atRow:(NSInteger)row
                                        type:(NSInteger)type {
-    NSLog(@"creating chat left side table view");
     
-    static NSString *cellIdentifier = @"ChatTitleCell";
+    static NSString *cellIdentifier = CHAT_TITLE_REUSE_CELL;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     PMConversation *pmConvo;
@@ -486,7 +449,7 @@
     }
     
     if (![pmConvo read]) {
-        [cell setBackgroundColor:[Utility colorFromHexString:@"#D3E4F0"]];
+        [cell setBackgroundColor:[Utility colorFromHexString:CHAT_MESSAGE_UNREAD_COLOR]];
     }
     
     // Setting visitor name
@@ -512,7 +475,6 @@
             }
         }
         
-        NSLog(@"getting list of handlers returned == %lu",(unsigned long)total);
         [agentLabel setText:[NSString stringWithFormat: @"%lu", (unsigned long)total]];
     }];
     
@@ -531,7 +493,7 @@
 
 - (UITableViewCell *)getChatImageCell:(PMImageMessage *)message
                             tableView:(UITableView *)tableView {
-    static NSString *cellIdentifier = @"ChatPictureCell";
+    static NSString *cellIdentifier = CHAT_PICTURE_REUSE_CELL;
     ChatMessagePictureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell) {
@@ -581,12 +543,6 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImage:)];
     [popOutImage addGestureRecognizer:tapGestureRecognizer];
     
-    //TODO LATER IF NEED CLOSE BUTTON
-//    UIImageView *closeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 32, 32, 32)];
-//    [closeImage setContentMode:UIViewContentModeScaleAspectFit];
-//    [closeImage setImage:[UIImage imageNamed:@"close-512.png"]];
-//    [imageView addSubview:closeImage];
-    
     [self.view addSubview:popOutImage];
 }
 
@@ -605,7 +561,7 @@
 - (UITableViewCell *)getStatusMessageCell:(PMStatusMessage *)message
                                 tableView:(UITableView *)tableView {
     
-    static NSString *cellIdentifier = @"StatusMessageCell";
+    static NSString *cellIdentifier = CHAT_STATUS_REUSE_CELL;
     StatusMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell) {
@@ -648,7 +604,7 @@
 - (UITableViewCell *)getChatMessageCell:(PMChatMessage *)message
                               tableView:(UITableView *)tableView {
     
-    static NSString *cellIdentifier = @"ChatMessageCell";
+    static NSString *cellIdentifier = CHAT_MESSAGE_REUSE_CELL;
     ChatMessageTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell) {
@@ -684,14 +640,12 @@
 }
 
 - (void) hasNewMessage:(NSMutableArray *)newChatList conversation:(PMConversation *)conversation; {
-    NSLog(@"called chat VC has new message");
     chatList = newChatList;
     
     [self splitChatIntoGroups];
     [_chatNavTable reloadData];
     
     if ([currentlySelectedConvo.conversationId isEqualToString:conversation.conversationId]) {
-        NSLog(@"yes equal!");
         [_chatMessageTable reloadData];
         [self scrollChatContentToBottom];
     }
@@ -705,8 +659,8 @@
 }
 
 - (void)referred:(NSString *)convoId {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Chat Referred"
-                                                    message: @"You've been referred to a new chat conversation!"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: INVITED_TITLE
+                                                    message: INVITED_CONTENT
                                                    delegate: nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -759,14 +713,6 @@
         vc.currentConversation = currentlySelectedConvo;
         
         referSegue = ((UIStoryboardPopoverSegue *) segue).popoverController;
-//        
-//        if ([currentlySelectedConvo.notes count] == 0) {
-//            referSegue.popoverContentSize = CGSizeMake(250, 44);
-//        } else {
-//            CGFloat height = [referList count] * 44;
-//            referSegue.popoverContentSize = CGSizeMake(250, height);
-//        }
-//        
     }
     
 }
