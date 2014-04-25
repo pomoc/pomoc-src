@@ -86,7 +86,6 @@
 #define CHAT_NAV_FONT @"Avenir"
 #define CHAT_NAV_FONT_SIZE 14
 #define UNHANDLE_CHAT_SECTION @"Unhandled chats"
-#defineUNHANDLE_CHAT_SECTION_COLOR
 #define HANDLING_CHAT_SECTION @"Chats you are handling"
 #define HANDLING_CHAT_SECTION_COLOR @"#42C9B3"
 #define OTHER_CHAT_SECTION @"Other chats"

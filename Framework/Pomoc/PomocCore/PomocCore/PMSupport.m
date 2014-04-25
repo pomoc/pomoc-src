@@ -96,7 +96,7 @@
     NSDictionary *parameters = @{NAME_KEY: name, APP_TOKEN_KEY: [PMSupport sharedInstance].appToken};
    
     NSString *userId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString *postUrl = [NSString stringWithFormat:HTTP_CUSTOMER_URL, userId];
+    NSString *postUrl = [NSString stringWithFormat:@"%@%@", HTTP_CUSTOMER_URL, userId];
     
     [manager POST:postUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if (completion) {
@@ -147,12 +147,18 @@
                     if (callback) {
                         callback(connected);
                     }
+                    [PMCore pingApp];
                 }];
             } else {
-                callback(connected);
+                if (callback) {
+                    callback(connected);
+                }
+                [PMCore pingApp];
             }
         } else {
-            callback(connected);
+            if (callback) {
+                callback(connected);
+            }
         }
     }];
     [PMCore connect];
