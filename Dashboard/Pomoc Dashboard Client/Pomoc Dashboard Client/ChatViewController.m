@@ -458,7 +458,8 @@
 
     // Setting the started date of chat
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM 'at' HH:MM"];
+    [dateFormatter setDateFormat:@"MM/dd HH:mm"];
+    //[dateFormatter setDateFormat:@"dd/MM 'at' HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:pmConvo.createDate];
     
     UILabel *startedLabel = (UILabel *)[cell.contentView viewWithTag:CHAT_CELL_STARTED];
