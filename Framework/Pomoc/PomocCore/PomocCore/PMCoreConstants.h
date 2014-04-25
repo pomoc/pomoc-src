@@ -31,11 +31,20 @@
 #define ARGS_KEY        @"args"
 #define TYPE_KEY        @"type"
 #define USERS_KEY       @"users"
+#define REFERRER_KEY    @"referrerUserId"
+#define REFEREE_KEY     @"refereeUserId"
 
-#define APPLICATION_MESSAGE_EVENT @"applicationMessage"
-#define INTERNAL_MESSAGE_EVENT    @"internalMessage"
-#define CHAT_MESSAGE_EVENT        @"chatMessage"
+#define APPLICATION_MESSAGE_EVENT   @"applicationMessage"
+#define INTERNAL_MESSAGE_EVENT      @"internalMessage"
+#define CHAT_MESSAGE_EVENT          @"chatMessage"
+#define HANDLE_EVENT                @"handlerStatus"
 #define NEW_CONVERSATION_EVENT      @"newConversation"
 #define NEW_NOTE_EVENT              @"newNote"
+#define ONLINE_STATUS_EVENT         @"onlineStatus"
+
+#define TYPE_CONVERSATION   @"conversation"
+#define TYPE_APP            @"app"
+#define TYPE_REFERRAL       @"referral"
+#define TYPE_HANDLERS       @"handlers"
 
 #endif

@@ -364,28 +364,28 @@
             }];
         }
     }
-    else if ([packet.name isEqualToString:@"onlineStatus"]) {
+    else if ([packet.name isEqualToString:ONLINE_STATUS_EVENT]) {
         NSArray *users = [PMUserManager getUserObjectsFromUserIds:data[USERS_KEY]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:conversationId:)]) {
-            if ([data[TYPE_KEY] isEqualToString:@"conversation"]) {
+            if ([data[TYPE_KEY] isEqualToString:TYPE_CONVERSATION]) {
                 [self.delegate updateOnlineUsers:users conversationId:data[MESSAGE_CONVERSATION_ID]];
             }
         }
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateOnlineUsers:)]) {
-            if ([data[TYPE_KEY] isEqualToString:@"app"]) {
+            if ([data[TYPE_KEY] isEqualToString:TYPE_APP]) {
                 [self.delegate updateOnlineUsers:users];
             }
         }
     }
-    else if ([packet.name isEqualToString:@"handlerStatus"]) {
+    else if ([packet.name isEqualToString:HANDLE_EVENT]) {
         NSArray *handlers = [PMUserManager getUserObjectsFromUserIds:data[USERS_KEY]];
         if (self.delegate && [self.delegate respondsToSelector:@selector(updateHandlers:conversationId:referrer:referee:)]) {
-            if ([data[TYPE_KEY] isEqualToString:@"handlers"]) {
+            if ([data[TYPE_KEY] isEqualToString:TYPE_HANDLERS]) {
                 [self.delegate updateHandlers:handlers conversationId:data[MESSAGE_CONVERSATION_ID]];
             }
-            else if ([data[TYPE_KEY] isEqualToString:@"referral"]) {
-                PMUser *referrer = [PMUserManager getUserObjectFromUserId:data[@"referrerUserId"]];
-                PMUser *referee = [PMUserManager getUserObjectFromUserId:data[@"refereeUserId"]];
+            else if ([data[TYPE_KEY] isEqualToString:TYPE_REFERRAL]) {
+                PMUser *referrer = [PMUserManager getUserObjectFromUserId:data[REFERRER_KEY]];
+                PMUser *referee = [PMUserManager getUserObjectFromUserId:data[REFEREE_KEY]];
                 
                 [self.delegate updateHandlers:handlers
                                conversationId:data[MESSAGE_CONVERSATION_ID]
