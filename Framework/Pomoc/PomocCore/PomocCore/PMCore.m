@@ -82,7 +82,7 @@
         if ([jsonResponse[SUCCESS_KEY] isEqual:@(YES)] && completion) {
             NSString *conversationId = jsonResponse[MESSAGE_CONVERSATION_ID];
             NSString *creatorUserId = jsonResponse[MESSAGE_CREATOR_USERID];
-            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[jsonResponse[MESSAGE_CREATE_DATE] doubleValue]];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[jsonResponse[MESSAGE_CREATE_DATE] doubleValue] / 1000];
             PMConversation *conversation = [[PMConversation alloc] initWithConversationId:conversationId
                                             creatorUserId:creatorUserId createDate:createDate];
             
@@ -171,7 +171,7 @@
             NSArray *conversationObjects = jsonResponse[CONVERSATION_IDS_KEY];
             NSMutableArray *conversations = [NSMutableArray array];
             for (NSDictionary *conversation in conversationObjects) {
-                NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[conversation[MESSAGE_CREATE_DATE] doubleValue]];
+                NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[conversation[MESSAGE_CREATE_DATE] doubleValue] / 1000];
                 [conversations addObject:[[PMConversation alloc] initWithConversationId:conversation[MESSAGE_CONVERSATION_ID]
                                                                           creatorUserId:conversation[MESSAGE_CREATOR_USERID]
                                                                              createDate:createDate]];
@@ -344,7 +344,7 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(newConversationCreated:)]) {
             NSString *conversationId = data[MESSAGE_CONVERSATION_ID];
             NSString *creatorUserId = data[MESSAGE_CREATOR_USERID];
-            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[MESSAGE_CREATE_DATE] doubleValue]];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[data[MESSAGE_CREATE_DATE] doubleValue] / 1000];
             
             PMConversation *conversation = self.conversations[conversationId];
             

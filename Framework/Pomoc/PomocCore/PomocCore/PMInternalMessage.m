@@ -83,7 +83,7 @@
         jsonData[MESSAGE_CONVERSATION_ID] = self.conversationId;
     }
     if (self.createDate) {
-        jsonData[MESSAGE_CREATE_DATE] = [NSNumber numberWithDouble:[self.createDate timeIntervalSince1970]];
+        jsonData[MESSAGE_CREATE_DATE] = [NSNumber numberWithDouble:[self.createDate timeIntervalSince1970] * 1000];
     }
     if (self.creatorUserId) {
         jsonData[MESSAGE_CREATOR_USERID] = self.creatorUserId;
