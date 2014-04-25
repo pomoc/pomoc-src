@@ -36,7 +36,7 @@
 
 // Simulator is the customer
 #ifdef __i386__
-    [PMSupport initWithAppID:@"59129aacfb6cebbe2c52f30ef3424209f7252e82" secretKey:@"mySecret"];
+    [PMSupport initWithAppID:@"1D129EF1042" secretKey:@"mySecret"];
     NSString *customer = @"second";
     [PMSupport registerUserWithName:customer completion:^(NSString *userId) {
         [PMSupport connectWithCompletion:^(BOOL connected) {
