@@ -42,11 +42,9 @@
 }
 </pre>
 
-            <p>In the View Controller that you want to allow the user to toggle the Pomoc Chat head, firstly add <code>#import &lt;PomocSDK/PomocSDK.h&gt;</code> at the top of the file and then use the following line of code to display the Chat Head:</p>
+            <p>In the View Controller that you want to allow the user to toggle the Pomoc Chat head, add <code>#import &lt;PomocSDK/PomocSDK.h&gt;</code> at the top of the file and then use the following line of code to display the Chat Head:</p>
             <pre>
-[Pomoc registerUserWithName:@"&lt;A name you give to your user&gt;" completion:^(NSString *userId) {
     [Pomoc toggleChatHead];
-}];
 </pre>
             <hr>
 
