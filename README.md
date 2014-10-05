@@ -1,11 +1,18 @@
 # Pomoc
 =====
 
-![Pomoc Icon](logo.png)
 
 ### Introduction
 
+![Pomoc Icon](logo.png)
+
 !Pomoc is a B2B service that allows vendors to easily create a communication channel with users of their mobile apps via live chat for the purpose of customer support and service. After vendors install the Pomoc SDK (Standard Developer’s Kit) into their existing mobile applications, users of their mobile apps will able to talk to vendors directly from the app.
+
+### Repository Structure
+
+- **Backend**: Backend server
+- **Dashboard**: Dashboard client
+- **Framework**: Pomoc Framework
 
 ### Glossary of Terms
 
@@ -28,9 +35,3 @@
 ![Dashboard Chat Camera](screenshots/dashboard-chat-camera.png)
 ![Dashboard Chat Gallery](screenshots/dashboard-chat-gallery.png)
 ![Dashboard Chat Annotate](screenshots/dashboard-chat-annotate.png)
-
-## Repository Structure
-- **Backend**: Backend server
-- **Dashboard**: Dashboard client
-- **Framework**: Pomoc Framework
-
